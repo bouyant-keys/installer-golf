@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://ydwad5t72o11"]
+
+[ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/window.gd" id="1_efths"]
+[ext_resource type="Texture2D" uid="uid://bhem4jc2evqln" path="res://Textures/LockButton.png" id="2_0xhjo"]
+[ext_resource type="Script" uid="uid://bj1vasses0bnt" path="res://Scripts/move_area.gd" id="3_bnnxv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xhjo"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+border_width_bottom = 2
+border_color = Color(0.34033927, 0.34033936, 0.34033903, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nawkt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+size = Vector2(252, 234)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30sqi"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4392157, 0.4392157, 0.4392157, 0.5294118)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 3
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="Window" type="PanelContainer" unique_id=800055674]
+custom_minimum_size = Vector2(48, 48)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8gbba")
+script = ExtResource("1_efths")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=711398828]
+z_index = -5
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1653410151]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GrabBar" type="PanelContainer" parent="VBoxContainer" unique_id=1896426972]
+unique_name_in_owner = true
+z_index = -1
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xhjo")
+
+[node name="LockIcon" type="TextureRect" parent="VBoxContainer/GrabBar" unique_id=1922679202]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_0xhjo")
+
+[node name="MovePanel" type="PanelContainer" parent="VBoxContainer" unique_id=708295018]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nawkt")
+
+[node name="MoveArea" type="Area2D" parent="VBoxContainer/MovePanel" unique_id=793410227 node_paths=PackedStringArray("window_parent")]
+unique_name_in_owner = true
+position = Vector2(126, 117)
+input_pickable = false
+script = ExtResource("3_bnnxv")
+window_parent = NodePath("../../..")
+
+[node name="MoveCollider" type="CollisionShape2D" parent="VBoxContainer/MovePanel/MoveArea" unique_id=644587357]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_pb32r")
+
+[node name="PanelContainer" type="Panel" parent="." unique_id=837076328]
+z_index = 15
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_30sqi")
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="mouse_entered" from="VBoxContainer/GrabBar" to="." method="_on_grab_bar_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/GrabBar" to="." method="_on_grab_bar_exited"]
+[connection signal="area_entered" from="VBoxContainer/MovePanel/MoveArea" to="." method="_on_move_area_entered"]
+[connection signal="area_exited" from="VBoxContainer/MovePanel/MoveArea" to="." method="_on_move_area_exited"]

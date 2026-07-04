@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bdxvugp312r4y"]
+
+[ext_resource type="Script" uid="uid://ckgvmal0b24pq" path="res://Scripts/stage_manager.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://ckqu8nlymp6o1" path="res://Scenes/stage_1.tscn" id="1_jjgbg"]
+
+[node name="Main" type="Node" unique_id=1067694015]
+
+[node name="StageManager" type="Node" parent="." unique_id=232984876]
+script = ExtResource("1_bo1nx")
+stages = Array[PackedScene]([ExtResource("1_jjgbg")])
+
+[node name="Stage1" parent="StageManager" unique_id=1335873284 instance=ExtResource("1_jjgbg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1781052190]
+
+[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=153318304]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_bottom = 31.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Restart"
+
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="StageManager" method="_on_reset_pressed"]
