@@ -6,110 +6,81 @@
 [ext_resource type="Script" uid="uid://ddnxca2vbqv82" path="res://Scripts/obstacle.gd" id="4_j221e"]
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="4_sfwwm"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="5_adl2h"]
-[ext_resource type="Texture2D" uid="uid://2ynojee64kf4" path="res://Textures/Bar_Over.png" id="6_j221e"]
+[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scenes/local_pos.gd" id="5_vy6i2"]
 [ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="6_vy6i2"]
 
-[sub_resource type="Gradient" id="Gradient_376qj"]
-colors = PackedColorArray(0.44291076, 0.44291076, 0.44291073, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_j221e"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.5686275, 0.5686275, 0.5686275, 0, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 4
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aw2wy"]
+gradient = SubResource("Gradient_j221e")
+width = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
 size = Vector2(110, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j221e"]
-size = Vector2(180, 16)
-
 [node name="Stage1" type="Node" unique_id=1335873284]
 script = ExtResource("1_axx50")
 
-[node name="WindowManager" type="Control" parent="." unique_id=1863376274 node_paths=PackedStringArray("stage")]
+[node name="WindowManager" type="Control" parent="." unique_id=1863376274]
+unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_adl2h")
-stage = NodePath("..")
 
 [node name="Window" parent="WindowManager" unique_id=800055674 instance=ExtResource("2_kg1an")]
 layout_mode = 1
-offset_left = 704.0
-offset_top = 280.0
-offset_right = 960.0
-offset_bottom = 536.0
+offset_left = -256.0
+offset_right = 256.0
 is_locked = true
 
-[node name="Window2" parent="WindowManager" unique_id=613581307 instance=ExtResource("2_kg1an")]
-layout_mode = 1
-offset_left = 528.0
-offset_top = 16.0
-offset_right = 784.0
-offset_bottom = 272.0
+[node name="GoalArea" parent="WindowManager/Window" unique_id=1905208525 instance=ExtResource("4_sfwwm")]
+unique_name_in_owner = true
+position = Vector2(456, 124)
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="WindowManager/Window2" unique_id=92241379]
-layout_mode = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/Window2/VBoxContainer2" unique_id=319288807]
+[node name="TextObstacle" type="Label" parent="WindowManager/Window" unique_id=2091312163]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Text Obstacle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="WindowManager/Window2/VBoxContainer2" unique_id=1785368896]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextObstacle2" type="RichTextLabel" parent="WindowManager/Window2/VBoxContainer2" unique_id=1174511903]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Another Obstacle Here"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="Window3" parent="WindowManager" unique_id=539758716 instance=ExtResource("2_kg1an")]
-layout_mode = 1
-offset_left = 256.0
-offset_top = 192.0
-offset_right = 512.0
-offset_bottom = 448.0
-is_locked = true
-
-[node name="GoalArea" parent="WindowManager/Window3" unique_id=1905208525 instance=ExtResource("4_sfwwm")]
-position = Vector2(64, 128)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TextTextTextText"
 
 [node name="StartPosition" type="Control" parent="." unique_id=163739326]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 896.0
-offset_top = 448.0
-offset_right = 896.0
-offset_bottom = 448.0
+offset_left = 400.0
+offset_top = 328.0
+offset_right = 400.0
+offset_bottom = 328.0
 mouse_filter = 2
 
-[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("stage", "window_manager", "start_position") instance=ExtResource("5_adl2h")]
-stage = NodePath("..")
-window_manager = NodePath("../WindowManager")
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_position", "window_manager") instance=ExtResource("5_adl2h")]
+unique_name_in_owner = true
 start_position = NodePath("../StartPosition")
+window_manager = NodePath("../WindowManager")
 
 [node name="LoadBarPath" type="Line2D" parent="." unique_id=795535952 node_paths=PackedStringArray("stage", "goal")]
 z_index = 5
-default_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
-gradient = SubResource("Gradient_376qj")
-texture = ExtResource("6_j221e")
-texture_mode = 2
+texture_repeat = 2
+texture = SubResource("GradientTexture1D_aw2wy")
+texture_mode = 1
 antialiased = true
 script = ExtResource("6_vy6i2")
 stage = NodePath("..")
-goal = NodePath("../WindowManager/Window3/GoalArea")
+goal = NodePath("../WindowManager/Window/GoalArea")
+
+[node name="LocalPos" type="Node2D" parent="." unique_id=478600300 node_paths=PackedStringArray("ball")]
+z_index = 20
+script = ExtResource("5_vy6i2")
+ball = NodePath("../Ball")
 
 [node name="Obstacles" type="Node" parent="." unique_id=1814648929]
 
@@ -118,25 +89,13 @@ position = Vector2(656, 96)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("4_j221e")
-follow = NodePath("../../WindowManager/Window2/VBoxContainer2/TextObstacle")
-follow_offset = Vector2(0, 4)
+follow = NodePath("../../WindowManager/Window/TextObstacle")
+collider_fit_rect = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle" unique_id=1621160243]
 shape = SubResource("RectangleShape2D_pb32r")
 debug_color = Color(0.99466485, 0, 0.22583735, 0.41960785)
 
-[node name="Obstacle2" type="AnimatableBody2D" parent="Obstacles" unique_id=1216446829 node_paths=PackedStringArray("follow")]
-position = Vector2(656, 192)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("4_j221e")
-follow = NodePath("../../WindowManager/Window2/VBoxContainer2/TextObstacle2")
-collider_fit_rect = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle2" unique_id=2014152726]
-shape = SubResource("RectangleShape2D_j221e")
-debug_color = Color(0.99466485, 0, 0.22583735, 0.41960785)
-
-[connection signal="goal" from="WindowManager/Window3/GoalArea" to="Ball" method="_on_goal"]
-[connection signal="goal" from="WindowManager/Window3/GoalArea" to="LoadBarPath" method="_on_goal"]
+[connection signal="goal" from="WindowManager/Window/GoalArea" to="Ball" method="_on_goal"]
+[connection signal="goal" from="WindowManager/Window/GoalArea" to="LoadBarPath" method="_on_goal"]
 [connection signal="direction_changed" from="Ball" to="LoadBarPath" method="_on_ball_bounce"]

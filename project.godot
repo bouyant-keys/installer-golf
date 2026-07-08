@@ -38,6 +38,7 @@ RightClick={
 2d_physics/layer_1="Window"
 2d_physics/layer_2="Ball"
 2d_physics/layer_3="Obstacle"
+2d_physics/layer_4="Goal"
 
 [physics]
 

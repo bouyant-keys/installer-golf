@@ -4,19 +4,46 @@
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb32r"]
-radius = 12.0
+radius = 6.0
 
 [node name="GoalArea" type="Area2D" unique_id=1905208525]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 2
-monitorable = false
 script = ExtResource("1_xxatn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-shape = SubResource("CircleShape2D_pb32r")
 
 [node name="GoalSprite" type="Sprite2D" parent="." unique_id=591048772]
 self_modulate = Color(1, 1, 0, 1)
 texture = ExtResource("1_fh3lm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
+shape = SubResource("CircleShape2D_pb32r")
+debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1025340160]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = -24.0
+grow_horizontal = 2
+
+[node name="DownloadTex" type="TextureRect" parent="HBoxContainer" unique_id=91740979]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("1_fh3lm")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="DownloadBar" type="ProgressBar" parent="HBoxContainer" unique_id=174283770]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 1.0
+value = 24.0
+show_percentage = false
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

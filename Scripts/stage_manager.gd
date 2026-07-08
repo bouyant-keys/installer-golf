@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func on_next_stage() ->void:
 	# -- Fade to black --
-	
+	print("Moving to stage: ", stage_index+2)
 	current_stage.queue_free()
 	
 	stage_index = clampi(stage_index + 1, 0, stages.size()-1)

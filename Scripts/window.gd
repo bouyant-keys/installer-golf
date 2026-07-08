@@ -1,5 +1,6 @@
 class_name WindowPanel extends PanelContainer
 
+var is_selected := false
 var start_position : Vector2
 var move_start : Vector2
 var drag_start : Vector2
@@ -14,6 +15,8 @@ var grabbed := false
 @onready var move_collider: CollisionShape2D = %MoveCollider
 
 signal window_selected(window:WindowPanel)
+signal window_grabbed(window:WindowPanel)
+signal window_released(window:WindowPanel)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,14 +30,18 @@ func _process(_delta: float) -> void:
 	global_position = move_start + (get_global_mouse_position() - drag_start)
 
 func _gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("LeftClick") and grabbed:
+	if event.is_action_pressed("LeftClick") && grabbed:
 		window_selected.emit(self)
 		if is_locked:
+			##TODO Visual cue that window is locked in place...
 			return
+			
 		drag_start = get_global_mouse_position()
 		move_start = global_position
+		window_grabbed.emit(self)
 		set_process(true)
 	elif event.is_action_released("LeftClick"):
+		window_released.emit(self)
 		set_process(false)
 
 
@@ -63,10 +70,10 @@ func _on_grab_bar_entered() ->void:
 func _on_grab_bar_exited() ->void:
 	grabbed = false
 
-func _on_move_area_entered(area: Area2D) -> void:
+func _on_move_area_entered(_area: Area2D) -> void:
 	pass # Replace with function body.
 
-func _on_move_area_exited(area: Area2D) -> void:
+func _on_move_area_exited(_area: Area2D) -> void:
 	pass # Replace with function body.
 
 func _on_resized() ->void:
