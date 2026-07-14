@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom="uid://4paorsm53l3k"
+
 [input]
 
 LeftClick={
@@ -39,6 +43,7 @@ RightClick={
 2d_physics/layer_2="Ball"
 2d_physics/layer_3="Obstacle"
 2d_physics/layer_4="Goal"
+2d_physics/layer_5="FallOut"
 
 [physics]
 

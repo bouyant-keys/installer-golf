@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bj6far5ewaw7w"]
+
+[ext_resource type="Script" uid="uid://bnl4dd2pat26" path="res://Scripts/static_obstacle.gd" id="1_aa3le"]
+
+[node name="StaticObstacle" type="AnimatableBody2D" unique_id=1897551971]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_aa3le")

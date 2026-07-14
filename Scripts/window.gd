@@ -1,14 +1,22 @@
-class_name WindowPanel extends PanelContainer
+class_name WindowPanel extends Control
+
+const TRANSLUCENT_COLOR := Color(0.0, 0.0, 0.0, 0.2)
 
 var is_selected := false
 var start_position : Vector2
 var move_start : Vector2
 var drag_start : Vector2
+var is_draggable := true
 var grabbed := false
+var minimized := false
 
 @export var is_locked := false
+@export var is_minimized := false
+@export var override_movable_area := false
+@export var title_text : String
 
 @onready var grab_bar: PanelContainer = %GrabBar
+@onready var window_title: Label = %WindowTitle
 @onready var lock_icon: TextureRect = %LockIcon
 @onready var move_panel: PanelContainer = %MovePanel
 @onready var move_area: MoveArea = %MoveArea
@@ -22,6 +30,16 @@ signal window_released(window:WindowPanel)
 func _ready() -> void:
 	start_position = global_position
 	
+	if title_text.is_empty():
+		window_title.text = name
+	else:
+		window_title.text = title_text
+	
+	move_area.monitorable = !override_movable_area
+	move_area.monitoring = !override_movable_area
+	
+	visibility_changed.connect(_on_visibility_changed)
+	_on_visibility_changed()
 	set_locked(is_locked)
 	set_process(false)
 
@@ -57,12 +75,20 @@ func get_neighbouring_windows() ->Array[WindowPanel]:
 func get_movable_area() ->Rect2:
 	return move_area.get_movable_area()
 
+func get_move_area_position() ->Vector2:
+	return move_area.get_collider_position()
+
 func set_locked(locked:bool) ->void:
 	is_locked = locked
 	lock_icon.visible = locked
 	grab_bar.mouse_default_cursor_shape = Control.CURSOR_ARROW if is_locked else Control.CURSOR_DRAG
 	set_process_input(!locked)
 
+func toggle_minimized() ->void:
+	minimized = !minimized
+	move_panel.visible = !minimized
+	move_area.monitorable = !minimized
+	move_area.monitoring = !minimized
 
 func _on_grab_bar_entered() ->void:
 	grabbed = true
@@ -70,19 +96,32 @@ func _on_grab_bar_entered() ->void:
 func _on_grab_bar_exited() ->void:
 	grabbed = false
 
-func _on_move_area_entered(_area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_move_area_entered(body: Node2D) -> void:
+	if body is Ball:
+		is_draggable = false
+		if body.z_index < z_index:
+			set_translucent(true)
+		print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", body.z_index)
 
-func _on_move_area_exited(_area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_move_area_exited(body: Node2D) -> void:
+	if body is Ball:
+		is_draggable = false
+		set_translucent(false)
+		print("Ball exited ", name, ", is_draggable: ", is_draggable)
+
+func _on_visibility_changed() ->void:
+	print("Vis Changed")
+	move_area.monitorable = visible
+	move_area.monitoring = visible
+
+func set_translucent(active:bool) ->void:
+	print("Setting Translucent!!")
+	modulate = TRANSLUCENT_COLOR if active else Color.WHITE
 
 func _on_resized() ->void:
 	return
+	move_area.fit_collider()
 	print(name + "resized. Size: ", size)
-	move_area.global_position = move_panel.global_position + (move_panel.size / 2.0)
-	var collider := RectangleShape2D.new()
-	collider.size = move_panel.size
-	move_collider.shape = collider
 
 func _reset() ->void:
 	global_position = start_position

@@ -1,5 +1,7 @@
 extends AnimatableBody2D
 
+var local_pos : Vector2
+
 @export var follow : Control
 @export var follow_offset : Vector2
 ## Set collider size to the bounding rect of the follow control.
@@ -9,6 +11,8 @@ extends AnimatableBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#local_pos = position
+	
 	if !collider_fit_rect:
 		return
 	
@@ -20,3 +24,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	global_position = (follow.global_position + follow_offset) + collider.shape.get_rect().size / 2.0
+	#global_position = get_parent().global_position + local_pos

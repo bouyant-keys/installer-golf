@@ -26,3 +26,11 @@ func _on_stage_reset() ->void:
 	clear_points()
 	bar_complete = false
 	#hide()
+
+func _on_ball_fall() ->void:
+	clear_points()
+	bar_complete = false
+
+
+func _on_goal_area_goal() -> void:
+	pass # Replace with function body.

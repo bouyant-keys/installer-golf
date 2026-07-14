@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://527dgtv808h" path="res://Textures/TestChar_Front.png" id="1_fh3lm"]
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pb32r"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxatn"]
+size = Vector2(44, 18)
 
 [node name="GoalArea" type="Area2D" unique_id=1905208525]
 collision_layer = 8
@@ -12,11 +12,12 @@ collision_mask = 2
 script = ExtResource("1_xxatn")
 
 [node name="GoalSprite" type="Sprite2D" parent="." unique_id=591048772]
+visible = false
 self_modulate = Color(1, 1, 0, 1)
 texture = ExtResource("1_fh3lm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-shape = SubResource("CircleShape2D_pb32r")
+shape = SubResource("RectangleShape2D_xxatn")
 debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1025340160]
@@ -45,5 +46,21 @@ size_flags_vertical = 4
 step = 1.0
 value = 24.0
 show_percentage = false
+
+[node name="GoalButton" type="Button" parent="." unique_id=169411398]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -11.0
+offset_right = 24.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+button_mask = 0
+text = "Confirm"
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

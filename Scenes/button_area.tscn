@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ykq8wf6bij0s"]
+
+[ext_resource type="Script" uid="uid://m5l6gawxyuyf" path="res://Scripts/button_area.gd" id="1_03ftr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+size = Vector2(64, 32)
+
+[node name="ButtonArea" type="Area2D" unique_id=1420269963]
+script = ExtResource("1_03ftr")
+
+[node name="Button" type="Button" parent="." unique_id=759131801]
+offset_right = 62.0
+offset_bottom = 31.0
+button_mask = 0
+text = "Button"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739176208]
+position = Vector2(32, 16)
+shape = SubResource("RectangleShape2D_pb32r")
+debug_color = Color(0.90688735, 0.30292013, 5.7756904e-07, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="on_area_entered"]
+[connection signal="area_exited" from="." to="." method="on_area_exited"]
