@@ -7,24 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="5_adl2h"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="5_vy6i2"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="5_wp4it"]
-[ext_resource type="StyleBox" uid="uid://dckbi54q4lbcv" path="res://Materials/FallOutStylebox.tres" id="6_tfjjj"]
 [ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="6_vy6i2"]
-[ext_resource type="PackedScene" uid="uid://s6pc6kleiurx" path="res://Scenes/fall_area.tscn" id="7_g2yki"]
-
-[sub_resource type="Gradient" id="Gradient_wp4it"]
-colors = PackedColorArray(0.47626483, 0.19765356, 1.92523e-07, 1, 0.7921569, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_wp4it"]
-gradient = SubResource("Gradient_wp4it")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
-size = Vector2(133, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j221e"]
 size = Vector2(248, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7oc2"]
-size = Vector2(128, 104)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfnf8"]
+size = Vector2(512, 24)
 
 [sub_resource type="Gradient" id="Gradient_j221e"]
 interpolation_mode = 1
@@ -50,7 +39,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_adl2h")
-gradient = SubResource("GradientTexture1D_wp4it")
 
 [node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("2_kg1an")]
 layout_mode = 1
@@ -58,33 +46,35 @@ offset_left = -256.0
 offset_right = 256.0
 is_locked = true
 
+[node name="StartPosition" type="Control" parent="WindowManager/StartWindow" unique_id=163739326]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 60.0
+offset_right = 64.0
+offset_bottom = 60.0
+mouse_filter = 2
+
 [node name="GoalArea" parent="WindowManager/StartWindow" unique_id=1905208525 instance=ExtResource("4_sfwwm")]
 unique_name_in_owner = true
 position = Vector2(416, 76)
 
-[node name="TextObstacle" type="Label" parent="WindowManager/StartWindow" unique_id=2091312163]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -67.0
-offset_top = -11.5
-offset_right = 67.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "TextTextTextText"
+[node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=922501734 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_wp4it")]
+position = Vector2(133, 0)
+parent_window = NodePath("..")
 
-[node name="StaticObstacle" parent="WindowManager/StartWindow/TextObstacle" unique_id=1897551971 instance=ExtResource("5_wp4it")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/TextObstacle/StaticObstacle" unique_id=643853530]
-position = Vector2(67, 12)
-shape = SubResource("RectangleShape2D_pb32r")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=2132611426]
+visible = false
+position = Vector2(124, 12)
+shape = SubResource("RectangleShape2D_j221e")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1293661845]
+position = Vector2(123, 248)
+shape = SubResource("RectangleShape2D_dfnf8")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1174014864]
+polygon = PackedVector2Array(3, 0, 247, 0, 247, 20, 215, 20, 215, 48, 195, 48, 195, 76, 179, 76, 179, 152, 67, 152, 67, 72, 47, 72, 47, 48, 31, 48, 31, 20, 3, 20)
 
 [node name="StageText" type="Label" parent="WindowManager/StartWindow" unique_id=822609107]
 layout_mode = 1
@@ -100,36 +90,41 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = " Step 1/8 Click Next to continue."
 
-[node name="StaticObstacle" parent="WindowManager/StartWindow/StageText" unique_id=922501734 instance=ExtResource("5_wp4it")]
+[node name="CenterText" type="Label" parent="WindowManager/StartWindow" unique_id=1111043133]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -100.0
+offset_right = 50.5
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text Text Text Text Text
+Text Text Text Text
+Text Text Text
+Text Text Text
+Text Text Text"
+horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StageText/StaticObstacle" unique_id=2132611426]
-position = Vector2(124, 12)
-shape = SubResource("RectangleShape2D_j221e")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="FallPanel" type="PanelContainer" parent="WindowManager/StartWindow" unique_id=909256330]
-visible = false
-layout_mode = 0
-offset_left = 192.0
-offset_top = 148.0
-offset_right = 320.0
-offset_bottom = 252.0
-theme_override_styles/panel = ExtResource("6_tfjjj")
-
-[node name="FallArea" parent="WindowManager/StartWindow/FallPanel" unique_id=89367127 instance=ExtResource("7_g2yki")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/FallPanel/FallArea" unique_id=211970459]
-position = Vector2(64, 52)
-shape = SubResource("RectangleShape2D_j7oc2")
-debug_color = Color(0.9892425, 0, 0.29813546, 0.41960785)
-
-[node name="StartPosition" type="Control" parent="WindowManager/StartWindow" unique_id=163739326]
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 188.0
-offset_right = 64.0
-offset_bottom = 188.0
-mouse_filter = 2
+[node name="BottomText" type="Label" parent="WindowManager/StartWindow" unique_id=2091312163]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 372.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = " TextTextTextTextTextTextTextTextTextTextTextTextTextTextText"
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_position", "start_window", "window_manager") instance=ExtResource("5_adl2h")]
 unique_name_in_owner = true

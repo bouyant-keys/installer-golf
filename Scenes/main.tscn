@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://bdxvugp312r4y"]
 
 [ext_resource type="Script" uid="uid://ckgvmal0b24pq" path="res://Scripts/stage_manager.gd" id="1_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://ckqu8nlymp6o1" path="res://Scenes/stage_1.tscn" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://d1buugb3r4gds" path="res://Scenes/stage_1b.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://cxh5vyrlc73fi" path="res://Scenes/stage_1c.tscn" id="4_kry3j"]
-[ext_resource type="PackedScene" uid="uid://d474cuvo331o" path="res://Scenes/stage_2.tscn" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://ckqu8nlymp6o1" path="res://Scenes/Stages/stage_1.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://d1buugb3r4gds" path="res://Scenes/Stages/stage_1b.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cxh5vyrlc73fi" path="res://Scenes/Stages/stage_1c.tscn" id="4_kry3j"]
+[ext_resource type="PackedScene" uid="uid://d474cuvo331o" path="res://Scenes/Stages/stage_2.tscn" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://dcmflu06vs8d2" path="res://Scenes/Stages/stage_2b.tscn" id="6_21xkr"]
 
 [node name="Main" type="Node" unique_id=1067694015]
 
 [node name="StageManager" type="Node" parent="." unique_id=232984876]
 script = ExtResource("1_bo1nx")
-stages = Array[PackedScene]([ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr")])
+stages = Array[PackedScene]([ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr")])
 
 [node name="Stage1" parent="StageManager" unique_id=1335873284 instance=ExtResource("1_jjgbg")]
 

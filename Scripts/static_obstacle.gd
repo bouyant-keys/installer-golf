@@ -1,26 +1,39 @@
 class_name StaticObstacle extends AnimatableBody2D
 
 var local_pos : Vector2
-var collider : CollisionShape2D
 
-#@export var follow : Control
-#@export var follow_offset : Vector2
-### Set collider size to the bounding rect of the follow control.
-@export var fit_parent_rect := false
+@export var parent_window : WindowPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	local_pos = position
-	collider = get_child(0) as CollisionShape2D
+	if parent_window == null:
+		var parent := get_parent()
+		if parent is WindowPanel:
+			parent_window = parent
+		else:
+			printerr("ERROR: parent_window on StaticObstacle " + name + " is null and is not a child of a WindowPanel node!")
 	
-	if fit_parent_rect:
-		var parent := get_parent() as Control
-		var col_shape := RectangleShape2D.new()
-		col_shape.size = parent.get_rect().size
-		collider.shape = col_shape
+	parent_window.ball_entered.connect(ball_entered_window)
+	parent_window.ball_exited.connect(ball_exited_window)
+	
+	local_pos = position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	#global_position = (follow.global_position + follow_offset) + collider.shape.get_rect().size / 2.0
 	global_position = get_parent().global_position + local_pos
+
+func ball_entered_window() ->void:
+	for child : Node2D in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", false)
+		elif child is CollisionPolygon2D:
+			child.set_deferred("disabled", false)
+
+func ball_exited_window() ->void:
+	for child : Node2D in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+		elif child is CollisionPolygon2D:
+			child.set_deferred("disabled", true)

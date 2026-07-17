@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://c6nvjvelktvc0"]
 
-[ext_resource type="Texture2D" uid="uid://527dgtv808h" path="res://Textures/TestChar_Front.png" id="1_fh3lm"]
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
+[ext_resource type="Texture2D" uid="uid://dgo4b0414m8es" path="res://Textures/Download_Icon.png" id="2_la8kp"]
+[ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="3_la8kp"]
+[ext_resource type="StyleBox" uid="uid://cpnykniypd6vo" path="res://Materials/Button-Pressed_StyleboxTexture.tres" id="4_1f4mu"]
+[ext_resource type="StyleBox" uid="uid://bq72n77hv2vtw" path="res://Materials/Button-Hover_StyleboxTexture.tres" id="5_ju4mi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxatn"]
 size = Vector2(44, 18)
 
 [node name="GoalArea" type="Area2D" unique_id=1905208525]
+texture_filter = 1
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_xxatn")
@@ -14,7 +18,7 @@ script = ExtResource("1_xxatn")
 [node name="GoalSprite" type="Sprite2D" parent="." unique_id=591048772]
 visible = false
 self_modulate = Color(1, 1, 0, 1)
-texture = ExtResource("1_fh3lm")
+texture = ExtResource("2_la8kp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
 shape = SubResource("RectangleShape2D_xxatn")
@@ -34,7 +38,7 @@ grow_horizontal = 2
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("1_fh3lm")
+texture = ExtResource("2_la8kp")
 expand_mode = 4
 stretch_mode = 5
 
@@ -59,8 +63,18 @@ offset_right = 24.0
 offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = ExtResource("3_la8kp")
+theme_override_styles/pressed = ExtResource("4_1f4mu")
+theme_override_styles/hover = ExtResource("5_ju4mi")
+toggle_mode = true
 button_mask = 0
 text = "Confirm"
 
-[connection signal="area_entered" from="." to="." method="on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

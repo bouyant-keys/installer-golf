@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ykq8wf6bij0s"]
 
 [ext_resource type="Script" uid="uid://m5l6gawxyuyf" path="res://Scripts/button_area.gd" id="1_03ftr"]
+[ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="2_d0e6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
 size = Vector2(64, 32)
@@ -9,8 +10,10 @@ size = Vector2(64, 32)
 script = ExtResource("1_03ftr")
 
 [node name="Button" type="Button" parent="." unique_id=759131801]
+texture_filter = 1
 offset_right = 62.0
 offset_bottom = 31.0
+theme_override_styles/normal = ExtResource("2_d0e6j")
 button_mask = 0
 text = "Button"
 

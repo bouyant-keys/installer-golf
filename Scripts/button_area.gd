@@ -23,8 +23,7 @@ func on_body_entered(body:Node2D) ->void:
 		update_display()
 func on_body_exited(body:Node2D) ->void:
 	if body is Ball:
-		pass
-		#button.button_pressed = false
+		button.button_pressed = false
 
 func update_display() ->void:
 	button.button_pressed = pressed

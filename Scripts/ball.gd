@@ -27,7 +27,7 @@ var fell_out := false
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
 
-@onready var ball_area: Area2D = $BallArea
+@onready var floor_area: Area2D = $FloorArea
 @onready var trajectory: Line2D = $Trajectory
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
@@ -37,9 +37,10 @@ var fell_out := false
 
 @onready var ball_collider: CollisionShape2D = $BallCollider
 @onready var mouse_area_collider: CollisionShape2D = $MouseArea/MouseAreaCollider
-@onready var ball_area_collider: CollisionShape2D = $BallArea/BallAreaCollider
+@onready var floor_area_collider: CollisionShape2D = $FloorArea/FloorAreaCollider
 @onready var fall_area_collider: CollisionShape2D = $FallArea/FallAreaCollider
 
+signal current_window_changed(window:WindowPanel)
 signal trajectory_changed(trajectory:Vector2, strength:float)
 signal draw_trajectory(enabled:bool)
 signal direction_changed(at_pos:Vector2)
@@ -52,15 +53,19 @@ func _ready() -> void:
 	window_manager.window_selected.connect(_on_window_selected)
 	window_manager.window_grabbed.connect(_on_window_grabbed)
 	window_manager.window_released.connect(_on_window_released)
+	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	global_position = start_position.global_position
 	enter()
 
 func enter() ->void:
+	set_current_window(start_window)
 	anim.play("enter")
 	
 	await anim.animation_finished
-	set_current_window(start_window)
+	set_collision_active(true)
+	set_process(true)
+	set_physics_process(true)
 	ball_entered.emit()
 
 func fall() ->void:
@@ -127,7 +132,7 @@ func _physics_process(delta: float) -> void:
 	# Calculate character's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
 	var current_velocity := move_dir * current_speed * delta
-	var next_pos := local_position + (current_velocity.normalized() * CHECK_DIST)
+	#var next_pos := local_position + (current_velocity.normalized() * CHECK_DIST)
 	
 	#var enter_window : WindowPanel = null
 	#var global_next_pos := global_position + (current_velocity.normalized() * CHECK_DIST)
@@ -187,14 +192,12 @@ func _physics_process(delta: float) -> void:
 		#on_bounce()
 	
 	# Update next_pos with potentially changed values, & assign to global position.
-	#print("Clamp: ",clamp_pos)
 	velocity = current_velocity
 	local_position = clamp_pos + current_velocity
 	global_position = local_position + move_rect.position
 	
 	var collision := move_and_collide(velocity)
 	if collision:
-		print("Ball Collided at ", collision.get_position())
 		move_dir = move_dir.bounce(collision.get_normal())
 		on_bounce()
 
@@ -205,20 +208,18 @@ func get_current_window() ->WindowPanel:
 func set_current_window(window:WindowPanel) ->void:
 	current_window = window
 	z_index = current_window.z_index + Z_INDEX_OFFSET
-	print("Ball Z: ", z_index)
 	local_position = global_position - current_window.get_move_area_position()
+	current_window_changed.emit(window)
 
 func set_collision_active(active:bool) ->void:
 	ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
-	ball_area_collider.set_deferred("disabled", !active)
+	floor_area_collider.set_deferred("disabled", !active)
 	fall_area_collider.set_deferred("disabled", !active)
 
 func check_valid_window() ->WindowPanel:
 	var enter_window : WindowPanel = null
 	var overlap_windows := window_manager.get_windows_at_position(global_position)
-	#print("- Movable Area: ", move_rect, ", Global_NextPos: ", global_next_pos)
-	#print("Overlap: ", overlap_windows)
 	for window : WindowPanel in overlap_windows:
 		if !enter_window:
 			if window.z_index < z_index:
@@ -244,7 +245,7 @@ func add_to_window_list(window:WindowPanel) ->void:
 	in_windows.append(window)
 	print(window.name + " added to in_windows. Size: ", in_windows.size())
 
-func _on_ball_area_entered(area: Area2D) -> void:
+func _on_movable_area_entered(area: Area2D) -> void:
 	if area is GoalArea:
 		_on_goal()
 		return
@@ -261,8 +262,10 @@ func _on_ball_area_entered(area: Area2D) -> void:
 		add_to_window_list(window)
 	
 	#print(" -- AreaEntered -- ", window.name, ", CurrentWindow: ", current_window,", in_windows: ", in_windows, "\n")
-func _on_ball_area_exited(area: Area2D) -> void:
-	if area is not MoveArea:
+func _on_movable_area_exited(area: Area2D) -> void:
+	if floor_area_collider.disabled: # Problematic ?
+		return
+	elif area is not MoveArea:
 		return
 	
 	var move_area := area as MoveArea
@@ -273,6 +276,7 @@ func _on_ball_area_exited(area: Area2D) -> void:
 		print("Exiting current window!!!")
 		var valid_window := check_valid_window()
 		if !valid_window:
+			print("Here?")
 			fell_out = true
 			return
 		else:
@@ -302,14 +306,14 @@ func _on_window_grabbed(window:WindowPanel) ->void:
 	elif in_windows.has(window):
 		set_current_window(window)
 	frozen = true
-	ball_area.monitoring = false
-	ball_area.monitorable = false
+	floor_area.monitoring = false
+	floor_area.monitorable = false
 func _on_window_released(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
 	frozen = false
-	ball_area.monitoring = true
-	ball_area.monitorable = true
+	floor_area.monitoring = true
+	floor_area.monitorable = true
 
 
 func _on_goal() ->void:
@@ -317,7 +321,7 @@ func _on_goal() ->void:
 	current_speed = 0.0
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	ball_area_collider.set_deferred("disabled", true)
+	floor_area_collider.set_deferred("disabled", true)
 	anim.play("goal")
 	
 	await anim.animation_finished
@@ -333,10 +337,7 @@ func _on_stage_reset() ->void:
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
 	global_position = start_position.global_position
-	set_current_window(start_window)
 	set_collision_active(false)
 	
 	await get_tree().process_frame
-	set_collision_active(true)
-	set_process(true)
-	set_physics_process(true)
+	enter()

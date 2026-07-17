@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://1cu440n50dm"]
 
-[ext_resource type="Texture2D" uid="uid://527dgtv808h" path="res://Textures/TestChar_Front.png" id="1_376qj"]
 [ext_resource type="Script" uid="uid://cmp5211mii6r4" path="res://Scripts/ball.gd" id="1_ij5cq"]
 [ext_resource type="Script" uid="uid://pgq30ywy8vc4" path="res://Scripts/trajectory.gd" id="3_aw2wy"]
+[ext_resource type="Texture2D" uid="uid://cnvcr4wp8gqsk" path="res://Textures/Ball.png" id="3_vblhy"]
 [ext_resource type="AudioStream" uid="uid://dm814jleryg1s" path="res://Audio/Effects/MenuButtonHover.wav" id="4_aw2wy"]
 [ext_resource type="AudioStream" uid="uid://hwoj8r6rro7l" path="res://Audio/Effects/MenuButtonPressed.wav" id="5_vblhy"]
 [ext_resource type="AudioStream" uid="uid://b0rs28e6dvbme" path="res://Audio/Effects/FallOut.wav" id="6_vblhy"]
@@ -248,7 +248,7 @@ _data = {
 }
 
 [node name="Ball" type="CharacterBody2D" unique_id=1966659767]
-texture_filter = 3
+texture_filter = 1
 collision_layer = 2
 collision_mask = 4
 motion_mode = 1
@@ -262,7 +262,7 @@ default_color = Color(0, 0, 0, 1)
 script = ExtResource("3_aw2wy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=989471180]
-texture = ExtResource("1_376qj")
+texture = ExtResource("3_vblhy")
 
 [node name="BallCollider" type="CollisionShape2D" parent="." unique_id=1421512000]
 shape = SubResource("CircleShape2D_pb32r")
@@ -276,12 +276,12 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_aw2wy")
 debug_color = Color(0, 0.645624, 0.26275167, 0.41960785)
 
-[node name="BallArea" type="Area2D" parent="." unique_id=1072711210]
-collision_layer = 2
+[node name="FloorArea" type="Area2D" parent="." unique_id=1072711210]
+collision_layer = 0
 collision_mask = 9
 input_pickable = false
 
-[node name="BallAreaCollider" type="CollisionShape2D" parent="BallArea" unique_id=520991856]
+[node name="FloorAreaCollider" type="CollisionShape2D" parent="FloorArea" unique_id=520991856]
 shape = SubResource("CircleShape2D_y8ag8")
 
 [node name="FallArea" type="Area2D" parent="." unique_id=2013301266]
@@ -312,6 +312,6 @@ stream = ExtResource("6_vblhy")
 [connection signal="trajectory_changed" from="." to="Trajectory" method="_on_trajectory_changed"]
 [connection signal="mouse_entered" from="MouseArea" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="." method="on_mouse_exited"]
-[connection signal="area_entered" from="BallArea" to="." method="_on_ball_area_entered"]
-[connection signal="area_exited" from="BallArea" to="." method="_on_ball_area_exited"]
+[connection signal="area_entered" from="FloorArea" to="." method="_on_movable_area_entered"]
+[connection signal="area_exited" from="FloorArea" to="." method="_on_movable_area_exited"]
 [connection signal="area_entered" from="FallArea" to="." method="_on_fall_area_entered"]

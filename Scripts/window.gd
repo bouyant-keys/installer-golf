@@ -1,6 +1,6 @@
 class_name WindowPanel extends Control
 
-const TRANSLUCENT_COLOR := Color(0.0, 0.0, 0.0, 0.2)
+const TRANSLUCENT_VALUE : float = 0.2
 
 var is_selected := false
 var start_position : Vector2
@@ -22,6 +22,8 @@ var minimized := false
 @onready var move_area: MoveArea = %MoveArea
 @onready var move_collider: CollisionShape2D = %MoveCollider
 
+signal ball_entered
+signal ball_exited
 signal window_selected(window:WindowPanel)
 signal window_grabbed(window:WindowPanel)
 signal window_released(window:WindowPanel)
@@ -101,12 +103,15 @@ func _on_move_area_entered(body: Node2D) -> void:
 		is_draggable = false
 		if body.z_index < z_index:
 			set_translucent(true)
+		else:
+			ball_entered.emit()
 		print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", body.z_index)
 
 func _on_move_area_exited(body: Node2D) -> void:
 	if body is Ball:
 		is_draggable = false
 		set_translucent(false)
+		ball_exited.emit()
 		print("Ball exited ", name, ", is_draggable: ", is_draggable)
 
 func _on_visibility_changed() ->void:
@@ -116,7 +121,7 @@ func _on_visibility_changed() ->void:
 
 func set_translucent(active:bool) ->void:
 	print("Setting Translucent!!")
-	modulate = TRANSLUCENT_COLOR if active else Color.WHITE
+	modulate.a = TRANSLUCENT_VALUE if active else 1.0
 
 func _on_resized() ->void:
 	return
