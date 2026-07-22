@@ -1,0 +1,11 @@
+Sound effects to source:
+	Window:
+		Grab
+		Release
+		Locked / Incorrect Sound
+		TabChanged
+	GoalArea:
+		GoalEntered / Win
+		ButtonPressed / Incorrect Sound
+	Ball:
+		Enter / Dropped in

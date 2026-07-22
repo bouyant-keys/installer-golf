@@ -1,67 +1,46 @@
-[gd_scene format=3 uid="uid://gv1jx7y5sqss"]
+[gd_scene format=3 uid="uid://c50bhfmnjlbyx"]
 
-[ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_wlb4h"]
-[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_ohfg2"]
-[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="3_3pjs0"]
-[ext_resource type="StyleBox" uid="uid://u2u2e24q8k13" path="res://Materials/OutlineSafe.tres" id="4_3pjs0"]
-[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_8hc4d"]
-[ext_resource type="StyleBox" uid="uid://dckbi54q4lbcv" path="res://Materials/FallOutStylebox.tres" id="4_ohfg2"]
-[ext_resource type="Script" uid="uid://bnl4dd2pat26" path="res://Scripts/static_obstacle.gd" id="4_s5vsy"]
-[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="5_8hc4d"]
-[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_3tp71"]
-[ext_resource type="PackedScene" uid="uid://s6pc6kleiurx" path="res://Scenes/fall_area.tscn" id="6_s5vsy"]
-[ext_resource type="Texture2D" uid="uid://2ynojee64kf4" path="res://Textures/Bar_Over.png" id="7_tg1qg"]
-[ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="8_q84ym"]
-[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_qgsfd"]
+[ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_23tjd"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_g1t41"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="3_q522b"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_4qxwd"]
+[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="5_840mr"]
+[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_7eien"]
+[ext_resource type="Texture2D" uid="uid://2ynojee64kf4" path="res://Textures/Bar_Over.png" id="7_hkk4a"]
+[ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="8_lo83c"]
+[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_52hpr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23tjd"]
+size = Vector2(144, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu1i"]
-size = Vector2(72, 24)
+size = Vector2(108, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
-size = Vector2(376, 336)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
+size = Vector2(192, 24)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3pjs0"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.8217887, 0.8217887, 0.8217885, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 3
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjg4a"]
-size = Vector2(244, 969)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxocw"]
-size = Vector2(177, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6v42"]
+size = Vector2(33, 128)
 
 [sub_resource type="Gradient" id="Gradient_376qj"]
 colors = PackedColorArray(0.44291076, 0.44291076, 0.44291073, 1, 1, 1, 1, 1)
 
 [node name="Stage3" type="Node" unique_id=1335873284]
-script = ExtResource("1_wlb4h")
+script = ExtResource("1_23tjd")
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
-script = ExtResource("2_ohfg2")
+script = ExtResource("2_g1t41")
 
-[node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("3_3pjs0")]
+[node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("3_q522b")]
 layout_mode = 1
-offset_left = 144.0
-offset_top = 64.0
-offset_right = 320.0
-offset_bottom = 240.0
+offset_left = 272.0
+offset_top = 320.0
+offset_right = 464.0
+offset_bottom = 448.0
 is_locked = true
 
 [node name="StartPosition" type="Control" parent="WindowManager/StartWindow" unique_id=163739326]
@@ -71,204 +50,182 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -48.0
+offset_right = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="StageText" type="Label" parent="WindowManager/StartWindow" unique_id=589623430]
-layout_mode = 0
+[node name="MoveWindow" parent="WindowManager" unique_id=1289661258 node_paths=PackedStringArray("tab_controls") instance=ExtResource("3_q522b")]
+layout_mode = 1
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 220.0
+tab_controls = [NodePath("TabA"), NodePath("TabB")]
+
+[node name="TabA" type="Control" parent="WindowManager/MoveWindow" unique_id=30251140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StaticObstacle" parent="WindowManager/MoveWindow/TabA" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_4qxwd")]
+parent_window = NodePath("../..")
+tab_id = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow/TabA/StaticObstacle" unique_id=1809442227]
+position = Vector2(128, 78)
+shape = SubResource("RectangleShape2D_23tjd")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="StageText" type="Label" parent="WindowManager/MoveWindow/TabA" unique_id=2051552904]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -73.5
+offset_right = 73.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = " Step 2/8"
+text = "Text Text Text Text
+Text Text Text Text
+Text Text Text Text
+Text Text Text Text
+Text Text Text Text
+Text Text Text Text"
+vertical_alignment = 1
 
-[node name="StaticObstacle" parent="WindowManager/StartWindow/StageText" unique_id=1897551971 instance=ExtResource("4_8hc4d")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StageText/StaticObstacle" unique_id=1912703348]
-position = Vector2(36, 12)
-shape = SubResource("RectangleShape2D_5wu1i")
-debug_color = Color(0.42791897, 0.46085495, 1, 0.41960785)
-
-[node name="Window2" parent="WindowManager" unique_id=613581307 instance=ExtResource("3_3pjs0")]
+[node name="TabB" type="Control" parent="WindowManager/MoveWindow" unique_id=168571472]
 layout_mode = 1
-offset_left = 312.0
-offset_top = 64.0
-offset_right = 840.0
-offset_bottom = 576.0
-is_locked = true
-override_movable_area = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="WindowManager/Window2" unique_id=92241379]
-layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/Window2/VBoxContainer2" unique_id=588901007]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
+[node name="StaticObstacle" parent="WindowManager/MoveWindow/TabB" unique_id=514881491 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_4qxwd")]
+parent_window = NodePath("../..")
+tab_id = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer" unique_id=282450080]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("4_3pjs0")
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer" unique_id=1185636824]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer" unique_id=1956905720]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = -8
-
-[node name="PanelContainer" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=42990930]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("4_ohfg2")
-
-[node name="Label" type="Label" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=1315558194]
-layout_mode = 2
-text = "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
-
-[node name="FallArea" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=89367127 instance=ExtResource("6_s5vsy")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/FallArea" unique_id=1993534771]
-position = Vector2(190, 168)
-shape = SubResource("RectangleShape2D_pb32r")
-debug_color = Color(0.97597116, 0, 0.41895896, 0.41960785)
-
-[node name="PanelContainer2" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=153431076]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_3pjs0")
-
-[node name="Label" type="Label" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2" unique_id=1373508897]
-layout_mode = 2
-text = "                                    "
-
-[node name="PanelContainer3" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=285197363]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("4_ohfg2")
-
-[node name="Label" type="Label" parent="WindowManager/Window2/VBoxContainer2/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3" unique_id=1420871775]
-layout_mode = 2
-text = "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
-
-[node name="Panel" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2" unique_id=1586975810]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("4_3pjs0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/Window2/VBoxContainer2/Panel" unique_id=1925275345]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="WindowManager/Window2/VBoxContainer2/Panel/HBoxContainer" unique_id=478251979]
-layout_mode = 2
-size_flags_horizontal = 3
-text = " TextTextTextTextTextTextTextTextTextText:"
-
-[node name="Label2" type="Label" parent="WindowManager/Window2/VBoxContainer2/Panel/HBoxContainer" unique_id=1162572131]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "TextText "
-
-[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/Window2/VBoxContainer2" unique_id=319288807]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Text Obstacle"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="StaticObstacle" type="AnimatableBody2D" parent="WindowManager/Window2/VBoxContainer2/TextObstacle" unique_id=110772363]
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("4_s5vsy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/Window2/VBoxContainer2/TextObstacle/StaticObstacle" unique_id=940961554]
-position = Vector2(54.5, 11)
-shape = SubResource("RectangleShape2D_wjg4a")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow/TabB/StaticObstacle" unique_id=848245744]
+position = Vector2(66, 117)
+shape = SubResource("RectangleShape2D_5wu1i")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="Spacer" type="Control" parent="WindowManager/Window2/VBoxContainer2" unique_id=1785368896]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextObstacle2" type="RichTextLabel" parent="WindowManager/Window2/VBoxContainer2" unique_id=1174511903]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Another Obstacle Here"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-
-[node name="StaticObstacle" type="AnimatableBody2D" parent="WindowManager/Window2/VBoxContainer2/TextObstacle2" unique_id=2107818616]
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("4_s5vsy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/Window2/VBoxContainer2/TextObstacle2/StaticObstacle" unique_id=1619267013]
-position = Vector2(88.5, 12)
-shape = SubResource("RectangleShape2D_uxocw")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/MoveWindow/TabB/StaticObstacle" unique_id=968388818]
+position = Vector2(186, 41)
+shape = SubResource("RectangleShape2D_5wu1i")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="Panel2" type="PanelContainer" parent="WindowManager/Window2/VBoxContainer2" unique_id=1382163098]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("4_3pjs0")
+[node name="StageText" type="Label" parent="WindowManager/MoveWindow/TabB" unique_id=1761047628]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 92.0
+offset_right = 121.0
+offset_bottom = 141.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text Text Text
+Text Text Text"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/Window2/VBoxContainer2/Panel2" unique_id=1514939506]
-layout_mode = 2
+[node name="StageText2" type="Label" parent="WindowManager/MoveWindow/TabB" unique_id=1677584925]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 16.0
+offset_right = 241.0
+offset_bottom = 65.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text Text Text
+Text Text Text"
 
-[node name="Label" type="Label" parent="WindowManager/Window2/VBoxContainer2/Panel2/HBoxContainer" unique_id=1178016485]
-layout_mode = 2
-size_flags_horizontal = 3
-text = " TextTextTextTextTextTextTextTextTextText:"
-
-[node name="Label2" type="Label" parent="WindowManager/Window2/VBoxContainer2/Panel2/HBoxContainer" unique_id=614471737]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "TextText "
-
-[node name="Window3" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_3pjs0")]
+[node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_q522b")]
 layout_mode = 1
-offset_left = 832.0
-offset_top = 432.0
-offset_right = 1000.0
-offset_bottom = 576.0
+offset_left = 680.0
+offset_top = 320.0
+offset_right = 872.0
+offset_bottom = 448.0
 is_locked = true
 
-[node name="GoalArea" parent="WindowManager/Window3" unique_id=1905208525 instance=ExtResource("5_8hc4d")]
+[node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 instance=ExtResource("5_840mr")]
 unique_name_in_owner = true
-position = Vector2(112, 120)
+position = Vector2(104, 64)
 
-[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_position", "start_window", "window_manager") instance=ExtResource("6_3tp71")]
+[node name="StaticObstacle" parent="WindowManager/GoalWindow" unique_id=1458297171 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_4qxwd")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1085453700]
+position = Vector2(96, 12)
+shape = SubResource("RectangleShape2D_yt5sl")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1807095057]
+position = Vector2(175.5, 64)
+shape = SubResource("RectangleShape2D_b6v42")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=951147266]
+position = Vector2(96, 117)
+shape = SubResource("RectangleShape2D_yt5sl")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="ObstacleText" type="Label" parent="WindowManager/GoalWindow" unique_id=1002610583]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TextTextTextTextText..."
+
+[node name="ObstacleText2" type="Label" parent="WindowManager/GoalWindow" unique_id=1332807889]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Text
+Text
+T..."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ObstacleText3" type="Label" parent="WindowManager/GoalWindow" unique_id=764505066]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TextTextTextTextTextT..."
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_position", "start_window", "window_manager") instance=ExtResource("6_7eien")]
 unique_name_in_owner = true
 start_position = NodePath("../WindowManager/StartWindow/StartPosition")
 start_window = NodePath("../WindowManager/StartWindow")
@@ -278,18 +235,19 @@ window_manager = NodePath("../WindowManager")
 z_index = 5
 default_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
 gradient = SubResource("Gradient_376qj")
-texture = ExtResource("7_tg1qg")
+texture = ExtResource("7_hkk4a")
 texture_mode = 2
 antialiased = true
-script = ExtResource("8_q84ym")
+script = ExtResource("8_lo83c")
 stage = NodePath("..")
-goal = NodePath("../WindowManager/Window3/GoalArea")
+goal = NodePath("../WindowManager/GoalWindow/GoalArea")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]
+visible = false
 z_index = 20
-script = ExtResource("9_qgsfd")
+script = ExtResource("9_52hpr")
 ball = NodePath("../Ball")
 
-[connection signal="goal" from="WindowManager/Window3/GoalArea" to="Ball" method="_on_goal"]
-[connection signal="goal" from="WindowManager/Window3/GoalArea" to="LoadBarPath" method="_on_goal"]
+[connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="Ball" method="_on_goal"]
+[connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="LoadBarPath" method="_on_goal_area_goal"]
 [connection signal="direction_changed" from="Ball" to="LoadBarPath" method="_on_ball_bounce"]

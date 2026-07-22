@@ -1,0 +1,206 @@
+[gd_scene format=3 uid="uid://r3v1v1oqfat"]
+
+[ext_resource type="Texture2D" uid="uid://cfybqn76e6h7h" path="res://Textures/Button-Up.png" id="1_hjcrg"]
+[ext_resource type="Texture2D" uid="uid://bhem4jc2evqln" path="res://Textures/LockButton.png" id="2_o1xxf"]
+[ext_resource type="Script" uid="uid://cqiu3uqty8a6a" path="res://Scripts/credits_window.gd" id="3_670jt"]
+[ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="4_m3b6i"]
+[ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="5_670jt"]
+[ext_resource type="Texture2D" uid="uid://cwqkca6ft518v" path="res://Textures/Close_Icon.png" id="6_m3b6i"]
+[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="7_670jt"]
+
+[node name="Desktop" type="Control" unique_id=1680706097]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="." unique_id=2056344585]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05882353, 0.3882353, 0.81960785, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG" unique_id=854919964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/VBoxContainer" unique_id=656729314]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HFlowContainer" type="VFlowContainer" parent="BG/VBoxContainer/MarginContainer" unique_id=582972758]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+
+[node name="TextureButton" type="TextureButton" parent="BG/VBoxContainer/MarginContainer/HFlowContainer" unique_id=54660090]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("1_hjcrg")
+stretch_mode = 5
+
+[node name="TextureButton2" type="TextureButton" parent="BG/VBoxContainer/MarginContainer/HFlowContainer" unique_id=240019024]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("1_hjcrg")
+stretch_mode = 5
+
+[node name="TextureButton3" type="TextureButton" parent="BG/VBoxContainer/MarginContainer/HFlowContainer" unique_id=2140823927]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("1_hjcrg")
+stretch_mode = 5
+
+[node name="TextureButton4" type="TextureButton" parent="BG/VBoxContainer/MarginContainer/HFlowContainer" unique_id=756899289]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("1_hjcrg")
+stretch_mode = 5
+
+[node name="TextureButton5" type="TextureButton" parent="BG/VBoxContainer/MarginContainer/HFlowContainer" unique_id=1117691533]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("1_hjcrg")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="BG/VBoxContainer" unique_id=1196893535]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureButton" type="TextureButton" parent="BG/VBoxContainer/PanelContainer" unique_id=1347452201]
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = ExtResource("2_o1xxf")
+
+[node name="AppWindows" type="Control" parent="." unique_id=821201359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsWindow" type="Control" parent="AppWindows" unique_id=1289661258]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_670jt")
+
+[node name="DropShadow" type="Panel" parent="AppWindows/CreditsWindow" unique_id=1884351755]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -17.0
+offset_right = -4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_m3b6i")
+
+[node name="GrabBar" type="PanelContainer" parent="AppWindows/CreditsWindow" unique_id=1896426972]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -21.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_styles/panel = ExtResource("5_670jt")
+
+[node name="MarginContainer" type="MarginContainer" parent="AppWindows/CreditsWindow/GrabBar" unique_id=1634509465]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="AppWindows/CreditsWindow/GrabBar/MarginContainer" unique_id=269321371]
+layout_mode = 2
+color = Color(0, 0, 0.5411765, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AppWindows/CreditsWindow/GrabBar/MarginContainer" unique_id=1217731613]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="AppWindows/CreditsWindow/GrabBar/MarginContainer/HBoxContainer" unique_id=2047035196]
+layout_mode = 2
+
+[node name="WindowTitle" type="Label" parent="AppWindows/CreditsWindow/GrabBar/MarginContainer/HBoxContainer" unique_id=185553135]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits.txt"
+
+[node name="Button" type="Button" parent="AppWindows/CreditsWindow/GrabBar/MarginContainer/HBoxContainer" unique_id=1276173713]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+icon = ExtResource("6_m3b6i")
+icon_alignment = 1
+
+[node name="MovePanel" type="PanelContainer" parent="AppWindows/CreditsWindow" unique_id=708295018]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("5_670jt")
+
+[node name="MarginContainer" type="MarginContainer" parent="AppWindows/CreditsWindow/MovePanel" unique_id=1219231988]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColorRect" type="ColorRect" parent="AppWindows/CreditsWindow/MovePanel/MarginContainer" unique_id=2138093770]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AppWindows/CreditsWindow/MovePanel/MarginContainer" unique_id=702063106]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("7_670jt")
+text = "Thanks for Playing!
+
+A game made by:
+Ethan Keys
+
+with Godot 4.7"
+horizontal_alignment = 1
+
+[connection signal="resized" from="AppWindows/CreditsWindow" to="AppWindows/CreditsWindow" method="_on_resized"]
+[connection signal="mouse_entered" from="AppWindows/CreditsWindow/GrabBar" to="AppWindows/CreditsWindow" method="_on_grab_bar_entered"]
+[connection signal="mouse_exited" from="AppWindows/CreditsWindow/GrabBar" to="AppWindows/CreditsWindow" method="_on_grab_bar_exited"]

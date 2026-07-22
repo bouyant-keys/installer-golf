@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bvejgkegit8u1"]
+
+[ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_0epjr"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_yqcxy"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="3_l1w1d"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_ajtkq"]
+[ext_resource type="PackedScene" uid="uid://ykq8wf6bij0s" path="res://Scenes/button_area.tscn" id="4_yqcxy"]
+[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="5_qfb8r"]
+[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_6ia67"]
+[ext_resource type="Texture2D" uid="uid://2ynojee64kf4" path="res://Textures/Bar_Over.png" id="7_jfo7f"]
+[ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="8_85og4"]
+[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_yvdwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
+size = Vector2(192, 16)
+
+[sub_resource type="Gradient" id="Gradient_376qj"]
+colors = PackedColorArray(0.44291076, 0.44291076, 0.44291073, 1, 1, 1, 1, 1)
+
+[node name="StageFinal" type="Node" unique_id=1335873284]
+script = ExtResource("1_0epjr")
+
+[node name="WindowManager" type="Control" parent="." unique_id=1863376274]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_yqcxy")
+
+[node name="StartWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_l1w1d")]
+layout_mode = 1
+offset_left = -160.0
+offset_top = -92.0
+offset_right = 160.0
+offset_bottom = 92.0
+is_locked = true
+
+[node name="StartPosition" type="Control" parent="WindowManager/StartWindow" unique_id=163739326]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 136.0
+offset_right = 64.0
+offset_bottom = 136.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="ButtonArea" parent="WindowManager/StartWindow" unique_id=1420269963 instance=ExtResource("4_yqcxy")]
+position = Vector2(48, 136)
+button_text = "Cancel"
+
+[node name="GoalArea" parent="WindowManager/StartWindow" unique_id=711233156 instance=ExtResource("5_qfb8r")]
+unique_name_in_owner = true
+position = Vector2(272, 136)
+is_final_level = true
+
+[node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_ajtkq")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=266495847]
+position = Vector2(96, 119)
+shape = SubResource("RectangleShape2D_yt5sl")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="ObstacleText" type="Label" parent="WindowManager/StartWindow" unique_id=45920061]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 49.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Are you sure you want to
+ proceed with the installation?"
+horizontal_alignment = 1
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_position", "start_window", "window_manager") instance=ExtResource("6_6ia67")]
+unique_name_in_owner = true
+start_position = NodePath("../WindowManager/StartWindow/StartPosition")
+start_window = NodePath("../WindowManager/StartWindow")
+window_manager = NodePath("../WindowManager")
+
+[node name="LoadBarPath" type="Line2D" parent="." unique_id=795535952 node_paths=PackedStringArray("stage", "goal")]
+z_index = 5
+default_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+gradient = SubResource("Gradient_376qj")
+texture = ExtResource("7_jfo7f")
+texture_mode = 2
+antialiased = true
+script = ExtResource("8_85og4")
+stage = NodePath("..")
+goal = NodePath("../WindowManager/StartWindow/GoalArea")
+
+[node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]
+visible = false
+z_index = 20
+script = ExtResource("9_yvdwg")
+ball = NodePath("../Ball")
+
+[connection signal="goal" from="WindowManager/StartWindow/GoalArea" to="Ball" method="_on_goal"]
+[connection signal="goal" from="WindowManager/StartWindow/GoalArea" to="LoadBarPath" method="_on_goal_area_goal"]
+[connection signal="direction_changed" from="Ball" to="LoadBarPath" method="_on_ball_bounce"]

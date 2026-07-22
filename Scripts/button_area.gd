@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var button_text := ""
 @export var pressed := false
 
 @onready var button: Button = $Button
@@ -15,6 +16,8 @@ func _ready() -> void:
 	var shape := RectangleShape2D.new()
 	shape.size = button_rect.size
 	collider.shape = shape
+	
+	button.text = button_text
 
 func on_body_entered(body:Node2D) ->void:
 	if body is Ball:

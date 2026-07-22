@@ -8,6 +8,8 @@ const FINAL_BUTTON_TEXT : String = "Install"
 
 @onready var download_bar: ProgressBar = %DownloadBar
 @onready var goal_button: Button = $GoalButton
+@onready var goal_pressed_sfx: AudioStreamPlayer = $GoalPressedSFX
+@onready var mouse_press_sfx: AudioStreamPlayer = $MousePressSFX
 
 signal goal
 
@@ -23,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is not Ball:
 		return
 	
-	print("Winnar!")
+	goal_pressed_sfx.play()
 	goal_button.button_pressed = true
 	
 	var download_tween := get_tree().create_tween()
@@ -37,3 +39,11 @@ func _on_body_exited(body: Node2D) -> void:
 		return
 	
 	goal_button.button_pressed = false
+
+
+func _on_goal_button_pressed() -> void:
+	mouse_press_sfx.play()
+	
+	goal_button.self_modulate = Color.RED
+	var color_tween := get_tree().create_tween()
+	color_tween.tween_property(goal_button, "self_modulate", Color.WHITE, 1.0)

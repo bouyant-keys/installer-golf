@@ -3,23 +3,31 @@
 [ext_resource type="Script" uid="uid://m5l6gawxyuyf" path="res://Scripts/button_area.gd" id="1_03ftr"]
 [ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="2_d0e6j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
-size = Vector2(64, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0e6j"]
+size = Vector2(44, 18)
 
 [node name="ButtonArea" type="Area2D" unique_id=1420269963]
 script = ExtResource("1_03ftr")
 
 [node name="Button" type="Button" parent="." unique_id=759131801]
 texture_filter = 1
-offset_right = 62.0
-offset_bottom = 31.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.0
+offset_right = 21.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/normal = ExtResource("2_d0e6j")
 button_mask = 0
 text = "Button"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1739176208]
-position = Vector2(32, 16)
-shape = SubResource("RectangleShape2D_pb32r")
+shape = SubResource("RectangleShape2D_d0e6j")
 debug_color = Color(0.90688735, 0.30292013, 5.7756904e-07, 0.41960785)
 
 [connection signal="area_entered" from="." to="." method="on_area_entered"]

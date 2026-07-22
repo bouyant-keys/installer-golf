@@ -15,15 +15,6 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_xxatn")
 
-[node name="GoalSprite" type="Sprite2D" parent="." unique_id=591048772]
-visible = false
-self_modulate = Color(1, 1, 0, 1)
-texture = ExtResource("2_la8kp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-shape = SubResource("RectangleShape2D_xxatn")
-debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
-
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1025340160]
 anchors_preset = -1
 anchor_left = 0.5
@@ -76,5 +67,14 @@ toggle_mode = true
 button_mask = 0
 text = "Confirm"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
+shape = SubResource("RectangleShape2D_xxatn")
+debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
+
+[node name="GoalPressedSFX" type="AudioStreamPlayer" parent="." unique_id=1602736460]
+
+[node name="MousePressSFX" type="AudioStreamPlayer" parent="." unique_id=1169147831]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="pressed" from="GoalButton" to="." method="_on_goal_button_pressed"]
