@@ -4,69 +4,40 @@
 [ext_resource type="Script" uid="uid://ckgvmal0b24pq" path="res://Scripts/stage_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://ckqu8nlymp6o1" path="res://Scenes/Stages/stage_1.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://d1buugb3r4gds" path="res://Scenes/Stages/stage_1b.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://1t76go3vobwn" path="res://Scenes/Stages/stage_intro.tscn" id="3_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cxh5vyrlc73fi" path="res://Scenes/Stages/stage_1c.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://d474cuvo331o" path="res://Scenes/Stages/stage_2.tscn" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dcmflu06vs8d2" path="res://Scenes/Stages/stage_2b.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://c50bhfmnjlbyx" path="res://Scenes/Stages/stage_3.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://d1gses42wmx1t" path="res://Scenes/Stages/stage_3b.tscn" id="9_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="10_hptm8"]
+
+[sub_resource type="Gradient" id="Gradient_hptm8"]
+colors = PackedColorArray(0.17254902, 0, 0.6392157, 1, 0.31764707, 0.5254902, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb32r"]
+gradient = SubResource("Gradient_hptm8")
+width = 32
+height = 16
+fill_from = Vector2(0.7970086, 0.32478634)
+repeat = 2
 
 [node name="Main" type="Node" unique_id=1067694015]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=256072260]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=11345697]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.36078432, 0.41568628, 1, 1)
+texture = SubResource("GradientTexture2D_pb32r")
 
 [node name="Desktop" parent="." unique_id=1543680970 instance=ExtResource("1_6bp64")]
 visible = false
 
 [node name="StageManager" type="Node" parent="." unique_id=232984876]
 script = ExtResource("1_bo1nx")
-start_stage = 5
-stages = Array[PackedScene]([ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e")])
-
-[node name="Stage1" parent="StageManager" unique_id=1335873284 instance=ExtResource("1_jjgbg")]
-
-[node name="IntroWindow" parent="." unique_id=1289661258 instance=ExtResource("10_hptm8")]
-texture_filter = 1
-offset_left = -120.0
-offset_top = -108.0
-offset_right = 120.0
-offset_bottom = 108.0
-title_text = "File Install Wizard"
-
-[node name="Label" type="Label" parent="IntroWindow" unique_id=672453167]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Welcome to the --- Wizard for _.
-This wizard will install __ on your computer.
-
-To continue, click Next."
-autowrap_mode = 3
-
-[node name="Button" type="Button" parent="IntroWindow" unique_id=490011450]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -24.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Next"
+stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1781052190]
 

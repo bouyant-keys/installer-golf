@@ -1,6 +1,6 @@
 class_name WindowManager extends Control
 
-const WINDOW_GRADIENT : GradientTexture1D = preload("uid://bicpm8unswqyx")
+const WINDOW_GRADIENT : GradientTexture1D = preload("uid://bwy0fxxdrdp17")#preload("uid://bicpm8unswqyx")
 const SELECTED_WINDOW_Z := 0
 const DEFAULT_WINDOW_Z := -10
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 	for i : int in windows.size():
 		var window := windows[i]
 		window.z_index = i
-		var gradient_sample := 1.0 - (i / float(windows.size()))
+		var gradient_sample := 1 - ((i + 1) / float(windows.size()))
 		print("Index: ", i, ", SampleValue: ", gradient_sample)
 		window.modulate = WINDOW_GRADIENT.gradient.sample(gradient_sample)
 
@@ -56,7 +56,7 @@ func _on_window_selected(s_window:WindowPanel) ->void:
 		window.z_index = i
 		window.is_selected = false
 		
-		var gradient_sample := 1.0 - (i / float(windows.size()))
+		var gradient_sample := 1 - ((i + 1) / float(windows.size()))
 		window.modulate = WINDOW_GRADIENT.gradient.sample(gradient_sample)
 		
 		if window == s_window:

@@ -1,5 +1,6 @@
 class_name WindowPanel extends Control
 
+const TITLE_FORMAT := "Installer"
 const TAB_NAMES := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const TRANSLUCENT_VALUE : float = 0.2
 

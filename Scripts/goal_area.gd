@@ -4,6 +4,9 @@ const DOWNLOAD_TIME := 1.0
 const DEF_BUTTON_TEXT : String = "Next"
 const FINAL_BUTTON_TEXT : String = "Install"
 
+var can_be_pressed := false
+
+@export var is_intro_level := false
 @export var is_final_level := false
 
 @onready var download_bar: ProgressBar = %DownloadBar
@@ -11,15 +14,23 @@ const FINAL_BUTTON_TEXT : String = "Install"
 @onready var goal_pressed_sfx: AudioStreamPlayer = $GoalPressedSFX
 @onready var mouse_press_sfx: AudioStreamPlayer = $MousePressSFX
 
+signal release_ball
 signal goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	download_bar.value = 0.0
 	goal_button.button_pressed = false
+	can_be_pressed = is_intro_level
+	hide()
 	
 	goal_button.text = FINAL_BUTTON_TEXT if is_final_level else DEF_BUTTON_TEXT
+	
+	if !is_intro_level:
+		enter()
 
+func enter() ->void:
+	show()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is not Ball:
@@ -42,6 +53,11 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _on_goal_button_pressed() -> void:
+	if can_be_pressed and is_intro_level:
+		can_be_pressed = false
+		release_ball.emit()
+		return
+	
 	mouse_press_sfx.play()
 	
 	goal_button.self_modulate = Color.RED

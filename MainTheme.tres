@@ -4,17 +4,29 @@
 [ext_resource type="FontFile" uid="uid://dwdtdejwjbpfa" path="res://Fonts/HelvetiPixel_by_pentacom.ttf" id="1_u23kh"]
 [ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="2_u23kh"]
 [ext_resource type="StyleBox" uid="uid://cpnykniypd6vo" path="res://Materials/Button-Pressed_StyleboxTexture.tres" id="3_ogfsw"]
+[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_ogfsw"]
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.61339027, 0.61339027, 0.6133901, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/font_sizes/font_size = 10
 Button/fonts/font = ExtResource("1_u23kh")
+Button/styles/disabled = ExtResource("2_u23kh")
 Button/styles/hover = ExtResource("1_rfn4m")
 Button/styles/normal = ExtResource("2_u23kh")
 Button/styles/pressed = ExtResource("3_ogfsw")
+DisabledLabel/base_type = &"Label"
+DisabledLabel/colors/font_color = Color(0.6117647, 0.6117647, 0.6117647, 1)
+DisabledLabel/colors/font_shadow_color = Color(1, 1, 1, 1)
+DisabledLabel/font_sizes/font_size = 12
+DisabledLabel/fonts/font = ExtResource("1_u23kh")
 Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_u23kh")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/fonts/mono_font = ExtResource("5_ogfsw")
+RichTextLabel/fonts/normal_font = ExtResource("5_ogfsw")

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://uswju6xnjeqc"]
+
+[ext_resource type="Script" uid="uid://c7e14lxlftccn" path="res://Scripts/load_bar_path.gd" id="1_2fbwu"]
+[ext_resource type="Shader" uid="uid://ecshda3yxhr6" path="res://Materials/MarchingAnts.gdshader" id="1_yv2qk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la0in"]
+shader = ExtResource("1_yv2qk")
+shader_parameter/frequency = 1.5
+shader_parameter/amplitude = 1000.0
+shader_parameter/speed = 10.0
+shader_parameter/direction = 1.0
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/opacity = 1.0
+
+[node name="BallTrail" type="Line2D" unique_id=195652157]
+z_index = 5
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_la0in")
+width = 2.0
+texture_mode = 1
+joint_mode = 1
+script = ExtResource("1_2fbwu")
+
+[node name="FadeTimer" type="Timer" parent="." unique_id=1276625308]
+wait_time = 0.05
+
+[connection signal="timeout" from="FadeTimer" to="." method="on_fade_timer_timeout"]

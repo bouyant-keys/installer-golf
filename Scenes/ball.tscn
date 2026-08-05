@@ -261,6 +261,12 @@ width_curve = SubResource("Curve_aw2wy")
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("3_aw2wy")
 
+[node name="DropShadow" type="Sprite2D" parent="." unique_id=734753146]
+self_modulate = Color(0, 0, 0, 0.5294118)
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_vblhy")
+offset = Vector2(-2, 8)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=989471180]
 texture = ExtResource("3_vblhy")
 

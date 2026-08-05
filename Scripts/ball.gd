@@ -8,6 +8,7 @@ const STRENGTH_RANGE := Vector2(30.0, 600.0)
 const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means the maximum strength is applied
 const BALL_SIZE := Vector2(16.0, 16.0)
 
+var start_position : Vector2
 var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
@@ -23,9 +24,9 @@ var fell_out := false
 
 #@export var randomize_start_direction := false
 #@export var initial_direction := Vector2(1.0, -0.75)
-@export var start_position : Control
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
+@export var enter_on_load := true
 
 @onready var floor_area: Area2D = $FloorArea
 @onready var trajectory: Line2D = $Trajectory
@@ -44,6 +45,7 @@ signal current_window_changed(window:WindowPanel)
 signal trajectory_changed(trajectory:Vector2, strength:float)
 signal draw_trajectory(enabled:bool)
 signal direction_changed(at_pos:Vector2)
+signal ball_launched
 signal ball_entered
 signal ball_fell
 signal ball_exited
@@ -55,10 +57,15 @@ func _ready() -> void:
 	window_manager.window_released.connect(_on_window_released)
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
-	global_position = start_position.global_position
-	enter()
+	start_position = global_position
+	hide()
+	
+	# Only disabled for intro level
+	if enter_on_load:
+		enter()
 
 func enter() ->void:
+	show()
 	set_current_window(start_window)
 	anim.play("enter")
 	
@@ -103,6 +110,7 @@ func _input(event: InputEvent) -> void:
 		current_speed = launch_strength
 		launched = true
 		draw_trajectory.emit(false)
+		ball_launched.emit()
 		#print("Released, Pos: ", release_pos, ", Distance: ", release_pos - click_pos)
 
 func _process(_delta: float) ->void:
@@ -132,68 +140,10 @@ func _physics_process(delta: float) -> void:
 	# Calculate character's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
 	var current_velocity := move_dir * current_speed * delta
-	#var next_pos := local_position + (current_velocity.normalized() * CHECK_DIST)
-	
-	#var enter_window : WindowPanel = null
-	#var global_next_pos := global_position + (current_velocity.normalized() * CHECK_DIST)
-	#if !move_rect.has_point(global_next_pos):
-		## Check for another window at that position
-		## Check if there is a window, that it is a lower z-index than current window
-		#var overlap_windows := window_manager.get_windows_at_position(global_next_pos)
-		#print("- Movable Area: ", move_rect, ", Global_NextPos: ", global_next_pos)
-		#print("Overlap: ", overlap_windows)
-		#for window : WindowPanel in overlap_windows:
-			#if !enter_window:
-				#if window.z_index < current_window.z_index:
-					#enter_window = window
-			#else:
-				#if window.z_index > enter_window.z_index and window.z_index < current_window.z_index:
-					#enter_window = window
-		#print("Enter window: ", enter_window)
-		#if enter_window:
-			#pass
-		#else:
-			#fell_out = true
-	
-	# Restrain character inside bounds based on min & max pos,
-	# otherwise use the previous local window position by default.
-	var clamp_pos := local_position
-	#if !enter_window:
-		## If not in an intersection: enforce bounaries, update move_dir, & update clamp position
-		## otherwise: ignore bounds and allow character to pass (don't change move_dir or clamp next_pos).
-		#var min_pos := Vector2(EDGE_MARGIN, EDGE_MARGIN)
-		#var max_pos := move_rect.size - Vector2(EDGE_MARGIN, EDGE_MARGIN)
-		##print("LocalPos: ", local_position, ", Min_pos: ", min_pos, ", Max_pos: ", max_pos)
-		#if next_pos.x < min_pos.x:
-			##print("Out of bounds: Min X ", min_pos.x)
-			#move_dir = move_dir.bounce(Vector2.RIGHT)
-			#clamp_pos.x = min_pos.x
-		#elif next_pos.x > max_pos.x:
-			##print("Out of bounds: Max X ", max_pos.x)
-			#move_dir = move_dir.bounce(Vector2.RIGHT)
-			#clamp_pos.x = max_pos.x
-		#
-		#if next_pos.y < min_pos.y:
-			##print("Out of bounds: Min Y ", min_pos.y)
-			#move_dir = move_dir.bounce(Vector2.UP)
-			#clamp_pos.y = min_pos.y
-		#elif next_pos.y > max_pos.y:
-			##print("Out of bounds: Max Y ", max_pos.y)
-			#move_dir = move_dir.bounce(Vector2.UP)
-			#clamp_pos.y = max_pos.y
-	#else:
-		## Ball drops into next window - animation? sfx?
-		#print("~~Ball pass into next window!")
-		#pass
-	
-	#if !clamp_pos.is_equal_approx(local_position):
-		##print("Bounced - ClampPos: ", clamp_pos, ", LocalPos: ", local_position)
-		#current_velocity = move_dir * current_speed * delta
-		#on_bounce()
 	
 	# Update next_pos with potentially changed values, & assign to global position.
 	velocity = current_velocity
-	local_position = clamp_pos + current_velocity
+	local_position += current_velocity
 	global_position = local_position + move_rect.position
 	
 	var collision := move_and_collide(velocity)
@@ -336,7 +286,7 @@ func _on_stage_reset() ->void:
 	in_windows.clear()
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	global_position = start_position.global_position
+	global_position = start_position
 	set_collision_active(false)
 	
 	await get_tree().process_frame
