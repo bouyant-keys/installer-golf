@@ -6,26 +6,47 @@
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="4_hpxtg"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="5_66dog"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="5_k1g6b"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="6_yc0xt"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="7_1pups"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="7_badjb"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="8_cricu"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="8_qj42i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ar4qg"]
-size = Vector2(224, 15)
+[sub_resource type="RichTextEffect" id="RichTextEffect_errxf"]
+script = ExtResource("6_yc0xt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1g6b"]
-size = Vector2(152, 18)
+[sub_resource type="RichTextEffect" id="RichTextEffect_koh33"]
+script = ExtResource("7_badjb")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_043wn"]
-size = Vector2(76, 18)
+[sub_resource type="RichTextEffect" id="RichTextEffect_yc0xt"]
+script = ExtResource("6_yc0xt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6v42"]
-size = Vector2(112, 80)
+[sub_resource type="RichTextEffect" id="RichTextEffect_badjb"]
+script = ExtResource("7_badjb")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_badjb"]
-size = Vector2(70, 32)
+[sub_resource type="RichTextEffect" id="RichTextEffect_cricu"]
+script = ExtResource("6_yc0xt")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc0xt"]
-size = Vector2(189, 15)
+[sub_resource type="RichTextEffect" id="RichTextEffect_e5cs4"]
+script = ExtResource("7_badjb")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4kirv"]
+script = ExtResource("6_yc0xt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_j5xoq"]
+script = ExtResource("7_badjb")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fejfy"]
+script = ExtResource("6_yc0xt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_6q0rr"]
+script = ExtResource("7_badjb")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_pf0nq"]
+script = ExtResource("6_yc0xt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kpph3"]
+script = ExtResource("7_badjb")
 
 [node name="Stage1c" type="Node" unique_id=1335873284]
 script = ExtResource("1_ar4qg")
@@ -52,37 +73,36 @@ position = Vector2(160, 160)
 [node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_k1g6b")]
 parent_window = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1751252532]
-position = Vector2(114, 105)
-shape = SubResource("RectangleShape2D_ar4qg")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1141754417]
+position = Vector2(240, 0)
+polygon = PackedVector2Array(-13, 98, -13, 110, -62, 110, -62, 126, -154, 126, -154, 110, -204, 110, -204, 98, -187, 98, -187, 82, -30, 82, -30, 98)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1623669790]
-position = Vector2(80, 80)
-shape = SubResource("RectangleShape2D_k1g6b")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1217692033]
-position = Vector2(39, 130)
-shape = SubResource("RectangleShape2D_043wn")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="TextObstacle" type="Label" parent="WindowManager/StartWindow" unique_id=589623430]
+[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=21237425]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -37.5
-offset_bottom = 37.5
+offset_left = -99.0
+offset_top = -24.0
+offset_right = 99.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = " Text  Text Text Text
+mouse_filter = 2
+text = " Text Text Text Text Text
  Text Text Text Text Text Text
- Text Text"
+ Text Text Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_errxf"), SubResource("RichTextEffect_koh33"), SubResource("RichTextEffect_yc0xt"), SubResource("RichTextEffect_badjb"), SubResource("RichTextEffect_cricu"), SubResource("RichTextEffect_e5cs4")]
+script = ExtResource("8_cricu")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="Window" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_yt5sl")]
 layout_mode = 1
@@ -95,37 +115,10 @@ is_locked = true
 [node name="StaticObstacle" parent="WindowManager/Window" unique_id=1487449770 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_k1g6b")]
 parent_window = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=1989088171]
-position = Vector2(141, 12)
-shape = SubResource("RectangleShape2D_ar4qg")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/Window/StaticObstacle" unique_id=744383928]
+polygon = PackedVector2Array(248, 8, 248, 200, 56, 200, 56, 186, 90, 186, 90, 170, 189, 170, 189, 149, 156, 149, 156, 37, 90, 37, 90, 21, 56, 21, 56, 8)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=1807095057]
-position = Vector2(198, 85)
-shape = SubResource("RectangleShape2D_b6v42")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=1903394739]
-position = Vector2(214, 144)
-shape = SubResource("RectangleShape2D_badjb")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=951147266]
-position = Vector2(140, 196)
-shape = SubResource("RectangleShape2D_ar4qg")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=1810881657]
-position = Vector2(162, 40)
-shape = SubResource("RectangleShape2D_yc0xt")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="WindowManager/Window/StaticObstacle" unique_id=1070862747]
-position = Vector2(160, 168)
-shape = SubResource("RectangleShape2D_yc0xt")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="TextObstacle" type="Label" parent="WindowManager/Window" unique_id=1563405359]
+[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/Window" unique_id=763764452]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -136,9 +129,13 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+mouse_filter = 2
 text = "Text Text Text Text Text Text 
 Text Text Text Text Text 
+Text Text Text 
+Text Text Text 
+Text Text Text 
+Text Text Text 
 Text Text Text 
 Text Text Text 
 Text Text Text 
@@ -147,17 +144,20 @@ Text Text Text Text Text
 Text Text Text Text Text Text "
 horizontal_alignment = 2
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_4kirv"), SubResource("RichTextEffect_j5xoq"), SubResource("RichTextEffect_fejfy"), SubResource("RichTextEffect_6q0rr"), SubResource("RichTextEffect_pf0nq"), SubResource("RichTextEffect_kpph3")]
+script = ExtResource("8_cricu")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("7_1pups")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
+goal = NodePath("../WindowManager/StartWindow/GoalArea")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("5_66dog")]
 unique_name_in_owner = true
 position = Vector2(448, 224)
 start_window = NodePath("../WindowManager/StartWindow")
 window_manager = NodePath("../WindowManager")
-
-[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("7_1pups")]
-stage = NodePath("..")
-ball = NodePath("../Ball")
-goal = NodePath("../WindowManager/StartWindow/GoalArea")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]
 visible = false

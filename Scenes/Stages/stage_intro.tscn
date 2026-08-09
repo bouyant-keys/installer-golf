@@ -98,6 +98,48 @@ script = ExtResource("8_l7gib")
 [sub_resource type="RichTextEffect" id="RichTextEffect_puma6"]
 script = ExtResource("9_d37dp")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_6hn7p"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_khud7"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5bv3a"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sfgyn"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_psatt"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jt7kk"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_igqu7"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ovm4j"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ma0q5"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_j2x0i"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8es0x"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_djxmv"]
+script = ExtResource("9_d37dp")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hw1m3"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uurhk"]
+script = ExtResource("9_d37dp")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7gib"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -170,6 +212,7 @@ offset_top = 8.0
 offset_right = -12.0
 offset_bottom = 138.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("7_0svxb")
 bbcode_enabled = true
 text = "Welcome to the [sine][sparkle color=blue]CoolCoolFunFun Software[/sparkle][/sine] Installation Wizard (CCFFSIW).
@@ -180,7 +223,7 @@ This wizard will guide the installation of [sine][color=blue]CoolCoolFunFun Delu
 To continue, click [color=green]Next[/color]."
 fit_content = true
 scroll_active = false
-custom_effects = [SubResource("RichTextEffect_r0k7y"), SubResource("RichTextEffect_1u51f"), SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_l7gib"), SubResource("RichTextEffect_d37dp"), SubResource("RichTextEffect_gbh5r"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0"), SubResource("RichTextEffect_mhug8"), SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh"), SubResource("RichTextEffect_myuwy"), SubResource("RichTextEffect_q7nlk"), SubResource("RichTextEffect_ryrl6"), SubResource("RichTextEffect_3uxwo"), SubResource("RichTextEffect_lcqwb"), SubResource("RichTextEffect_0vaqf"), SubResource("RichTextEffect_focbj"), SubResource("RichTextEffect_3rht3"), SubResource("RichTextEffect_et6im"), SubResource("RichTextEffect_8ykop"), SubResource("RichTextEffect_i4owa"), SubResource("RichTextEffect_d7ltj"), SubResource("RichTextEffect_puma6")]
+custom_effects = [SubResource("RichTextEffect_r0k7y"), SubResource("RichTextEffect_1u51f"), SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_l7gib"), SubResource("RichTextEffect_d37dp"), SubResource("RichTextEffect_gbh5r"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0"), SubResource("RichTextEffect_mhug8"), SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh"), SubResource("RichTextEffect_myuwy"), SubResource("RichTextEffect_q7nlk"), SubResource("RichTextEffect_ryrl6"), SubResource("RichTextEffect_3uxwo"), SubResource("RichTextEffect_lcqwb"), SubResource("RichTextEffect_0vaqf"), SubResource("RichTextEffect_focbj"), SubResource("RichTextEffect_3rht3"), SubResource("RichTextEffect_et6im"), SubResource("RichTextEffect_8ykop"), SubResource("RichTextEffect_i4owa"), SubResource("RichTextEffect_d7ltj"), SubResource("RichTextEffect_puma6"), SubResource("RichTextEffect_6hn7p"), SubResource("RichTextEffect_khud7"), SubResource("RichTextEffect_5bv3a"), SubResource("RichTextEffect_sfgyn"), SubResource("RichTextEffect_psatt"), SubResource("RichTextEffect_jt7kk"), SubResource("RichTextEffect_igqu7"), SubResource("RichTextEffect_ovm4j"), SubResource("RichTextEffect_ma0q5"), SubResource("RichTextEffect_j2x0i"), SubResource("RichTextEffect_8es0x"), SubResource("RichTextEffect_djxmv"), SubResource("RichTextEffect_hw1m3"), SubResource("RichTextEffect_uurhk")]
 script = ExtResource("9_gbh5r")
 
 [node name="Panel" type="PanelContainer" parent="WindowManager/StartWindow" unique_id=1884059074]
@@ -213,19 +256,19 @@ text = "< Back"
 layout_mode = 2
 text = "Next >"
 
-[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("6_l7gib")]
-unique_name_in_owner = true
-position = Vector2(456, 388)
-start_window = NodePath("../WindowManager/StartWindow")
-window_manager = NodePath("../WindowManager")
-enter_on_load = false
-
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("12_l7gib")]
 gradient = SubResource("Gradient_l7gib")
 joint_mode = 2
 stage = NodePath("..")
 ball = NodePath("../Ball")
 goal = NodePath("../WindowManager/StartWindow/GoalArea")
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("6_l7gib")]
+unique_name_in_owner = true
+position = Vector2(456, 388)
+start_window = NodePath("../WindowManager/StartWindow")
+window_manager = NodePath("../WindowManager")
+enter_on_load = false
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=478600300 node_paths=PackedStringArray("ball")]
 visible = false

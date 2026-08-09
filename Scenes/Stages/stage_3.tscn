@@ -5,21 +5,51 @@
 [ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="3_q522b"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_4qxwd"]
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="5_840mr"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="5_q522b"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="6_4qxwd"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_7eien"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="7_840mr"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="7_krhbv"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_52hpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23tjd"]
-size = Vector2(144, 156)
+size = Vector2(122, 140)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7eien"]
+script = ExtResource("5_q522b")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hkk4a"]
+script = ExtResource("6_4qxwd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu1i"]
-size = Vector2(108, 38)
+size = Vector2(90, 26)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lo83c"]
+script = ExtResource("5_q522b")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_52hpr"]
+script = ExtResource("6_4qxwd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wiw36"]
+script = ExtResource("5_q522b")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ph0jl"]
+script = ExtResource("6_4qxwd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
-size = Vector2(192, 24)
+size = Vector2(162, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6v42"]
-size = Vector2(33, 128)
+[sub_resource type="RichTextEffect" id="RichTextEffect_q522b"]
+script = ExtResource("5_q522b")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4qxwd"]
+script = ExtResource("6_4qxwd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_840mr"]
+script = ExtResource("5_q522b")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1htow"]
+script = ExtResource("6_4qxwd")
 
 [node name="Stage3" type="Node" unique_id=1335873284]
 script = ExtResource("1_23tjd")
@@ -65,7 +95,7 @@ position = Vector2(128, 78)
 shape = SubResource("RectangleShape2D_23tjd")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="StageText" type="Label" parent="WindowManager/MoveWindow/TabA" unique_id=2051552904]
+[node name="StageText" type="RichTextLabel" parent="WindowManager/MoveWindow/TabA" unique_id=498914120]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -77,14 +107,24 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+mouse_filter = 2
 text = "Text Text Text Text
 Text Text Text Text
 Text Text Text Text
 Text Text Text Text
 Text Text Text Text
-Text Text Text Text"
+Text Text Text Text
+Text Text Text Text
+Text Text Text Text
+Text Text Text Text."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_7eien"), SubResource("RichTextEffect_hkk4a")]
+script = ExtResource("7_840mr")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="TabB" type="Control" parent="WindowManager/MoveWindow" unique_id=168571472]
 layout_mode = 1
@@ -105,11 +145,11 @@ shape = SubResource("RectangleShape2D_5wu1i")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/MoveWindow/TabB/StaticObstacle" unique_id=968388818]
-position = Vector2(186, 41)
+position = Vector2(186, 40)
 shape = SubResource("RectangleShape2D_5wu1i")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="StageText" type="Label" parent="WindowManager/MoveWindow/TabB" unique_id=1761047628]
+[node name="StageText" type="RichTextLabel" parent="WindowManager/MoveWindow/TabB" unique_id=1921240053]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 92.0
@@ -117,11 +157,19 @@ offset_right = 121.0
 offset_bottom = 141.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+mouse_filter = 2
 text = "Text Text Text
 Text Text Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_lo83c"), SubResource("RichTextEffect_52hpr")]
+script = ExtResource("7_840mr")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="StageText2" type="Label" parent="WindowManager/MoveWindow/TabB" unique_id=1677584925]
+[node name="StageText2" type="RichTextLabel" parent="WindowManager/MoveWindow/TabB" unique_id=1666044894]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 16.0
@@ -129,9 +177,17 @@ offset_right = 241.0
 offset_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+mouse_filter = 2
 text = "Text Text Text
 Text Text Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_wiw36"), SubResource("RichTextEffect_ph0jl")]
+script = ExtResource("7_840mr")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_q522b")]
 layout_mode = 1
@@ -149,13 +205,8 @@ position = Vector2(104, 64)
 parent_window = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1085453700]
-position = Vector2(96, 12)
+position = Vector2(95, 11)
 shape = SubResource("RectangleShape2D_yt5sl")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1807095057]
-position = Vector2(175.5, 64)
-shape = SubResource("RectangleShape2D_b6v42")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=951147266]
@@ -163,7 +214,7 @@ position = Vector2(96, 117)
 shape = SubResource("RectangleShape2D_yt5sl")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="ObstacleText" type="Label" parent="WindowManager/GoalWindow" unique_id=1002610583]
+[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=110094787]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -171,28 +222,18 @@ offset_bottom = 23.0
 grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "TextTextTextTextText..."
-
-[node name="ObstacleText2" type="Label" parent="WindowManager/GoalWindow" unique_id=1332807889]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -34.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Text
-Text
-T..."
-horizontal_alignment = 2
+mouse_filter = 2
+text = "Text Text Text Text Text."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_q522b"), SubResource("RichTextEffect_4qxwd")]
+script = ExtResource("7_840mr")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="ObstacleText3" type="Label" parent="WindowManager/GoalWindow" unique_id=764505066]
+[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=2116457559]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -203,8 +244,16 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "TextTextTextTextTextT..."
+mouse_filter = 2
+text = "Text Text Text Text Text."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_840mr"), SubResource("RichTextEffect_1htow")]
+script = ExtResource("7_840mr")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("6_7eien")]
 unique_name_in_owner = true

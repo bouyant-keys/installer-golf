@@ -24,6 +24,7 @@ joint_mode = 1
 script = ExtResource("1_2fbwu")
 
 [node name="FadeTimer" type="Timer" parent="." unique_id=1276625308]
-wait_time = 0.05
+wait_time = 0.5
+one_shot = true
 
 [connection signal="timeout" from="FadeTimer" to="." method="on_fade_timer_timeout"]

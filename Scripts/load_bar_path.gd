@@ -1,6 +1,7 @@
 extends Line2D
 
 var bar_complete := false
+var fading := false
 
 @export var stage : Stage
 @export var ball : Ball
@@ -12,15 +13,19 @@ var bar_complete := false
 func _ready() -> void:
 	stage.reset.connect(_on_stage_reset)
 	ball.ball_launched.connect(_on_ball_launched)
+	ball.ball_fell.connect(_on_ball_fell)
 	set_process(false)
 	#ball.direction_changed.connect(_on_ball_direction_changed)
 
 func _process(_delta: float) -> void:
+	z_index = ball.z_index
 	add_point(ball.global_position)
+	
+	if fading:
+		remove_point(0)
 
 func on_fade_timer_timeout() ->void:
-	if !points.is_empty():
-		remove_point(0)
+	fading = true
 
 func _on_ball_launched() ->void:
 	set_process(true)
@@ -42,9 +47,10 @@ func _on_stage_reset() ->void:
 	bar_complete = false
 	#hide()
 
-func _on_ball_fall() ->void:
+func _on_ball_fell() ->void:
 	clear_points()
-	bar_complete = false
+	clear_points()
+	set_process(false)
 
 
 func _on_goal_area_goal() -> void:

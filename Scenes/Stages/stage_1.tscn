@@ -13,9 +13,6 @@
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="8_2w64c"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="8_grf3f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j221e"]
-size = Vector2(248, 24)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfnf8"]
 size = Vector2(512, 24)
 
@@ -25,10 +22,34 @@ script = ExtResource("6_fpc1t")
 [sub_resource type="RichTextEffect" id="RichTextEffect_dhox2"]
 script = ExtResource("7_lkidv")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_fpc1t"]
+script = ExtResource("6_fpc1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lkidv"]
+script = ExtResource("7_lkidv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2j2vi"]
+script = ExtResource("6_fpc1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tecur"]
+script = ExtResource("7_lkidv")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_elwkq"]
 script = ExtResource("6_fpc1t")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_a3a66"]
+script = ExtResource("7_lkidv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2w64c"]
+script = ExtResource("6_fpc1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_a3nje"]
+script = ExtResource("7_lkidv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_v41ih"]
+script = ExtResource("6_fpc1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_igpd1"]
 script = ExtResource("7_lkidv")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfnf8"]
@@ -65,27 +86,26 @@ is_locked = true
 
 [node name="GoalArea" parent="WindowManager/StartWindow" unique_id=1905208525 instance=ExtResource("4_sfwwm")]
 unique_name_in_owner = true
-position = Vector2(416, 76)
+position = Vector2(472, 80)
 
 [node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=922501734 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_wp4it")]
 position = Vector2(133, 0)
 parent_window = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=2132611426]
-visible = false
-position = Vector2(124, 12)
-shape = SubResource("RectangleShape2D_j221e")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1293661845]
-position = Vector2(123, 248)
+position = Vector2(123, 242)
 shape = SubResource("RectangleShape2D_dfnf8")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1174014864]
-polygon = PackedVector2Array(3, 0, 247, 0, 247, 20, 215, 20, 215, 48, 195, 48, 195, 76, 179, 76, 179, 152, 67, 152, 67, 72, 47, 72, 47, 48, 31, 48, 31, 20, 3, 20)
+position = Vector2(-25, 16)
+polygon = PackedVector2Array(98, 29, -14, 29, -14, 18, 0, 18, 0, 2, 289, 2, 289, 18, 310, 18, 310, 30, 193, 31, 193, 49, 307, 49, 307, 62, 278, 62, 278, 78, 18, 77, 18, 61, -17, 61, -17, 50, 98, 50)
 
-[node name="StageText" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=1849362443]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=275665573]
+position = Vector2(-25, 16)
+polygon = PackedVector2Array(-34, 150, 322, 152, 322, 167, 343, 167, 343, 180, 308, 180, 308, 195, -17, 195, -17, 179, -47, 179, -47, 167, -34, 167)
+
+[node name="TopText" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=1849362443]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -96,34 +116,44 @@ offset_bottom = 23.0
 grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = " Step 1/8 Click Next to continue."
-custom_effects = [SubResource("RichTextEffect_0mpkd"), SubResource("RichTextEffect_dhox2")]
+mouse_filter = 2
+text = "
+Text Text Text Text Text Text Text Text Text 
+Text Text Text Text Text Text Text Text Text Text
+Text Text Text.
+Text Text Text Text Text Text Text Text Text Text 
+Text Text Text Text Text Text Text Text."
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_0mpkd"), SubResource("RichTextEffect_dhox2"), SubResource("RichTextEffect_fpc1t"), SubResource("RichTextEffect_lkidv"), SubResource("RichTextEffect_2j2vi"), SubResource("RichTextEffect_tecur")]
 script = ExtResource("8_2w64c")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="CenterText" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=1107960215]
+[node name="BottomText" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=1107960215]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -100.0
-offset_right = 84.0
-offset_bottom = 27.0
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -91.0
+offset_right = 178.5
+offset_bottom = -27.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 4
-text = "Text Text Text Text Text
-Text Text Text Text Text
-Text Text Text Text Text
-Text Text Text Text
-Text Text Text
-Text Text Text
-Text Text Text"
+mouse_filter = 2
+text = "Text Text Text Text Text Text Text Text Text Text Text 
+Text Text Text Text Text Text Text Text Text Text Text Text
+Text Text Text Text Text Text Text Text Text Text 
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_elwkq"), SubResource("RichTextEffect_a3a66")]
+custom_effects = [SubResource("RichTextEffect_elwkq"), SubResource("RichTextEffect_a3a66"), SubResource("RichTextEffect_2w64c"), SubResource("RichTextEffect_a3nje"), SubResource("RichTextEffect_v41ih"), SubResource("RichTextEffect_igpd1")]
 script = ExtResource("8_2w64c")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -175,16 +205,16 @@ text = "< Back"
 layout_mode = 2
 text = "Next >"
 
-[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("5_adl2h")]
-unique_name_in_owner = true
-position = Vector2(384, 256)
-start_window = NodePath("../WindowManager/StartWindow")
-window_manager = NodePath("../WindowManager")
-
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("8_grf3f")]
 stage = NodePath("..")
 ball = NodePath("../Ball")
 goal = NodePath("../WindowManager/StartWindow/GoalArea")
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("5_adl2h")]
+unique_name_in_owner = true
+position = Vector2(352, 256)
+start_window = NodePath("../WindowManager/StartWindow")
+window_manager = NodePath("../WindowManager")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=478600300 node_paths=PackedStringArray("ball")]
 visible = false

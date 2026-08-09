@@ -13,6 +13,7 @@ var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
 var current_window : WindowPanel
+var prev_window : WindowPanel
 var in_windows : Array[WindowPanel]
 var on_bounce_margin : float
 var mouse_hover := false
@@ -34,6 +35,7 @@ var fell_out := false
 @onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
 @onready var bounce_sfx_2: AudioStreamPlayer = $BounceSFX2
 @onready var launch_sfx: AudioStreamPlayer = $LaunchSFX
+@onready var land_sfx: AudioStreamPlayer = $LandSFX
 @onready var fall_sfx: AudioStreamPlayer = $FallSFX
 
 @onready var ball_collider: CollisionShape2D = $BallCollider
@@ -46,6 +48,7 @@ signal trajectory_changed(trajectory:Vector2, strength:float)
 signal draw_trajectory(enabled:bool)
 signal direction_changed(at_pos:Vector2)
 signal ball_launched
+signal ball_stopped
 signal ball_entered
 signal ball_fell
 signal ball_exited
@@ -78,7 +81,7 @@ func enter() ->void:
 func fall() ->void:
 	fell_out = true
 	velocity = Vector2.ZERO
-	set_collision_active(false)
+	set_collision_active(false, false)
 	set_process(false)
 	set_physics_process(false)
 	anim.play("fall")
@@ -90,7 +93,11 @@ func fall() ->void:
 	enter()
 
 func exit() ->void:
+	anim.play("exit")
 	ball_exited.emit()
+	
+	await anim.animation_finished
+	hide()
 
 func _input(event: InputEvent) -> void:
 	if launched:
@@ -136,6 +143,9 @@ func _physics_process(delta: float) -> void:
 		fall()
 		return
 	
+	if is_zero_approx(current_speed):
+		ball_stopped.emit()
+	
 	var move_rect := current_window.get_movable_area()
 	# Calculate character's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
@@ -156,13 +166,20 @@ func get_current_window() ->WindowPanel:
 	return current_window
 
 func set_current_window(window:WindowPanel) ->void:
+	if current_window:
+		print("Landed on new window!")
+		prev_window = current_window
+		anim.play("land")
+		land_sfx.play()
+	
 	current_window = window
 	z_index = current_window.z_index + Z_INDEX_OFFSET
 	local_position = global_position - current_window.get_move_area_position()
 	current_window_changed.emit(window)
 
-func set_collision_active(active:bool) ->void:
-	ball_collider.set_deferred("disabled", !active)
+func set_collision_active(active:bool, include_body:bool = true) ->void:
+	if include_body:
+		ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
 	floor_area_collider.set_deferred("disabled", !active)
 	fall_area_collider.set_deferred("disabled", !active)
@@ -272,10 +289,7 @@ func _on_goal() ->void:
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
 	floor_area_collider.set_deferred("disabled", true)
-	anim.play("goal")
-	
-	await anim.animation_finished
-	hide()
+	exit()
 
 func _on_stage_reset() ->void:
 	print("Ball reset.")
