@@ -1,8 +1,8 @@
 class_name MoveArea extends Area2D
 
 @export var window_parent : WindowPanel
+@export var move_panel : PanelContainer
 
-@onready var move_panel: PanelContainer = %MovePanel
 @onready var move_collider: CollisionShape2D = %MoveCollider
 
 # Called when the node enters the scene tree for the first time.

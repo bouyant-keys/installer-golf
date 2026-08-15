@@ -27,6 +27,7 @@ func _ready() -> void:
 		var gradient_sample := 1 - ((i + 1) / float(windows.size()))
 		print("Index: ", i, ", SampleValue: ", gradient_sample)
 		window.modulate = WINDOW_GRADIENT.gradient.sample(gradient_sample)
+		if window.enter_on_start: window.enter()
 
 func get_windows_at_position(at:Vector2) ->Array[WindowPanel]:
 	var wins : Array[WindowPanel]

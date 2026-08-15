@@ -167,7 +167,7 @@ func get_current_window() ->WindowPanel:
 
 func set_current_window(window:WindowPanel) ->void:
 	if current_window:
-		print("Landed on new window!")
+		print("Landed on new window: ", window, "!")
 		prev_window = current_window
 		anim.play("land")
 		land_sfx.play()
@@ -243,7 +243,6 @@ func _on_movable_area_exited(area: Area2D) -> void:
 		print("Exiting current window!!!")
 		var valid_window := check_valid_window()
 		if !valid_window:
-			print("Here?")
 			fell_out = true
 			return
 		else:

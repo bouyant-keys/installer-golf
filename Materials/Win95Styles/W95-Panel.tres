@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://c80u3js8r2yuj"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
+load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
+
+[resource]
+texture = SubResource("CompressedTexture2D_01w34")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_top = 21.0

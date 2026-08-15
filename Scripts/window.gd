@@ -3,6 +3,8 @@ class_name WindowPanel extends Control
 const TITLE_FORMAT := "Installer"
 const TAB_NAMES := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 const TRANSLUCENT_VALUE : float = 0.2
+const ENTER_TIME := 0.4
+const EXIT_TIME := 0.4
 
 var is_selected := false
 var start_position : Vector2
@@ -14,6 +16,7 @@ var minimized := false
 var selected_tab := -1
 var start_tab := -1
 
+@export var enter_on_start := true
 @export var is_locked := false
 @export var is_minimized := false
 @export var override_movable_area := false
@@ -21,13 +24,15 @@ var start_tab := -1
 ## Control nodes that are activated / deactivated on tab change, index = tab index
 @export var tab_controls : Array[Control]
 
+@onready var panel_parent: Control = %PanelParent # Node that is tweened on enter / exit
 @onready var grab_bar: PanelContainer = %GrabBar
 @onready var window_title: Label = %WindowTitle
 @onready var lock_icon: TextureRect = %LockIcon
 @onready var move_panel: PanelContainer = %MovePanel
 @onready var move_area: MoveArea = %MoveArea
 @onready var move_collider: CollisionShape2D = %MoveCollider
-@onready var tab_bar: TabBar = $GrabBar/HBoxContainer/TabBar
+@onready var tab_bar: TabBar = %TabBar
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 signal ball_entered
 signal ball_exited
@@ -61,6 +66,11 @@ func _ready() -> void:
 	_on_visibility_changed()
 	set_locked(is_locked)
 	set_process(false)
+	
+	set_children_visibility(false)
+	hide()
+	
+	#if enter_on_start: enter()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -71,6 +81,7 @@ func _gui_input(event: InputEvent) -> void:
 		window_selected.emit(self)
 		if is_locked:
 			##TODO Visual cue that window is locked in place...
+			anim.play("locked")
 			return
 			
 		drag_start = get_global_mouse_position()
@@ -81,6 +92,35 @@ func _gui_input(event: InputEvent) -> void:
 		window_released.emit(self)
 		set_process(false)
 
+
+func enter() ->void:
+	show()
+	panel_parent.show()
+	panel_parent.scale = Vector2.ZERO
+	
+	var enter_tween := get_tree().create_tween()
+	enter_tween.tween_property(panel_parent, "scale", Vector2.ONE, ENTER_TIME)
+	
+	await enter_tween.finished
+	set_children_visibility(true)
+
+func exit() ->void:
+	panel_parent.scale = Vector2.ONE
+	
+	var exit_tween := get_tree().create_tween()
+	exit_tween.tween_property(panel_parent, "scale", Vector2.ZERO, EXIT_TIME)
+	
+	await exit_tween.finished
+	hide()
+
+func set_children_visibility(active:bool) ->void:
+	for child : Node in get_children():
+		if child is StaticObstacle:
+			continue
+		elif child is Node2D:
+			child.visible = active
+		elif child is Control:
+			child.visible = active
 
 func get_neighbouring_windows() ->Array[WindowPanel]:
 	var neighbours : Array[WindowPanel]

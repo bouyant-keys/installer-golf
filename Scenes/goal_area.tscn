@@ -76,5 +76,4 @@ debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 [node name="MousePressSFX" type="AudioStreamPlayer" parent="." unique_id=1169147831]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="pressed" from="GoalButton" to="." method="_on_goal_button_pressed"]

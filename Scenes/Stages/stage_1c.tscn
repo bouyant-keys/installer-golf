@@ -9,8 +9,12 @@
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="6_yc0xt"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="7_1pups"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="7_badjb"]
-[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="8_cricu"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="8_cricu"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="8_qj42i"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/Stages/ui_button.tscn" id="9_badjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_badjb"]
+size = Vector2(255.75, 25.5)
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_errxf"]
 script = ExtResource("6_yc0xt")
@@ -29,6 +33,18 @@ script = ExtResource("6_yc0xt")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_e5cs4"]
 script = ExtResource("7_badjb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cricu"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.86898494, 0.8689849, 0.8689849, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.34117648, 0.34117648, 0.34117648, 1)
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_4kirv"]
 script = ExtResource("6_yc0xt")
@@ -73,6 +89,11 @@ position = Vector2(160, 160)
 [node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_k1g6b")]
 parent_window = NodePath("..")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=546201991]
+position = Vector2(128.125, 195)
+shape = SubResource("RectangleShape2D_badjb")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=1141754417]
 position = Vector2(240, 0)
 polygon = PackedVector2Array(-13, 98, -13, 110, -62, 110, -62, 126, -154, 126, -154, 110, -204, 110, -204, 98, -187, 98, -187, 82, -30, 82, -30, 98)
@@ -103,6 +124,36 @@ horizontal_alignment = 1
 custom_effects = [SubResource("RichTextEffect_errxf"), SubResource("RichTextEffect_koh33"), SubResource("RichTextEffect_yc0xt"), SubResource("RichTextEffect_badjb"), SubResource("RichTextEffect_cricu"), SubResource("RichTextEffect_e5cs4")]
 script = ExtResource("8_cricu")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="Panel" type="PanelContainer" parent="WindowManager/StartWindow" unique_id=548508049]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cricu")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/StartWindow/Panel" unique_id=1009230355]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/StartWindow/Panel/MarginContainer" unique_id=404475621]
+layout_mode = 2
+alignment = 2
+
+[node name="BackButton" parent="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer" unique_id=41542465 instance=ExtResource("9_badjb")]
+layout_mode = 2
+disabled = true
+text = "< Back"
+
+[node name="NextButton" parent="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer" unique_id=119528279 instance=ExtResource("9_badjb")]
+layout_mode = 2
+text = "Next >"
 
 [node name="Window" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_yt5sl")]
 layout_mode = 1
@@ -166,3 +217,5 @@ script = ExtResource("8_qj42i")
 ball = NodePath("../Ball")
 
 [connection signal="goal" from="WindowManager/StartWindow/GoalArea" to="Ball" method="_on_goal"]
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/NextButton" to="." method="_on_next_pressed"]

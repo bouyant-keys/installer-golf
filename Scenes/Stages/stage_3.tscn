@@ -4,13 +4,26 @@
 [ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_g1t41"]
 [ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/area_window.tscn" id="3_q522b"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_4qxwd"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/Stages/ui_button.tscn" id="4_840mr"]
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="5_840mr"]
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="5_q522b"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="6_4qxwd"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_7eien"]
-[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="7_840mr"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="7_840mr"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="7_krhbv"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_52hpr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eien"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.86898494, 0.8689849, 0.8689849, 1)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.34117648, 0.34117648, 0.34117648, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23tjd"]
 size = Vector2(122, 140)
@@ -68,6 +81,36 @@ offset_top = 320.0
 offset_right = 464.0
 offset_bottom = 448.0
 is_locked = true
+
+[node name="Panel" type="PanelContainer" parent="WindowManager/StartWindow" unique_id=1099704419]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7eien")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/StartWindow/Panel" unique_id=1763970427]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/StartWindow/Panel/MarginContainer" unique_id=1199970162]
+layout_mode = 2
+alignment = 2
+
+[node name="BackButton" parent="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer" unique_id=41542465 instance=ExtResource("4_840mr")]
+layout_mode = 2
+disabled = true
+text = "< Back"
+
+[node name="NextButton" parent="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer" unique_id=1002328885 instance=ExtResource("4_840mr")]
+layout_mode = 2
+text = "Next >"
 
 [node name="MoveWindow" parent="WindowManager" unique_id=1289661258 node_paths=PackedStringArray("tab_controls") instance=ExtResource("3_q522b")]
 layout_mode = 1
@@ -255,16 +298,16 @@ custom_effects = [SubResource("RichTextEffect_840mr"), SubResource("RichTextEffe
 script = ExtResource("7_840mr")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("7_krhbv")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
+goal = NodePath("../WindowManager/GoalWindow/GoalArea")
+
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("6_7eien")]
 unique_name_in_owner = true
 position = Vector2(320, 384)
 start_window = NodePath("../WindowManager/StartWindow")
 window_manager = NodePath("../WindowManager")
-
-[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("7_krhbv")]
-stage = NodePath("..")
-ball = NodePath("../Ball")
-goal = NodePath("../WindowManager/GoalWindow/GoalArea")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]
 visible = false
@@ -272,4 +315,6 @@ z_index = 20
 script = ExtResource("9_52hpr")
 ball = NodePath("../Ball")
 
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/NextButton" to="." method="_on_next_pressed"]
 [connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="Ball" method="_on_goal"]

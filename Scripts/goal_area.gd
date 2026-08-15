@@ -36,6 +36,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is not Ball:
 		return
 	
+	body = body as Ball
+	body._on_goal()
 	goal_pressed_sfx.play()
 	goal_button.button_pressed = true
 	
@@ -44,12 +46,6 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	await download_tween.finished
 	goal.emit()
-
-func _on_body_exited(body: Node2D) -> void:
-	if body is not Ball:
-		return
-	
-	goal_button.button_pressed = false
 
 
 func _on_goal_button_pressed() -> void:

@@ -7,3 +7,4 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_detail = 4
+expand_margin_top = 24.0

@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="6_pxo3p"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="7_3d0k6"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/Stages/ball_trail.tscn" id="7_523ch"]
-[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scenes/Stages/CustomRichText.gd" id="8_j5a1j"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="8_j5a1j"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="8_ltk8q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hf35k"]
@@ -301,4 +301,6 @@ z_index = 20
 script = ExtResource("8_ltk8q")
 ball = NodePath("../Ball")
 
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="WindowManager/StartWindow/Panel/MarginContainer/HBoxContainer/NextButton" to="." method="_on_next_pressed"]
 [connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="Ball" method="_on_goal"]
