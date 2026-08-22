@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://cyywgt1i0l6ou"]
+
+[ext_resource type="Script" uid="uid://dkf2vk4f5ym4h" path="res://Scripts/software.gd" id="1_18ac4"]
+[ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="1_jlr1x"]
+[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="2_18ac4"]
+[ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="3_jlr1x"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="5_3vat2"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="6_v14me"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="7_ksry7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_beqgq"]
+load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5vi2"]
+texture = SubResource("CompressedTexture2D_beqgq")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vat2"]
+bg_color = Color(0, 0, 0.5019608, 1)
+border_width_left = 3
+border_width_right = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18ac4"]
+texture = ExtResource("3_jlr1x")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+draw_center = false
+
+[sub_resource type="Gradient" id="Gradient_7vvfa"]
+colors = PackedColorArray(0.26613602, 0.29245612, 0.66210747, 1, 0.7627221, 0.8169218, 0.9502848, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb32r"]
+gradient = SubResource("Gradient_7vvfa")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xvr6m"]
+script = ExtResource("5_3vat2")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cqgmq"]
+script = ExtResource("6_v14me")
+
+[node name="Software" type="Control" unique_id=1147250097]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_18ac4")
+
+[node name="PanelParent" type="PanelContainer" parent="." unique_id=1943446611]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x5vi2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelParent" unique_id=1952531544]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Spacer" type="Control" parent="PanelParent/VBoxContainer" unique_id=1252922729]
+layout_mode = 2
+
+[node name="GrabBar" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=190043555]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 0
+offset_transform_position = Vector2(0, -22)
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_3vat2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/VBoxContainer/GrabBar" unique_id=499942220]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=647075326]
+layout_mode = 2
+
+[node name="WindowIcon" type="TextureRect" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=625262082]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_jlr1x")
+stretch_mode = 5
+
+[node name="WindowTitle" type="Label" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=1552337304]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_18ac4")
+theme_override_font_sizes/font_size = 16
+text = "WindowTitle"
+
+[node name="MovePanel" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=224516634]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_18ac4")
+
+[node name="Content" type="Control" parent="PanelParent/VBoxContainer/MovePanel" unique_id=750657419]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelParent/VBoxContainer/MovePanel/Content" unique_id=624889316]
+layout_mode = 0
+offset_right = 1144.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_pb32r")
+
+[node name="CustomRichText" type="RichTextLabel" parent="PanelParent/VBoxContainer/MovePanel/Content" unique_id=1410550499]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+text = "Thanks for playing!
+
+A game by Ethan Keys"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_xvr6m"), SubResource("RichTextEffect_cqgmq")]
+script = ExtResource("7_ksry7")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"

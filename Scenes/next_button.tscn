@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://wniphwecihw0"]
+
+[ext_resource type="Script" uid="uid://de0l6w784r8i0" path="res://Scripts/next_button.gd" id="1_3om1g"]
+[ext_resource type="Shader" uid="uid://2nxqxkykot4e" path="res://Materials/MarchingAnts-Outline.gdshader" id="2_6d51i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7oc2"]
+shader = ExtResource("2_6d51i")
+shader_parameter/ant_color_1 = Color(1, 1, 1, 1)
+shader_parameter/ant_color_2 = Color(0, 0, 0, 1)
+shader_parameter/ant_width = 1.0
+shader_parameter/ant_length = 3.0
+shader_parameter/ant_speed = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7oc2"]
+
+[node name="NextButton" type="Button" unique_id=41542465]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 22)
+script = ExtResource("1_3om1g")
+
+[node name="ButtonLabel" type="Label" parent="." unique_id=1056073542]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next >"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedTexture" type="Panel" parent="." unique_id=1562624486]
+material = SubResource("ShaderMaterial_j7oc2")
+custom_minimum_size = Vector2(37, 11)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104166664
+anchor_top = 0.22727273
+anchor_right = 0.8958333
+anchor_bottom = 0.77272725
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j7oc2")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="focus_entered" from="." to="." method="hover_enter"]
+[connection signal="focus_exited" from="." to="." method="hover_exit"]
+[connection signal="mouse_entered" from="." to="." method="hover_enter"]
+[connection signal="mouse_exited" from="." to="." method="hover_exit"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

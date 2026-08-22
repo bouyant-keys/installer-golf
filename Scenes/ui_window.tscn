@@ -1,93 +1,44 @@
 [gd_scene format=3 uid="uid://dls7sems1frjt"]
 
-[ext_resource type="Texture2D" uid="uid://bhem4jc2evqln" path="res://Textures/LockButton.png" id="2_3xxio"]
+[ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="1_3xxio"]
+[ext_resource type="Script" uid="uid://dpwi5eu581sh5" path="res://Scripts/ui_window.gd" id="1_6jnw6"]
+[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="2_6jnw6"]
+[ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="3_4xw6w"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 3
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
+load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xhjo"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
-border_width_bottom = 2
-border_color = Color(0.34033927, 0.34033936, 0.34033903, 1)
-corner_detail = 3
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36tya"]
+texture = SubResource("CompressedTexture2D_01w34")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30sqi"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.4392157, 0.4392157, 0.4392157, 0.5294118)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6n46"]
+bg_color = Color(0, 0, 0.5019608, 1)
+border_color = Color(1, 1, 1, 0)
 
-[node name="Window" type="Panel" unique_id=303658194]
-custom_minimum_size = Vector2(48, 48)
-offset_right = 48.0
-offset_bottom = 48.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gni6t"]
+texture = ExtResource("3_4xw6w")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[node name="Window" type="Control" unique_id=38188222]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 132.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_8gbba")
+script = ExtResource("1_6jnw6")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=711398828]
-z_index = -5
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="GrabBar" type="Panel" parent="." unique_id=92082876]
+[node name="PanelParent" type="PanelContainer" parent="." unique_id=1762561274]
 unique_name_in_owner = true
 z_index = -1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = 20.0
-size_flags_vertical = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 6
-theme_override_styles/panel = SubResource("StyleBoxFlat_0xhjo")
-
-[node name="LockIcon" type="TextureRect" parent="GrabBar" unique_id=1922679202]
-unique_name_in_owner = true
-texture_filter = 1
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("2_3xxio")
-stretch_mode = 5
-
-[node name="PanelContainer" type="Panel" parent="." unique_id=837076328]
-visible = false
-z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +46,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_30sqi")
+theme_override_styles/panel = SubResource("StyleBoxTexture_36tya")
 
-[connection signal="mouse_entered" from="GrabBar" to="." method="_on_grab_bar_entered"]
-[connection signal="mouse_exited" from="GrabBar" to="." method="_on_grab_bar_exited"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelParent" unique_id=812072822]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelParent/MarginContainer" unique_id=230803670]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="GrabBar" type="PanelContainer" parent="PanelParent/MarginContainer/VBoxContainer" unique_id=51139172]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_vertical = 0
+offset_transform_position = Vector2(0, -22)
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6n46")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar" unique_id=1049344869]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=1047781856]
+layout_mode = 2
+
+[node name="WindowIcon" type="TextureRect" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=2079532083]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_3xxio")
+stretch_mode = 5
+
+[node name="WindowTitle" type="Label" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=1884612595]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_6jnw6")
+theme_override_font_sizes/font_size = 16
+text = "WindowTitle"
+
+[node name="MovePanel" type="PanelContainer" parent="PanelParent/MarginContainer/VBoxContainer" unique_id=696775134]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_gni6t")

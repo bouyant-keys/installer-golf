@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://r3v1v1oqfat"]
 
 [ext_resource type="Texture2D" uid="uid://cfybqn76e6h7h" path="res://Textures/Button-Up.png" id="1_hjcrg"]
-[ext_resource type="Texture2D" uid="uid://bhem4jc2evqln" path="res://Textures/LockButton.png" id="2_o1xxf"]
 [ext_resource type="Script" uid="uid://cqiu3uqty8a6a" path="res://Scripts/credits_window.gd" id="3_670jt"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="4_m3b6i"]
 [ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="5_670jt"]
@@ -82,11 +81,6 @@ stretch_mode = 5
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_vertical = 8
-
-[node name="TextureButton" type="TextureButton" parent="BG/VBoxContainer/PanelContainer" unique_id=1347452201]
-layout_mode = 2
-size_flags_horizontal = 0
-texture_normal = ExtResource("2_o1xxf")
 
 [node name="AppWindows" type="Control" parent="." unique_id=821201359]
 layout_mode = 1

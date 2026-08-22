@@ -1,7 +1,9 @@
 [gd_resource type="GradientTexture1D" format=3 uid="uid://bwy0fxxdrdp17"]
 
 [sub_resource type="Gradient" id="Gradient_wp4it"]
-colors = PackedColorArray(1, 1, 1, 1, 0.33288053, 0.33288074, 0.33288068, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.018151816)
+colors = PackedColorArray(1, 1, 1, 1, 0.80735, 0.80735004, 0.80735004, 1)
 
 [resource]
 gradient = SubResource("Gradient_wp4it")

@@ -1,10 +1,11 @@
 class_name Ball extends CharacterBody2D
 
-const Z_INDEX_OFFSET := 0
+const Z_INDEX_OFFSET := 2
 const DECEL_RATE := 50.0
 const EDGE_MARGIN := 6.0
 const CHECK_DIST := 16.0
 const STRENGTH_RANGE := Vector2(30.0, 600.0)
+const DRAG_MIN := Vector2(5.0, 5.0)
 const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means the maximum strength is applied
 const BALL_SIZE := Vector2(16.0, 16.0)
 
@@ -23,8 +24,6 @@ var frozen := false
 var launched := false
 var fell_out := false
 
-#@export var randomize_start_direction := false
-#@export var initial_direction := Vector2(1.0, -0.75)
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
 @export var enter_on_load := true
@@ -36,6 +35,9 @@ var fell_out := false
 @onready var bounce_sfx_2: AudioStreamPlayer = $BounceSFX2
 @onready var launch_sfx: AudioStreamPlayer = $LaunchSFX
 @onready var land_sfx: AudioStreamPlayer = $LandSFX
+@onready var rolling_sfx: AudioStreamPlayer = $RollingSFX
+@onready var enter_sfx: AudioStreamPlayer = $EnterSFX
+@onready var exit_sfx: AudioStreamPlayer = $ExitSFX
 @onready var fall_sfx: AudioStreamPlayer = $FallSFX
 
 @onready var ball_collider: CollisionShape2D = $BallCollider
@@ -61,16 +63,14 @@ func _ready() -> void:
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_position = global_position
+	set_current_window(start_window)
 	hide()
-	
-	# Only disabled for intro level
-	if enter_on_load:
-		enter()
 
 func enter() ->void:
 	show()
 	set_current_window(start_window)
 	anim.play("enter")
+	enter_sfx.play()
 	
 	await anim.animation_finished
 	set_collision_active(true)
@@ -94,6 +94,7 @@ func fall() ->void:
 
 func exit() ->void:
 	anim.play("exit")
+	exit_sfx.play()
 	ball_exited.emit()
 	
 	await anim.animation_finished
@@ -110,6 +111,9 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_released("LeftClick") && mouse_drag:
 		mouse_drag = false
 		var launch_dir := -(get_global_mouse_position() - click_pos)
+		if abs(launch_dir) < DRAG_MIN:
+			return
+		
 		move_dir = launch_dir.normalized()
 		direction_changed.emit(global_position)
 		
@@ -117,6 +121,7 @@ func _input(event: InputEvent) -> void:
 		current_speed = launch_strength
 		launched = true
 		draw_trajectory.emit(false)
+		launch_sfx.play()
 		ball_launched.emit()
 		#print("Released, Pos: ", release_pos, ", Distance: ", release_pos - click_pos)
 

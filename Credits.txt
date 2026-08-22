@@ -1,0 +1,11 @@
+Resources used:
+	-- Shaders
+	Animated selection rectangle (Marching ants) - Mew Pur Pur @ godotshaders.com
+	Line2D animation - cpt_metal @ godotshaders.com
+	
+	-- SFX
+	BeepBox.co
+	Menu Click - Two Tone by Soughtaftersounds -- https://freesound.org/s/145442/ -- License: Attribution 3.0
+	Golf Balls Rolling.wav by 221227 -- https://freesound.org/s/655487/ -- License: Attribution 4.0
+	Musical Saw effects UFO.mp3 by JohnsonBrandEditing -- https://freesound.org/s/173936/ -- License: Creative Commons 0
+	Minigolf putt, right into the hole! by pfranzen -- https://freesound.org/s/512505/ -- License: Creative Commons 0

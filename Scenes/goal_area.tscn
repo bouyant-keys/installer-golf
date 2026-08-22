@@ -1,79 +1,98 @@
 [gd_scene format=3 uid="uid://c6nvjvelktvc0"]
 
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
-[ext_resource type="Texture2D" uid="uid://dgo4b0414m8es" path="res://Textures/Download_Icon.png" id="2_la8kp"]
-[ext_resource type="StyleBox" uid="uid://dmnovrcuwgdga" path="res://Materials/Button_StyleboxTexture.tres" id="3_la8kp"]
-[ext_resource type="StyleBox" uid="uid://cpnykniypd6vo" path="res://Materials/Button-Pressed_StyleboxTexture.tres" id="4_1f4mu"]
-[ext_resource type="StyleBox" uid="uid://bq72n77hv2vtw" path="res://Materials/Button-Hover_StyleboxTexture.tres" id="5_ju4mi"]
+[ext_resource type="Texture2D" uid="uid://b0hk036wstj6j" path="res://Textures/goal_hole.png" id="5_0mfu7"]
+[ext_resource type="Texture2D" uid="uid://cbb8x7y3ud6b8" path="res://Textures/goal_flag3.png" id="6_ju4mi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxatn"]
-size = Vector2(44, 18)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d37dp"]
+size = Vector2(14, 7)
+
+[sub_resource type="Animation" id="Animation_ju4mi"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlagSprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlagSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-15, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_0mfu7"]
+resource_name = "goal"
+length = 2.0
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlagSprite:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0, -2, -0.11666667, 0, 0, 0, -2, -0.25, 0, 0.25, 0, -2, -0.033333324, 0, 0, 0, -2, -0.025000017, 0, 0, 0, -2, -0.024999997, 0, 0, 0, -2, -0.016666671, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 0.9, 1.1375, 1.4250001, 1.575, 1.7750001)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlagSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 0, 0, 2, 0),
+"points": PackedFloat32Array(-15, 0, 0, 0.0875, -5.9738026, -36, -0.13333334, 0, 0.16666666, 0, -14.730769, -0.07500005, -4.1360083, 0.0625, -3.4765892, -23.939241, -0.083333336, 0, 0.0916667, 0, -15, -0.037500024, -2.7742481, 0.037499905, -1.6036797, -18.78874, -0.049999993, 0, 0.066666685, 0, -15, -0.025000095, -1.0574131, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 0.9, 1.1375, 1.4250001, 1.575, 1.7750001)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5dij"]
+_data = {
+&"RESET": SubResource("Animation_ju4mi"),
+&"goal": SubResource("Animation_0mfu7")
+}
 
 [node name="GoalArea" type="Area2D" unique_id=1905208525]
+z_index = 2
 texture_filter = 1
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_xxatn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1025340160]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -32.0
-offset_top = -24.0
-offset_right = 32.0
-offset_bottom = -24.0
-grow_horizontal = 2
+[node name="HoleSprite" type="Sprite2D" parent="." unique_id=1743296930]
+z_index = -1
+position = Vector2(-2, -15)
+texture = ExtResource("5_0mfu7")
 
-[node name="DownloadTex" type="TextureRect" parent="HBoxContainer" unique_id=91740979]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("2_la8kp")
-expand_mode = 4
-stretch_mode = 5
-
-[node name="DownloadBar" type="ProgressBar" parent="HBoxContainer" unique_id=174283770]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-step = 1.0
-value = 24.0
-show_percentage = false
-
-[node name="GoalButton" type="Button" parent="." unique_id=169411398]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -11.0
-offset_right = 24.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 10
-theme_override_styles/normal = ExtResource("3_la8kp")
-theme_override_styles/pressed = ExtResource("4_1f4mu")
-theme_override_styles/hover = ExtResource("5_ju4mi")
-toggle_mode = true
-button_mask = 0
-text = "Confirm"
+[node name="FlagSprite" type="Sprite2D" parent="." unique_id=712997904]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-2, -15)
+texture = ExtResource("6_ju4mi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-shape = SubResource("RectangleShape2D_xxatn")
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_d37dp")
 debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 
-[node name="GoalPressedSFX" type="AudioStreamPlayer" parent="." unique_id=1602736460]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1394084997]
+libraries/ = SubResource("AnimationLibrary_c5dij")
+
+[node name="GoalSFX" type="AudioStreamPlayer" parent="." unique_id=969276651]
 
 [node name="MousePressSFX" type="AudioStreamPlayer" parent="." unique_id=1169147831]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="pressed" from="GoalButton" to="." method="_on_goal_button_pressed"]

@@ -16,7 +16,9 @@ func _ready() -> void:
 	
 	parent_window.ball_entered.connect(ball_entered_window)
 	parent_window.ball_exited.connect(ball_exited_window)
-	parent_window.window_tab_changed.connect(on_window_tab_changed)
+	
+	if parent_window is TabWindow:
+		parent_window.window_tab_changed.connect(on_window_tab_changed)
 	
 	local_pos = position
 

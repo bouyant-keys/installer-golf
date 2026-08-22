@@ -1,0 +1,271 @@
+[gd_scene format=3 uid="uid://cfdrv2sc6x1cn"]
+
+[ext_resource type="Theme" uid="uid://4paorsm53l3k" path="res://MainTheme.tres" id="1_7ywxx"]
+[ext_resource type="Script" uid="uid://dctollo5ogqv3" path="res://Scripts/tab_window_panel.gd" id="2_r2fdd"]
+[ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="3_cl5kt"]
+[ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="4_w2da5"]
+[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_m4oq2"]
+[ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="6_oigjo"]
+[ext_resource type="Texture2D" uid="uid://1wqql7edrfd8" path="res://Textures/W95_TabBG.png" id="7_m4oq2"]
+[ext_resource type="StyleBox" uid="uid://db7paxlm6m6rq" path="res://Materials/Win95Styles/W95-InsetPanel.tres" id="7_uelpn"]
+[ext_resource type="Script" uid="uid://bj1vasses0bnt" path="res://Scripts/move_area.gd" id="8_1h8ly"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="9_7ywxx"]
+[ext_resource type="AudioStream" uid="uid://c08hogw3ak1oj" path="res://Audio/Effects/UI_Enter.wav" id="10_w2da5"]
+[ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="11_m4oq2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
+load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bfkwd"]
+texture = SubResource("CompressedTexture2D_01w34")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_top = 40.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mdtd"]
+bg_color = Color(0, 0, 0.5019608, 1)
+border_width_left = 3
+border_width_right = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pb32r"]
+texture = ExtResource("7_m4oq2")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+size = Vector2(255, 255)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ywxx"]
+size = Vector2(252, 40)
+
+[sub_resource type="Animation" id="Animation_3mdtd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelParent/GrabBar/HBoxContainer/LockIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_01w34"]
+resource_name = "locked"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelParent/GrabBar/HBoxContainer/LockIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dr8s7"]
+_data = {
+&"RESET": SubResource("Animation_3mdtd"),
+&"locked": SubResource("Animation_01w34")
+}
+
+[node name="TabWindow" type="Control" unique_id=1289661258]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+theme = ExtResource("1_7ywxx")
+script = ExtResource("2_r2fdd")
+
+[node name="PanelParent" type="Panel" parent="." unique_id=203660709]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bfkwd")
+
+[node name="DropShadow" type="Panel" parent="PanelParent" unique_id=1884351755]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_cl5kt")
+
+[node name="GrabBar" type="PanelContainer" parent="PanelParent" unique_id=1896426972]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -37.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+offset_transform_position = Vector2(0, -22)
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_3mdtd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/GrabBar" unique_id=1217731613]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="PanelParent/GrabBar/HBoxContainer" unique_id=2047035196]
+layout_mode = 2
+
+[node name="WindowIcon" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=562214442]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_w2da5")
+stretch_mode = 5
+
+[node name="WindowTitle" type="Label" parent="PanelParent/GrabBar/HBoxContainer" unique_id=185553135]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_m4oq2")
+theme_override_font_sizes/font_size = 16
+text = "WindowTitle"
+
+[node name="LockIcon" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=1922679202]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("6_oigjo")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="PanelParent" unique_id=675144617]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_pb32r")
+
+[node name="MovePanel" type="PanelContainer" parent="PanelParent" unique_id=1557305128]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("7_uelpn")
+
+[node name="TabBar" type="TabBar" parent="PanelParent" unique_id=234169703]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 4.0
+offset_right = -4.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 1
+current_tab = 0
+clip_tabs = false
+close_with_middle_mouse = false
+scrolling_enabled = false
+tab_count = 3
+tab_0/title = " A "
+tab_1/title = " B "
+tab_2/title = " C "
+
+[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_panel")]
+unique_name_in_owner = true
+position = Vector2(126, 117)
+collision_mask = 2
+input_pickable = false
+script = ExtResource("8_1h8ly")
+window_parent = NodePath("..")
+move_panel = NodePath("../PanelParent/MovePanel")
+
+[node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
+unique_name_in_owner = true
+position = Vector2(1.5, 10.5)
+shape = SubResource("RectangleShape2D_pb32r")
+
+[node name="HeaderObstacle" parent="." unique_id=1897551971 instance=ExtResource("9_7ywxx")]
+
+[node name="HeaderCollider" type="CollisionShape2D" parent="HeaderObstacle" unique_id=232912448]
+unique_name_in_owner = true
+position = Vector2(128, -19)
+shape = SubResource("RectangleShape2D_7ywxx")
+debug_color = Color(6.497651e-07, 0.647906, 0.20653778, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=572684955]
+libraries/ = SubResource("AnimationLibrary_dr8s7")
+
+[node name="GrabSFX" type="AudioStreamPlayer" parent="." unique_id=753930568]
+bus = &"SFX"
+
+[node name="ReleaseSFX" type="AudioStreamPlayer" parent="." unique_id=1176493368]
+bus = &"SFX"
+
+[node name="LockedSFX" type="AudioStreamPlayer" parent="." unique_id=1819577465]
+bus = &"SFX"
+
+[node name="TabChangedSFX" type="AudioStreamPlayer" parent="." unique_id=923205385]
+bus = &"SFX"
+
+[node name="EnterSFX" type="AudioStreamPlayer" parent="." unique_id=1737913619]
+stream = ExtResource("10_w2da5")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="ExitSFX" type="AudioStreamPlayer" parent="." unique_id=1284746983]
+stream = ExtResource("11_m4oq2")
+bus = &"SFX"
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="mouse_entered" from="PanelParent/GrabBar" to="." method="_on_grab_bar_entered"]
+[connection signal="mouse_exited" from="PanelParent/GrabBar" to="." method="_on_grab_bar_exited"]
+[connection signal="tab_changed" from="PanelParent/TabBar" to="." method="_on_tab_changed"]
+[connection signal="body_entered" from="MoveArea" to="." method="_on_move_area_entered"]
+[connection signal="body_exited" from="MoveArea" to="." method="_on_move_area_exited"]
