@@ -63,14 +63,13 @@ func _ready() -> void:
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_position = global_position
-	set_current_window(start_window)
 	hide()
 
 func enter() ->void:
-	show()
 	set_current_window(start_window)
 	anim.play("enter")
 	enter_sfx.play()
+	show()
 	
 	await anim.animation_finished
 	set_collision_active(true)
@@ -123,6 +122,7 @@ func _input(event: InputEvent) -> void:
 		draw_trajectory.emit(false)
 		launch_sfx.play()
 		ball_launched.emit()
+		#set_collision_active(true)
 		#print("Released, Pos: ", release_pos, ", Distance: ", release_pos - click_pos)
 
 func _process(_delta: float) ->void:
@@ -183,6 +183,7 @@ func set_current_window(window:WindowPanel) ->void:
 	current_window_changed.emit(window)
 
 func set_collision_active(active:bool, include_body:bool = true) ->void:
+	print("--Collision set: ", active, ", ", include_body)
 	if include_body:
 		ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)

@@ -8,6 +8,8 @@ var windows : Array[WindowPanel]
 var selected_window : WindowPanel
 var selected_index : int
 
+signal windows_entered
+signal windows_exited
 signal window_selected(window:WindowPanel)
 signal window_grabbed(window:WindowPanel)
 signal window_released(window:WindowPanel)
@@ -34,12 +36,16 @@ func _ready() -> void:
 
 func _enter_windows() ->void:
 	for window in windows:
-		await get_tree().create_timer(0.1).timeout
 		if window.enter_on_start: window.enter()
+		await get_tree().create_timer(0.2).timeout
+	await windows[-1].entered
+	windows_entered.emit()
 
 func _exit_windows() ->void:
 	for window in windows:
 		window.exit()
+		await get_tree().create_timer(0.2).timeout
+	windows_exited.emit()
 
 func get_windows_at_position(at:Vector2) ->Array[WindowPanel]:
 	var wins : Array[WindowPanel]

@@ -10,6 +10,7 @@ var selected_tab := -1
 @export var tab_controls : Array[Control]
 
 @onready var tab_bar: TabBar = %TabBar
+@onready var tab_changed_sfx: AudioStreamPlayer = $TabChangedSFX
 
 signal window_tab_changed(index:int)
 
@@ -36,6 +37,7 @@ func _on_tab_changed(index:int) ->void:
 		return
 	
 	selected_tab = index
+	tab_changed_sfx.play()
 	show_tab_content(selected_tab)
 	
 	window_tab_changed.emit(index)

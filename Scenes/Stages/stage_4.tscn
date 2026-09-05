@@ -1,0 +1,432 @@
+[gd_scene format=3 uid="uid://7jpls2pdl45m"]
+
+[ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_0yfdq"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_4v44b"]
+[ext_resource type="PackedScene" uid="uid://du0tm13gcy2w5" path="res://Scenes/resizable_window.tscn" id="3_uqhpo"]
+[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="4_gn7yn"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="5_knqcm"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="6_a1qfg"]
+[ext_resource type="Script" uid="uid://dowiup1al0asq" path="res://Scripts/non_scaling_ui.gd" id="6_gn7yn"]
+[ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="7_67rbt"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="8_5ykpn"]
+[ext_resource type="StyleBox" uid="uid://cjn0cldoh8uwe" path="res://Materials/Win95Styles/W95-NavigationPanel.tres" id="9_wg07j"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="10_yy85q"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="12_om3mu"]
+[ext_resource type="PackedScene" uid="uid://dls7sems1frjt" path="res://Scenes/ui_window.tscn" id="13_7j828"]
+[ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="14_qpkmd"]
+[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="15_eduu3"]
+[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="16_nyhxi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn7yn"]
+size = Vector2(60, 92)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7eien"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hkk4a"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ed6xb"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0aox7"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xk2oa"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_os5qm"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_d754g"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_pvn6e"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ibj5p"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jcmvd"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wx2xo"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_vlf73"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xq2xx"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_psct5"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rd7ex"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_16lbt"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dd5gd"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dnere"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uajdn"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ioiet"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7i0te"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qgp60"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_py5ki"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4wkqs"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o75qt"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nk2n2"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sllfk"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_deo82"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8kej6"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_bgb41"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dfo24"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8bt10"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_608gx"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8pgfs"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ux5rp"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cvyqi"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r6pen"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ryc6a"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nu1y1"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dwan3"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u701a"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_blwy6"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uehhk"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_6g52w"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_aw236"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_p1qg4"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0yfdq"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4v44b"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4d3ad"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_36ljb"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uqhpo"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_gn7yn"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_knqcm"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_a1qfg"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_67rbt"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5ykpn"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wg07j"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yy85q"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0ag88"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_y52he"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_54mll"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_eduu3"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nyhxi"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_i84pj"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kb25s"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_bw7fi"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jcqfb"]
+script = ExtResource("7_67rbt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4aj6m"]
+script = ExtResource("5_knqcm")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xp12t"]
+script = ExtResource("6_a1qfg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ll7u1"]
+script = ExtResource("7_67rbt")
+
+[node name="Stage4" type="Node" unique_id=1335873284]
+script = ExtResource("1_0yfdq")
+
+[node name="WindowManager" type="Control" parent="." unique_id=1863376274]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_4v44b")
+
+[node name="ResizeWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_uqhpo")]
+custom_minimum_size = Vector2(160, 128)
+layout_mode = 1
+offset_left = -90.0
+offset_top = -80.0
+offset_right = 90.0
+offset_bottom = 80.0
+is_locked = false
+
+[node name="ClippingMask" type="Control" parent="WindowManager/ResizeWindow" unique_id=1989358703]
+clip_contents = true
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 24.0
+offset_right = -4.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoalArea" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1905208525 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_gn7yn")]
+unique_name_in_owner = true
+position = Vector2(87, 245)
+parent_window = NodePath("../..")
+
+[node name="StaticObstacle" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("12_om3mu")]
+parent_window = NodePath("../..")
+move_with_parent = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/StaticObstacle" unique_id=517424029]
+position = Vector2(-25, 144)
+shape = SubResource("RectangleShape2D_gn7yn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/StaticObstacle" unique_id=1395050604]
+position = Vector2(197, 146)
+shape = SubResource("RectangleShape2D_gn7yn")
+
+[node name="NonScalingUI" type="Control" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1745570321 node_paths=PackedStringArray("parent_window")]
+anchors_preset = 0
+script = ExtResource("6_gn7yn")
+parent_window = NodePath("../..")
+
+[node name="StageText" type="RichTextLabel" parent="WindowManager/ResizeWindow/ClippingMask/NonScalingUI" unique_id=278115065]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = 73.0
+offset_right = 49.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Text Text
+Text Text
+Text Text
+Text Text
+Text Text
+Text Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_7eien"), SubResource("RichTextEffect_hkk4a"), SubResource("RichTextEffect_ed6xb"), SubResource("RichTextEffect_0aox7"), SubResource("RichTextEffect_xk2oa"), SubResource("RichTextEffect_os5qm"), SubResource("RichTextEffect_d754g"), SubResource("RichTextEffect_pvn6e"), SubResource("RichTextEffect_ibj5p"), SubResource("RichTextEffect_jcmvd"), SubResource("RichTextEffect_wx2xo"), SubResource("RichTextEffect_vlf73"), SubResource("RichTextEffect_xq2xx"), SubResource("RichTextEffect_psct5"), SubResource("RichTextEffect_rd7ex"), SubResource("RichTextEffect_16lbt"), SubResource("RichTextEffect_dd5gd"), SubResource("RichTextEffect_dnere"), SubResource("RichTextEffect_uajdn"), SubResource("RichTextEffect_ioiet"), SubResource("RichTextEffect_7i0te"), SubResource("RichTextEffect_qgp60"), SubResource("RichTextEffect_py5ki"), SubResource("RichTextEffect_4wkqs"), SubResource("RichTextEffect_o75qt"), SubResource("RichTextEffect_nk2n2"), SubResource("RichTextEffect_sllfk"), SubResource("RichTextEffect_deo82"), SubResource("RichTextEffect_8kej6"), SubResource("RichTextEffect_bgb41"), SubResource("RichTextEffect_dfo24"), SubResource("RichTextEffect_8bt10"), SubResource("RichTextEffect_608gx"), SubResource("RichTextEffect_8pgfs"), SubResource("RichTextEffect_ux5rp"), SubResource("RichTextEffect_cvyqi"), SubResource("RichTextEffect_r6pen"), SubResource("RichTextEffect_ryc6a"), SubResource("RichTextEffect_nu1y1"), SubResource("RichTextEffect_dwan3")]
+script = ExtResource("8_5ykpn")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StageText2" type="RichTextLabel" parent="WindowManager/ResizeWindow/ClippingMask/NonScalingUI" unique_id=992009520]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 124.0
+offset_top = 75.0
+offset_right = 271.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Text Text
+Text Text
+Text Text
+Text Text
+Text Text
+Text Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_7eien"), SubResource("RichTextEffect_hkk4a"), SubResource("RichTextEffect_ed6xb"), SubResource("RichTextEffect_0aox7"), SubResource("RichTextEffect_xk2oa"), SubResource("RichTextEffect_os5qm"), SubResource("RichTextEffect_d754g"), SubResource("RichTextEffect_pvn6e"), SubResource("RichTextEffect_ibj5p"), SubResource("RichTextEffect_jcmvd"), SubResource("RichTextEffect_wx2xo"), SubResource("RichTextEffect_vlf73"), SubResource("RichTextEffect_xq2xx"), SubResource("RichTextEffect_psct5"), SubResource("RichTextEffect_rd7ex"), SubResource("RichTextEffect_16lbt"), SubResource("RichTextEffect_dd5gd"), SubResource("RichTextEffect_dnere"), SubResource("RichTextEffect_uajdn"), SubResource("RichTextEffect_ioiet"), SubResource("RichTextEffect_7i0te"), SubResource("RichTextEffect_qgp60"), SubResource("RichTextEffect_py5ki"), SubResource("RichTextEffect_4wkqs"), SubResource("RichTextEffect_o75qt"), SubResource("RichTextEffect_nk2n2"), SubResource("RichTextEffect_sllfk"), SubResource("RichTextEffect_deo82"), SubResource("RichTextEffect_8kej6"), SubResource("RichTextEffect_bgb41"), SubResource("RichTextEffect_dfo24"), SubResource("RichTextEffect_8bt10"), SubResource("RichTextEffect_608gx"), SubResource("RichTextEffect_8pgfs"), SubResource("RichTextEffect_ux5rp"), SubResource("RichTextEffect_cvyqi"), SubResource("RichTextEffect_r6pen"), SubResource("RichTextEffect_ryc6a"), SubResource("RichTextEffect_nu1y1"), SubResource("RichTextEffect_dwan3"), SubResource("RichTextEffect_u701a"), SubResource("RichTextEffect_blwy6"), SubResource("RichTextEffect_uehhk")]
+script = ExtResource("8_5ykpn")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="TutorialWindow" parent="." unique_id=38188222 instance=ExtResource("13_7j828")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = -263.0
+offset_right = -126.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+title_text = "InstructWindow"
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialWindow" unique_id=1384820108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CustomRichText" type="RichTextLabel" parent="TutorialWindow/MarginContainer" unique_id=958228895]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Some windows can be resized.
+
+There might be things hiding out of their bounds."
+custom_effects = [SubResource("RichTextEffect_6g52w"), SubResource("RichTextEffect_aw236"), SubResource("RichTextEffect_p1qg4"), SubResource("RichTextEffect_0yfdq"), SubResource("RichTextEffect_4v44b"), SubResource("RichTextEffect_4d3ad"), SubResource("RichTextEffect_36ljb"), SubResource("RichTextEffect_uqhpo"), SubResource("RichTextEffect_gn7yn"), SubResource("RichTextEffect_knqcm"), SubResource("RichTextEffect_a1qfg"), SubResource("RichTextEffect_67rbt"), SubResource("RichTextEffect_5ykpn"), SubResource("RichTextEffect_wg07j"), SubResource("RichTextEffect_yy85q"), SubResource("RichTextEffect_0ag88"), SubResource("RichTextEffect_y52he"), SubResource("RichTextEffect_54mll"), SubResource("RichTextEffect_eduu3"), SubResource("RichTextEffect_nyhxi"), SubResource("RichTextEffect_i84pj"), SubResource("RichTextEffect_kb25s"), SubResource("RichTextEffect_bw7fi"), SubResource("RichTextEffect_jcqfb"), SubResource("RichTextEffect_4aj6m"), SubResource("RichTextEffect_xp12t"), SubResource("RichTextEffect_ll7u1")]
+script = ExtResource("8_5ykpn")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="NavPanel" type="PanelContainer" parent="TutorialWindow" unique_id=116477055]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("9_wg07j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialWindow/NavPanel" unique_id=1143303356]
+layout_mode = 2
+alignment = 2
+
+[node name="BackButton" parent="TutorialWindow/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("10_yy85q")]
+layout_mode = 2
+disabled = true
+text = "< Back"
+
+[node name="NextButton" parent="TutorialWindow/NavPanel/HBoxContainer" unique_id=1748198462 instance=ExtResource("10_yy85q")]
+layout_mode = 2
+text = "Next >"
+
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("14_qpkmd")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
+goal = NodePath("../WindowManager/ResizeWindow/ClippingMask/GoalArea")
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("15_eduu3")]
+unique_name_in_owner = true
+position = Vector2(573, 325)
+start_window = NodePath("../WindowManager/ResizeWindow")
+window_manager = NodePath("../WindowManager")
+
+[node name="LocalPos" type="Node2D" parent="." unique_id=478600300 node_paths=PackedStringArray("ball")]
+visible = false
+z_index = 20
+script = ExtResource("16_nyhxi")
+ball = NodePath("../Ball")
+
+[connection signal="windows_entered" from="WindowManager" to="TutorialWindow" method="enter"]
+[connection signal="goal" from="WindowManager/ResizeWindow/ClippingMask/GoalArea" to="Ball" method="_on_goal"]
+[connection signal="window_entered" from="TutorialWindow" to="TutorialWindow/MarginContainer/CustomRichText" method="enter_text"]
+[connection signal="pressed" from="TutorialWindow/NavPanel/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="TutorialWindow/NavPanel/HBoxContainer/NextButton" to="." method="_on_next_pressed"]

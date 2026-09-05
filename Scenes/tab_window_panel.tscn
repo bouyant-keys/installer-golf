@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="9_7ywxx"]
 [ext_resource type="AudioStream" uid="uid://c08hogw3ak1oj" path="res://Audio/Effects/UI_Enter.wav" id="10_w2da5"]
 [ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="11_m4oq2"]
+[ext_resource type="AudioStream" uid="uid://b7uivl17welid" path="res://Audio/Effects/UI_3.wav" id="11_oigjo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
 load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
@@ -252,6 +253,7 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="TabChangedSFX" type="AudioStreamPlayer" parent="." unique_id=923205385]
+stream = ExtResource("11_oigjo")
 bus = &"SFX"
 
 [node name="EnterSFX" type="AudioStreamPlayer" parent="." unique_id=1737913619]

@@ -7,7 +7,7 @@ class_name MoveArea extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	fit_collider.call_deferred()
+	window_parent.entered.connect(fit_collider)
 
 func get_window_panel() ->WindowPanel:
 	return window_parent
@@ -23,7 +23,8 @@ func get_collider_position() ->Vector2:
 func fit_collider() ->void:
 	move_collider.global_position = move_panel.global_position + (move_panel.size / 2.0)
 	
-	var collision_shape := RectangleShape2D.new()
-	collision_shape.size = move_panel.size
-	move_collider.shape = collision_shape
-	print("MoveArea Collider Size: ", collision_shape.size)
+	#var collision_shape := RectangleShape2D.new()
+	#collision_shape.size = move_panel.size
+	#move_collider.shape = collision_shape
+	move_collider.shape.size = move_panel.size
+	print("..FitCollider: ", move_collider.shape.size)

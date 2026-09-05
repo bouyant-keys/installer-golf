@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://ydwad5t72o11"]
 
 [ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/window_panel.gd" id="1_iradf"]
+[ext_resource type="Theme" uid="uid://4paorsm53l3k" path="res://MainTheme.tres" id="1_pi1cl"]
 [ext_resource type="StyleBox" uid="uid://c80u3js8r2yuj" path="res://Materials/Win95Styles/W95-Panel.tres" id="2_5qd5b"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="3_8b24p"]
 [ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="4_fv834"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_q4thp"]
 [ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="6_73nhq"]
 [ext_resource type="StyleBox" uid="uid://db7paxlm6m6rq" path="res://Materials/Win95Styles/W95-InsetPanel.tres" id="7_pi1cl"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="7_q4thp"]
 [ext_resource type="Script" uid="uid://bj1vasses0bnt" path="res://Scripts/move_area.gd" id="8_0rnsm"]
+[ext_resource type="Texture2D" uid="uid://wq0rljijwt8g" path="res://Textures/Close_Icon-Small.png" id="9_0rnsm"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="9_5qd5b"]
 [ext_resource type="AudioStream" uid="uid://c08hogw3ak1oj" path="res://Audio/Effects/UI_Enter.wav" id="10_fv834"]
 [ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="11_q4thp"]
@@ -78,6 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 1
+theme = ExtResource("1_pi1cl")
 script = ExtResource("1_iradf")
 
 [node name="PanelParent" type="Panel" parent="." unique_id=203660709]
@@ -132,13 +136,6 @@ size_flags_horizontal = 0
 texture = ExtResource("4_fv834")
 stretch_mode = 5
 
-[node name="TabBar" type="TabBar" parent="PanelParent/GrabBar/HBoxContainer" unique_id=234169703]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-clip_tabs = false
-close_with_middle_mouse = false
-
 [node name="WindowTitle" type="Label" parent="PanelParent/GrabBar/HBoxContainer" unique_id=185553135]
 unique_name_in_owner = true
 layout_mode = 2
@@ -154,6 +151,16 @@ layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("6_73nhq")
 stretch_mode = 5
+
+[node name="CloseButton" parent="PanelParent/GrabBar/HBoxContainer" unique_id=41542465 instance=ExtResource("7_q4thp")]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+disabled = true
+text = ""
+icon = ExtResource("9_0rnsm")
+vertical_icon_alignment = 0
 
 [node name="MovePanel" type="PanelContainer" parent="PanelParent" unique_id=708295018]
 unique_name_in_owner = true
@@ -182,7 +189,6 @@ move_panel = NodePath("../PanelParent/MovePanel")
 
 [node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_pb32r")
 
@@ -218,6 +224,5 @@ bus = &"SFX"
 
 [connection signal="mouse_entered" from="PanelParent/GrabBar" to="." method="_on_grab_bar_entered"]
 [connection signal="mouse_exited" from="PanelParent/GrabBar" to="." method="_on_grab_bar_exited"]
-[connection signal="tab_changed" from="PanelParent/GrabBar/HBoxContainer/TabBar" to="." method="_on_tab_changed"]
 [connection signal="body_entered" from="MoveArea" to="." method="_on_move_area_entered"]
 [connection signal="body_exited" from="MoveArea" to="." method="_on_move_area_exited"]

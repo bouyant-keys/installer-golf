@@ -24,6 +24,7 @@ func hide_indicator() ->void:
 	hide()
 
 func move_up() ->void:
+	position = DOWN_POS
 	move_tween = get_tree().create_tween().set_loops()
 	move_tween.tween_property(self, "position", UP_POS, MOVE_TIME).set_delay(0.1)
 	move_tween.tween_property(self, "position", DOWN_POS, MOVE_TIME).set_delay(0.1)

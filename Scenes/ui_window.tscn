@@ -4,6 +4,15 @@
 [ext_resource type="Script" uid="uid://dpwi5eu581sh5" path="res://Scripts/ui_window.gd" id="1_6jnw6"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="2_6jnw6"]
 [ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="3_4xw6w"]
+[ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="4_4xw6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jnw6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_detail = 4
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
 load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
@@ -16,7 +25,7 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6n46"]
-bg_color = Color(0, 0, 0.5019608, 1)
+bg_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 border_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gni6t"]
@@ -35,6 +44,19 @@ offset_right = 160.0
 offset_bottom = 132.0
 mouse_filter = 1
 script = ExtResource("1_6jnw6")
+
+[node name="DropShadow" type="Panel" parent="." unique_id=823315170]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jnw6")
 
 [node name="PanelParent" type="PanelContainer" parent="." unique_id=1762561274]
 unique_name_in_owner = true
@@ -89,6 +111,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_6jnw6")
 theme_override_font_sizes/font_size = 16
 text = "WindowTitle"
+
+[node name="LockIcon" type="TextureRect" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=228503402]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("4_4xw6w")
+stretch_mode = 5
 
 [node name="MovePanel" type="PanelContainer" parent="PanelParent/MarginContainer/VBoxContainer" unique_id=696775134]
 unique_name_in_owner = true

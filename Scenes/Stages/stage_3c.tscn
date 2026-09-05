@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="5_wmtur"]
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="6_w1d6m"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_wmtur"]
+[ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="6_yjjlv"]
 [ext_resource type="StyleBox" uid="uid://cjn0cldoh8uwe" path="res://Materials/Win95Styles/W95-NavigationPanel.tres" id="8_w1d6m"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_jr1no"]
 [ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="9_yjjlv"]
@@ -34,6 +35,33 @@ script = ExtResource("4_pwc3j")
 [sub_resource type="RichTextEffect" id="RichTextEffect_kifkx"]
 script = ExtResource("5_wmtur")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_smpb3"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_570fk"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_bth78"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_88g5c"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_la576"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wr3s8"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cyik5"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rwwmn"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_78vtw"]
+script = ExtResource("6_yjjlv")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
 size = Vector2(192, 25)
 
@@ -55,6 +83,33 @@ script = ExtResource("4_pwc3j")
 [sub_resource type="RichTextEffect" id="RichTextEffect_qwd2q"]
 script = ExtResource("5_wmtur")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_ntf54"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ctqgk"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kl113"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5u11p"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_6m01l"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xxhf5"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_i1v6b"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wu6lf"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_q4wte"]
+script = ExtResource("6_yjjlv")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_v8ma0"]
 script = ExtResource("4_pwc3j")
 
@@ -72,6 +127,33 @@ script = ExtResource("4_pwc3j")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_7arhk"]
 script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hsq1v"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7x8fr"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0ekdf"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sld06"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_13uwm"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f657l"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_edvrq"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_k4n21"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lhfb7"]
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gg58c"]
 size = Vector2(271.25, 20)
@@ -94,6 +176,33 @@ script = ExtResource("4_pwc3j")
 [sub_resource type="RichTextEffect" id="RichTextEffect_r0yba"]
 script = ExtResource("5_wmtur")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_tg2wm"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jqwen"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ekud3"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fkgs1"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ohiob"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lxxcx"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_a3fqh"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_03oa3"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_s3gkp"]
+script = ExtResource("6_yjjlv")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_uaecy"]
 script = ExtResource("4_pwc3j")
 
@@ -105,6 +214,33 @@ script = ExtResource("4_pwc3j")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_k56jn"]
 script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7pcd4"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_stpgh"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_y08nn"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dwogy"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_36iah"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_74a7o"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cqhkx"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rgvjk"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lyah1"]
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu1i"]
 size = Vector2(92, 42)
@@ -143,7 +279,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 text = "Text Text Text Text Text"
-custom_effects = [SubResource("RichTextEffect_yjjlv"), SubResource("RichTextEffect_jr1no"), SubResource("RichTextEffect_w1d6m"), SubResource("RichTextEffect_1via2"), SubResource("RichTextEffect_fmj7f"), SubResource("RichTextEffect_kifkx")]
+custom_effects = [SubResource("RichTextEffect_yjjlv"), SubResource("RichTextEffect_jr1no"), SubResource("RichTextEffect_w1d6m"), SubResource("RichTextEffect_1via2"), SubResource("RichTextEffect_fmj7f"), SubResource("RichTextEffect_kifkx"), SubResource("RichTextEffect_smpb3"), SubResource("RichTextEffect_570fk"), SubResource("RichTextEffect_bth78"), SubResource("RichTextEffect_88g5c"), SubResource("RichTextEffect_la576"), SubResource("RichTextEffect_wr3s8"), SubResource("RichTextEffect_cyik5"), SubResource("RichTextEffect_rwwmn"), SubResource("RichTextEffect_78vtw")]
 script = ExtResource("6_w1d6m")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -217,7 +353,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_b2get"), SubResource("RichTextEffect_qwd2q")]
+custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_b2get"), SubResource("RichTextEffect_qwd2q"), SubResource("RichTextEffect_ntf54"), SubResource("RichTextEffect_ctqgk"), SubResource("RichTextEffect_kl113"), SubResource("RichTextEffect_5u11p"), SubResource("RichTextEffect_6m01l"), SubResource("RichTextEffect_xxhf5"), SubResource("RichTextEffect_i1v6b"), SubResource("RichTextEffect_wu6lf"), SubResource("RichTextEffect_q4wte")]
 script = ExtResource("6_w1d6m")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -243,7 +379,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_v8ma0"), SubResource("RichTextEffect_yldto"), SubResource("RichTextEffect_m2fg6"), SubResource("RichTextEffect_m173k"), SubResource("RichTextEffect_yvvm5"), SubResource("RichTextEffect_7arhk")]
+custom_effects = [SubResource("RichTextEffect_v8ma0"), SubResource("RichTextEffect_yldto"), SubResource("RichTextEffect_m2fg6"), SubResource("RichTextEffect_m173k"), SubResource("RichTextEffect_yvvm5"), SubResource("RichTextEffect_7arhk"), SubResource("RichTextEffect_hsq1v"), SubResource("RichTextEffect_7x8fr"), SubResource("RichTextEffect_0ekdf"), SubResource("RichTextEffect_sld06"), SubResource("RichTextEffect_13uwm"), SubResource("RichTextEffect_f657l"), SubResource("RichTextEffect_edvrq"), SubResource("RichTextEffect_k4n21"), SubResource("RichTextEffect_lhfb7")]
 script = ExtResource("6_w1d6m")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -315,7 +451,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4"), SubResource("RichTextEffect_vx8q3"), SubResource("RichTextEffect_r0yba")]
+custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4"), SubResource("RichTextEffect_vx8q3"), SubResource("RichTextEffect_r0yba"), SubResource("RichTextEffect_tg2wm"), SubResource("RichTextEffect_jqwen"), SubResource("RichTextEffect_ekud3"), SubResource("RichTextEffect_fkgs1"), SubResource("RichTextEffect_ohiob"), SubResource("RichTextEffect_lxxcx"), SubResource("RichTextEffect_a3fqh"), SubResource("RichTextEffect_03oa3"), SubResource("RichTextEffect_s3gkp")]
 script = ExtResource("6_w1d6m")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -339,7 +475,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4"), SubResource("RichTextEffect_uaecy"), SubResource("RichTextEffect_ffu34"), SubResource("RichTextEffect_jkl8j"), SubResource("RichTextEffect_k56jn")]
+custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4"), SubResource("RichTextEffect_uaecy"), SubResource("RichTextEffect_ffu34"), SubResource("RichTextEffect_jkl8j"), SubResource("RichTextEffect_k56jn"), SubResource("RichTextEffect_7pcd4"), SubResource("RichTextEffect_stpgh"), SubResource("RichTextEffect_y08nn"), SubResource("RichTextEffect_dwogy"), SubResource("RichTextEffect_36iah"), SubResource("RichTextEffect_74a7o"), SubResource("RichTextEffect_cqhkx"), SubResource("RichTextEffect_rgvjk"), SubResource("RichTextEffect_lyah1")]
 script = ExtResource("6_w1d6m")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -388,10 +524,7 @@ is_locked = true
 unique_name_in_owner = true
 position = Vector2(128, 64)
 
-[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("13_w1d6m")]
-stage = NodePath("")
-ball = NodePath("")
-goal = NodePath("")
+[node name="BallTrail" parent="." unique_id=195652157 instance=ExtResource("13_w1d6m")]
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("6_wmtur")]
 unique_name_in_owner = true

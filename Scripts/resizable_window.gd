@@ -3,6 +3,8 @@ class_name ResizableWindow extends WindowPanel
 # Resizing code sourced from FinePointCGI:
 # https://github.com/finepointcgi/Drag-Rescale-and-Drop-Windows/blob/main/WindowManager.gd
 
+var reset_size : Vector2
+
 var start : Vector2
 var initialPosition : Vector2
 var isResizing : bool
@@ -12,13 +14,12 @@ var initialSize : Vector2
 @export var GrabThreshold := 20
 @export var ResizeThreshold := 5
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	super()
+	reset_size = size
+	clip_contents = true
 
 func _input(event):
 	if Input.is_action_just_pressed("LeftClick"):
@@ -94,3 +95,7 @@ func _input(event):
 
 func _on_resized() ->void:
 	move_area.fit_collider()
+
+func _reset() ->void:
+	super()
+	size = reset_size

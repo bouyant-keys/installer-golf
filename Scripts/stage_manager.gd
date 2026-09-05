@@ -1,10 +1,12 @@
-extends Node
+class_name StageManager extends Node
 
 var stage_index := 0
 var current_stage : Stage
 
 @export var start_stage : int = 0
 @export var stages : Array[PackedScene]
+
+signal stage_changed(index:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +26,7 @@ func load_stage(index:int) ->void:
 		current_stage.queue_free()
 	
 	stage_index = clampi(index, 0, stages.size()-1)
+	stage_changed.emit(stage_index)
 	
 	current_stage = stages[stage_index].instantiate() as Stage
 	current_stage.next_stage.connect(on_next_stage)

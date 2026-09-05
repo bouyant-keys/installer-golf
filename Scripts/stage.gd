@@ -13,7 +13,6 @@ signal enter_ball
 signal enter_goal
 
 @export var next_stage_on_goal := true
-@export var enter_ball_on_start := true
 
 @onready var ball: Ball = %Ball
 @onready var goal_area: GoalArea = %GoalArea
@@ -27,11 +26,15 @@ func _ready() -> void:
 	enter_goal.connect(goal_area.enter)
 	goal_area.goal.connect(_on_goal)
 	
+	stage_setup.call_deferred()
+
+func stage_setup() ->void:
 	enter_windows.emit()
 	
-	await get_tree().create_timer(0.2).timeout
-	if enter_ball_on_start:
+	await window_manager.windows_entered
+	if ball.enter_on_load:
 		enter_ball.emit()
+	if !goal_area.is_intro_level:
 		enter_goal.emit()
 
 func reset_stage() ->void:
@@ -43,6 +46,7 @@ func unload_stage() ->void:
 
 func _on_next_pressed() ->void:
 	enter_ball.emit()
+	enter_goal.emit()
 
 func _on_back_pressed() ->void:
 	reset_stage()

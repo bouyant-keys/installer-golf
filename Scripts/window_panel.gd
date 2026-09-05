@@ -33,6 +33,8 @@ var minimized := false
 @onready var enter_sfx: AudioStreamPlayer = $EnterSFX
 @onready var exit_sfx: AudioStreamPlayer = $ExitSFX
 
+signal entered
+signal exited
 signal ball_entered
 signal ball_exited
 signal window_selected(window:WindowPanel)
@@ -99,6 +101,7 @@ func enter() ->void:
 	enter_tween.tween_property(panel_parent, "scale", Vector2.ONE, ENTER_TIME)
 	
 	await enter_tween.finished
+	entered.emit()
 	set_children_visibility(true)
 	print(name, " Entered - visible:", visible)
 
@@ -113,6 +116,7 @@ func exit() ->void:
 	exit_tween.tween_property(panel_parent, "scale", Vector2.ZERO, EXIT_TIME)
 	
 	await exit_tween.finished
+	exited.emit()
 	hide()
 
 
