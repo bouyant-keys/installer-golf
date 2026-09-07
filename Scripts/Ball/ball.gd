@@ -23,12 +23,14 @@ var click_pos : Vector2
 var frozen := false
 var launched := false
 var fell_out := false
+var can_launch := true # Disabled if ball entered in collision shape.
 
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
 @export var enter_on_load := true
 
 @onready var floor_area: Area2D = $FloorArea
+@onready var start_area: Area2D = $StartArea
 @onready var trajectory: Line2D = $Trajectory
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
@@ -57,13 +59,20 @@ signal ball_exited
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	window_manager.window_selected.connect(_on_window_selected)
-	window_manager.window_grabbed.connect(_on_window_grabbed)
-	window_manager.window_released.connect(_on_window_released)
+	set_process(false)
+	set_physics_process(false)
+	
+	if window_manager:
+		window_manager.window_selected.connect(_on_window_selected)
+		window_manager.window_grabbed.connect(_on_window_grabbed)
+		window_manager.window_released.connect(_on_window_released)
+	else:
+		printerr("No Window Manager assigned to Ball.")
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_position = global_position
 	hide()
+
 
 func enter() ->void:
 	set_current_window(start_window)
@@ -99,8 +108,9 @@ func exit() ->void:
 	await anim.animation_finished
 	hide()
 
+
 func _input(event: InputEvent) -> void:
-	if launched:
+	if launched or !can_launch:
 		return
 	
 	if event.is_action_pressed("LeftClick") && mouse_hover:
@@ -136,6 +146,8 @@ func _process(_delta: float) ->void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if !launched:
+		# Follow window position if window is movable.
+		global_position = current_window.get_movable_area().position + local_position
 		return
 	elif !current_window:
 		fell_out = true
@@ -183,7 +195,7 @@ func set_current_window(window:WindowPanel) ->void:
 	current_window_changed.emit(window)
 
 func set_collision_active(active:bool, include_body:bool = true) ->void:
-	print("--Collision set: ", active, ", ", include_body)
+	#print("--Collision set: ", active, ", ", include_body)
 	if include_body:
 		ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
@@ -217,6 +229,9 @@ func add_to_window_list(window:WindowPanel) ->void:
 	
 	in_windows.append(window)
 	print(window.name + " added to in_windows. Size: ", in_windows.size())
+
+func _on_valid_spot() ->void: can_launch = true
+func _on_invalid_spot() ->void: can_launch = false
 
 func _on_movable_area_entered(area: Area2D) -> void:
 	if area is GoalArea:
@@ -281,6 +296,10 @@ func _on_window_grabbed(window:WindowPanel) ->void:
 	floor_area.monitoring = false
 	floor_area.monitorable = false
 func _on_window_released(window:WindowPanel) ->void:
+	if !launched:
+		pass
+		#relative_position = global_position
+	
 	if get_current_window() != window:
 		return
 	frozen = false

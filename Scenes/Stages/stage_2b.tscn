@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcmflu06vs8d2"]
 
 [ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_523ch"]
-[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/window_manager.gd" id="2_8jg75"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/Windows/window_manager.gd" id="2_8jg75"]
 [ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="3_vwtap"]
 [ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="4_4s4vi"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="4_8jg75"]
@@ -69,6 +69,33 @@ script = ExtResource("7_3d0k6")
 [sub_resource type="RichTextEffect" id="RichTextEffect_gdvs7"]
 script = ExtResource("9_3d0k6")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_5grh4"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_863af"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_pull0"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_eodt7"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tv1s7"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xcv8r"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0p7el"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rwocj"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2q4pi"]
+script = ExtResource("9_3d0k6")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_m7x4f"]
 script = ExtResource("6_pxo3p")
 
@@ -115,6 +142,33 @@ script = ExtResource("6_pxo3p")
 script = ExtResource("7_3d0k6")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wifjw"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r0wxi"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qjehh"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_6nail"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u0d2v"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0gs2j"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7n4yl"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qwxkh"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_noeue"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ijq8d"]
 script = ExtResource("9_3d0k6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6v42"]
@@ -171,6 +225,33 @@ script = ExtResource("7_3d0k6")
 [sub_resource type="RichTextEffect" id="RichTextEffect_525v4"]
 script = ExtResource("9_3d0k6")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_to6dh"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7adws"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tqa8o"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uprn7"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wnqva"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_omhsv"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2egq7"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_upest"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o8rop"]
+script = ExtResource("9_3d0k6")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_04kv0"]
 script = ExtResource("6_pxo3p")
 
@@ -219,8 +300,38 @@ script = ExtResource("7_3d0k6")
 [sub_resource type="RichTextEffect" id="RichTextEffect_d5fc0"]
 script = ExtResource("9_3d0k6")
 
-[node name="Stage2b" type="Node" unique_id=1335873284]
+[sub_resource type="RichTextEffect" id="RichTextEffect_xk5am"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8lg6s"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yhqox"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ud6sb"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_doknx"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5lxk0"]
+script = ExtResource("9_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_71ji5"]
+script = ExtResource("6_pxo3p")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yxuhr"]
+script = ExtResource("7_3d0k6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nkinj"]
+script = ExtResource("9_3d0k6")
+
+[node name="Stage2b" type="Node" unique_id=1335873284 node_paths=PackedStringArray("back_button", "retry_button", "next_button")]
 script = ExtResource("1_523ch")
+back_button = NodePath("WindowManager/StartWindow/NavPanel/HBoxContainer/BackButton")
+retry_button = NodePath("WindowManager/StartWindow/NavPanel/HBoxContainer/RetryButton")
+next_button = NodePath("WindowManager/StartWindow/NavPanel/HBoxContainer/NextButton")
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274]
 unique_name_in_owner = true
@@ -246,6 +357,7 @@ anchor_bottom = 1.0
 offset_top = -28.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_pxo3p")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/StartWindow/NavPanel" unique_id=1723288540]
@@ -253,9 +365,11 @@ layout_mode = 2
 alignment = 2
 
 [node name="LevelText" type="RichTextLabel" parent="WindowManager/StartWindow/NavPanel/HBoxContainer" unique_id=1801496765]
+visible = false
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 bbcode_enabled = true
 text = " Step 5/n."
 scroll_active = false
@@ -263,11 +377,18 @@ vertical_alignment = 1
 
 [node name="BackButton" parent="WindowManager/StartWindow/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("4_4s4vi")]
 layout_mode = 2
+mouse_filter = 1
 disabled = true
 text = "< Back"
 
+[node name="RetryButton" parent="WindowManager/StartWindow/NavPanel/HBoxContainer" unique_id=1167538902 instance=ExtResource("4_4s4vi")]
+layout_mode = 2
+mouse_filter = 1
+text = "Retry"
+
 [node name="NextButton" parent="WindowManager/StartWindow/NavPanel/HBoxContainer" unique_id=695945754 instance=ExtResource("4_4s4vi")]
 layout_mode = 2
+mouse_filter = 1
 text = "Next >"
 
 [node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_8jg75")]
@@ -314,7 +435,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_glrjg"), SubResource("RichTextEffect_0v4ha"), SubResource("RichTextEffect_3d0k6"), SubResource("RichTextEffect_ltk8q"), SubResource("RichTextEffect_j5a1j"), SubResource("RichTextEffect_hf35k"), SubResource("RichTextEffect_bc7o0"), SubResource("RichTextEffect_d8t4d"), SubResource("RichTextEffect_pxo3p"), SubResource("RichTextEffect_c2w58"), SubResource("RichTextEffect_31ar5"), SubResource("RichTextEffect_nhxv3"), SubResource("RichTextEffect_bno7e"), SubResource("RichTextEffect_hkku0"), SubResource("RichTextEffect_xm8lo"), SubResource("RichTextEffect_gdvs7")]
+custom_effects = [SubResource("RichTextEffect_glrjg"), SubResource("RichTextEffect_0v4ha"), SubResource("RichTextEffect_3d0k6"), SubResource("RichTextEffect_ltk8q"), SubResource("RichTextEffect_j5a1j"), SubResource("RichTextEffect_hf35k"), SubResource("RichTextEffect_bc7o0"), SubResource("RichTextEffect_d8t4d"), SubResource("RichTextEffect_pxo3p"), SubResource("RichTextEffect_c2w58"), SubResource("RichTextEffect_31ar5"), SubResource("RichTextEffect_nhxv3"), SubResource("RichTextEffect_bno7e"), SubResource("RichTextEffect_hkku0"), SubResource("RichTextEffect_xm8lo"), SubResource("RichTextEffect_gdvs7"), SubResource("RichTextEffect_5grh4"), SubResource("RichTextEffect_863af"), SubResource("RichTextEffect_pull0"), SubResource("RichTextEffect_eodt7"), SubResource("RichTextEffect_tv1s7"), SubResource("RichTextEffect_xcv8r"), SubResource("RichTextEffect_0p7el"), SubResource("RichTextEffect_rwocj"), SubResource("RichTextEffect_2q4pi")]
 script = ExtResource("8_j5a1j")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -354,7 +475,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_m7x4f"), SubResource("RichTextEffect_eum67"), SubResource("RichTextEffect_fq71s"), SubResource("RichTextEffect_1rfb7"), SubResource("RichTextEffect_vdtch"), SubResource("RichTextEffect_b7kk4"), SubResource("RichTextEffect_cxrkw"), SubResource("RichTextEffect_b8qko"), SubResource("RichTextEffect_f82m7"), SubResource("RichTextEffect_oar3j"), SubResource("RichTextEffect_ykn85"), SubResource("RichTextEffect_iven0"), SubResource("RichTextEffect_q2c6f"), SubResource("RichTextEffect_jniph"), SubResource("RichTextEffect_whms4"), SubResource("RichTextEffect_wifjw")]
+custom_effects = [SubResource("RichTextEffect_m7x4f"), SubResource("RichTextEffect_eum67"), SubResource("RichTextEffect_fq71s"), SubResource("RichTextEffect_1rfb7"), SubResource("RichTextEffect_vdtch"), SubResource("RichTextEffect_b7kk4"), SubResource("RichTextEffect_cxrkw"), SubResource("RichTextEffect_b8qko"), SubResource("RichTextEffect_f82m7"), SubResource("RichTextEffect_oar3j"), SubResource("RichTextEffect_ykn85"), SubResource("RichTextEffect_iven0"), SubResource("RichTextEffect_q2c6f"), SubResource("RichTextEffect_jniph"), SubResource("RichTextEffect_whms4"), SubResource("RichTextEffect_wifjw"), SubResource("RichTextEffect_r0wxi"), SubResource("RichTextEffect_qjehh"), SubResource("RichTextEffect_6nail"), SubResource("RichTextEffect_u0d2v"), SubResource("RichTextEffect_0gs2j"), SubResource("RichTextEffect_7n4yl"), SubResource("RichTextEffect_qwxkh"), SubResource("RichTextEffect_noeue"), SubResource("RichTextEffect_ijq8d")]
 script = ExtResource("8_j5a1j")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -403,7 +524,7 @@ Text
 Text
 "
 vertical_alignment = 2
-custom_effects = [SubResource("RichTextEffect_nfw4n"), SubResource("RichTextEffect_iov3h"), SubResource("RichTextEffect_lqi50"), SubResource("RichTextEffect_r6786"), SubResource("RichTextEffect_7chxl"), SubResource("RichTextEffect_t6plm"), SubResource("RichTextEffect_00flm"), SubResource("RichTextEffect_cb4y4"), SubResource("RichTextEffect_8iyam"), SubResource("RichTextEffect_cudxk"), SubResource("RichTextEffect_ldppr"), SubResource("RichTextEffect_1kdsy"), SubResource("RichTextEffect_qnx6o"), SubResource("RichTextEffect_idefe"), SubResource("RichTextEffect_3qrmk"), SubResource("RichTextEffect_525v4")]
+custom_effects = [SubResource("RichTextEffect_nfw4n"), SubResource("RichTextEffect_iov3h"), SubResource("RichTextEffect_lqi50"), SubResource("RichTextEffect_r6786"), SubResource("RichTextEffect_7chxl"), SubResource("RichTextEffect_t6plm"), SubResource("RichTextEffect_00flm"), SubResource("RichTextEffect_cb4y4"), SubResource("RichTextEffect_8iyam"), SubResource("RichTextEffect_cudxk"), SubResource("RichTextEffect_ldppr"), SubResource("RichTextEffect_1kdsy"), SubResource("RichTextEffect_qnx6o"), SubResource("RichTextEffect_idefe"), SubResource("RichTextEffect_3qrmk"), SubResource("RichTextEffect_525v4"), SubResource("RichTextEffect_to6dh"), SubResource("RichTextEffect_7adws"), SubResource("RichTextEffect_tqa8o"), SubResource("RichTextEffect_uprn7"), SubResource("RichTextEffect_wnqva"), SubResource("RichTextEffect_omhsv"), SubResource("RichTextEffect_2egq7"), SubResource("RichTextEffect_upest"), SubResource("RichTextEffect_o8rop")]
 script = ExtResource("8_j5a1j")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -422,14 +543,13 @@ size_flags_vertical = 0
 mouse_filter = 2
 text = "Text Text Text Text Text"
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_04kv0"), SubResource("RichTextEffect_gkva1"), SubResource("RichTextEffect_idkkh"), SubResource("RichTextEffect_rqvv5"), SubResource("RichTextEffect_t6d6c"), SubResource("RichTextEffect_e7r8y"), SubResource("RichTextEffect_h2vss"), SubResource("RichTextEffect_brpp5"), SubResource("RichTextEffect_k0iqk"), SubResource("RichTextEffect_8cvpe"), SubResource("RichTextEffect_j0qy7"), SubResource("RichTextEffect_1kuvt"), SubResource("RichTextEffect_ksvmk"), SubResource("RichTextEffect_y1puh"), SubResource("RichTextEffect_wuvxi"), SubResource("RichTextEffect_d5fc0")]
+custom_effects = [SubResource("RichTextEffect_04kv0"), SubResource("RichTextEffect_gkva1"), SubResource("RichTextEffect_idkkh"), SubResource("RichTextEffect_rqvv5"), SubResource("RichTextEffect_t6d6c"), SubResource("RichTextEffect_e7r8y"), SubResource("RichTextEffect_h2vss"), SubResource("RichTextEffect_brpp5"), SubResource("RichTextEffect_k0iqk"), SubResource("RichTextEffect_8cvpe"), SubResource("RichTextEffect_j0qy7"), SubResource("RichTextEffect_1kuvt"), SubResource("RichTextEffect_ksvmk"), SubResource("RichTextEffect_y1puh"), SubResource("RichTextEffect_wuvxi"), SubResource("RichTextEffect_d5fc0"), SubResource("RichTextEffect_xk5am"), SubResource("RichTextEffect_8lg6s"), SubResource("RichTextEffect_yhqox"), SubResource("RichTextEffect_ud6sb"), SubResource("RichTextEffect_doknx"), SubResource("RichTextEffect_5lxk0"), SubResource("RichTextEffect_71ji5"), SubResource("RichTextEffect_yxuhr"), SubResource("RichTextEffect_nkinj")]
 script = ExtResource("8_j5a1j")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball", "goal") instance=ExtResource("7_523ch")]
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("7_523ch")]
 stage = NodePath("..")
 ball = NodePath("../Ball")
-goal = NodePath("../WindowManager/GoalWindow/GoalArea")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("start_window", "window_manager") instance=ExtResource("5_4s4vi")]
 unique_name_in_owner = true
@@ -443,6 +563,4 @@ z_index = 20
 script = ExtResource("8_ltk8q")
 ball = NodePath("../Ball")
 
-[connection signal="pressed" from="WindowManager/StartWindow/NavPanel/HBoxContainer/BackButton" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="WindowManager/StartWindow/NavPanel/HBoxContainer/NextButton" to="." method="_on_next_pressed"]
 [connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="Ball" method="_on_goal"]

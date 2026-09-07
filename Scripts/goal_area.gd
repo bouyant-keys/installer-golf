@@ -2,7 +2,7 @@ class_name GoalArea extends Area2D
 
 const FINAL_BUTTON_TEXT : String = "Install"
 
-var start_position : Vector2
+var relative_position : Vector2
 
 @export var parent_window : WindowPanel
 @export var is_intro_level := false
@@ -16,7 +16,7 @@ signal goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	start_position = global_position
+	relative_position = global_position
 	
 	if !parent_window:
 		var parent := get_parent()
@@ -24,6 +24,7 @@ func _ready() -> void:
 			parent_window = parent
 	
 	parent_window.reordered.connect(_on_window_reordered)
+	parent_window.window_released.connect(_on_window_released)
 	parent_window.resized.connect(_on_window_resized)
 	hide()
 	
@@ -49,6 +50,8 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_window_reordered(z:int) ->void:
 	z_index = z
 
+func _on_window_released(_window:WindowPanel) ->void:
+	relative_position = global_position
 # Don't move goal area if parent window's position changes when resized.
 func _on_window_resized() ->void:
-	global_position = start_position
+	global_position = relative_position

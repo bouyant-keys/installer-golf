@@ -96,6 +96,7 @@ layout_mode = 2
 
 [node name="Spacer" type="Control" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=1047781856]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="WindowIcon" type="TextureRect" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=2079532083]
 texture_filter = 1
@@ -126,3 +127,6 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_gni6t")
+
+[connection signal="mouse_entered" from="PanelParent/MarginContainer/VBoxContainer/GrabBar" to="." method="_on_grab_bar_entered"]
+[connection signal="mouse_exited" from="PanelParent/MarginContainer/VBoxContainer/GrabBar" to="." method="_on_grab_bar_exited"]

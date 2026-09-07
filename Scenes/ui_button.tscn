@@ -44,7 +44,17 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j7oc2")
 
+[node name="HoverSFX" type="AudioStreamPlayer" parent="." unique_id=147594849]
+bus = &"SFX"
+
+[node name="PressedSFX" type="AudioStreamPlayer" parent="." unique_id=955056144]
+bus = &"SFX"
+
+[node name="Disabled SFX" type="AudioStreamPlayer" parent="." unique_id=146509862]
+bus = &"SFX"
+
 [connection signal="focus_entered" from="." to="." method="hover_enter"]
 [connection signal="focus_exited" from="." to="." method="hover_exit"]
 [connection signal="mouse_entered" from="." to="." method="hover_enter"]
 [connection signal="mouse_exited" from="." to="." method="hover_exit"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

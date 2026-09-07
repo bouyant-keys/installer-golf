@@ -6,6 +6,9 @@ const MOVE_TIME := 0.5
 
 var move_tween : Tween
 
+@export var valid_indicator : Texture2D
+@export var invalid_indicator : Texture2D
+
 @onready var ball: Ball = $".."
 
 # Called when the node enters the scene tree for the first time.
@@ -28,3 +31,7 @@ func move_up() ->void:
 	move_tween = get_tree().create_tween().set_loops()
 	move_tween.tween_property(self, "position", UP_POS, MOVE_TIME).set_delay(0.1)
 	move_tween.tween_property(self, "position", DOWN_POS, MOVE_TIME).set_delay(0.1)
+
+
+func _on_valid_spot() ->void: texture = valid_indicator
+func _on_invalid_spot() ->void: texture = invalid_indicator

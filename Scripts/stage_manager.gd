@@ -6,6 +6,8 @@ var current_stage : Stage
 @export var start_stage : int = 0
 @export var stages : Array[PackedScene]
 
+signal game_start
+signal game_end
 signal stage_changed(index:int)
 
 # Called when the node enters the scene tree for the first time.
@@ -14,7 +16,13 @@ func _ready() -> void:
 		if child is Stage:
 			current_stage = child as Stage
 	
+	await get_tree().process_frame
+	game_start.emit()
 	load_stage(start_stage)
+
+func on_start_game() ->void:
+	game_start.emit()
+	load_stage(0)
 
 func on_next_stage() ->void:
 	load_stage(stage_index+1)

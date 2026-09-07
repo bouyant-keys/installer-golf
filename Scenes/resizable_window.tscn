@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://du0tm13gcy2w5"]
 
-[ext_resource type="Script" uid="uid://dptkiego5slk5" path="res://Scripts/resizable_window.gd" id="1_rddhq"]
+[ext_resource type="Script" uid="uid://dptkiego5slk5" path="res://Scripts/Windows/resizable_window.gd" id="1_rddhq"]
 [ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="4_xr01o"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_olcln"]
 [ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="6_u5e8r"]
@@ -138,6 +138,7 @@ layout_mode = 2
 
 [node name="Spacer" type="Control" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=2047035196]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="WindowIcon" type="TextureRect" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=562214442]
 texture_filter = 1
@@ -145,13 +146,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("4_xr01o")
 stretch_mode = 5
-
-[node name="TabBar" type="TabBar" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=234169703]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-clip_tabs = false
-close_with_middle_mouse = false
 
 [node name="WindowTitle" type="Label" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=185553135]
 unique_name_in_owner = true
@@ -206,6 +200,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="LeftResize" type="Panel" parent="ResizeIndicators" unique_id=1666746034]
 self_modulate = Color(1, 1, 1, 0)
@@ -217,6 +212,7 @@ offset_top = 6.0
 offset_right = 6.0
 offset_bottom = -6.0
 grow_vertical = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -230,6 +226,7 @@ offset_left = 6.0
 offset_right = -6.0
 offset_bottom = 6.0
 grow_horizontal = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 9
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -246,6 +243,7 @@ offset_top = -6.0
 offset_right = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 9
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -262,6 +260,7 @@ offset_top = 6.0
 offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -271,6 +270,7 @@ custom_minimum_size = Vector2(6, 6)
 layout_mode = 1
 offset_right = 6.0
 offset_bottom = 6.0
+mouse_filter = 1
 mouse_default_cursor_shape = 12
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -284,6 +284,7 @@ anchor_right = 1.0
 offset_left = -6.0
 offset_bottom = 6.0
 grow_horizontal = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 11
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -297,6 +298,7 @@ anchor_bottom = 1.0
 offset_top = -6.0
 offset_right = 6.0
 grow_vertical = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 11
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -313,6 +315,7 @@ offset_left = -6.0
 offset_top = -6.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 mouse_default_cursor_shape = 12
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
@@ -330,7 +333,8 @@ unique_name_in_owner = true
 position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_pb32r")
 
-[node name="HeaderObstacle" parent="." unique_id=1897551971 instance=ExtResource("8_rddhq")]
+[node name="HeaderObstacle" parent="." unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("8_rddhq")]
+parent_window = NodePath("..")
 
 [node name="HeaderCollider" type="CollisionShape2D" parent="HeaderObstacle" unique_id=1267176187]
 unique_name_in_owner = true

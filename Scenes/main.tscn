@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bdxvugp312r4y"]
 
-[ext_resource type="PackedScene" uid="uid://r3v1v1oqfat" path="res://Scenes/desktop.tscn" id="1_6bp64"]
 [ext_resource type="Script" uid="uid://ckgvmal0b24pq" path="res://Scripts/stage_manager.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://ckqu8nlymp6o1" path="res://Scenes/Stages/stage_1.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://cub0p1kpghjrp" path="res://Scripts/music_manager.gd" id="2_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://d1buugb3r4gds" path="res://Scenes/Stages/stage_1b.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://1t76go3vobwn" path="res://Scenes/Stages/stage_intro.tscn" id="3_d1ilt"]
+[ext_resource type="AudioStream" uid="uid://dh804biyfsbx0" path="res://Audio/Music/Space Jazz.mp3" id="3_gt3je"]
 [ext_resource type="PackedScene" uid="uid://cxh5vyrlc73fi" path="res://Scenes/Stages/stage_1c.tscn" id="4_kry3j"]
 [ext_resource type="PackedScene" uid="uid://d474cuvo331o" path="res://Scenes/Stages/stage_2.tscn" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://dcmflu06vs8d2" path="res://Scenes/Stages/stage_2b.tscn" id="6_21xkr"]
@@ -12,15 +13,16 @@
 [ext_resource type="PackedScene" uid="uid://d1gses42wmx1t" path="res://Scenes/Stages/stage_3b.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://7jpls2pdl45m" path="res://Scenes/Stages/stage_4.tscn" id="11_6iyac"]
 [ext_resource type="PackedScene" uid="uid://bvejgkegit8u1" path="res://Scenes/Stages/stage_final.tscn" id="11_d1ilt"]
-[ext_resource type="PackedScene" uid="uid://dls7sems1frjt" path="res://Scenes/ui_window.tscn" id="13_hibaj"]
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="14_pdsj5"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="15_ee4r6"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="15_gt3je"]
 [ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="16_gt3je"]
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="17_3pmx8"]
 [ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="18_u50mg"]
 [ext_resource type="Texture2D" uid="uid://cpu3pfkjj3ik" path="res://Textures/ProgressBar_Fill.png" id="19_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://brthw6d14jtye" path="res://Textures/ProgressBar_Over.png" id="20_1w6v2"]
 [ext_resource type="Script" uid="uid://cma6a78p7smr0" path="res://Scripts/golf_progress.gd" id="20_pdsj5"]
+[ext_resource type="PackedScene" uid="uid://cyywgt1i0l6ou" path="res://Scenes/software.tscn" id="23_gt3je"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_6g52w"]
 script = ExtResource("14_pdsj5")
@@ -130,39 +132,115 @@ script = ExtResource("15_ee4r6")
 [sub_resource type="RichTextEffect" id="RichTextEffect_gt3je"]
 script = ExtResource("16_gt3je")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_3pmx8"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u50mg"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_cbgmd"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1w6v2"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hpc6h"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kltya"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_e08e2"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_neg2b"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r33sp"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hdf80"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jwpg7"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_k2e45"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_536cc"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_aqgau"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8cuat"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o1aky"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kwxat"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_aa8k8"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kqrg6"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nwwfm"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_s8vy0"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jut3y"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_v2nl5"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dmskm"]
+script = ExtResource("16_gt3je")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xdkp6"]
+script = ExtResource("14_pdsj5")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_54nrm"]
+script = ExtResource("15_ee4r6")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_55jeb"]
+script = ExtResource("16_gt3je")
+
 [node name="Main" type="Node" unique_id=1067694015]
 
-[node name="Desktop" parent="." unique_id=1543680970 instance=ExtResource("1_6bp64")]
-z_index = -20
-
-[node name="StageManager" type="Node" parent="." unique_id=232984876]
-script = ExtResource("1_bo1nx")
-start_stage = 8
-stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e"), ExtResource("11_6iyac"), ExtResource("11_d1ilt")])
+[node name="MusicManager" type="AudioStreamPlayer" parent="." unique_id=889445563]
+stream = ExtResource("3_gt3je")
+bus = &"Music"
+script = ExtResource("2_ee4r6")
+loop_music = ExtResource("3_gt3je")
 
 [node name="GolfProgress" type="Control" parent="." unique_id=275076709 node_paths=PackedStringArray("stage_manager")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("20_pdsj5")
 stage_manager = NodePath("../StageManager")
 
-[node name="ProgressWindow" parent="GolfProgress" unique_id=38188222 instance=ExtResource("13_hibaj")]
+[node name="ProgressWindow" parent="GolfProgress" unique_id=1289661258 instance=ExtResource("15_gt3je")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 876.0
-offset_top = 492.0
+offset_left = 826.0
+offset_top = 513.0
 offset_right = 1086.0
 offset_bottom = 579.0
-grow_horizontal = 2
-grow_vertical = 2
+enter_on_start = false
+is_locked = true
 title_text = "GolfProgress"
+grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="GolfProgress/ProgressWindow" unique_id=1944422170]
 layout_mode = 1
@@ -171,17 +249,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
 
-[node name="CustomRichText" type="RichTextLabel" parent="GolfProgress/ProgressWindow/MarginContainer" unique_id=1564119880]
+[node name="ProgressText" type="RichTextLabel" parent="GolfProgress/ProgressWindow/MarginContainer" unique_id=1564119880]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "Installation Progress...x%"
-custom_effects = [SubResource("RichTextEffect_6g52w"), SubResource("RichTextEffect_aw236"), SubResource("RichTextEffect_p1qg4"), SubResource("RichTextEffect_0yfdq"), SubResource("RichTextEffect_4v44b"), SubResource("RichTextEffect_4d3ad"), SubResource("RichTextEffect_36ljb"), SubResource("RichTextEffect_uqhpo"), SubResource("RichTextEffect_gn7yn"), SubResource("RichTextEffect_knqcm"), SubResource("RichTextEffect_a1qfg"), SubResource("RichTextEffect_67rbt"), SubResource("RichTextEffect_5ykpn"), SubResource("RichTextEffect_wg07j"), SubResource("RichTextEffect_yy85q"), SubResource("RichTextEffect_0ag88"), SubResource("RichTextEffect_y52he"), SubResource("RichTextEffect_54mll"), SubResource("RichTextEffect_om3mu"), SubResource("RichTextEffect_7j828"), SubResource("RichTextEffect_qpkmd"), SubResource("RichTextEffect_k0jal"), SubResource("RichTextEffect_ap7oe"), SubResource("RichTextEffect_o0arq"), SubResource("RichTextEffect_w5roc"), SubResource("RichTextEffect_vhacp"), SubResource("RichTextEffect_f6wgt"), SubResource("RichTextEffect_hb2wj"), SubResource("RichTextEffect_1s4l1"), SubResource("RichTextEffect_hkqr8"), SubResource("RichTextEffect_ueoa1"), SubResource("RichTextEffect_6vcvc"), SubResource("RichTextEffect_7k868"), SubResource("RichTextEffect_pdsj5"), SubResource("RichTextEffect_ee4r6"), SubResource("RichTextEffect_gt3je")]
+text = "Installation Progress......000.0%"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+custom_effects = [SubResource("RichTextEffect_6g52w"), SubResource("RichTextEffect_aw236"), SubResource("RichTextEffect_p1qg4"), SubResource("RichTextEffect_0yfdq"), SubResource("RichTextEffect_4v44b"), SubResource("RichTextEffect_4d3ad"), SubResource("RichTextEffect_36ljb"), SubResource("RichTextEffect_uqhpo"), SubResource("RichTextEffect_gn7yn"), SubResource("RichTextEffect_knqcm"), SubResource("RichTextEffect_a1qfg"), SubResource("RichTextEffect_67rbt"), SubResource("RichTextEffect_5ykpn"), SubResource("RichTextEffect_wg07j"), SubResource("RichTextEffect_yy85q"), SubResource("RichTextEffect_0ag88"), SubResource("RichTextEffect_y52he"), SubResource("RichTextEffect_54mll"), SubResource("RichTextEffect_om3mu"), SubResource("RichTextEffect_7j828"), SubResource("RichTextEffect_qpkmd"), SubResource("RichTextEffect_k0jal"), SubResource("RichTextEffect_ap7oe"), SubResource("RichTextEffect_o0arq"), SubResource("RichTextEffect_w5roc"), SubResource("RichTextEffect_vhacp"), SubResource("RichTextEffect_f6wgt"), SubResource("RichTextEffect_hb2wj"), SubResource("RichTextEffect_1s4l1"), SubResource("RichTextEffect_hkqr8"), SubResource("RichTextEffect_ueoa1"), SubResource("RichTextEffect_6vcvc"), SubResource("RichTextEffect_7k868"), SubResource("RichTextEffect_pdsj5"), SubResource("RichTextEffect_ee4r6"), SubResource("RichTextEffect_gt3je"), SubResource("RichTextEffect_3pmx8"), SubResource("RichTextEffect_u50mg"), SubResource("RichTextEffect_cbgmd"), SubResource("RichTextEffect_1w6v2"), SubResource("RichTextEffect_hpc6h"), SubResource("RichTextEffect_kltya"), SubResource("RichTextEffect_e08e2"), SubResource("RichTextEffect_neg2b"), SubResource("RichTextEffect_r33sp"), SubResource("RichTextEffect_hdf80"), SubResource("RichTextEffect_jwpg7"), SubResource("RichTextEffect_k2e45"), SubResource("RichTextEffect_536cc"), SubResource("RichTextEffect_aqgau"), SubResource("RichTextEffect_8cuat"), SubResource("RichTextEffect_o1aky"), SubResource("RichTextEffect_kwxat"), SubResource("RichTextEffect_aa8k8"), SubResource("RichTextEffect_kqrg6"), SubResource("RichTextEffect_nwwfm"), SubResource("RichTextEffect_s8vy0"), SubResource("RichTextEffect_jut3y"), SubResource("RichTextEffect_v2nl5"), SubResource("RichTextEffect_dmskm"), SubResource("RichTextEffect_xdkp6"), SubResource("RichTextEffect_54nrm"), SubResource("RichTextEffect_55jeb")]
 script = ExtResource("17_3pmx8")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -200,7 +281,6 @@ stretch_margin_bottom = 3
 texture_under = ExtResource("18_u50mg")
 texture_progress = ExtResource("19_cbgmd")
 tint_progress = Color(0, 0, 0.5019608, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GolfProgress/ProgressWindow/MarginContainer/GolfProgress" unique_id=1786716952]
 layout_mode = 1
@@ -216,7 +296,21 @@ patch_margin_right = 3
 patch_margin_bottom = 3
 axis_stretch_horizontal = 2
 
+[node name="StageManager" type="Node" parent="." unique_id=232984876]
+script = ExtResource("1_bo1nx")
+start_stage = 8
+stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("1_jjgbg"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e"), ExtResource("11_6iyac"), ExtResource("11_d1ilt")])
+
+[node name="Software" parent="." unique_id=1147250097 instance=ExtResource("23_gt3je")]
+visible = false
+anchors_preset = 15
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1781052190]
+visible = false
 
 [node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=153318304]
 anchors_preset = 1
@@ -227,6 +321,7 @@ offset_bottom = 31.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 text = "Restart"
 
 [node name="NextButton" type="Button" parent="CanvasLayer" unique_id=299846337]
@@ -234,8 +329,10 @@ offset_right = 92.0
 offset_bottom = 31.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 text = "Next Stage"
 
-[connection signal="window_entered" from="GolfProgress/ProgressWindow" to="GolfProgress/ProgressWindow/MarginContainer/CustomRichText" method="enter_text"]
+[connection signal="game_end" from="StageManager" to="Software" method="enter"]
+[connection signal="game_start" from="StageManager" to="MusicManager" method="play_loop_music"]
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="StageManager" method="_on_reset_pressed"]
 [connection signal="pressed" from="CanvasLayer/NextButton" to="StageManager" method="on_next_stage"]

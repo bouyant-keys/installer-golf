@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mlra0kdx2ppg"]
 
-[ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/window_panel.gd" id="1_po52b"]
+[ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/Windows/window_panel.gd" id="1_po52b"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="2_qwwdy"]
 [ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="3_fqu7c"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="4_ioawh"]

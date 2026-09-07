@@ -1,24 +1,19 @@
-extends Control
+extends Node
 
-const ENTER_TIME := 0.4
-const EXIT_TIME := 0.4
+@onready var window: WindowPanel = $Window
 
-@onready var panel_parent: PanelContainer = %PanelParent
-@onready var content: Control = %Content
-
+signal replay
+signal quit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 func enter() ->void:
-	show()
-	panel_parent.show()
-	panel_parent.scale = Vector2.ZERO
-	
-	var enter_tween := get_tree().create_tween()
-	enter_tween.tween_property(panel_parent, "scale", Vector2.ONE, ENTER_TIME)
-	
-	await enter_tween.finished
-	content.show()
-	print(name, " Entered - visible:", visible)
+	window.enter()
+
+func _on_replay_button_pressed() -> void:
+	replay.emit()
+
+func _on_quit_button_pressed() -> void:
+	quit.emit()

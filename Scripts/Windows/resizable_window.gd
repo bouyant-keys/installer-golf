@@ -3,7 +3,7 @@ class_name ResizableWindow extends WindowPanel
 # Resizing code sourced from FinePointCGI:
 # https://github.com/finepointcgi/Drag-Rescale-and-Drop-Windows/blob/main/WindowManager.gd
 
-var reset_size : Vector2
+var reset_to_size : Vector2
 
 var start : Vector2
 var initialPosition : Vector2
@@ -12,21 +12,20 @@ var resizeX : bool
 var resizeY : bool
 var initialSize : Vector2
 @export var GrabThreshold := 20
-@export var ResizeThreshold := 5
+@export var ResizeThreshold := 6
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	reset_size = size
+	reset_to_size = size
 	clip_contents = true
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("LeftClick"):
 		var rect = get_global_rect()
 		var localMousePos = event.position - get_global_position()
 		
-		print("localMousePos:", localMousePos)
 		if abs(localMousePos.x - rect.size.x) < ResizeThreshold:
 			start.x = event.position.x
 			initialSize.x = get_size().x
@@ -52,9 +51,8 @@ func _input(event):
 			initialSize.y = get_size().y
 			isResizing = true
 			resizeY = true
-		
-		print("isResizing:", isResizing, ", resizeX:", resizeX, ", resizeY:", resizeY, 
-		" | initialPosition:", initialPosition, ", initialSize", initialSize)
+		#print("isResizing:", isResizing, ", resizeX:", resizeX, ", resizeY:", resizeY, 
+		#" | initialPosition:", initialPosition, ", initialSize", initialSize)
 		
 	if Input.is_action_pressed("LeftClick"):
 		if !isResizing:
@@ -73,10 +71,6 @@ func _input(event):
 			newWidth = initialSize.x + (start.x - event.position.x)
 			newWidth = clampf(newWidth, get_combined_minimum_size().x, get_combined_maximum_size().x)
 			set_position(Vector2(initialPosition.x - (newWidth - initialSize.x), get_position().y))
-			#print("- NewWidth:", newWidth, " - min:", get_combined_minimum_size().x, ", max:", get_combined_maximum_size().x)
-			#if newWidth > get_combined_minimum_size().x and newWidth < get_combined_maximum_size().x:
-				#print("HEHEHE")
-				#set_position(Vector2(initialPosition.x - (newWidth - initialSize.x), get_position().y))
 		
 		if initialPosition.y != 0:  # If resizing from origin -- top
 			newHeight = initialSize.y + (start.y - event.position.y)
@@ -92,10 +86,15 @@ func _input(event):
 		resizeY = false
 		isResizing = false
 	
+	#if !isResizing:
+		#_gui_input(event)
 
 func _on_resized() ->void:
 	move_area.fit_collider()
+	
+	header_collider.shape.size = grab_bar.get_rect().size
+	header_collider.position = grab_bar.get_rect().get_center()
 
 func _reset() ->void:
 	super()
-	size = reset_size
+	size = reset_to_size

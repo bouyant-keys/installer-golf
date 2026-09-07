@@ -5,7 +5,6 @@ var fading := false
 
 @export var stage : Stage
 @export var ball : Ball
-@export var goal : Area2D
 
 @onready var fade_timer: Timer = $FadeTimer
 

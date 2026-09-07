@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://527dgtv808h" path="res://Textures/TestChar_Front.png" id="1_y8ag8"]
 [ext_resource type="Script" uid="uid://dtqgp75jy50hc" path="res://Scripts/Guy.gd" id="2_s5xhn"]
-[ext_resource type="Script" uid="uid://pgq30ywy8vc4" path="res://Scripts/trajectory.gd" id="3_s5xhn"]
+[ext_resource type="Script" uid="uid://pgq30ywy8vc4" path="res://Scripts/Ball/trajectory.gd" id="3_s5xhn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ag8"]
 radius = 8.0

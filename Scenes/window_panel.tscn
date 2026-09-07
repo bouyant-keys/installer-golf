@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ydwad5t72o11"]
 
-[ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/window_panel.gd" id="1_iradf"]
+[ext_resource type="Script" uid="uid://0l6x7ytt575l" path="res://Scripts/Windows/window_panel.gd" id="1_iradf"]
 [ext_resource type="Theme" uid="uid://4paorsm53l3k" path="res://MainTheme.tres" id="1_pi1cl"]
 [ext_resource type="StyleBox" uid="uid://c80u3js8r2yuj" path="res://Materials/Win95Styles/W95-Panel.tres" id="2_5qd5b"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="3_8b24p"]
@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="11_q4thp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mdtd"]
-bg_color = Color(0, 0, 0.5019608, 1)
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 3
 border_width_right = 3
 border_color = Color(1, 1, 1, 0)
@@ -111,6 +111,7 @@ theme_override_styles/panel = ExtResource("3_8b24p")
 
 [node name="GrabBar" type="PanelContainer" parent="PanelParent" unique_id=1896426972]
 unique_name_in_owner = true
+self_modulate = Color(0, 0, 0.5019608, 1)
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 1
 anchors_preset = -1

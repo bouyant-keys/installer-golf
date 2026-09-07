@@ -12,6 +12,9 @@ signal exit_windows
 signal enter_ball
 signal enter_goal
 
+@export var back_button : UIButton
+@export var retry_button : UIButton
+@export var next_button : UIButton
 @export var next_stage_on_goal := true
 
 @onready var ball: Ball = %Ball
@@ -20,9 +23,19 @@ signal enter_goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if back_button:
+		back_button.pressed.connect(_on_back_pressed)
+	
+	if retry_button:
+		retry_button.pressed.connect(reset_stage)
+	
+	if next_button:
+		next_button.pressed.connect(_on_next_pressed)
+	
+	
 	reset.connect(ball._on_stage_reset)
 	reset.connect(window_manager._on_stage_reset)
-	enter_ball.connect(ball.enter)
+	enter_ball.connect(ball._on_stage_reset)
 	enter_goal.connect(goal_area.enter)
 	goal_area.goal.connect(_on_goal)
 	

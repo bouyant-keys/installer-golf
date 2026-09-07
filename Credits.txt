@@ -3,6 +3,10 @@ Resources used:
 	Animated selection rectangle (Marching ants) - Mew Pur Pur @ godotshaders.com
 	Line2D animation - cpt_metal @ godotshaders.com
 	
+	-- Fonts
+	HelvetiPixel by Pentacom -- BitFontMaker2
+	Ac437_ToshibaSat_8x16 by The Ultimate Oldschool PC Font Pack -- http://int10h.org/oldschool-pc-fonts/
+	
 	-- SFX
 	BeepBox.co
 	Menu Click - Two Tone by Soughtaftersounds -- https://freesound.org/s/145442/ -- License: Attribution 3.0
@@ -10,3 +14,16 @@ Resources used:
 	Musical Saw effects UFO.mp3 by JohnsonBrandEditing -- https://freesound.org/s/173936/ -- License: Creative Commons 0
 	Minigolf putt, right into the hole! by pfranzen -- https://freesound.org/s/512505/ -- License: Creative Commons 0
 	Crowd applause by Driken5482 -- https://pixabay.com/sound-effects/people-crowd-applause-236697/ -- Pixabay Content License
+	
+	-- Music:
+	"Beauty Flow" Kevin MacLeod (incompetech.com)
+	Licensed under Creative Commons: By Attribution 4.0 License
+	http://creativecommons.org/licenses/by/4.0/
+	
+	"Delightful D" Kevin MacLeod (incompetech.com)
+	Licensed under Creative Commons: By Attribution 4.0 License
+	http://creativecommons.org/licenses/by/4.0/
+	
+	"Space Jazz" Kevin MacLeod (incompetech.com)
+	Licensed under Creative Commons: By Attribution 4.0 License
+	http://creativecommons.org/licenses/by/4.0/

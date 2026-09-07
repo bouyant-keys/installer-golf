@@ -27,8 +27,6 @@ func _ready() -> void:
 		window.window_released.connect(_on_window_released)
 		windows.append(window)
 	
-	print("Windows: ", windows)
-	
 	for i : int in windows.size():
 		var window := windows[i]
 		window.z_index = (i * Z_OFFSET)
@@ -51,7 +49,7 @@ func get_windows_at_position(at:Vector2) ->Array[WindowPanel]:
 	var wins : Array[WindowPanel]
 	for window in windows:
 		var move_rect := window.get_movable_area()
-		print("- MoveAreaRect: ", move_rect, ", AtPos: ", at, ", HasPoint: ", move_rect.has_point(at))
+		#print("- MoveAreaRect: ", move_rect, ", AtPos: ", at, ", HasPoint: ", move_rect.has_point(at))
 		if move_rect.has_point(at):
 			wins.append(window)
 	return wins
@@ -84,7 +82,7 @@ func _on_window_selected(s_window:WindowPanel) ->void:
 
 func get_window_color(index:int) ->Color:
 	var gradient_sample := index * (1/float(windows.size()-1))
-	print("Index: ", index, ", Sample: ", gradient_sample)
+	#print("Index: ", index, ", Sample: ", gradient_sample)
 	return WINDOW_GRADIENT.gradient.sample(1.0 - gradient_sample)
 
 func _on_window_grabbed(window:WindowPanel) ->void:

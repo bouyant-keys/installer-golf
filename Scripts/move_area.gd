@@ -22,9 +22,4 @@ func get_collider_position() ->Vector2:
 
 func fit_collider() ->void:
 	move_collider.global_position = move_panel.global_position + (move_panel.size / 2.0)
-	
-	#var collision_shape := RectangleShape2D.new()
-	#collision_shape.size = move_panel.size
-	#move_collider.shape = collision_shape
 	move_collider.shape.size = move_panel.size
-	print("..FitCollider: ", move_collider.shape.size)

@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://1cu440n50dm"]
 
-[ext_resource type="Script" uid="uid://cmp5211mii6r4" path="res://Scripts/ball.gd" id="1_ij5cq"]
-[ext_resource type="Script" uid="uid://pgq30ywy8vc4" path="res://Scripts/trajectory.gd" id="3_aw2wy"]
+[ext_resource type="Script" uid="uid://cmp5211mii6r4" path="res://Scripts/Ball/ball.gd" id="1_ij5cq"]
+[ext_resource type="Script" uid="uid://pgq30ywy8vc4" path="res://Scripts/Ball/trajectory.gd" id="3_aw2wy"]
 [ext_resource type="Texture2D" uid="uid://cnvcr4wp8gqsk" path="res://Textures/Ball.png" id="3_vblhy"]
 [ext_resource type="Texture2D" uid="uid://c4dl6ycolga7c" path="res://Textures/SelectIcon.png" id="4_gejbx"]
 [ext_resource type="AudioStream" uid="uid://w3untexamaxw" path="res://Audio/Effects/Bounce1.wav" id="4_hk63f"]
-[ext_resource type="Script" uid="uid://d032g5t8ng063" path="res://Scripts/select_indicator.gd" id="5_o05bq"]
+[ext_resource type="Script" uid="uid://d032g5t8ng063" path="res://Scripts/Ball/select_indicator.gd" id="5_o05bq"]
 [ext_resource type="AudioStream" uid="uid://byay5vrbkh1yq" path="res://Audio/Effects/Bounce2.wav" id="5_vm4s8"]
+[ext_resource type="Script" uid="uid://dk2vo6isxnugl" path="res://Scripts/Ball/start_area.gd" id="6_5wo4o"]
 [ext_resource type="AudioStream" uid="uid://b4omfdsru6vg0" path="res://Audio/Effects/BallLand1.wav" id="6_31idh"]
 [ext_resource type="AudioStream" uid="uid://qnq671u0r8g1" path="res://Audio/Effects/BallPutt-Mono.wav" id="6_cx4d7"]
+[ext_resource type="Texture2D" uid="uid://dct0yqyvq8cn1" path="res://Textures/InvalidIcon.png" id="6_q6iep"]
 [ext_resource type="AudioStream" uid="uid://b0rs28e6dvbme" path="res://Audio/Effects/FallOut.wav" id="6_vblhy"]
 [ext_resource type="AudioStream" uid="uid://dw8lngkbcjk6u" path="res://Audio/Effects/BallRoll.wav" id="6_vm4s8"]
 [ext_resource type="AudioStream" uid="uid://ca1fomhlayqlq" path="res://Audio/Effects/BallEnter.wav" id="8_vm4s8"]
@@ -24,11 +26,11 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb32r"]
 radius = 6.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aw2wy"]
-radius = 12.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_hk63f"]
 radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aw2wy"]
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ag8"]
 radius = 2.0
@@ -466,10 +468,23 @@ texture = ExtResource("3_vblhy")
 position = Vector2(0, -14)
 texture = ExtResource("4_gejbx")
 script = ExtResource("5_o05bq")
+valid_indicator = ExtResource("4_gejbx")
+invalid_indicator = ExtResource("6_q6iep")
 
 [node name="BallCollider" type="CollisionShape2D" parent="." unique_id=1421512000]
 shape = SubResource("CircleShape2D_pb32r")
 debug_color = Color(0.98986727, 0, 0.29087272, 0.41960785)
+
+[node name="StartArea" type="Area2D" parent="." unique_id=1620432531]
+collision_layer = 0
+collision_mask = 20
+input_pickable = false
+monitorable = false
+script = ExtResource("6_5wo4o")
+
+[node name="StartCollider" type="CollisionShape2D" parent="StartArea" unique_id=1820756832]
+shape = SubResource("CircleShape2D_hk63f")
+debug_color = Color(0.7977969, 0.55623055, 0.29242224, 0.41960785)
 
 [node name="MouseArea" type="Area2D" parent="." unique_id=184957023]
 collision_layer = 128
@@ -537,6 +552,12 @@ bus = &"BallSFX"
 
 [connection signal="draw_trajectory" from="." to="Trajectory" method="_enable_trajectory"]
 [connection signal="trajectory_changed" from="." to="Trajectory" method="_on_trajectory_changed"]
+[connection signal="body_entered" from="StartArea" to="StartArea" method="_on_body_entered"]
+[connection signal="body_exited" from="StartArea" to="StartArea" method="_on_body_exited"]
+[connection signal="invalid_spot" from="StartArea" to="." method="_on_invalid_spot"]
+[connection signal="invalid_spot" from="StartArea" to="SelectIndicator" method="_on_invalid_spot"]
+[connection signal="valid_spot" from="StartArea" to="." method="_on_valid_spot"]
+[connection signal="valid_spot" from="StartArea" to="SelectIndicator" method="_on_valid_spot"]
 [connection signal="mouse_entered" from="MouseArea" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="." method="on_mouse_exited"]
 [connection signal="area_entered" from="FloorArea" to="." method="_on_movable_area_entered"]

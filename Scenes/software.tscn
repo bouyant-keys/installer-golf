@@ -1,36 +1,14 @@
 [gd_scene format=3 uid="uid://cyywgt1i0l6ou"]
 
 [ext_resource type="Script" uid="uid://dkf2vk4f5ym4h" path="res://Scripts/software.gd" id="1_18ac4"]
-[ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="1_jlr1x"]
-[ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="2_18ac4"]
-[ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="3_jlr1x"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="2_xvr6m"]
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="5_3vat2"]
+[ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="5_cqgmq"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="6_v14me"]
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="7_ksry7"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_beqgq"]
-load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5vi2"]
-texture = SubResource("CompressedTexture2D_beqgq")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vat2"]
-bg_color = Color(0, 0, 0.5019608, 1)
-border_width_left = 3
-border_width_right = 3
-border_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18ac4"]
-texture = ExtResource("3_jlr1x")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-draw_center = false
+[ext_resource type="StyleBox" uid="uid://cjn0cldoh8uwe" path="res://Materials/Win95Styles/W95-NavigationPanel.tres" id="7_q22eu"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="8_1rmuy"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="9_6fhjx"]
 
 [sub_resource type="Gradient" id="Gradient_7vvfa"]
 colors = PackedColorArray(0.26613602, 0.29245612, 0.66210747, 1, 0.7627221, 0.8169218, 0.9502848, 1)
@@ -45,94 +23,139 @@ script = ExtResource("5_3vat2")
 [sub_resource type="RichTextEffect" id="RichTextEffect_cqgmq"]
 script = ExtResource("6_v14me")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_ssoaq"]
+script = ExtResource("5_3vat2")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4fhtp"]
+script = ExtResource("6_v14me")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_d3n2g"]
+script = ExtResource("5_cqgmq")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ksry7"]
+script = ExtResource("5_3vat2")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_beqgq"]
+script = ExtResource("6_v14me")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7vvfa"]
+script = ExtResource("5_cqgmq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6leb"]
+size = Vector2(1088, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksry7"]
+size = Vector2(7, 605)
+
 [node name="Software" type="Control" unique_id=1147250097]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_18ac4")
 
-[node name="PanelParent" type="PanelContainer" parent="." unique_id=1943446611]
-unique_name_in_owner = true
-z_index = -1
+[node name="Window" parent="." unique_id=1289661258 instance=ExtResource("2_xvr6m")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+enter_on_start = false
+is_locked = true
+title_text = "CoolCoolFunFun Software DX"
+grab_bar_color = Color(0.70007545, 0.28531986, 0.8152566, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Window" unique_id=182673221]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_x5vi2")
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelParent" unique_id=1952531544]
+[node name="TextureRect" type="TextureRect" parent="Window/MarginContainer" unique_id=624889316]
 layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Spacer" type="Control" parent="PanelParent/VBoxContainer" unique_id=1252922729]
-layout_mode = 2
-
-[node name="GrabBar" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=190043555]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 18)
-layout_mode = 2
-size_flags_vertical = 0
-offset_transform_position = Vector2(0, -22)
-mouse_filter = 1
-mouse_default_cursor_shape = 6
-theme_override_styles/panel = SubResource("StyleBoxFlat_3vat2")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/VBoxContainer/GrabBar" unique_id=499942220]
-layout_mode = 2
-
-[node name="Spacer" type="Control" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=647075326]
-layout_mode = 2
-
-[node name="WindowIcon" type="TextureRect" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=625262082]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_jlr1x")
-stretch_mode = 5
-
-[node name="WindowTitle" type="Label" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=1552337304]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_18ac4")
-theme_override_font_sizes/font_size = 16
-text = "WindowTitle"
-
-[node name="MovePanel" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=224516634]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxTexture_18ac4")
-
-[node name="Content" type="Control" parent="PanelParent/VBoxContainer/MovePanel" unique_id=750657419]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelParent/VBoxContainer/MovePanel/Content" unique_id=624889316]
-layout_mode = 0
-offset_right = 1144.0
-offset_bottom = 618.0
 texture = SubResource("GradientTexture2D_pb32r")
 
-[node name="CustomRichText" type="RichTextLabel" parent="PanelParent/VBoxContainer/MovePanel/Content" unique_id=1410550499]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CustomRichText" type="RichTextLabel" parent="Window/MarginContainer" unique_id=1410550499]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
-text = "Thanks for playing!
+bbcode_enabled = true
+text = "[sine]Thanks for playing![/sine]
 
 A game by Ethan Keys"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_xvr6m"), SubResource("RichTextEffect_cqgmq")]
+custom_effects = [SubResource("RichTextEffect_xvr6m"), SubResource("RichTextEffect_cqgmq"), SubResource("RichTextEffect_ssoaq"), SubResource("RichTextEffect_4fhtp"), SubResource("RichTextEffect_d3n2g"), SubResource("RichTextEffect_ksry7"), SubResource("RichTextEffect_beqgq"), SubResource("RichTextEffect_7vvfa")]
 script = ExtResource("7_ksry7")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="NavPanel" type="PanelContainer" parent="Window" unique_id=1837308085]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("7_q22eu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/NavPanel" unique_id=1929726504]
+layout_mode = 2
+alignment = 2
+
+[node name="ReplayButton" parent="Window/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("8_1rmuy")]
+layout_mode = 2
+mouse_filter = 1
+disabled = true
+text = "Replay"
+
+[node name="QuitButton" parent="Window/NavPanel/HBoxContainer" unique_id=2099400021 instance=ExtResource("8_1rmuy")]
+layout_mode = 2
+mouse_filter = 1
+text = "Quit"
+
+[node name="StaticObstacle" parent="Window" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_6fhjx")]
+is_disabled = true
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window/StaticObstacle" unique_id=400856589]
+position = Vector2(544, 571)
+shape = SubResource("RectangleShape2D_m6leb")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Window/StaticObstacle" unique_id=544997431]
+position = Vector2(2.5, 281.5)
+shape = SubResource("RectangleShape2D_ksry7")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Window/StaticObstacle" unique_id=2035365020]
+position = Vector2(1085, 281.5)
+shape = SubResource("RectangleShape2D_ksry7")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[connection signal="pressed" from="Window/NavPanel/HBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="Window/NavPanel/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

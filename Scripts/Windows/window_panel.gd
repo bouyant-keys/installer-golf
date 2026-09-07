@@ -18,6 +18,8 @@ var minimized := false
 @export var is_minimized := false
 @export var override_movable_area := false
 @export var title_text : String
+@export var grab_bar_color : Color = Color(0.0, 0.0, 0.502)
+@export var closable := false
 ## Control nodes that are activated / deactivated on tab change, index = tab index
 
 @onready var panel_parent: Control = %PanelParent # Node that is tweened on enter / exit
@@ -40,11 +42,13 @@ signal ball_exited
 signal window_selected(window:WindowPanel)
 signal window_grabbed(window:WindowPanel)
 signal window_released(window:WindowPanel)
+signal window_closed(window:WindowPanel)
 signal reordered(z_index:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_position = global_position
+	grab_bar.self_modulate = grab_bar_color
 	
 	if title_text.is_empty():
 		window_title.text = name
@@ -79,7 +83,6 @@ func _gui_input(event: InputEvent) -> void:
 			return
 		
 		if is_locked:
-			##TODO Visual cue that window is locked in place...
 			anim.play("locked")
 			return
 		drag_start = get_global_mouse_position()
@@ -87,7 +90,8 @@ func _gui_input(event: InputEvent) -> void:
 		window_grabbed.emit(self)
 		set_process(true)
 	elif event.is_action_released("LeftClick"):
-		window_released.emit(self)
+		if global_position != move_start:
+			window_released.emit(self)
 		set_process(false)
 
 

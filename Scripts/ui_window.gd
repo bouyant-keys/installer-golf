@@ -14,6 +14,8 @@ var grabbed := false
 
 @onready var panel_parent: PanelContainer = %PanelParent
 @onready var window_title: Label = %WindowTitle
+@onready var lock_icon: TextureRect = %LockIcon
+@onready var grab_bar: PanelContainer = %GrabBar
 
 signal window_entered
 signal window_exited
@@ -26,6 +28,8 @@ func _ready() -> void:
 		window_title.text = title_text
 	
 	set_children_visibility(false)
+	set_locked(is_locked)
+	set_process(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -33,7 +37,7 @@ func _process(_delta: float) -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
-		#select()
+		print("isgrabbe: ", grabbed, ", locked: ", is_locked)
 		
 		if !grabbed:
 			return
@@ -83,3 +87,15 @@ func set_children_visibility(active:bool) ->void:
 			child.visible = active
 		elif child is Control:
 			child.visible = active
+
+func set_locked(locked:bool) ->void:
+	is_locked = locked
+	lock_icon.visible = locked
+	grab_bar.mouse_default_cursor_shape = Control.CURSOR_ARROW if is_locked else Control.CURSOR_DRAG
+	set_process_input(!locked)
+
+func _on_grab_bar_entered() ->void:
+	grabbed = true
+
+func _on_grab_bar_exited() ->void:
+	grabbed = false

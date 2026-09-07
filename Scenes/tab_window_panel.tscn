@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfdrv2sc6x1cn"]
 
 [ext_resource type="Theme" uid="uid://4paorsm53l3k" path="res://MainTheme.tres" id="1_7ywxx"]
-[ext_resource type="Script" uid="uid://dctollo5ogqv3" path="res://Scripts/tab_window_panel.gd" id="2_r2fdd"]
+[ext_resource type="Script" uid="uid://dctollo5ogqv3" path="res://Scripts/Windows/tab_window_panel.gd" id="2_r2fdd"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="3_cl5kt"]
 [ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="4_w2da5"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_m4oq2"]

@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="LoadingBar"
+config/name="InstallerGolf"
+config/description="A golf game inside of a software installer wizard."
+config/version="1.0"
 run/main_scene="uid://bdxvugp312r4y"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://ese3twboc5i1"
 
 [audio]
 
