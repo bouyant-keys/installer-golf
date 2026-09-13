@@ -11,11 +11,13 @@ func _ready() -> void:
 		var parent := get_parent()
 		if parent is WindowPanel:
 			parent_window = parent
+	
 	parent_window.window_released.connect(_on_window_released)
 	parent_window.resized.connect(_on_window_resized)
 
 func _on_window_released(_window:WindowPanel) ->void:
 	relative_position = global_position
+	print("Relative pos set: ", relative_position)#, ", from: ", window)
 
 func _on_window_resized() ->void:
 	global_position = relative_position

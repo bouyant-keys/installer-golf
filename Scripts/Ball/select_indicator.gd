@@ -33,5 +33,9 @@ func move_up() ->void:
 	move_tween.tween_property(self, "position", DOWN_POS, MOVE_TIME).set_delay(0.1)
 
 
-func _on_valid_spot() ->void: texture = valid_indicator
-func _on_invalid_spot() ->void: texture = invalid_indicator
+func _on_valid_spot() ->void: 
+	texture = valid_indicator
+	self_modulate = Color.WHITE
+func _on_invalid_spot() ->void: 
+	texture = invalid_indicator
+	self_modulate = Color.RED

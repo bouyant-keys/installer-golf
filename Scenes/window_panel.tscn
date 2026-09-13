@@ -194,6 +194,7 @@ position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_pb32r")
 
 [node name="HeaderObstacle" parent="." unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_5qd5b")]
+is_header = true
 parent_window = NodePath("..")
 
 [node name="HeaderCollider" type="CollisionShape2D" parent="HeaderObstacle" unique_id=290399674]

@@ -52,6 +52,8 @@ func _on_window_reordered(z:int) ->void:
 
 func _on_window_released(_window:WindowPanel) ->void:
 	relative_position = global_position
+	print(name + " relative pos set: ", relative_position)
+
 # Don't move goal area if parent window's position changes when resized.
 func _on_window_resized() ->void:
 	global_position = relative_position

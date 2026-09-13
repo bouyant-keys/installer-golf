@@ -1,5 +1,7 @@
 class_name WindowPanel extends Control
 
+const BOUNDS_NUDGE_MIN := Vector2(4.0, 24.0)
+const BOUNDS_NUDGE_MAX := Vector2(64.0, 24.0)
 const TITLE_FORMAT := "Installer"
 const TRANSLUCENT_VALUE : float = 0.2
 const ENTER_TIME := 0.4
@@ -10,7 +12,8 @@ var start_position : Vector2
 var move_start : Vector2
 var drag_start : Vector2
 var is_draggable := true
-var grabbed := false
+var grabbable := false
+var dragging := false
 var minimized := false
 
 @export var enter_on_start := true
@@ -64,36 +67,18 @@ func _ready() -> void:
 	header_collider.position = grab_bar.get_rect().get_center()
 	print(header_collider.position, header_collider.shape.size)
 	
-	visibility_changed.connect(_on_visibility_changed)
-	_on_visibility_changed()
+	#visibility_changed.connect(_on_visibility_changed)
+	#_on_visibility_changed()
 	set_locked(is_locked)
-	set_process(false)
-	
 	set_children_visibility(false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	global_position = move_start + (get_global_mouse_position() - drag_start)
-
-func _gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("LeftClick"):
-		select()
-		
-		if !grabbed:
-			return
-		
-		if is_locked:
-			anim.play("locked")
-			return
-		drag_start = get_global_mouse_position()
-		move_start = global_position
-		window_grabbed.emit(self)
-		set_process(true)
-	elif event.is_action_released("LeftClick"):
-		if global_position != move_start:
-			window_released.emit(self)
-		set_process(false)
-
+func _gui_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("LeftClick"):
+		grab()
+	elif Input.is_action_pressed("LeftClick") and dragging:
+		global_position = move_start + (get_global_mouse_position() - drag_start)
+	elif Input.is_action_just_released("LeftClick"):
+		release()
 
 func enter() ->void:
 	panel_parent.show()
@@ -107,7 +92,6 @@ func enter() ->void:
 	await enter_tween.finished
 	entered.emit()
 	set_children_visibility(true)
-	print(name, " Entered - visible:", visible)
 
 func exit() ->void:
 	set_children_visibility(false)
@@ -126,6 +110,30 @@ func exit() ->void:
 
 func select() ->void:
 	window_selected.emit(self)
+
+func grab() ->void:
+	select()
+	
+	if !grabbable:
+		return
+	
+	if is_locked:
+		anim.play("locked")
+		return
+	
+	dragging = true
+	drag_start = get_global_mouse_position()
+	move_start = global_position
+	window_grabbed.emit(self)
+
+func release() ->void:
+	dragging = false
+	
+	var enclose_rect := get_viewport_rect()
+	global_position = global_position.clamp(enclose_rect.position + BOUNDS_NUDGE_MIN, enclose_rect.end - BOUNDS_NUDGE_MAX)
+	
+	if global_position != move_start:
+		window_released.emit(self)
 
 func set_children_visibility(active:bool) ->void:
 	for child : Node in get_children():
@@ -170,10 +178,11 @@ func get_move_area_position() ->Vector2:
 
 
 func _on_grab_bar_entered() ->void:
-	grabbed = true
+	grabbable = true
 
 func _on_grab_bar_exited() ->void:
-	grabbed = false
+	grabbable = false
+
 
 func _on_move_area_entered(body: Node2D) -> void:
 	if body is Ball:
@@ -186,13 +195,13 @@ func _on_move_area_entered(body: Node2D) -> void:
 
 func _on_move_area_exited(body: Node2D) -> void:
 	if body is Ball:
-		is_draggable = false
+		is_draggable = true
 		set_translucent(false)
 		ball_exited.emit()
 		print("Ball exited ", name, ", is_draggable: ", is_draggable)
 
+
 func _on_visibility_changed() ->void:
-	print("Vis Changed")
 	move_area.monitorable = visible
 	move_area.monitoring = visible
 

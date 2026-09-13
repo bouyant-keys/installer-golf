@@ -10,9 +10,9 @@ var selected_index : int
 
 signal windows_entered
 signal windows_exited
-signal window_selected(window:WindowPanel)
-signal window_grabbed(window:WindowPanel)
-signal window_released(window:WindowPanel)
+signal child_window_selected(window:WindowPanel)
+signal child_window_grabbed(window:WindowPanel)
+signal child_window_released(window:WindowPanel)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -78,7 +78,7 @@ func _on_window_selected(s_window:WindowPanel) ->void:
 			window.is_selected = true
 			selected_window = window
 	
-	window_selected.emit(s_window)
+	child_window_selected.emit(s_window)
 
 func get_window_color(index:int) ->Color:
 	var gradient_sample := index * (1/float(windows.size()-1))
@@ -86,9 +86,9 @@ func get_window_color(index:int) ->Color:
 	return WINDOW_GRADIENT.gradient.sample(1.0 - gradient_sample)
 
 func _on_window_grabbed(window:WindowPanel) ->void:
-	window_grabbed.emit(window)
+	child_window_grabbed.emit(window)
 func _on_window_released(window:WindowPanel) ->void:
-	window_released.emit(window)
+	child_window_released.emit(window)
 
 func _on_stage_reset() ->void:
 	for window in windows:

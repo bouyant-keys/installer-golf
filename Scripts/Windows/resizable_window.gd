@@ -14,84 +14,97 @@ var initialSize : Vector2
 @export var GrabThreshold := 20
 @export var ResizeThreshold := 6
 
+signal resize_start
+signal resize_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	reset_to_size = size
-	clip_contents = true
 
-func _input(event: InputEvent) -> void:
+func _gui_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("LeftClick"):
-		var rect = get_global_rect()
-		var localMousePos = event.position - get_global_position()
+		grab()
+		if dragging:
+			return
+		
+		var rect := get_global_rect()
+		var localMousePos : Vector2 = event.position
 		
 		if abs(localMousePos.x - rect.size.x) < ResizeThreshold:
-			start.x = event.position.x
+			start.x = get_global_mouse_position().x #event.position.x
 			initialSize.x = get_size().x
 			resizeX = true
 			isResizing = true
 		
 		if abs(localMousePos.y - rect.size.y) < ResizeThreshold:
-			start.y = event.position.y
+			start.y = get_global_mouse_position().y #event.position.y
 			initialSize.y = get_size().y
 			resizeY = true
 			isResizing = true
 		
-		if localMousePos.x < ResizeThreshold &&  localMousePos.x > -ResizeThreshold:
-			start.x = event.position.x
+		if localMousePos.x < ResizeThreshold && localMousePos.x > -ResizeThreshold:
+			start.x = get_global_mouse_position().x #event.position.x
 			initialPosition.x = get_global_position().x
 			initialSize.x = get_size().x
 			isResizing = true
 			resizeX = true
 		
-		if localMousePos.y < ResizeThreshold &&  localMousePos.y > -ResizeThreshold:
-			start.y = event.position.y
+		if localMousePos.y < ResizeThreshold && localMousePos.y > -ResizeThreshold:
+			start.y = get_global_mouse_position().y #event.position.y
 			initialPosition.y = get_global_position().y
 			initialSize.y = get_size().y
 			isResizing = true
 			resizeY = true
-		#print("isResizing:", isResizing, ", resizeX:", resizeX, ", resizeY:", resizeY, 
-		#" | initialPosition:", initialPosition, ", initialSize", initialSize)
 		
-	if Input.is_action_pressed("LeftClick"):
-		if !isResizing:
+		resize_start.emit()
+	
+	elif Input.is_action_pressed("LeftClick"):
+		if dragging:
+			super(event)
+		else:
+			resize_window()
+	
+	if Input.is_action_just_released("LeftClick"):
+		if dragging:
+			release()
 			return
 		
-		var newWidth := get_size().x
-		var newHeight := get_size().y
-		
-		if resizeX:
-			newWidth = initialSize.x - (start.x - event.position.x)
-		
-		if resizeY:
-			newHeight = initialSize.y - (start.y - event.position.y)
-		
-		if initialPosition.x != 0: # If resizing from origin -- left
-			newWidth = initialSize.x + (start.x - event.position.x)
-			newWidth = clampf(newWidth, get_combined_minimum_size().x, get_combined_maximum_size().x)
-			set_position(Vector2(initialPosition.x - (newWidth - initialSize.x), get_position().y))
-		
-		if initialPosition.y != 0:  # If resizing from origin -- top
-			newHeight = initialSize.y + (start.y - event.position.y)
-			newHeight = clampf(newHeight, get_combined_minimum_size().y, get_combined_maximum_size().y)
-			set_position(Vector2(get_position().x, initialPosition.y - (newHeight - initialSize.y)))
-		
-		set_size(Vector2(newWidth, newHeight))
-		
-		
-	if Input.is_action_just_released("LeftClick"):
 		initialPosition = Vector2(0,0)
 		resizeX = false
 		resizeY = false
 		isResizing = false
+		resize_end.emit()
+
+
+func resize_window() ->void:
+	var newWidth := get_size().x
+	var newHeight := get_size().y
+	var event_position : Vector2 = get_global_mouse_position()
 	
-	#if !isResizing:
-		#_gui_input(event)
+	#print("globalmouse: ", get_global_mouse_position(), ", globalpos: ", global_position)
+	#print("EventPos: ", event_position, ", initial_position: ", initialPosition, ", initialsize: ", initialSize, ", start: ", start)
+	
+	if resizeX:
+		newWidth = initialSize.x - (start.x - event_position.x) 
+	
+	if resizeY:
+		newHeight = initialSize.y - (start.y - event_position.y)
+	
+	if initialPosition.x != 0: # If resizing from origin -- left
+		newWidth = initialSize.x + (start.x - event_position.x) # x = 180 + (1 - -80) = 261 | 180 + (1 + 83) = 264
+		newWidth = clampf(newWidth, get_combined_minimum_size().x, get_combined_maximum_size().x)
+		set_position(Vector2(initialPosition.x - (newWidth - initialSize.x), get_position().y)) # x = 636 - (261-180)=556 | 636 - (264-180)=552
+	
+	if initialPosition.y != 0:  # If resizing from origin -- top
+		newHeight = initialSize.y + (start.y - event_position.y)
+		newHeight = clampf(newHeight, get_combined_minimum_size().y, get_combined_maximum_size().y)
+		set_position(Vector2(get_position().x, initialPosition.y - (newHeight - initialSize.y)))
+	
+	set_size(Vector2(newWidth, newHeight))
 
 func _on_resized() ->void:
 	move_area.fit_collider()
-	
 	header_collider.shape.size = grab_bar.get_rect().size
 	header_collider.position = grab_bar.get_rect().get_center()
 

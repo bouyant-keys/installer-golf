@@ -9,27 +9,26 @@ const DRAG_MIN := Vector2(5.0, 5.0)
 const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means the maximum strength is applied
 const BALL_SIZE := Vector2(16.0, 16.0)
 
-var start_position : Vector2
+var start_local_pos : Vector2
 var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
 var current_window : WindowPanel
 var prev_window : WindowPanel
-var in_windows : Array[WindowPanel]
+#var in_windows : Array[WindowPanel]
 var on_bounce_margin : float
 var mouse_hover := false
 var mouse_drag := false
 var click_pos : Vector2
 var frozen := false
 var launched := false
-var fell_out := false
 var can_launch := true # Disabled if ball entered in collision shape.
 
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
 @export var enter_on_load := true
 
-@onready var floor_area: Area2D = $FloorArea
+@onready var floor_area: FloorArea = $FloorArea
 @onready var start_area: Area2D = $StartArea
 @onready var trajectory: Line2D = $Trajectory
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -44,7 +43,6 @@ var can_launch := true # Disabled if ball entered in collision shape.
 
 @onready var ball_collider: CollisionShape2D = $BallCollider
 @onready var mouse_area_collider: CollisionShape2D = $MouseArea/MouseAreaCollider
-@onready var floor_area_collider: CollisionShape2D = $FloorArea/FloorAreaCollider
 @onready var fall_area_collider: CollisionShape2D = $FallArea/FallAreaCollider
 
 signal current_window_changed(window:WindowPanel)
@@ -62,20 +60,18 @@ func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)
 	
-	if window_manager:
-		window_manager.window_selected.connect(_on_window_selected)
-		window_manager.window_grabbed.connect(_on_window_grabbed)
-		window_manager.window_released.connect(_on_window_released)
-	else:
-		printerr("No Window Manager assigned to Ball.")
+	window_manager.child_window_selected.connect(_on_window_selected)
+	window_manager.child_window_grabbed.connect(_on_window_grabbed)
+	window_manager.child_window_released.connect(_on_window_released)
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
-	start_position = global_position
+	start_local_pos = global_position - start_window.global_position
+	
+	set_collision_active(false)
 	hide()
 
 
 func enter() ->void:
-	set_current_window(start_window)
 	anim.play("enter")
 	enter_sfx.play()
 	show()
@@ -87,7 +83,6 @@ func enter() ->void:
 	ball_entered.emit()
 
 func fall() ->void:
-	fell_out = true
 	velocity = Vector2.ZERO
 	set_collision_active(false, false)
 	set_process(false)
@@ -98,7 +93,6 @@ func fall() ->void:
 	await anim.animation_finished
 	ball_fell.emit()
 	_on_stage_reset()
-	enter()
 
 func exit() ->void:
 	anim.play("exit")
@@ -117,6 +111,7 @@ func _input(event: InputEvent) -> void:
 		mouse_drag = true
 		click_pos = get_global_mouse_position()
 		draw_trajectory.emit(true)
+		get_viewport().set_input_as_handled()
 	elif event.is_action_released("LeftClick") && mouse_drag:
 		mouse_drag = false
 		var launch_dir := -(get_global_mouse_position() - click_pos)
@@ -132,8 +127,7 @@ func _input(event: InputEvent) -> void:
 		draw_trajectory.emit(false)
 		launch_sfx.play()
 		ball_launched.emit()
-		#set_collision_active(true)
-		#print("Released, Pos: ", release_pos, ", Distance: ", release_pos - click_pos)
+
 
 func _process(_delta: float) ->void:
 	if !mouse_drag:
@@ -145,26 +139,22 @@ func _process(_delta: float) ->void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	var curr_window := get_current_window()
 	if !launched:
 		# Follow window position if window is movable.
-		global_position = current_window.get_movable_area().position + local_position
-		return
-	elif !current_window:
-		fell_out = true
+		global_position = curr_window.get_movable_area().position + local_position
 		return
 	elif frozen:
 		print("Frozen!!")
-		global_position = current_window.get_movable_area().position + local_position
-		return
-	elif fell_out:
-		fall()
+		global_position = curr_window.get_movable_area().position + local_position
 		return
 	
 	if is_zero_approx(current_speed):
 		ball_stopped.emit()
 	
-	var move_rect := current_window.get_movable_area()
-	# Calculate character's next position from their speed & direction
+	var move_rect := get_current_window().get_movable_area()
+	
+	# Calculate ball's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
 	var current_velocity := move_dir * current_speed * delta
 	
@@ -199,21 +189,9 @@ func set_collision_active(active:bool, include_body:bool = true) ->void:
 	if include_body:
 		ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
-	floor_area_collider.set_deferred("disabled", !active)
+	floor_area.set_area_enabled(active)
 	fall_area_collider.set_deferred("disabled", !active)
 
-func check_valid_window() ->WindowPanel:
-	var enter_window : WindowPanel = null
-	var overlap_windows := window_manager.get_windows_at_position(global_position)
-	for window : WindowPanel in overlap_windows:
-		if !enter_window:
-			if window.z_index < z_index:
-				enter_window = window
-		else:
-			if window.z_index > enter_window.z_index and window.z_index < z_index:
-				enter_window = window
-	
-	return enter_window
 
 func on_bounce() ->void:
 	if randf() > 0.5:
@@ -223,109 +201,60 @@ func on_bounce() ->void:
 	
 	direction_changed.emit(global_position)
 
-func add_to_window_list(window:WindowPanel) ->void:
-	if window == current_window or in_windows.has(window):
-		return
-	
-	in_windows.append(window)
-	print(window.name + " added to in_windows. Size: ", in_windows.size())
 
 func _on_valid_spot() ->void: can_launch = true
 func _on_invalid_spot() ->void: can_launch = false
 
-func _on_movable_area_entered(area: Area2D) -> void:
-	if area is GoalArea:
-		_on_goal()
-		return
-	elif area is not MoveArea:
-		return
-	
-	var move_area := area as MoveArea
-	var window := move_area.get_window_panel()
-	
-	if !get_current_window():
-		set_current_window(window)
-		set_process(true)
-	else:
-		add_to_window_list(window)
-	
-	#print(" -- AreaEntered -- ", window.name, ", CurrentWindow: ", current_window,", in_windows: ", in_windows, "\n")
-func _on_movable_area_exited(area: Area2D) -> void:
-	if floor_area_collider.disabled: # Problematic ?
-		return
-	elif area is not MoveArea:
-		return
-	
-	var move_area := area as MoveArea
-	var window := move_area.get_window_panel()
-	print("Ball exited " + window.name + ".")
-	
-	if window == current_window:
-		print("Exiting current window!!!")
-		var valid_window := check_valid_window()
-		if !valid_window:
-			fell_out = true
-			return
-		else:
-			set_current_window(valid_window)
-			#in_windows.remove_at(0)
-			print(window.name + " set as current_window. in_windows size: ", in_windows.size())
-	else:
-		in_windows.erase(window)
-		print(window.name + " removed from in_windows. Size: ", in_windows.size())
+func _on_fall_area_entered(_area: Area2D) -> void:  if launched: fall()
 
+func on_mouse_entered() ->void: mouse_hover = true
+func on_mouse_exited() ->void: mouse_hover = false
 
-func _on_fall_area_entered(_area: Area2D) -> void:
-	fall()
-
-func on_mouse_entered() ->void:
-	mouse_hover = true
-func on_mouse_exited() ->void:
-	mouse_hover = false
-
+#region WindowSignals
 func _on_window_selected(window:WindowPanel) ->void:
-	if current_window == window:
-		z_index = current_window.z_index
+	var curr_window := get_current_window()
+	if curr_window == window:
+		z_index = curr_window.z_index
 
 func _on_window_grabbed(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
-	elif in_windows.has(window):
+	elif floor_area.in_windows.has(window):
 		set_current_window(window)
+	
 	frozen = true
-	floor_area.monitoring = false
-	floor_area.monitorable = false
+	set_collision_active(false)
+
 func _on_window_released(window:WindowPanel) ->void:
-	if !launched:
+	if get_current_window() != window:
+		return
+	elif !launched:
 		pass
 		#relative_position = global_position
 	
-	if get_current_window() != window:
-		return
 	frozen = false
-	floor_area.monitoring = true
-	floor_area.monitorable = true
-
+	set_collision_active(true)
+#endregion
 
 func _on_goal() ->void:
 	print("Ball hit goal!")
 	current_speed = 0.0
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	floor_area_collider.set_deferred("disabled", true)
+	floor_area.set_area_enabled(false)
 	exit()
 
 func _on_stage_reset() ->void:
 	print("Ball reset.")
 	frozen = false
 	launched = false
-	fell_out = false
 	current_speed = 0.0
-	in_windows.clear()
+	floor_area.in_windows.clear()
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	global_position = start_position
+	global_position = start_local_pos + start_window.global_position
 	set_collision_active(false)
 	
 	await get_tree().process_frame
+	set_current_window(start_window)
 	enter()

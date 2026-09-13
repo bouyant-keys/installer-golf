@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dct0yqyvq8cn1" path="res://Textures/InvalidIcon.png" id="6_q6iep"]
 [ext_resource type="AudioStream" uid="uid://b0rs28e6dvbme" path="res://Audio/Effects/FallOut.wav" id="6_vblhy"]
 [ext_resource type="AudioStream" uid="uid://dw8lngkbcjk6u" path="res://Audio/Effects/BallRoll.wav" id="6_vm4s8"]
+[ext_resource type="Script" uid="uid://bdwjspqtd3sif" path="res://Scripts/Ball/floor_area.gd" id="8_s4llo"]
 [ext_resource type="AudioStream" uid="uid://ca1fomhlayqlq" path="res://Audio/Effects/BallEnter.wav" id="8_vm4s8"]
 [ext_resource type="AudioStream" uid="uid://pbcn64x7hicq" path="res://Audio/Effects/BallExit1.wav" id="9_2b6yv"]
 
@@ -499,6 +500,7 @@ collision_layer = 0
 collision_mask = 9
 input_pickable = false
 monitorable = false
+script = ExtResource("8_s4llo")
 
 [node name="FloorAreaCollider" type="CollisionShape2D" parent="FloorArea" unique_id=520991856]
 shape = SubResource("CircleShape2D_hk63f")
@@ -560,6 +562,9 @@ bus = &"BallSFX"
 [connection signal="valid_spot" from="StartArea" to="SelectIndicator" method="_on_valid_spot"]
 [connection signal="mouse_entered" from="MouseArea" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="." method="on_mouse_exited"]
-[connection signal="area_entered" from="FloorArea" to="." method="_on_movable_area_entered"]
-[connection signal="area_exited" from="FloorArea" to="." method="_on_movable_area_exited"]
+[connection signal="area_entered" from="FloorArea" to="FloorArea" method="_on_area_entered"]
+[connection signal="area_exited" from="FloorArea" to="FloorArea" method="_on_area_exited"]
+[connection signal="fell_out" from="FloorArea" to="." method="fall"]
+[connection signal="goal_entered" from="FloorArea" to="." method="_on_goal"]
+[connection signal="new_current_window" from="FloorArea" to="." method="set_current_window"]
 [connection signal="area_entered" from="FallArea" to="." method="_on_fall_area_entered"]
