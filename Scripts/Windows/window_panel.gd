@@ -131,8 +131,6 @@ func release() ->void:
 	var enclose_rect := get_viewport_rect()
 	global_position = global_position.clamp(enclose_rect.position + BOUNDS_NUDGE_MIN, enclose_rect.end - BOUNDS_NUDGE_MAX)
 	
-	#if global_position != move_start:
-		#window_released.emit(self) # Change to window_moved ??
 	window_released.emit(self)
 
 

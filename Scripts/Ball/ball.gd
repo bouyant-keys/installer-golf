@@ -23,6 +23,7 @@ var click_pos : Vector2
 var frozen := false
 var launched := false
 var can_launch := true # Disabled if ball entered in collision shape.
+var resizing := false
 
 @export var start_window : WindowPanel
 @export var window_manager : WindowManager
@@ -145,7 +146,12 @@ func _physics_process(delta: float) -> void:
 	var curr_window := get_current_window()
 	if !launched:
 		# Follow window position if window is movable.
-		global_position = curr_window.get_movable_area().position + local_position
+		if resizing:
+			var local_relative := relative_pos_ratio * get_current_window().get_rect().size
+			global_position = local_relative + get_current_window().get_rect().position
+			local_position = global_position - current_window.get_move_area_position()
+		else:
+			global_position = curr_window.get_movable_area().position + local_position
 		return
 	elif frozen:
 		print("Frozen!!")
@@ -241,23 +247,26 @@ func _on_window_resize_start(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
 	
-	if launched:
-		frozen = true
-		set_collision_active(false)
-	relative_pos_ratio = global_position / current_window.get_rect().end
+	print(name + ": current window resize start")
+	
+	relative_pos_ratio = (global_position - current_window.get_rect().position) / current_window.get_rect().size
+	resizing = true
+	frozen = true
+	set_collision_active(false)
+	print("rpr: ", relative_pos_ratio, current_window.get_rect().end)
 
 func _on_window_resized(window:WindowPanel) ->void:
-	if get_current_window() != window:
-		return
+	pass
+	#if get_current_window() != window:
+		#return
 	
-	global_position = relative_pos_ratio * get_current_window().get_rect().end
 
 func _on_window_resize_end(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
-	if launched:
-		frozen = false
-		set_collision_active(true)
+	resizing =false
+	frozen = false
+	set_collision_active(true)
 #endregion
 
 func _on_goal() ->void:
