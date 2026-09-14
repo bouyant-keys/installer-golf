@@ -10,13 +10,13 @@ const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means 
 const BALL_SIZE := Vector2(16.0, 16.0)
 
 var start_local_pos : Vector2
+var relative_pos_ratio : Vector2 # Used with resizable windows - keep the same normalized position when resized
 var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
 var current_window : WindowPanel
 var prev_window : WindowPanel
 #var in_windows : Array[WindowPanel]
-var on_bounce_margin : float
 var mouse_hover := false
 var mouse_drag := false
 var click_pos : Vector2
@@ -63,6 +63,9 @@ func _ready() -> void:
 	window_manager.child_window_selected.connect(_on_window_selected)
 	window_manager.child_window_grabbed.connect(_on_window_grabbed)
 	window_manager.child_window_released.connect(_on_window_released)
+	window_manager.child_window_resize_start.connect(_on_window_resize_start)
+	window_manager.child_window_resized.connect(_on_window_resized)
+	window_manager.child_window_resize_end.connect(_on_window_resize_end)
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_local_pos = global_position - start_window.global_position
@@ -104,7 +107,7 @@ func exit() ->void:
 
 
 func _input(event: InputEvent) -> void:
-	if launched or !can_launch:
+	if launched or !can_launch or frozen:
 		return
 	
 	if event.is_action_pressed("LeftClick") && mouse_hover:
@@ -180,6 +183,8 @@ func set_current_window(window:WindowPanel) ->void:
 		land_sfx.play()
 	
 	current_window = window
+	if current_window is ResizableWindow:
+		relative_pos_ratio = global_position / current_window.get_rect().end
 	z_index = current_window.z_index + Z_INDEX_OFFSET
 	local_position = global_position - current_window.get_move_area_position()
 	current_window_changed.emit(window)
@@ -228,12 +233,31 @@ func _on_window_grabbed(window:WindowPanel) ->void:
 func _on_window_released(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
-	elif !launched:
-		pass
-		#relative_position = global_position
 	
 	frozen = false
 	set_collision_active(true)
+
+func _on_window_resize_start(window:WindowPanel) ->void:
+	if get_current_window() != window:
+		return
+	
+	if launched:
+		frozen = true
+		set_collision_active(false)
+	relative_pos_ratio = global_position / current_window.get_rect().end
+
+func _on_window_resized(window:WindowPanel) ->void:
+	if get_current_window() != window:
+		return
+	
+	global_position = relative_pos_ratio * get_current_window().get_rect().end
+
+func _on_window_resize_end(window:WindowPanel) ->void:
+	if get_current_window() != window:
+		return
+	if launched:
+		frozen = false
+		set_collision_active(true)
 #endregion
 
 func _on_goal() ->void:

@@ -14,18 +14,26 @@ signal child_window_selected(window:WindowPanel)
 signal child_window_grabbed(window:WindowPanel)
 signal child_window_released(window:WindowPanel)
 
+signal child_window_resize_start(window:ResizableWindow)
+signal child_window_resized(window:ResizableWindow)
+signal child_window_resize_end(window:ResizableWindow)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stage = get_parent() as Stage
 	stage.enter_windows.connect(_enter_windows)
 	stage.exit_windows.connect(_exit_windows)
 	
-	for child in get_children():
-		var window := child as WindowPanel
-		window.window_selected.connect(_on_window_selected)
-		window.window_grabbed.connect(_on_window_grabbed)
-		window.window_released.connect(_on_window_released)
-		windows.append(window)
+	for child : Control in get_children():
+		if child is WindowPanel:
+			child.window_selected.connect(_on_window_selected)
+			child.window_grabbed.connect(_on_window_grabbed)
+			child.window_released.connect(_on_window_released)
+			if child is ResizableWindow:
+				child.window_resize_start.connect(_on_window_resize_start)
+				child.window_resized.connect(_on_window_resized)
+				child.window_resize_end.connect(_on_window_resize_end)
+			windows.append(child)
 	
 	for i : int in windows.size():
 		var window := windows[i]
@@ -89,6 +97,12 @@ func _on_window_grabbed(window:WindowPanel) ->void:
 	child_window_grabbed.emit(window)
 func _on_window_released(window:WindowPanel) ->void:
 	child_window_released.emit(window)
+func _on_window_resize_start(window:ResizableWindow) ->void:
+	child_window_resize_start.emit(window)
+func _on_window_resized(window:ResizableWindow) ->void:
+	child_window_resized.emit(window)
+func _on_window_resize_end(window:ResizableWindow) ->void:
+	child_window_resize_end.emit(window)
 
 func _on_stage_reset() ->void:
 	for window in windows:

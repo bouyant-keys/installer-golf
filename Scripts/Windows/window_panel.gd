@@ -65,19 +65,18 @@ func _ready() -> void:
 	header_shape.size = grab_bar.get_rect().size
 	header_collider.shape = header_shape
 	header_collider.position = grab_bar.get_rect().get_center()
-	print(header_collider.position, header_collider.shape.size)
 	
-	#visibility_changed.connect(_on_visibility_changed)
-	#_on_visibility_changed()
 	set_locked(is_locked)
 	set_children_visibility(false)
 
 func _gui_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("LeftClick"):
+		print(name + ": just pressed")
 		grab()
 	elif Input.is_action_pressed("LeftClick") and dragging:
 		global_position = move_start + (get_global_mouse_position() - drag_start)
 	elif Input.is_action_just_released("LeftClick"):
+		print(name + ": just released")
 		release()
 
 func enter() ->void:
@@ -132,8 +131,10 @@ func release() ->void:
 	var enclose_rect := get_viewport_rect()
 	global_position = global_position.clamp(enclose_rect.position + BOUNDS_NUDGE_MIN, enclose_rect.end - BOUNDS_NUDGE_MAX)
 	
-	if global_position != move_start:
-		window_released.emit(self)
+	#if global_position != move_start:
+		#window_released.emit(self) # Change to window_moved ??
+	window_released.emit(self)
+
 
 func set_children_visibility(active:bool) ->void:
 	for child : Node in get_children():

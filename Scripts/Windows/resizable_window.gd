@@ -14,8 +14,9 @@ var initialSize : Vector2
 @export var GrabThreshold := 20
 @export var ResizeThreshold := 6
 
-signal resize_start
-signal resize_end
+signal window_resize_start(window:ResizableWindow)
+signal window_resized(window:ResizableWindow)
+signal window_resize_end(window:ResizableWindow)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,7 +58,7 @@ func _gui_input(event: InputEvent) -> void:
 			isResizing = true
 			resizeY = true
 		
-		resize_start.emit()
+		window_resize_start.emit(self)
 	
 	elif Input.is_action_pressed("LeftClick"):
 		if dragging:
@@ -74,7 +75,7 @@ func _gui_input(event: InputEvent) -> void:
 		resizeX = false
 		resizeY = false
 		isResizing = false
-		resize_end.emit()
+		window_resize_end.emit(self)
 
 
 func resize_window() ->void:
@@ -107,6 +108,8 @@ func _on_resized() ->void:
 	move_area.fit_collider()
 	header_collider.shape.size = grab_bar.get_rect().size
 	header_collider.position = grab_bar.get_rect().get_center()
+	window_resized.emit(self)
+	
 
 func _reset() ->void:
 	super()

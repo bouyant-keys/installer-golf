@@ -13,7 +13,7 @@ signal fell_out
 	#set_area_enabled(false)
 
 func set_area_enabled(enabled:bool) ->void:
-	print("!!!Floor area enabled: ", enabled)
+	#print("!!!Floor area enabled: ", enabled)
 	collider.set_deferred("disabled", !enabled)
 
 func recheck_area() ->void:
