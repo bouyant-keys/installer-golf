@@ -9,14 +9,12 @@ const DRAG_MIN := Vector2(5.0, 5.0)
 const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means the maximum strength is applied
 const BALL_SIZE := Vector2(16.0, 16.0)
 
-var start_local_pos : Vector2
-var relative_pos_ratio : Vector2 # Used with resizable windows - keep the same normalized position when resized
+var start_pos : Vector2
 var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
 var current_window : WindowPanel
 var prev_window : WindowPanel
-#var in_windows : Array[WindowPanel]
 var mouse_hover := false
 var mouse_drag := false
 var click_pos : Vector2
@@ -30,7 +28,6 @@ var resizing := false
 @export var enter_on_load := true
 
 @onready var floor_area: FloorArea = $FloorArea
-@onready var start_area: Area2D = $StartArea
 @onready var trajectory: Line2D = $Trajectory
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
@@ -69,12 +66,12 @@ func _ready() -> void:
 	window_manager.child_window_resize_end.connect(_on_window_resize_end)
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
-	start_local_pos = global_position - start_window.global_position
+	start_pos = global_position
 	
 	set_collision_active(false)
 	hide()
 
-
+## Played when ball enters the stage.
 func enter() ->void:
 	anim.play("enter")
 	enter_sfx.play()
@@ -86,9 +83,10 @@ func enter() ->void:
 	set_physics_process(true)
 	ball_entered.emit()
 
+## Played when ball falls outside a window into the background.
 func fall() ->void:
 	velocity = Vector2.ZERO
-	set_collision_active(false, false)
+	set_collision_active(false)
 	set_process(false)
 	set_physics_process(false)
 	anim.play("fall")
@@ -98,6 +96,7 @@ func fall() ->void:
 	ball_fell.emit()
 	_on_stage_reset()
 
+## Played when ball reaches the goal.
 func exit() ->void:
 	anim.play("exit")
 	exit_sfx.play()
@@ -123,6 +122,7 @@ func _input(event: InputEvent) -> void:
 			return
 		
 		move_dir = launch_dir.normalized()
+		local_position = global_position - current_window.get_move_area_position()
 		direction_changed.emit(global_position)
 		
 		var launch_strength := clampf(launch_dir.length(), STRENGTH_RANGE.x, STRENGTH_RANGE.y)
@@ -143,28 +143,22 @@ func _process(_delta: float) ->void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var curr_window := get_current_window()
 	if !launched:
-		# Follow window position if window is movable.
-		if resizing:
-			var local_relative := relative_pos_ratio * get_current_window().get_rect().size
-			global_position = local_relative + get_current_window().get_rect().position
-			local_position = global_position - current_window.get_move_area_position()
-		else:
-			global_position = curr_window.get_movable_area().position + local_position
 		return
-	elif frozen:
+	
+	var curr_window := get_current_window()
+	if frozen:
 		print("Frozen!!")
 		global_position = curr_window.get_movable_area().position + local_position
 		return
-	
-	if is_zero_approx(current_speed):
-		ball_stopped.emit()
 	
 	var move_rect := get_current_window().get_movable_area()
 	
 	# Calculate ball's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
+	if is_zero_approx(current_speed):
+		ball_stopped.emit()
+	
 	var current_velocity := move_dir * current_speed * delta
 	
 	# Update next_pos with potentially changed values, & assign to global position.
@@ -182,6 +176,11 @@ func get_current_window() ->WindowPanel:
 	return current_window
 
 func set_current_window(window:WindowPanel) ->void:
+	if !window:
+		current_window = null
+		current_window_changed.emit(null)
+		return
+	
 	if current_window:
 		print("Landed on new window: ", window, "!")
 		prev_window = current_window
@@ -189,20 +188,15 @@ func set_current_window(window:WindowPanel) ->void:
 		land_sfx.play()
 	
 	current_window = window
-	if current_window is ResizableWindow:
-		relative_pos_ratio = global_position / current_window.get_rect().end
 	z_index = current_window.z_index + Z_INDEX_OFFSET
 	local_position = global_position - current_window.get_move_area_position()
 	current_window_changed.emit(window)
 
-func set_collision_active(active:bool, include_body:bool = true) ->void:
-	#print("--Collision set: ", active, ", ", include_body)
-	if include_body:
-		ball_collider.set_deferred("disabled", !active)
+func set_collision_active(active:bool) ->void:
+	#print("--Collision set: ", active)
+	ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
-	floor_area.set_area_enabled(active)
 	fall_area_collider.set_deferred("disabled", !active)
-
 
 func on_bounce() ->void:
 	if randf() > 0.5:
@@ -213,8 +207,12 @@ func on_bounce() ->void:
 	direction_changed.emit(global_position)
 
 
-func _on_valid_spot() ->void: can_launch = true
-func _on_invalid_spot() ->void: can_launch = false
+func _on_valid_spot() ->void: 
+	print("valid")
+	can_launch = true
+func _on_invalid_spot() ->void:
+	print("invalid")
+	can_launch = false
 
 func _on_fall_area_entered(_area: Area2D) -> void:  if launched: fall()
 
@@ -249,13 +247,13 @@ func _on_window_resize_start(window:WindowPanel) ->void:
 	
 	print(name + ": current window resize start")
 	
-	relative_pos_ratio = (global_position - current_window.get_rect().position) / current_window.get_rect().size
+	#relative_pos_ratio = (global_position - current_window.get_rect().position) / current_window.get_rect().size
 	resizing = true
 	frozen = true
 	set_collision_active(false)
-	print("rpr: ", relative_pos_ratio, current_window.get_rect().end)
+	#print("rpr: ", relative_pos_ratio, current_window.get_rect().end)
 
-func _on_window_resized(window:WindowPanel) ->void:
+func _on_window_resized(_window:WindowPanel) ->void:
 	pass
 	#if get_current_window() != window:
 		#return
@@ -285,9 +283,8 @@ func _on_stage_reset() ->void:
 	floor_area.in_windows.clear()
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	global_position = start_local_pos + start_window.global_position
+	global_position = start_pos
 	set_collision_active(false)
 	
 	await get_tree().process_frame
-	set_current_window(start_window)
 	enter()

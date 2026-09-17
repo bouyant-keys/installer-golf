@@ -19,7 +19,6 @@ var minimized := false
 @export var enter_on_start := true
 @export var is_locked := false
 @export var is_minimized := false
-@export var override_movable_area := false
 @export var title_text : String
 @export var grab_bar_color : Color = Color(0.0, 0.0, 0.502)
 @export var closable := false
@@ -31,7 +30,6 @@ var minimized := false
 @onready var lock_icon: TextureRect = %LockIcon
 @onready var move_panel: PanelContainer = %MovePanel
 @onready var move_area: MoveArea = %MoveArea
-@onready var move_collider: CollisionShape2D = %MoveCollider
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var header_collider: CollisionShape2D = %HeaderCollider
 
@@ -58,13 +56,13 @@ func _ready() -> void:
 	else:
 		window_title.text = title_text
 	
-	move_area.monitorable = !override_movable_area
-	move_area.monitoring = !override_movable_area
-	
 	var header_shape := RectangleShape2D.new()
 	header_shape.size = grab_bar.get_rect().size
 	header_collider.shape = header_shape
 	header_collider.position = grab_bar.get_rect().get_center()
+	
+	move_area.area_entered.connect(_on_move_area_entered)
+	move_area.area_exited.connect(_on_move_area_exited)
 	
 	set_locked(is_locked)
 	set_children_visibility(false)
@@ -90,6 +88,7 @@ func enter() ->void:
 	
 	await enter_tween.finished
 	entered.emit()
+	move_area.set_collider_active(true)
 	set_children_visibility(true)
 
 func exit() ->void:
@@ -104,6 +103,7 @@ func exit() ->void:
 	
 	await exit_tween.finished
 	exited.emit()
+	move_area.set_collider_active(false)
 	hide()
 
 
@@ -183,17 +183,17 @@ func _on_grab_bar_exited() ->void:
 	grabbable = false
 
 
-func _on_move_area_entered(body: Node2D) -> void:
-	if body is Ball:
+func _on_move_area_entered(area:Area2D) -> void:
+	if area is FloorArea:
 		is_draggable = false
-		if body.z_index < z_index:
+		if area.ball.z_index < z_index:
 			set_translucent(true)
 		else:
 			ball_entered.emit()
-		print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", body.z_index)
+		print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", area.z_index)
 
-func _on_move_area_exited(body: Node2D) -> void:
-	if body is Ball:
+func _on_move_area_exited(area:Area2D) -> void:
+	if area is FloorArea:
 		is_draggable = true
 		set_translucent(false)
 		ball_exited.emit()

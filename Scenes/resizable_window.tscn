@@ -37,9 +37,11 @@ border_color = Color(1, 1, 1, 0)
 bg_color = Color(0.5273667, 0.5383662, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+resource_local_to_scene = true
 size = Vector2(255, 255)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rddhq"]
+resource_local_to_scene = true
 size = Vector2(250, 20)
 
 [sub_resource type="Animation" id="Animation_3mdtd"]
@@ -371,5 +373,3 @@ bus = &"SFX"
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="mouse_entered" from="PanelParent/VBoxContainer/GrabBar" to="." method="_on_grab_bar_entered"]
 [connection signal="mouse_exited" from="PanelParent/VBoxContainer/GrabBar" to="." method="_on_grab_bar_exited"]
-[connection signal="body_entered" from="MoveArea" to="." method="_on_move_area_entered"]
-[connection signal="body_exited" from="MoveArea" to="." method="_on_move_area_exited"]

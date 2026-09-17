@@ -39,9 +39,11 @@ texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+resource_local_to_scene = true
 size = Vector2(255, 255)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ywxx"]
+resource_local_to_scene = true
 size = Vector2(252, 40)
 
 [sub_resource type="Animation" id="Animation_3mdtd"]
@@ -271,5 +273,3 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="PanelParent/GrabBar" to="." method="_on_grab_bar_entered"]
 [connection signal="mouse_exited" from="PanelParent/GrabBar" to="." method="_on_grab_bar_exited"]
 [connection signal="tab_changed" from="PanelParent/TabBar" to="." method="_on_tab_changed"]
-[connection signal="body_entered" from="MoveArea" to="." method="_on_move_area_entered"]
-[connection signal="body_exited" from="MoveArea" to="." method="_on_move_area_exited"]

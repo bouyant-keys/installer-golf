@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://w3untexamaxw" path="res://Audio/Effects/Bounce1.wav" id="4_hk63f"]
 [ext_resource type="Script" uid="uid://d032g5t8ng063" path="res://Scripts/Ball/select_indicator.gd" id="5_o05bq"]
 [ext_resource type="AudioStream" uid="uid://byay5vrbkh1yq" path="res://Audio/Effects/Bounce2.wav" id="5_vm4s8"]
-[ext_resource type="Script" uid="uid://dk2vo6isxnugl" path="res://Scripts/Ball/start_area.gd" id="6_5wo4o"]
 [ext_resource type="AudioStream" uid="uid://b4omfdsru6vg0" path="res://Audio/Effects/BallLand1.wav" id="6_31idh"]
 [ext_resource type="AudioStream" uid="uid://qnq671u0r8g1" path="res://Audio/Effects/BallPutt-Mono.wav" id="6_cx4d7"]
 [ext_resource type="Texture2D" uid="uid://dct0yqyvq8cn1" path="res://Textures/InvalidIcon.png" id="6_q6iep"]
@@ -27,11 +26,11 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pb32r"]
 radius = 6.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hk63f"]
-radius = 6.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_aw2wy"]
 radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hk63f"]
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ag8"]
 radius = 2.0
@@ -476,17 +475,6 @@ invalid_indicator = ExtResource("6_q6iep")
 shape = SubResource("CircleShape2D_pb32r")
 debug_color = Color(0.98986727, 0, 0.29087272, 0.41960785)
 
-[node name="StartArea" type="Area2D" parent="." unique_id=1620432531]
-collision_layer = 0
-collision_mask = 20
-input_pickable = false
-monitorable = false
-script = ExtResource("6_5wo4o")
-
-[node name="StartCollider" type="CollisionShape2D" parent="StartArea" unique_id=1820756832]
-shape = SubResource("CircleShape2D_hk63f")
-debug_color = Color(0.7977969, 0.55623055, 0.29242224, 0.41960785)
-
 [node name="MouseArea" type="Area2D" parent="." unique_id=184957023]
 collision_layer = 128
 collision_mask = 0
@@ -497,9 +485,8 @@ debug_color = Color(0, 0.645624, 0.26275167, 0.41960785)
 
 [node name="FloorArea" type="Area2D" parent="." unique_id=1072711210]
 collision_layer = 0
-collision_mask = 9
+collision_mask = 13
 input_pickable = false
-monitorable = false
 script = ExtResource("8_s4llo")
 
 [node name="FloorAreaCollider" type="CollisionShape2D" parent="FloorArea" unique_id=520991856]
@@ -554,17 +541,13 @@ bus = &"BallSFX"
 
 [connection signal="draw_trajectory" from="." to="Trajectory" method="_enable_trajectory"]
 [connection signal="trajectory_changed" from="." to="Trajectory" method="_on_trajectory_changed"]
-[connection signal="body_entered" from="StartArea" to="StartArea" method="_on_body_entered"]
-[connection signal="body_exited" from="StartArea" to="StartArea" method="_on_body_exited"]
-[connection signal="invalid_spot" from="StartArea" to="." method="_on_invalid_spot"]
-[connection signal="invalid_spot" from="StartArea" to="SelectIndicator" method="_on_invalid_spot"]
-[connection signal="valid_spot" from="StartArea" to="." method="_on_valid_spot"]
-[connection signal="valid_spot" from="StartArea" to="SelectIndicator" method="_on_valid_spot"]
 [connection signal="mouse_entered" from="MouseArea" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseArea" to="." method="on_mouse_exited"]
-[connection signal="area_entered" from="FloorArea" to="FloorArea" method="_on_area_entered"]
-[connection signal="area_exited" from="FloorArea" to="FloorArea" method="_on_area_exited"]
 [connection signal="fell_out" from="FloorArea" to="." method="fall"]
 [connection signal="goal_entered" from="FloorArea" to="." method="_on_goal"]
+[connection signal="invalid_spot" from="FloorArea" to="." method="_on_invalid_spot"]
+[connection signal="invalid_spot" from="FloorArea" to="SelectIndicator" method="_on_invalid_spot"]
 [connection signal="new_current_window" from="FloorArea" to="." method="set_current_window"]
+[connection signal="valid_spot" from="FloorArea" to="." method="_on_valid_spot"]
+[connection signal="valid_spot" from="FloorArea" to="SelectIndicator" method="_on_valid_spot"]
 [connection signal="area_entered" from="FallArea" to="." method="_on_fall_area_entered"]

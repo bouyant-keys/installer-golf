@@ -1,0 +1,10 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://daqdhwkosgc7s"]
+
+[ext_resource type="Gradient" uid="uid://qnaklbenc2dn" path="res://Materials/BackgroundGradient.tres" id="1_tnwmy"]
+
+[resource]
+gradient = ExtResource("1_tnwmy")
+width = 32
+height = 16
+fill_from = Vector2(0.77991456, 0.17521368)
+repeat = 2

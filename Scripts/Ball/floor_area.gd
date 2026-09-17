@@ -1,6 +1,8 @@
 class_name FloorArea extends Area2D
 
 var in_windows : Array[WindowPanel]
+var in_obstacle := false
+var outside_window := false
 
 @onready var ball: Ball = $".."
 @onready var collider: CollisionShape2D = $FloorAreaCollider
@@ -9,16 +11,23 @@ signal new_current_window(window:WindowPanel)
 signal goal_entered
 signal fell_out
 
-#func _ready() -> void:
-	#set_area_enabled(false)
+signal valid_spot
+signal invalid_spot
+
+func _ready() -> void:
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
 
 func set_area_enabled(enabled:bool) ->void:
 	#print("!!!Floor area enabled: ", enabled)
 	collider.set_deferred("disabled", !enabled)
 
-func recheck_area() ->void:
-	#TODO Implement!
-	pass
+#func recheck_area() ->bool:
+	##TODO Implement!
+	#return get_overlapping_areas().size() > 0
 
 func add_to_window_list(window:WindowPanel) ->void:
 	if window == ball.get_current_window() or in_windows.has(window):
@@ -27,19 +36,39 @@ func add_to_window_list(window:WindowPanel) ->void:
 	in_windows.append(window)
 	#print(window.name + " added to in_windows. Size: ", in_windows.size())
 
-func check_valid_window() ->WindowPanel:
-	var enter_window : WindowPanel = null
-	# stupid way to access the window_manager but idrc
-	var overlap_windows := ball.window_manager.get_windows_at_position(global_position)
-	for window : WindowPanel in overlap_windows:
-		if !enter_window:
-			if window.z_index < z_index:
-				enter_window = window
-		else:
-			if window.z_index > enter_window.z_index and window.z_index < z_index:
-				enter_window = window
+func check_valid_window() ->int:
+	var valid := -1
 	
-	return enter_window
+	if in_windows.size() == 0:
+		return valid
+	
+	for i : int in in_windows.size():
+		var window := in_windows[i]
+		print(window.name, window.z_index)
+		if valid < 0:
+			if window.z_index < ball.z_index:
+				valid = i
+		else:
+			if window.z_index > in_windows[valid].z_index and window.z_index < ball.z_index:
+				valid = i
+	
+	return valid
+
+func check_valid_launch_spot() ->void:
+	if get_overlapping_areas().size() == 0:
+		invalid_spot.emit()
+		return
+	elif get_overlapping_bodies().size() > 0:
+		invalid_spot.emit()
+		return
+	valid_spot.emit()
+
+func update_valid_launch_spot() ->void:
+	print("heeeeeerrrrreeeeee!!!")
+	if in_obstacle or outside_window:
+		invalid_spot.emit()
+	else:
+		valid_spot.emit()
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -55,6 +84,8 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if !ball.get_current_window():
 		print("--hoohoo")
+		outside_window = false
+		update_valid_launch_spot()
 		new_current_window.emit(window)
 	else:
 		add_to_window_list(window)
@@ -72,15 +103,34 @@ func _on_area_exited(area: Area2D) -> void:
 	
 	if window == ball.get_current_window():
 		print("Exiting current window!!!")
-		var valid_window := check_valid_window()
-		if !valid_window:
-			fell_out.emit()
-			#fell_out = true
-			return
+		var valid_index := check_valid_window()
+		if valid_index < 0:
+			outside_window = true
+			if !ball.launched:
+				update_valid_launch_spot()
+				new_current_window.emit(null)
+			else:
+				fell_out.emit()
 		else:
+			var valid_window = in_windows.pop_at(valid_index)
 			new_current_window.emit(valid_window)
-			#in_windows.remove_at(0)
-			print(window.name + " set as current_window. in_windows size: ", in_windows.size())
+			print(valid_window.name + " set as current_window. in_windows size: ", in_windows.size())
 	else:
 		in_windows.erase(window)
 		print(window.name + " removed from in_windows. Size: ", in_windows.size())
+
+# Check for collision
+func _on_body_entered(_body: Node2D) -> void:
+	print("hoohoo?")
+	if ball.launched:
+		return
+	in_obstacle = true
+	print("body entered - in_obstacle: ", in_obstacle)
+	update_valid_launch_spot()
+
+func _on_body_exited(_body: Node2D) -> void:
+	if ball.launched:
+		return
+	in_obstacle = get_overlapping_bodies().size() > 0
+	print("body exited - in_obstacle: ", in_obstacle)
+	update_valid_launch_spot()

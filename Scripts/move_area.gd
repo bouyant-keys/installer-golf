@@ -3,7 +3,7 @@ class_name MoveArea extends Area2D
 @export var window_parent : WindowPanel
 @export var move_panel : PanelContainer
 
-@onready var move_collider: CollisionShape2D = %MoveCollider
+@onready var move_collider: CollisionShape2D = $MoveCollider
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +19,9 @@ func get_movable_area() ->Rect2:
 
 func get_collider_position() ->Vector2:
 	return move_collider.shape.get_rect().position + move_collider.global_position
+
+func set_collider_active(active:bool) ->void:
+	move_collider.set_deferred("disabled", !active)
 
 func fit_collider() ->void:
 	move_collider.global_position = move_panel.global_position + (move_panel.size / 2.0)

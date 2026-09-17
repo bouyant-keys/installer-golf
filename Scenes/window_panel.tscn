@@ -22,9 +22,11 @@ border_width_right = 3
 border_color = Color(1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+resource_local_to_scene = true
 size = Vector2(255, 255)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7oc2"]
+resource_local_to_scene = true
 size = Vector2(250, 20)
 
 [sub_resource type="Animation" id="Animation_3mdtd"]
@@ -189,9 +191,9 @@ window_parent = NodePath("..")
 move_panel = NodePath("../PanelParent/MovePanel")
 
 [node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
-unique_name_in_owner = true
 position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_pb32r")
+disabled = true
 
 [node name="HeaderObstacle" parent="." unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_5qd5b")]
 is_header = true
@@ -226,5 +228,3 @@ bus = &"SFX"
 
 [connection signal="mouse_entered" from="PanelParent/GrabBar" to="." method="_on_grab_bar_entered"]
 [connection signal="mouse_exited" from="PanelParent/GrabBar" to="." method="_on_grab_bar_exited"]
-[connection signal="body_entered" from="MoveArea" to="." method="_on_move_area_entered"]
-[connection signal="body_exited" from="MoveArea" to="." method="_on_move_area_exited"]
