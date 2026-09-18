@@ -6,6 +6,7 @@ const TITLE_FORMAT := "Installer"
 const TRANSLUCENT_VALUE : float = 0.2
 const ENTER_TIME := 0.4
 const EXIT_TIME := 0.4
+const BOUNCE_TIME := 0.25
 
 var is_selected := false
 var start_position : Vector2
@@ -133,6 +134,13 @@ func release() ->void:
 	
 	window_released.emit(self)
 
+func bounce(direction:Vector2, force:float) ->void:
+	var final_pos := global_position + (-direction * (force))
+	print("Force: ", force)
+	
+	panel_parent.global_position = final_pos
+	var bounce_tween := get_tree().create_tween()
+	bounce_tween.tween_property(panel_parent, "global_position", global_position, BOUNCE_TIME).set_trans(Tween.TRANS_BACK)
 
 func set_children_visibility(active:bool) ->void:
 	for child : Node in get_children():
@@ -169,18 +177,11 @@ func get_neighbouring_windows() ->Array[WindowPanel]:
 			neighbours.append(parent)
 	return neighbours
 
-func get_movable_area() ->Rect2:
-	return move_area.get_movable_area()
+func get_movable_area() ->Rect2: return move_area.get_movable_area()
+func get_move_area_position() ->Vector2: return move_area.get_collider_position()
 
-func get_move_area_position() ->Vector2:
-	return move_area.get_collider_position()
-
-
-func _on_grab_bar_entered() ->void:
-	grabbable = true
-
-func _on_grab_bar_exited() ->void:
-	grabbable = false
+func _on_grab_bar_entered() ->void: grabbable = true
+func _on_grab_bar_exited() ->void: grabbable = false
 
 
 func _on_move_area_entered(area:Area2D) -> void:

@@ -93,6 +93,9 @@ func get_window_color(index:int) ->Color:
 	#print("Index: ", index, ", Sample: ", gradient_sample)
 	return WINDOW_GRADIENT.gradient.sample(1.0 - gradient_sample)
 
+func _on_ball_bounced(collision:KinematicCollision2D) ->void:
+	pass
+
 func _on_window_grabbed(window:WindowPanel) ->void:
 	child_window_grabbed.emit(window)
 func _on_window_released(window:WindowPanel) ->void:

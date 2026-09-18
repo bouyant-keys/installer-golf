@@ -58,12 +58,15 @@ func _ready() -> void:
 	set_process(false)
 	set_physics_process(false)
 	
+	# Connect to ball:
 	window_manager.child_window_selected.connect(_on_window_selected)
 	window_manager.child_window_grabbed.connect(_on_window_grabbed)
 	window_manager.child_window_released.connect(_on_window_released)
 	window_manager.child_window_resize_start.connect(_on_window_resize_start)
 	window_manager.child_window_resized.connect(_on_window_resized)
 	window_manager.child_window_resize_end.connect(_on_window_resize_end)
+	
+	# Connect from ball:
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_pos = global_position
@@ -169,6 +172,7 @@ func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity)
 	if collision:
 		move_dir = move_dir.bounce(collision.get_normal())
+		get_current_window().bounce(collision.get_normal(), velocity.length())
 		on_bounce()
 
 

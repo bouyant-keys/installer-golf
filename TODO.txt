@@ -9,3 +9,19 @@ Sound effects to source:
 		ButtonPressed / Incorrect Sound
 	Ball:
 		Enter / Dropped in
+
+Conflict:
+	Spikes / damaging things?
+	Fall out areas
+	Path behind ball is dangerous, falling tiles type thing, tron
+	Timer, maybe over whole game? (a bit insane maybe)
+	Windows close after you leave them? Respawn on retry
+	Pinball bounce things that knock you out of the window
+	Air vents that launch you in a specific direction (maybe something more computery)
+	Electric / lazer wall barriers
+	
+	
+
+Fun things:
+	On collision inside a window, the window does a little knockback / bounce anim
+	Things to knock over / hit with the ball
