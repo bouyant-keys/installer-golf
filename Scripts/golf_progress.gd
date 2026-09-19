@@ -23,7 +23,7 @@ func _on_game_end() ->void:
 	progress_window.exit()
 
 func _on_stage_changed(index:int) ->void:
-	var progress_ratio := (index + 1) / float(stage_manager.stages.size())
+	var progress_ratio := 0.0 if index == 0 else (index + 1) / float(stage_manager.stages.size())
 	print(index, " - ", stage_manager.stages.size(), " - ", progress_ratio)
 	progress_text.text = TEXT_FORMAT % (progress_ratio * 100.0) 
 	golf_progress.value = index

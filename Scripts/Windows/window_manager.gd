@@ -3,6 +3,8 @@ class_name WindowManager extends Control
 const WINDOW_GRADIENT : GradientTexture1D = preload("uid://bwy0fxxdrdp17")#preload("uid://bicpm8unswqyx")
 const Z_OFFSET := 10
 
+@export var start_selected_window : WindowPanel
+
 var stage : Stage
 var windows : Array[WindowPanel]
 var selected_window : WindowPanel
@@ -39,6 +41,10 @@ func _ready() -> void:
 		var window := windows[i]
 		window.z_index = (i * Z_OFFSET)
 		window.modulate = get_window_color(i)
+	
+	# Set the selected window at the end of the _ready frame.
+	if start_selected_window:
+		start_selected_window.select.call_deferred()
 
 func _enter_windows() ->void:
 	for window in windows:
@@ -92,9 +98,6 @@ func get_window_color(index:int) ->Color:
 	var gradient_sample := index * (1/float(windows.size()-1))
 	#print("Index: ", index, ", Sample: ", gradient_sample)
 	return WINDOW_GRADIENT.gradient.sample(1.0 - gradient_sample)
-
-func _on_ball_bounced(collision:KinematicCollision2D) ->void:
-	pass
 
 func _on_window_grabbed(window:WindowPanel) ->void:
 	child_window_grabbed.emit(window)

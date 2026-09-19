@@ -10,14 +10,17 @@ const DISABLED_THEME_VARIATION := &"DisabledLabel"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	button_label.text = text
-	text = ""
 	selected_texture.hide()
+	set_button_text(text)
 	set_disabled_state(disabled)
 
 func set_disabled_state(disable:bool) ->void:
 	disabled = disable
 	button_label.theme_type_variation = DISABLED_THEME_VARIATION if disable else &""
+
+func set_button_text(new_text:String) ->void:
+	button_label.text = new_text
+	text = ""
 
 func _on_pressed() -> void:
 	if disabled:

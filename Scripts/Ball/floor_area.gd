@@ -121,7 +121,6 @@ func _on_area_exited(area: Area2D) -> void:
 
 # Check for collision
 func _on_body_entered(_body: Node2D) -> void:
-	print("hoohoo?")
 	if ball.launched:
 		return
 	in_obstacle = true

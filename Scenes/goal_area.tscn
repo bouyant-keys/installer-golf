@@ -12,45 +12,34 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlagSprite:position:x")
+tracks/0/path = NodePath("FlagSprite:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-15, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FlagSprite:position:y")
+tracks/1/path = NodePath("HoleSprite:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-15, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HoleSprite:scale:x")
+tracks/2/path = NodePath("FlagSprite:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlagSprite:scale:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1e-05, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.00016666668, -0.166665, 0, 0),
 "times": PackedFloat32Array(0)
 }
 
@@ -98,24 +87,13 @@ step = 0.05
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlagSprite:position:x")
+tracks/0/path = NodePath("FlagSprite:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-2, -0.25, 0, 0.25, 0, -2, -0.11666667, 0, 0, 0, -2, -0.25, 0, 0.25, 0, -2, -0.033333324, 0, 0, 0, -2, -0.025000017, 0, 0, 0, -2, -0.024999997, 0, 0, 0, -2, -0.016666671, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 0.9, 1.1375, 1.4250001, 1.575, 1.7750001)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlagSprite:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0, 0, 0, 2, 0),
-"points": PackedFloat32Array(-15, 0, 0, 0.0875, -5.9738026, -36, -0.13333334, 0, 0.16666666, 0, -14.730769, -0.07500005, -4.1360083, 0.0625, -3.4765892, -23.939241, -0.083333336, 0, 0.0916667, 0, -15, -0.037500024, -2.7742481, 0.037499905, -1.6036797, -18.78874, -0.049999993, 0, 0.066666685, 0, -15, -0.025000095, -1.0574131, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 0.9, 1.1375, 1.4250001, 1.575, 1.7750001)
+"points": PackedFloat32Array(-15, 0, 0, 0.05, -8.845612, -36, -0.2, 0, 0.2, 0, -14.730769, -0.07500005, -4.1360083, 0.0625, -3.4765892, -23.939241, -0.125, 0, 0.125, 0, -15, -0.037500024, -2.7742481, 0.037499905, -1.6036797, -18.78874, -0.07, 0, 0.07, 0, -15, -0.025000095, -1.0574131, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 0.9, 1.175, 1.4250001, 1.6, 1.7750001)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c5dij"]
@@ -135,14 +113,12 @@ script = ExtResource("1_xxatn")
 [node name="HoleSprite" type="Sprite2D" parent="." unique_id=1743296930]
 z_index = -1
 position = Vector2(-2, -15)
-scale = Vector2(1e-05, 1)
 texture = ExtResource("5_0mfu7")
 
 [node name="FlagSprite" type="Sprite2D" parent="." unique_id=712997904]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-2, -15)
-scale = Vector2(1, 1e-05)
 texture = ExtResource("6_ju4mi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]

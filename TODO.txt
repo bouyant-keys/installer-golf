@@ -12,7 +12,7 @@ Sound effects to source:
 
 Conflict:
 	Spikes / damaging things?
-	Fall out areas
+	X -- Fall out areas
 	Path behind ball is dangerous, falling tiles type thing, tron
 	Timer, maybe over whole game? (a bit insane maybe)
 	Windows close after you leave them? Respawn on retry
@@ -25,3 +25,5 @@ Conflict:
 Fun things:
 	On collision inside a window, the window does a little knockback / bounce anim
 	Things to knock over / hit with the ball
+
+!!Figure out what to do when ball enters a window into a collider!!

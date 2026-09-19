@@ -20,10 +20,9 @@ var mouse_drag := false
 var click_pos : Vector2
 var frozen := false
 var launched := false
-var can_launch := true # Disabled if ball entered in collision shape.
+var can_launch := false # Disabled if ball entered in collision shape.
 var resizing := false
 
-@export var start_window : WindowPanel
 @export var window_manager : WindowManager
 @export var enter_on_load := true
 
@@ -88,6 +87,7 @@ func enter() ->void:
 
 ## Played when ball falls outside a window into the background.
 func fall() ->void:
+	current_window = null
 	velocity = Vector2.ZERO
 	set_collision_active(false)
 	set_process(false)
@@ -288,6 +288,7 @@ func _on_stage_reset() ->void:
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
 	global_position = start_pos
+	z_index = 100
 	set_collision_active(false)
 	
 	await get_tree().process_frame
