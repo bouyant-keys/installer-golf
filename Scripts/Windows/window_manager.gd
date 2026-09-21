@@ -6,6 +6,7 @@ const Z_OFFSET := 10
 @export var start_selected_window : WindowPanel
 
 var stage : Stage
+var ball_window : WindowPanel
 var windows : Array[WindowPanel]
 var selected_window : WindowPanel
 var selected_index : int
@@ -69,11 +70,8 @@ func get_windows_at_position(at:Vector2) ->Array[WindowPanel]:
 	return wins
 
 func _on_current_window_changed(c_window:WindowPanel) ->void:
-	for window : WindowPanel in windows:
-		if window == c_window:
-			window.ball_entered.emit()
-		else:
-			window.ball_exited.emit()
+	ball_window = c_window
+	update_translucent_windows()
 
 # Use array where index indicates z_index - higher position = upper z leyer/index
 # When a window is selected, move it to the end / highest point of the list & update z_indices for windows list.
@@ -93,6 +91,7 @@ func _on_window_selected(s_window:WindowPanel) ->void:
 			selected_window = window
 	
 	child_window_selected.emit(s_window)
+	update_translucent_windows()
 
 func get_window_color(index:int) ->Color:
 	var gradient_sample := index * (1/float(windows.size()-1))
@@ -109,6 +108,14 @@ func _on_window_resized(window:ResizableWindow) ->void:
 	child_window_resized.emit(window)
 func _on_window_resize_end(window:ResizableWindow) ->void:
 	child_window_resize_end.emit(window)
+
+func update_translucent_windows() ->void:
+	if !ball_window:
+		for window : WindowPanel in windows:
+			window.set_translucent(false)
+	else:
+		for window : WindowPanel in windows:
+			window.set_translucent(window.z_index > ball_window.z_index)
 
 func _on_stage_reset() ->void:
 	for window in windows:

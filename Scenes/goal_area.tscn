@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbb8x7y3ud6b8" path="res://Textures/goal_flag3.png" id="6_ju4mi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d37dp"]
-size = Vector2(14, 6)
+size = Vector2(18, 9)
 
 [sub_resource type="Animation" id="Animation_ju4mi"]
 length = 0.001
@@ -122,7 +122,7 @@ position = Vector2(-2, -15)
 texture = ExtResource("6_ju4mi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-position = Vector2(0, 1)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_d37dp")
 debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 

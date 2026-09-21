@@ -32,6 +32,7 @@ func _ready() -> void:
 	if next_button:
 		next_button.pressed.connect(_on_next_pressed)
 	
+	ball.ball_stopped.connect(_on_ball_stopped)
 	
 	reset.connect(ball._on_stage_reset)
 	reset.connect(window_manager._on_stage_reset)
@@ -50,12 +51,18 @@ func stage_setup() ->void:
 	if !goal_area.is_intro_level:
 		enter_goal.emit()
 
+func unload_stage() ->void:
+	exit_windows.emit()
+
 func reset_stage() ->void:
 	print("Resetting Stage.")
 	reset.emit()
 
-func unload_stage() ->void:
-	exit_windows.emit()
+
+func _on_ball_stopped() ->void:
+	# Highlight retry button
+	retry_button.hover_enter()
+	retry_button.self_modulate = Color.RED
 
 func _on_next_pressed() ->void:
 	enter_ball.emit()

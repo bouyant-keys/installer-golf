@@ -18,28 +18,28 @@
 [ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="11_aqfne"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="12_l7gib"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_dk475"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_aqfne"]
 script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dk475"]
+script = ExtResource("9_d37dp")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wtuk1"]
-script = ExtResource("9_d37dp")
+script = ExtResource("7_r0k7y")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_0bgy0"]
-script = ExtResource("7_r0k7y")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_mhug8"]
 script = ExtResource("11_aqfne")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_t4tqi"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_mhug8"]
 script = ExtResource("8_l7gib")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_ounnh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_t4tqi"]
 script = ExtResource("9_d37dp")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_aanrh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ounnh"]
 script = ExtResource("7_r0k7y")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_myuwy"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_aanrh"]
 script = ExtResource("11_aqfne")
 
 [sub_resource type="Gradient" id="Gradient_l7gib"]
@@ -102,7 +102,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0"), SubResource("RichTextEffect_mhug8")]
+custom_effects = [SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0")]
 script = ExtResource("9_gbh5r")
 
 [node name="TutorialWindow" parent="WindowManager" unique_id=197544508 instance=ExtResource("3_0svxb")]
@@ -138,7 +138,7 @@ This wizard will guide the installation of [sine][sparkle weight=2.0 color=rebec
 To continue, click [color=blue]Next[/color]."
 fit_content = true
 scroll_active = false
-custom_effects = [SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh"), SubResource("RichTextEffect_myuwy")]
+custom_effects = [SubResource("RichTextEffect_mhug8"), SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh")]
 script = ExtResource("9_gbh5r")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 

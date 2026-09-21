@@ -3,11 +3,15 @@ extends TextureRect
 const BACKGROUND_TEXTURE = preload("uid://daqdhwkosgc7s")
 const BACKGROUND_GRADIENT = preload("uid://qnaklbenc2dn")
 const COLOR_TWEEN_TIME := 6.0
+const SPEED := 1.0
 
 var bg_texture : GradientTexture2D
 var bg_gradient : Gradient
 var first_color_lerp : Vector2i
 var second_color_lerp : Vector2i
+var grad_origin : Vector2
+var grad_angle := 0.0
+var grad_radius := 0.1
 var loop_idx := 0
 
 @export var color_loop : PackedColorArray
@@ -21,8 +25,14 @@ func _ready() -> void:
 	
 	first_color_lerp = Vector2i(loop_idx, posmod(loop_idx+1, color_loop.size()))
 	second_color_lerp = Vector2i(posmod(loop_idx+1, color_loop.size()), posmod(loop_idx+2, color_loop.size()))
+	grad_origin = bg_texture.fill_from
 	print(first_color_lerp, "\n", second_color_lerp)
 	tween_color()
+
+func _process(delta: float) -> void:
+	grad_angle += delta * SPEED
+	var new_fill := Vector2(cos(grad_angle), sin(grad_angle)) * grad_radius
+	bg_texture.fill_from = grad_origin + new_fill
 
 func tween_color() ->void:
 	var gradient_tween := get_tree().create_tween()

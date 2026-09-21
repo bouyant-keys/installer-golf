@@ -10,6 +10,7 @@ var outside_window := false
 signal new_current_window(window:WindowPanel)
 signal goal_entered
 signal fell_out
+signal stuck
 
 signal valid_spot
 signal invalid_spot
@@ -25,9 +26,20 @@ func set_area_enabled(enabled:bool) ->void:
 	#print("!!!Floor area enabled: ", enabled)
 	collider.set_deferred("disabled", !enabled)
 
-#func recheck_area() ->bool:
-	##TODO Implement!
-	#return get_overlapping_areas().size() > 0
+func recheck_current_window() ->WindowPanel:
+	in_windows.clear()
+	
+	var areas := get_overlapping_areas()
+	for area in areas:
+		if area is MoveArea:
+			in_windows.append(area.window_parent)
+	
+	var valid_idx := check_valid_window()
+	if valid_idx < 0:
+		printerr("fuck")
+		return null
+	
+	return in_windows.pop_at(valid_idx)
 
 func add_to_window_list(window:WindowPanel) ->void:
 	if window == ball.get_current_window() or in_windows.has(window):
@@ -64,7 +76,6 @@ func check_valid_launch_spot() ->void:
 	valid_spot.emit()
 
 func update_valid_launch_spot() ->void:
-	print("heeeeeerrrrreeeeee!!!")
 	if in_obstacle or outside_window:
 		invalid_spot.emit()
 	else:
@@ -120,16 +131,18 @@ func _on_area_exited(area: Area2D) -> void:
 		print(window.name + " removed from in_windows. Size: ", in_windows.size())
 
 # Check for collision
-func _on_body_entered(_body: Node2D) -> void:
-	if ball.launched:
-		return
+func _on_body_entered(body: Node2D) -> void:
 	in_obstacle = true
-	print("body entered - in_obstacle: ", in_obstacle)
-	update_valid_launch_spot()
-
-func _on_body_exited(_body: Node2D) -> void:
+	print("body entered: ", body.name, " - in_obstacle: ", in_obstacle)
+	
 	if ball.launched:
-		return
+		stuck.emit()
+	else:
+		update_valid_launch_spot()
+
+func _on_body_exited(body: Node2D) -> void:
 	in_obstacle = get_overlapping_bodies().size() > 0
-	print("body exited - in_obstacle: ", in_obstacle)
-	update_valid_launch_spot()
+	print("body exited: ", body.name, " - in_obstacle: ", in_obstacle)
+	
+	if !ball.launched:
+		update_valid_launch_spot()

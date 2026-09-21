@@ -3,7 +3,7 @@ class_name WindowPanel extends Control
 const BOUNDS_NUDGE_MIN := Vector2(4.0, 24.0)
 const BOUNDS_NUDGE_MAX := Vector2(64.0, 24.0)
 const TITLE_FORMAT := "Installer"
-const TRANSLUCENT_VALUE : float = 0.2
+const TRANSLUCENT_VALUE : float = 0.4
 const ENTER_TIME := 0.4
 const EXIT_TIME := 0.4
 const BOUNCE_TIME := 0.25
@@ -17,13 +17,20 @@ var grabbable := false
 var dragging := false
 var minimized := false
 
+## Allow window to enter on stage start when called by the Window Manager. (Otherwise enter() must be called from somewhere else)
 @export var enter_on_start := true
+## Show lock icon on window grab bar & prevent window moving with clicking & dragging the mouse.
 @export var is_locked := false
+## [Unused] Set move_panel & its contents as hidden / disabled.
 @export var is_minimized := false
+## Text to use as window title inside the grab bar.
 @export var title_text : String
+## Color for grab bar background
 @export var grab_bar_color : Color = Color(0.0, 0.0, 0.502)
+## Allow window to be closed with the 'X' button in the left-corner.
 @export var closable := false
-## Control nodes that are activated / deactivated on tab change, index = tab index
+## Ignore being set a translucent when ball is beneath window z_index.
+@export var keep_opaque := false
 
 @onready var panel_parent: Control = %PanelParent # Node that is tweened on enter / exit
 @onready var grab_bar: PanelContainer = %GrabBar
@@ -142,6 +149,7 @@ func bounce(direction:Vector2, force:float) ->void:
 	var bounce_tween := get_tree().create_tween()
 	bounce_tween.tween_property(panel_parent, "global_position", global_position, BOUNCE_TIME).set_trans(Tween.TRANS_BACK)
 
+
 func set_children_visibility(active:bool) ->void:
 	for child : Node in get_children():
 		if child is StaticObstacle:
@@ -150,6 +158,9 @@ func set_children_visibility(active:bool) ->void:
 			child.visible = active
 		elif child is Control:
 			child.visible = active
+
+func set_translucent(active:bool) ->void:
+	modulate.a = TRANSLUCENT_VALUE if active and !keep_opaque else 1.0
 
 func set_z_order(z:int) ->void:
 	z_index = z
@@ -180,34 +191,24 @@ func get_neighbouring_windows() ->Array[WindowPanel]:
 func get_movable_area() ->Rect2: return move_area.get_movable_area()
 func get_move_area_position() ->Vector2: return move_area.get_collider_position()
 
+
 func _on_grab_bar_entered() ->void: grabbable = true
 func _on_grab_bar_exited() ->void: grabbable = false
 
 
 func _on_move_area_entered(area:Area2D) -> void:
-	if area is FloorArea:
-		is_draggable = false
-		if area.ball.z_index < z_index:
-			set_translucent(true)
-		else:
-			ball_entered.emit()
-		print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", area.z_index)
+	if area is not FloorArea:
+		return
+	is_draggable = false
+	ball_entered.emit()
+	print("Ball entered ", name, ", WindowZ: ", z_index, ", BallZ: ", area.z_index)
 
 func _on_move_area_exited(area:Area2D) -> void:
-	if area is FloorArea:
-		is_draggable = true
-		set_translucent(false)
-		ball_exited.emit()
-		print("Ball exited ", name, ", is_draggable: ", is_draggable)
-
-
-func _on_visibility_changed() ->void:
-	move_area.monitorable = visible
-	move_area.monitoring = visible
-
-func set_translucent(active:bool) ->void:
-	print("Setting Translucent!!")
-	modulate.a = TRANSLUCENT_VALUE if active else 1.0
+	if area is not FloorArea:
+		return
+	is_draggable = true
+	ball_exited.emit()
+	print("Ball exited ", name, ", is_draggable: ", is_draggable)
 
 func _reset() ->void:
 	global_position = start_position

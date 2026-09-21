@@ -30,7 +30,7 @@ radius = 6.0
 radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hk63f"]
-radius = 6.0
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ag8"]
 radius = 2.0
@@ -418,6 +418,44 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_q6iep"]
+resource_name = "stuck"
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BallSprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.95, -0.06666666, 0, 0.116666675, 0, 1.0986067, -0.06666666, 0, 0.06666666, 0, 0.9, -0.03333333, 0, 0.06666666, 0, 1.2, -0.050000004, 0, 0.03333333, 0, 0.8, 0, 0, 0.050000004, 0, 2, -0.050000004, 0, 0.03333333, 0),
+"times": PackedFloat32Array(0.2, 0.39999998, 0.59999996, 0.7, 0.84999996, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BallSprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.9499821, -0.06666666, 0, 0.116666675, 0, 1.1, -0.06666666, 0, 0.06666666, 0, 0.9, -0.03333333, 0, 0.06666666, 0, 1.2, -0.050000004, 0, 0.03333333, 0, 0.8, 0, 0, 0.050000004, 0, 2, -0.050000004, 0, 0.03333333, 0),
+"times": PackedFloat32Array(0.2, 0.39999998, 0.59999996, 0.7, 0.84999996, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BallSprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aw2wy"]
 _data = {
 &"RESET": SubResource("Animation_376qj"),
@@ -425,14 +463,17 @@ _data = {
 &"exit": SubResource("Animation_hk63f"),
 &"fall": SubResource("Animation_vblhy"),
 &"goal": SubResource("Animation_yk4cr"),
-&"land": SubResource("Animation_31idh")
+&"land": SubResource("Animation_31idh"),
+&"stuck": SubResource("Animation_q6iep")
 }
 
 [node name="Ball" type="CharacterBody2D" unique_id=1966659767]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 4
+collision_priority = 10.0
 motion_mode = 1
+safe_margin = 0.001
 script = ExtResource("1_ij5cq")
 
 [node name="MouseCursorControl" type="Control" parent="." unique_id=766626699]
@@ -520,6 +561,7 @@ bus = &"BallSFX"
 
 [node name="RollingSFX" type="AudioStreamPlayer" parent="." unique_id=138910009]
 stream = ExtResource("6_vm4s8")
+volume_db = -6.0
 bus = &"BallSFX"
 
 [node name="LandSFX" type="AudioStreamPlayer" parent="." unique_id=1181401523]
@@ -539,6 +581,10 @@ bus = &"BallSFX"
 stream = ExtResource("6_vblhy")
 bus = &"BallSFX"
 
+[node name="StuckSFX" type="AudioStreamPlayer" parent="." unique_id=522627467]
+stream = ExtResource("6_vblhy")
+bus = &"BallSFX"
+
 [connection signal="draw_trajectory" from="." to="Trajectory" method="_enable_trajectory"]
 [connection signal="trajectory_changed" from="." to="Trajectory" method="_on_trajectory_changed"]
 [connection signal="mouse_entered" from="MouseArea" to="." method="on_mouse_entered"]
@@ -548,6 +594,7 @@ bus = &"BallSFX"
 [connection signal="invalid_spot" from="FloorArea" to="." method="_on_invalid_spot"]
 [connection signal="invalid_spot" from="FloorArea" to="SelectIndicator" method="_on_invalid_spot"]
 [connection signal="new_current_window" from="FloorArea" to="." method="set_current_window"]
+[connection signal="stuck" from="FloorArea" to="." method="stuck"]
 [connection signal="valid_spot" from="FloorArea" to="." method="_on_valid_spot"]
 [connection signal="valid_spot" from="FloorArea" to="SelectIndicator" method="_on_valid_spot"]
 [connection signal="area_entered" from="FallArea" to="." method="_on_fall_area_entered"]

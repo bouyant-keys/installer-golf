@@ -344,7 +344,6 @@ offset_bottom = 264.0
 is_locked = true
 title_text = "InstructWindow"
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
-closable = true
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=253360308]
 layout_mode = 1

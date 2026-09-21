@@ -20,9 +20,9 @@ func _ready() -> void:
 	bbcode_enabled = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
-	if is_text_obstacle:
+	if is_text_obstacle and !text.contains("cuss"):
 		text = OBSTACLE_FORMAT % text
-	elif is_fall_obstacle:
+	elif is_fall_obstacle and !text.contains("fallout"):
 		text = FALL_FORMAT % text
 
 func enter_text() ->void:

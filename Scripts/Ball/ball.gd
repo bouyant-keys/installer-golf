@@ -37,6 +37,7 @@ var resizing := false
 @onready var enter_sfx: AudioStreamPlayer = $EnterSFX
 @onready var exit_sfx: AudioStreamPlayer = $ExitSFX
 @onready var fall_sfx: AudioStreamPlayer = $FallSFX
+@onready var stuck_sfx: AudioStreamPlayer = $StuckSFX
 
 @onready var ball_collider: CollisionShape2D = $BallCollider
 @onready var mouse_area_collider: CollisionShape2D = $MouseArea/MouseAreaCollider
@@ -49,6 +50,7 @@ signal direction_changed(at_pos:Vector2)
 signal ball_launched
 signal ball_stopped
 signal ball_entered
+signal ball_stuck
 signal ball_fell
 signal ball_exited
 
@@ -85,14 +87,32 @@ func enter() ->void:
 	set_physics_process(true)
 	ball_entered.emit()
 
-## Played when ball falls outside a window into the background.
+## Played when ball finds itself stuck inside a collision obstacle and must reset.
+func stuck() ->void:
+	print("Ball Stuck")
+	set_current_window(null)
+	velocity = Vector2.ZERO
+	set_collision_active(false)
+	set_process(false)
+	set_physics_process(false)
+	anim.play("stuck")
+	rolling_sfx.stop()
+	stuck_sfx.play()
+	
+	await anim.animation_finished
+	ball_stuck.emit()
+	_on_stage_reset()
+
+## Played when ball falls outside a window into the background and must reset.
 func fall() ->void:
-	current_window = null
+	print("Ball Fell")
+	set_current_window(null)
 	velocity = Vector2.ZERO
 	set_collision_active(false)
 	set_process(false)
 	set_physics_process(false)
 	anim.play("fall")
+	rolling_sfx.stop()
 	fall_sfx.play()
 	
 	await anim.animation_finished
@@ -102,6 +122,7 @@ func fall() ->void:
 ## Played when ball reaches the goal.
 func exit() ->void:
 	anim.play("exit")
+	rolling_sfx.stop()
 	exit_sfx.play()
 	ball_exited.emit()
 	
@@ -119,6 +140,10 @@ func _input(event: InputEvent) -> void:
 		draw_trajectory.emit(true)
 		get_viewport().set_input_as_handled()
 	elif event.is_action_released("LeftClick") && mouse_drag:
+		if !get_current_window():
+			var new_window := floor_area.recheck_current_window()
+			set_current_window(new_window)
+		
 		mouse_drag = false
 		var launch_dir := -(get_global_mouse_position() - click_pos)
 		if abs(launch_dir) < DRAG_MIN:
@@ -133,6 +158,7 @@ func _input(event: InputEvent) -> void:
 		launched = true
 		draw_trajectory.emit(false)
 		launch_sfx.play()
+		rolling_sfx.play()
 		ball_launched.emit()
 
 
@@ -160,7 +186,10 @@ func _physics_process(delta: float) -> void:
 	# Calculate ball's next position from their speed & direction
 	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
 	if is_zero_approx(current_speed):
+		print("Ball stopped!")
+		rolling_sfx.stop()
 		ball_stopped.emit()
+		set_process(false)
 	
 	var current_velocity := move_dir * current_speed * delta
 	
@@ -169,17 +198,47 @@ func _physics_process(delta: float) -> void:
 	local_position += current_velocity
 	global_position = local_position + move_rect.position
 	
-	var collision := move_and_collide(velocity)
-	if collision:
-		move_dir = move_dir.bounce(collision.get_normal())
-		get_current_window().bounce(collision.get_normal(), velocity.length())
-		on_bounce()
+	handle_collision(move_and_collide(velocity))
+
+
+func handle_collision(collision:KinematicCollision2D) ->void:
+	if !collision: return
+	#var ball_shape := ball_collider.shape as CircleShape2D
+	#
+	#var is_inside_collider := false
+	#var coll_shape := collision.get_collider_shape()
+	#if coll_shape is CollisionShape2D:
+		## Assume all CollisionShape2Ds are rectangles, maybe add functionality for circles at some point
+		#var shape_rect : Rect2 = coll_shape.shape.get_rect()
+		#shape_rect.position += coll_shape.global_position # Make shape use global coords
+		#
+		##print("Inside CollisionShape2D: ", shape_rect.has_point(global_position),' ', global_position, ' ', shape_rect)
+		#
+	#elif coll_shape is CollisionPolygon2D:
+		#var polygon : PackedVector2Array = coll_shape.polygon
+		## Make polygon use global coords
+		#for point:Vector2 in polygon:
+			#point += coll_shape.global_position
+			#var dist := global_position - point
+			#is_inside_collider = dist.length() < ball_shape.radius
+			#
+			#if is_inside_collider:
+				#print("Inside CollisionPolygon2D: true!")
+				#coll_shape.set_deferred("disabled", true)
+				#velocity = dist.normalized() * velocity.length()
+				#break
+	
+	move_dir = move_dir.bounce(collision.get_normal())
+	get_current_window().bounce(collision.get_normal(), velocity.length())
+	on_bounce()
 
 
 func get_current_window() ->WindowPanel:
 	return current_window
 
 func set_current_window(window:WindowPanel) ->void:
+	print("SetCurrentWindow: ", window)
+	
 	if !window:
 		current_window = null
 		current_window_changed.emit(null)
@@ -266,7 +325,7 @@ func _on_window_resized(_window:WindowPanel) ->void:
 func _on_window_resize_end(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
-	resizing =false
+	resizing = false
 	frozen = false
 	set_collision_active(true)
 #endregion
