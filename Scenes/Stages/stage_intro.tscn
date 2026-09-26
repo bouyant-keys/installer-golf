@@ -44,14 +44,15 @@ script = ExtResource("11_aqfne")
 
 [sub_resource type="Gradient" id="Gradient_l7gib"]
 
-[node name="StageIntro" type="Node" unique_id=1335873284 node_paths=PackedStringArray("back_button", "retry_button", "next_button")]
+[node name="StageIntro" type="Node" unique_id=1335873284]
 script = ExtResource("1_50pyf")
-back_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/BackButton")
-retry_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/RetryButton")
-next_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/NextButton")
 
-[node name="IntroDetails" type="Node" parent="." unique_id=645503964]
+[node name="IntroDetails" type="Node" parent="." unique_id=645503964 node_paths=PackedStringArray("ball", "goal", "popup_window", "start_button")]
 script = ExtResource("2_1u51f")
+ball = NodePath("../Ball")
+goal = NodePath("../WindowManager/PopupWindow/GoalArea")
+popup_window = NodePath("../WindowManager/PopupWindow")
+start_button = NodePath("../WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton")
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274]
 unique_name_in_owner = true
@@ -159,22 +160,10 @@ layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="BackButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("10_l7gib")]
+[node name="StartButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=927349371 instance=ExtResource("10_l7gib")]
 layout_mode = 2
 mouse_filter = 1
-disabled = true
-text = "< Back"
-
-[node name="RetryButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=1875645985 instance=ExtResource("10_l7gib")]
-layout_mode = 2
-mouse_filter = 1
-text = "Retry"
-
-[node name="NextButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=927349371 instance=ExtResource("10_l7gib")]
-layout_mode = 2
-mouse_filter = 1
-disabled = true
-text = "Next >"
+text = "Start"
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("12_l7gib")]
 gradient = SubResource("Gradient_l7gib")
@@ -195,5 +184,4 @@ script = ExtResource("8_r0k7y")
 ball = NodePath("../Ball")
 
 [connection signal="goal" from="WindowManager/PopupWindow/GoalArea" to="Ball" method="_on_goal"]
-[connection signal="pressed" from="WindowManager/TutorialWindow/NavPanel/HBoxContainer/RetryButton" to="IntroDetails" method="_on_retry_button_pressed"]
-[connection signal="pressed" from="WindowManager/TutorialWindow/NavPanel/HBoxContainer/NextButton" to="WindowManager/PopupWindow" method="enter"]
+[connection signal="pressed" from="WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton" to="IntroDetails" method="_on_start_button_pressed"]

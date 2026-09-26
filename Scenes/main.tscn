@@ -19,8 +19,10 @@
 [ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="14_pdsj5"]
 [ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="15_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="15_gt3je"]
+[ext_resource type="StyleBox" uid="uid://cjn0cldoh8uwe" path="res://Materials/Win95Styles/W95-NavigationPanel.tres" id="16_7k868"]
 [ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="16_gt3je"]
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="17_3pmx8"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="17_hpc6h"]
 [ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="18_u50mg"]
 [ext_resource type="Texture2D" uid="uid://cpu3pfkjj3ik" path="res://Textures/ProgressBar_Fill.png" id="19_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://brthw6d14jtye" path="res://Textures/ProgressBar_Over.png" id="20_1w6v2"]
@@ -29,16 +31,16 @@
 [ext_resource type="PackedScene" uid="uid://c6rq1p2orb0lh" path="res://Scenes/Stages/stage_4b.tscn" id="23_u50mg"]
 [ext_resource type="PackedScene" uid="uid://def1nsq77r85n" path="res://Scenes/Stages/stage_4c.tscn" id="24_cbgmd"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_7k868"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_kltya"]
 script = ExtResource("14_pdsj5")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_hpc6h"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_e08e2"]
 script = ExtResource("15_ee4r6")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_kltya"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_neg2b"]
 script = ExtResource("16_gt3je")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_e08e2"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_r33sp"]
 script = ExtResource("11_6vcvc")
 
 [node name="Main" type="Node" unique_id=1067694015]
@@ -77,7 +79,7 @@ layout_mode = 1
 offset_left = 826.0
 offset_top = 513.0
 offset_right = 1086.0
-offset_bottom = 579.0
+offset_bottom = 598.0
 enter_on_start = false
 is_locked = true
 title_text = "GolfProgress"
@@ -103,7 +105,7 @@ text = "Installation Progress......000.0%"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_7k868"), SubResource("RichTextEffect_hpc6h"), SubResource("RichTextEffect_kltya"), SubResource("RichTextEffect_e08e2")]
+custom_effects = [SubResource("RichTextEffect_kltya"), SubResource("RichTextEffect_e08e2"), SubResource("RichTextEffect_neg2b"), SubResource("RichTextEffect_r33sp")]
 script = ExtResource("17_3pmx8")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -112,8 +114,9 @@ unique_name_in_owner = true
 texture_repeat = 2
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-size_flags_vertical = 8
-value = 100.0
+size_flags_vertical = 4
+step = 0.1
+value = 18.0
 nine_patch_stretch = true
 stretch_margin_left = 3
 stretch_margin_top = 3
@@ -137,10 +140,46 @@ patch_margin_right = 3
 patch_margin_bottom = 3
 axis_stretch_horizontal = 2
 
-[node name="StageManager" type="Node" parent="." unique_id=232984876]
+[node name="NavPanel" type="PanelContainer" parent="GolfProgress/ProgressWindow" unique_id=1943825319]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("16_7k868")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GolfProgress/ProgressWindow/NavPanel" unique_id=1112374651]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="BackButton" parent="GolfProgress/ProgressWindow/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("17_hpc6h")]
+layout_mode = 2
+mouse_filter = 1
+disabled = true
+text = "< Back"
+
+[node name="RetryButton" parent="GolfProgress/ProgressWindow/NavPanel/HBoxContainer" unique_id=554753382 instance=ExtResource("17_hpc6h")]
+layout_mode = 2
+mouse_filter = 1
+text = "Retry"
+
+[node name="NextButton" parent="GolfProgress/ProgressWindow/NavPanel/HBoxContainer" unique_id=1890128094 instance=ExtResource("17_hpc6h")]
+layout_mode = 2
+mouse_filter = 1
+disabled = true
+text = "Next >"
+
+[node name="StageManager" type="Node" parent="." unique_id=232984876 node_paths=PackedStringArray("back_button", "retry_button", "next_button")]
 script = ExtResource("1_bo1nx")
-start_stage = 1
 stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e"), ExtResource("11_6iyac"), ExtResource("23_u50mg"), ExtResource("24_cbgmd"), ExtResource("11_d1ilt")])
+back_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/BackButton")
+retry_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/RetryButton")
+next_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/NextButton")
 
 [node name="Software" parent="." unique_id=1147250097 instance=ExtResource("23_gt3je")]
 visible = false
@@ -149,30 +188,5 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1781052190]
-visible = false
-
-[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=153318304]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -65.0
-offset_bottom = 31.0
-grow_horizontal = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-text = "Restart"
-
-[node name="NextButton" type="Button" parent="CanvasLayer" unique_id=299846337]
-offset_right = 92.0
-offset_bottom = 31.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-text = "Next Stage"
-
 [connection signal="game_end" from="StageManager" to="Software" method="enter"]
 [connection signal="game_start" from="StageManager" to="MusicManager" method="play_loop_music"]
-[connection signal="pressed" from="CanvasLayer/ResetButton" to="StageManager" method="_on_reset_pressed"]
-[connection signal="pressed" from="CanvasLayer/NextButton" to="StageManager" method="on_next_stage"]

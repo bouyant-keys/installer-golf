@@ -6,15 +6,13 @@ const BALL_ENTER_WAIT := 0.5
 const GOAL_ENTER_WAIT := 0.5
 
 signal reset
-signal next_stage
+signal stage_goal
 signal enter_windows
 signal exit_windows
 signal enter_ball
 signal enter_goal
+signal ball_stopped
 
-@export var back_button : UIButton
-@export var retry_button : UIButton
-@export var next_button : UIButton
 @export var next_stage_on_goal := true
 
 @onready var ball: Ball = %Ball
@@ -23,15 +21,6 @@ signal enter_goal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if back_button:
-		back_button.pressed.connect(_on_back_pressed)
-	
-	if retry_button:
-		retry_button.pressed.connect(reset_stage)
-	
-	if next_button:
-		next_button.pressed.connect(_on_next_pressed)
-	
 	ball.ball_stopped.connect(_on_ball_stopped)
 	
 	reset.connect(ball._on_stage_reset)
@@ -60,16 +49,7 @@ func reset_stage() ->void:
 
 
 func _on_ball_stopped() ->void:
-	# Highlight retry button
-	retry_button.hover_enter()
-	retry_button.self_modulate = Color.RED
-
-func _on_next_pressed() ->void:
-	enter_ball.emit()
-	enter_goal.emit()
-
-func _on_back_pressed() ->void:
-	reset_stage()
+	ball_stopped.emit()
 
 func _on_goal() ->void:
 	if !next_stage_on_goal:
@@ -78,4 +58,4 @@ func _on_goal() ->void:
 	await get_tree().create_timer(GOAL_WAIT_TIME).timeout
 	unload_stage()
 	await get_tree().create_timer(WindowPanel.EXIT_TIME + 0.3).timeout
-	next_stage.emit()
+	stage_goal.emit()

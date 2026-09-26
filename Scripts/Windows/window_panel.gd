@@ -69,8 +69,8 @@ func _ready() -> void:
 	header_collider.shape = header_shape
 	header_collider.position = grab_bar.get_rect().get_center()
 	
-	move_area.area_entered.connect(_on_move_area_entered)
-	move_area.area_exited.connect(_on_move_area_exited)
+	#move_area.area_entered.connect(_on_move_area_entered)
+	#move_area.area_exited.connect(_on_move_area_exited)
 	
 	set_locked(is_locked)
 	set_children_visibility(false)
@@ -179,14 +179,14 @@ func toggle_minimized() ->void:
 	move_area.monitoring = !minimized
 
 
-func get_neighbouring_windows() ->Array[WindowPanel]:
-	var neighbours : Array[WindowPanel]
-	var areas := move_area.get_overlapping_areas()
-	for area in areas:
-		var parent := area.get_parent()
-		if parent is WindowPanel:
-			neighbours.append(parent)
-	return neighbours
+#func get_neighbouring_windows() ->Array[WindowPanel]:
+	#var neighbours : Array[WindowPanel]
+	#var areas := move_area.get_overlapping_areas()
+	#for area in areas:
+		#var parent := area.get_parent()
+		#if parent is WindowPanel:
+			#neighbours.append(parent)
+	#return neighbours
 
 func get_movable_area() ->Rect2: return move_area.get_movable_area()
 func get_move_area_position() ->Vector2: return move_area.get_collider_position()
@@ -195,6 +195,11 @@ func get_move_area_position() ->Vector2: return move_area.get_collider_position(
 func _on_grab_bar_entered() ->void: grabbable = true
 func _on_grab_bar_exited() ->void: grabbable = false
 
+func _on_current_window(c_window:WindowPanel) ->void:
+	if c_window == self:
+		ball_entered.emit()
+	else:
+		ball_exited.emit()
 
 func _on_move_area_entered(area:Area2D) -> void:
 	if area is not FloorArea:

@@ -12,69 +12,61 @@
 [ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="8_cricu"]
 [ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="8_errxf"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="8_qj42i"]
-[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="9_badjb"]
-[ext_resource type="StyleBox" uid="uid://cjn0cldoh8uwe" path="res://Materials/Win95Styles/W95-NavigationPanel.tres" id="9_cricu"]
 [ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="9_koh33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_badjb"]
 size = Vector2(192, 11)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_koh33"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_cricu"]
 script = ExtResource("6_yc0xt")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_errxf"]
+script = ExtResource("7_badjb")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_koh33"]
+script = ExtResource("8_errxf")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_4kirv"]
-script = ExtResource("7_badjb")
+script = ExtResource("9_koh33")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_j5xoq"]
-script = ExtResource("8_errxf")
+script = ExtResource("6_yc0xt")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_e5cs4"]
-script = ExtResource("9_koh33")
+script = ExtResource("7_badjb")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_fejfy"]
-script = ExtResource("6_yc0xt")
+script = ExtResource("8_errxf")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_6q0rr"]
-script = ExtResource("7_badjb")
+script = ExtResource("9_koh33")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_pf0nq"]
-script = ExtResource("8_errxf")
+script = ExtResource("6_yc0xt")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_kpph3"]
-script = ExtResource("9_koh33")
+script = ExtResource("7_badjb")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_k8ifm"]
-script = ExtResource("6_yc0xt")
+script = ExtResource("8_errxf")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_jeba4"]
-script = ExtResource("7_badjb")
+script = ExtResource("9_koh33")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_tnk4u"]
-script = ExtResource("8_errxf")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_wc27k"]
-script = ExtResource("9_koh33")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_jaxb0"]
 script = ExtResource("6_yc0xt")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_6tod8"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_wc27k"]
 script = ExtResource("7_badjb")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_uxe7h"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_jaxb0"]
 script = ExtResource("8_errxf")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_s7aqg"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_6tod8"]
 script = ExtResource("9_koh33")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kokmf"]
-size = Vector2(257.5, 24)
-
-[node name="Stage1c" type="Node" unique_id=1335873284 node_paths=PackedStringArray("back_button", "retry_button", "next_button")]
+[node name="Stage1c" type="Node" unique_id=1335873284]
 script = ExtResource("1_ar4qg")
-back_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/BackButton")
-retry_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/RetryButton")
-next_button = NodePath("WindowManager/TutorialWindow/NavPanel/HBoxContainer/NextButton")
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274 node_paths=PackedStringArray("start_selected_window")]
 unique_name_in_owner = true
@@ -132,7 +124,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_koh33"), SubResource("RichTextEffect_4kirv"), SubResource("RichTextEffect_j5xoq"), SubResource("RichTextEffect_e5cs4")]
+custom_effects = [SubResource("RichTextEffect_cricu"), SubResource("RichTextEffect_errxf"), SubResource("RichTextEffect_koh33"), SubResource("RichTextEffect_4kirv")]
 script = ExtResource("8_cricu")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
@@ -158,7 +150,7 @@ text = "[cuss]Text Text Text Text Text Text[/cuss]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_fejfy"), SubResource("RichTextEffect_6q0rr"), SubResource("RichTextEffect_pf0nq"), SubResource("RichTextEffect_kpph3")]
+custom_effects = [SubResource("RichTextEffect_j5xoq"), SubResource("RichTextEffect_e5cs4"), SubResource("RichTextEffect_fejfy"), SubResource("RichTextEffect_6q0rr")]
 script = ExtResource("8_cricu")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
@@ -208,7 +200,7 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_k8ifm"), SubResource("RichTextEffect_jeba4"), SubResource("RichTextEffect_tnk4u"), SubResource("RichTextEffect_wc27k")]
+custom_effects = [SubResource("RichTextEffect_pf0nq"), SubResource("RichTextEffect_kpph3"), SubResource("RichTextEffect_k8ifm"), SubResource("RichTextEffect_jeba4")]
 script = ExtResource("8_cricu")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -228,12 +220,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -21.0
-offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 28
+theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
@@ -246,49 +236,9 @@ text = "The ball can enter any window it [color=blue][u]lands on top[/u][/color]
 Reorder windows by selecting them."
 fit_content = true
 scroll_active = false
-custom_effects = [SubResource("RichTextEffect_jaxb0"), SubResource("RichTextEffect_6tod8"), SubResource("RichTextEffect_uxe7h"), SubResource("RichTextEffect_s7aqg")]
+custom_effects = [SubResource("RichTextEffect_tnk4u"), SubResource("RichTextEffect_wc27k"), SubResource("RichTextEffect_jaxb0"), SubResource("RichTextEffect_6tod8")]
 script = ExtResource("8_cricu")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="NavPanel" type="PanelContainer" parent="WindowManager/TutorialWindow" unique_id=1431317754]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -28.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("9_cricu")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/TutorialWindow/NavPanel" unique_id=1455851355]
-layout_mode = 2
-alignment = 2
-
-[node name="BackButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=41542465 instance=ExtResource("9_badjb")]
-layout_mode = 2
-mouse_filter = 1
-disabled = true
-text = "< Back"
-
-[node name="RetryButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=2022801342 instance=ExtResource("9_badjb")]
-layout_mode = 2
-mouse_filter = 1
-text = "Retry"
-
-[node name="NextButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=367943258 instance=ExtResource("9_badjb")]
-layout_mode = 2
-mouse_filter = 1
-text = "Next >"
-
-[node name="StaticObstacle" parent="WindowManager/TutorialWindow" unique_id=2003030086 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_k1g6b")]
-parent_window = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/TutorialWindow/StaticObstacle" unique_id=534363244]
-position = Vector2(129.25, 91)
-shape = SubResource("RectangleShape2D_kokmf")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("7_1pups")]
 stage = NodePath("..")

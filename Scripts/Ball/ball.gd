@@ -200,37 +200,16 @@ func _physics_process(delta: float) -> void:
 	
 	handle_collision(move_and_collide(velocity))
 
-
 func handle_collision(collision:KinematicCollision2D) ->void:
 	if !collision: return
-	#var ball_shape := ball_collider.shape as CircleShape2D
-	#
-	#var is_inside_collider := false
-	#var coll_shape := collision.get_collider_shape()
-	#if coll_shape is CollisionShape2D:
-		## Assume all CollisionShape2Ds are rectangles, maybe add functionality for circles at some point
-		#var shape_rect : Rect2 = coll_shape.shape.get_rect()
-		#shape_rect.position += coll_shape.global_position # Make shape use global coords
-		#
-		##print("Inside CollisionShape2D: ", shape_rect.has_point(global_position),' ', global_position, ' ', shape_rect)
-		#
-	#elif coll_shape is CollisionPolygon2D:
-		#var polygon : PackedVector2Array = coll_shape.polygon
-		## Make polygon use global coords
-		#for point:Vector2 in polygon:
-			#point += coll_shape.global_position
-			#var dist := global_position - point
-			#is_inside_collider = dist.length() < ball_shape.radius
-			#
-			#if is_inside_collider:
-				#print("Inside CollisionPolygon2D: true!")
-				#coll_shape.set_deferred("disabled", true)
-				#velocity = dist.normalized() * velocity.length()
-				#break
 	
 	move_dir = move_dir.bounce(collision.get_normal())
 	get_current_window().bounce(collision.get_normal(), velocity.length())
-	on_bounce()
+	direction_changed.emit(global_position)
+	
+	if randf() > 0.5: bounce_sfx.play()
+	else: bounce_sfx_2.play()
+	
 
 
 func get_current_window() ->WindowPanel:
@@ -260,14 +239,6 @@ func set_collision_active(active:bool) ->void:
 	ball_collider.set_deferred("disabled", !active)
 	mouse_area_collider.set_deferred("disabled", !active)
 	fall_area_collider.set_deferred("disabled", !active)
-
-func on_bounce() ->void:
-	if randf() > 0.5:
-		bounce_sfx.play()
-	else:
-		bounce_sfx_2.play()
-	
-	direction_changed.emit(global_position)
 
 
 func _on_valid_spot() ->void: 
@@ -335,6 +306,7 @@ func _on_goal() ->void:
 	current_speed = 0.0
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
+	set_physics_process(false)
 	floor_area.set_area_enabled(false)
 	exit()
 

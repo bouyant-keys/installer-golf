@@ -7,6 +7,7 @@ const DISABLED_THEME_VARIATION := &"DisabledLabel"
 @onready var hover_sfx: AudioStreamPlayer = $HoverSFX
 @onready var pressed_sfx: AudioStreamPlayer = $PressedSFX
 @onready var disabled_sfx: AudioStreamPlayer = $"Disabled SFX"
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,12 @@ func set_disabled_state(disable:bool) ->void:
 func set_button_text(new_text:String) ->void:
 	button_label.text = new_text
 	text = ""
+
+func set_button_blink(blink:bool) ->void:
+	if blink:
+		anim.play("blink")
+	else:
+		anim.play("RESET")
 
 func _on_pressed() -> void:
 	if disabled:

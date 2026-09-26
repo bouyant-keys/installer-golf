@@ -525,7 +525,7 @@ shape = SubResource("CircleShape2D_aw2wy")
 debug_color = Color(0, 0.645624, 0.26275167, 0.41960785)
 
 [node name="FloorArea" type="Area2D" parent="." unique_id=1072711210]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 13
 input_pickable = false
 script = ExtResource("8_s4llo")

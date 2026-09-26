@@ -7,10 +7,12 @@ var relative_position : Vector2
 @export var parent_window : WindowPanel
 @export var is_intro_level := false
 @export var is_final_level := false
+@export var tab_id := -1
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mouse_press_sfx: AudioStreamPlayer = $MousePressSFX
 @onready var goal_sfx: AudioStreamPlayer = $GoalSFX
+@onready var collider: CollisionShape2D = $CollisionShape2D
 
 signal goal
 
@@ -26,6 +28,10 @@ func _ready() -> void:
 	parent_window.reordered.connect(_on_window_reordered)
 	parent_window.window_released.connect(_on_window_released)
 	parent_window.resized.connect(_on_window_resized)
+	
+	if parent_window is TabWindow:
+		parent_window.window_tab_changed.connect(_on_window_tab_changed)
+	
 	hide()
 	
 	if !is_intro_level:
@@ -46,6 +52,9 @@ func _on_body_entered(body: Node2D) -> void:
 	goal_sfx.play()
 	
 	goal.emit()
+
+func _on_window_tab_changed(index:int) ->void:
+	collider.set_deferred("disabled", index != tab_id)
 
 func _on_window_reordered(z:int) ->void:
 	z_index = z
