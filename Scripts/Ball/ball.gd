@@ -320,6 +320,7 @@ func _on_stage_reset() ->void:
 	move_dir = Vector2.ZERO
 	global_position = start_pos
 	z_index = 100
+	rolling_sfx.stop()
 	set_collision_active(false)
 	
 	await get_tree().process_frame

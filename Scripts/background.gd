@@ -34,6 +34,10 @@ func _process(delta: float) -> void:
 	var new_fill := Vector2(cos(grad_angle), sin(grad_angle)) * grad_radius
 	bg_texture.fill_from = grad_origin + new_fill
 
+
+func _on_game_start() ->void:
+	pass
+
 func tween_color() ->void:
 	var gradient_tween := get_tree().create_tween()
 	gradient_tween.tween_method(set_gradient_color, 0.0, 1.0, COLOR_TWEEN_TIME)

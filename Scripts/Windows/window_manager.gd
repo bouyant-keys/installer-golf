@@ -13,6 +13,7 @@ var selected_index : int
 
 signal windows_entered
 signal windows_exited
+signal new_current_window(window:WindowPanel)
 signal child_window_selected(window:WindowPanel)
 signal child_window_grabbed(window:WindowPanel)
 signal child_window_released(window:WindowPanel)
@@ -32,6 +33,7 @@ func _ready() -> void:
 			child.window_selected.connect(_on_window_selected)
 			child.window_grabbed.connect(_on_window_grabbed)
 			child.window_released.connect(_on_window_released)
+			new_current_window.connect(child._on_new_current_window)
 			if child is ResizableWindow:
 				child.window_resize_start.connect(_on_window_resize_start)
 				child.window_resized.connect(_on_window_resized)
@@ -72,6 +74,7 @@ func get_windows_at_position(at:Vector2) ->Array[WindowPanel]:
 func _on_current_window_changed(c_window:WindowPanel) ->void:
 	ball_window = c_window
 	update_translucent_windows()
+	new_current_window.emit(ball_window)
 
 # Use array where index indicates z_index - higher position = upper z leyer/index
 # When a window is selected, move it to the end / highest point of the list & update z_indices for windows list.

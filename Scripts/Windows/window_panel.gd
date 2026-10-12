@@ -195,7 +195,7 @@ func get_move_area_position() ->Vector2: return move_area.get_collider_position(
 func _on_grab_bar_entered() ->void: grabbable = true
 func _on_grab_bar_exited() ->void: grabbable = false
 
-func _on_current_window(c_window:WindowPanel) ->void:
+func _on_new_current_window(c_window:WindowPanel) ->void:
 	if c_window == self:
 		ball_entered.emit()
 	else:

@@ -47,8 +47,9 @@ script = ExtResource("11_aqfne")
 [node name="StageIntro" type="Node" unique_id=1335873284]
 script = ExtResource("1_50pyf")
 
-[node name="IntroDetails" type="Node" parent="." unique_id=645503964 node_paths=PackedStringArray("ball", "goal", "popup_window", "start_button")]
+[node name="IntroDetails" type="Node" parent="." unique_id=645503964 node_paths=PackedStringArray("stage", "ball", "goal", "popup_window", "start_button")]
 script = ExtResource("2_1u51f")
+stage = NodePath("..")
 ball = NodePath("../Ball")
 goal = NodePath("../WindowManager/PopupWindow/GoalArea")
 popup_window = NodePath("../WindowManager/PopupWindow")
@@ -72,6 +73,7 @@ offset_top = 110.0
 offset_bottom = 238.0
 enter_on_start = false
 is_locked = true
+title_text = "!! ERROR !!"
 
 [node name="GoalArea" parent="WindowManager/PopupWindow" unique_id=1905208525 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_di2nh")]
 unique_name_in_owner = true

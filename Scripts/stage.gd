@@ -5,6 +5,8 @@ const WINDOWS_ENTER_WAIT := 0.5
 const BALL_ENTER_WAIT := 0.5
 const GOAL_ENTER_WAIT := 0.5
 
+signal golf_start
+signal golf_end
 signal reset
 signal stage_goal
 signal enter_windows
@@ -47,9 +49,12 @@ func reset_stage() ->void:
 	print("Resetting Stage.")
 	reset.emit()
 
+## Only called in intro_stage
+func _on_golf_start() ->void: golf_start.emit()
+## Only called in outro_stage
+func _on_golf_end() ->void: golf_end.emit()
 
-func _on_ball_stopped() ->void:
-	ball_stopped.emit()
+func _on_ball_stopped() ->void: ball_stopped.emit()
 
 func _on_goal() ->void:
 	if !next_stage_on_goal:

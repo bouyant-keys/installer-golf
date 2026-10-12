@@ -1,5 +1,6 @@
 class_name StageManager extends Node
 
+var game_started := false
 var stage_index := 0
 var current_stage : Stage
 var stage_completion : Array[bool]
@@ -29,12 +30,17 @@ func _ready() -> void:
 			current_stage = child as Stage
 	
 	await get_tree().process_frame
-	game_start.emit()
 	load_stage(start_stage)
 
-func on_start_game() ->void:
+func _on_golf_start() ->void:
+	if game_started:
+		return
+	
+	game_started = true
 	game_start.emit()
-	load_stage(0)
+
+func _on_golf_end() ->void:
+	game_end.emit()
 
 func load_stage(index:int) ->void:
 	print("Moving to stage: ", index+2)
@@ -47,6 +53,8 @@ func load_stage(index:int) ->void:
 	current_stage = stages[stage_index].instantiate() as Stage
 	current_stage.stage_goal.connect(_on_stage_goal)
 	current_stage.ball_stopped.connect(_on_stage_ball_stopped)
+	current_stage.golf_start.connect(_on_golf_start)
+	current_stage.golf_end.connect(_on_golf_end)
 	add_child(current_stage)
 	
 	# Update back / next buttons

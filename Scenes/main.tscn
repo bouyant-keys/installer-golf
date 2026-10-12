@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://bdxvugp312r4y"]
 
+[ext_resource type="AudioStream" uid="uid://cebdxoum8a68g" path="res://Audio/Music/MTH - Theory of Everything - Loop.wav" id="1_6vcvc"]
 [ext_resource type="Script" uid="uid://ckgvmal0b24pq" path="res://Scripts/stage_manager.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://cub0p1kpghjrp" path="res://Scripts/music_manager.gd" id="2_ee4r6"]
 [ext_resource type="Texture2D" uid="uid://daqdhwkosgc7s" path="res://Materials/BackgroundTexture.tres" id="3_1w6v2"]
 [ext_resource type="PackedScene" uid="uid://d1buugb3r4gds" path="res://Scenes/Stages/stage_1b.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://1t76go3vobwn" path="res://Scenes/Stages/stage_intro.tscn" id="3_d1ilt"]
-[ext_resource type="AudioStream" uid="uid://dh804biyfsbx0" path="res://Audio/Music/Space Jazz.mp3" id="3_gt3je"]
-[ext_resource type="AudioStream" uid="uid://14gn5yim5wki" path="res://Audio/Music/SpaceJazz_Edit.wav" id="3_ueoa1"]
 [ext_resource type="PackedScene" uid="uid://cxh5vyrlc73fi" path="res://Scenes/Stages/stage_1c.tscn" id="4_kry3j"]
 [ext_resource type="Script" uid="uid://dyi61mso686ns" path="res://Scripts/background.gd" id="4_ueoa1"]
 [ext_resource type="PackedScene" uid="uid://d474cuvo331o" path="res://Scenes/Stages/stage_2.tscn" id="5_21xkr"]
@@ -46,10 +45,10 @@ script = ExtResource("11_6vcvc")
 [node name="Main" type="Node" unique_id=1067694015]
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="." unique_id=889445563]
-stream = ExtResource("3_gt3je")
+stream = ExtResource("1_6vcvc")
 bus = &"Music"
 script = ExtResource("2_ee4r6")
-loop_music = ExtResource("3_ueoa1")
+loop_music = ExtResource("1_6vcvc")
 
 [node name="Background" type="TextureRect" parent="." unique_id=504675902]
 z_index = -20
