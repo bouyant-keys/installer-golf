@@ -1,0 +1,364 @@
+[gd_scene format=3 uid="uid://bqdqqox65p4lg"]
+
+[ext_resource type="Script" uid="uid://dpyofxhlsxjrk" path="res://Scripts/stage.gd" id="1_jk1k0"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/Windows/window_manager.gd" id="2_7kvc5"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="3_rval4"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="6_rujyf"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="7_51hg1"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="8_swmwn"]
+[ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="9_q4odx"]
+[ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="10_w8y3u"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="11_jtp6t"]
+[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="12_tia0s"]
+[ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="13_egfr0"]
+[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="14_jg37q"]
+[ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="15_dqitm"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_h47ca"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_l1co8"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jk1k0"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7kvc5"]
+script = ExtResource("10_w8y3u")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu1i"]
+size = Vector2(66, 11.625)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rval4"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8q3j8"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uktnw"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rujyf"]
+script = ExtResource("10_w8y3u")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_51hg1"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_swmwn"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_q4odx"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_w8y3u"]
+script = ExtResource("10_w8y3u")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jtp6t"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tia0s"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_egfr0"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jg37q"]
+script = ExtResource("10_w8y3u")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
+size = Vector2(130, 11)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dqitm"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_h2h8h"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lobjq"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sdev3"]
+script = ExtResource("10_w8y3u")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fegbu"]
+script = ExtResource("7_51hg1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mmq8p"]
+script = ExtResource("8_swmwn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xov5u"]
+script = ExtResource("9_q4odx")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7403v"]
+script = ExtResource("10_w8y3u")
+
+[node name="Stage1d" type="Node" unique_id=1335873284]
+script = ExtResource("1_jk1k0")
+
+[node name="WindowManager" type="Control" parent="." unique_id=1863376274 node_paths=PackedStringArray("start_selected_window")]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("2_7kvc5")
+start_selected_window = NodePath("StartWindow")
+
+[node name="TutorialWindow" parent="WindowManager" unique_id=110952682 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 140.0
+offset_top = 142.0
+offset_right = 363.0
+offset_bottom = 264.0
+is_locked = true
+grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=253360308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=1606848939]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Some windows can be moved by dragging their [color=blue][sine]blue title bar[/sine][/color].
+
+A lock icon means that they're stuck in place"
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_h47ca"), SubResource("RichTextEffect_l1co8"), SubResource("RichTextEffect_jk1k0"), SubResource("RichTextEffect_7kvc5")]
+script = ExtResource("11_jtp6t")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="MoveWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 516.0
+offset_top = 243.0
+offset_right = 628.0
+offset_bottom = 325.0
+title_text = &"Movable"
+
+[node name="StaticObstacle" parent="WindowManager/MoveWindow" unique_id=861870886 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow/StaticObstacle" unique_id=1809442227]
+position = Vector2(57, 15.1875)
+shape = SubResource("RectangleShape2D_5wu1i")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/MoveWindow" unique_id=2060849148]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 8.0
+offset_right = 35.0
+offset_bottom = 24.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaa[/cuss]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_rval4"), SubResource("RichTextEffect_8q3j8"), SubResource("RichTextEffect_uktnw"), SubResource("RichTextEffect_rujyf")]
+script = ExtResource("11_jtp6t")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="MoveWindow2" parent="WindowManager" unique_id=626908439 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 515.0
+offset_top = 352.0
+offset_right = 627.0
+offset_bottom = 434.0
+title_text = &"Movable"
+
+[node name="StaticObstacle" parent="WindowManager/MoveWindow2" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow2/StaticObstacle" unique_id=713368263]
+position = Vector2(57, 55.1875)
+shape = SubResource("RectangleShape2D_5wu1i")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/MoveWindow2" unique_id=708323223]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 48.0
+offset_right = 35.0
+offset_bottom = 64.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaa[/cuss]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_51hg1"), SubResource("RichTextEffect_swmwn"), SubResource("RichTextEffect_q4odx"), SubResource("RichTextEffect_w8y3u")]
+script = ExtResource("11_jtp6t")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="MoveWindow3" parent="WindowManager" unique_id=1946830391 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 515.0
+offset_top = 463.0
+offset_right = 627.0
+offset_bottom = 545.0
+title_text = &"Movable"
+
+[node name="StaticObstacle" parent="WindowManager/MoveWindow3" unique_id=174808376 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow3/StaticObstacle" unique_id=1979847113]
+position = Vector2(57, 15.1875)
+shape = SubResource("RectangleShape2D_5wu1i")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="TextObstacle" type="RichTextLabel" parent="WindowManager/MoveWindow3" unique_id=435012787]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 8.0
+offset_right = 35.0
+offset_bottom = 24.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaa[/cuss]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_jtp6t"), SubResource("RichTextEffect_tia0s"), SubResource("RichTextEffect_egfr0"), SubResource("RichTextEffect_jg37q")]
+script = ExtResource("11_jtp6t")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 680.0
+offset_top = 320.0
+offset_right = 872.0
+offset_bottom = 448.0
+window_icon = 1
+is_locked = true
+title_text = &"HoleFour"
+
+[node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 instance=ExtResource("12_tia0s")]
+unique_name_in_owner = true
+position = Vector2(139, 82)
+
+[node name="StaticObstacle" parent="WindowManager/GoalWindow" unique_id=1458297171 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
+parent_window = NodePath("..")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1402622830]
+polygon = PackedVector2Array(26, 6, 26, 17, 126, 18, 126, 33, 153, 33, 153, 49, 184, 48, 184, 5)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=951147266]
+position = Vector2(119, 114.5)
+shape = SubResource("RectangleShape2D_yt5sl")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=1454783512]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -166.0
+offset_top = 4.0
+offset_right = -7.0
+offset_bottom = 52.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss][cuss]Text Text Text Text Text
+Text Text
+Text.[/cuss][/cuss]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+custom_effects = [SubResource("RichTextEffect_dqitm"), SubResource("RichTextEffect_h2h8h"), SubResource("RichTextEffect_lobjq"), SubResource("RichTextEffect_sdev3")]
+script = ExtResource("11_jtp6t")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=892945468]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -21.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss][cuss]Text Text Text Text.[/cuss][/cuss]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_fegbu"), SubResource("RichTextEffect_mmq8p"), SubResource("RichTextEffect_xov5u"), SubResource("RichTextEffect_7403v")]
+script = ExtResource("11_jtp6t")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("3_rval4")]
+layout_mode = 1
+offset_left = 316.0
+offset_top = 320.0
+offset_right = 464.0
+offset_bottom = 448.0
+is_locked = true
+
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("13_egfr0")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("14_jg37q")]
+unique_name_in_owner = true
+position = Vector2(390, 376)
+window_manager = NodePath("../WindowManager")
+
+[node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]
+visible = false
+z_index = 20
+script = ExtResource("15_dqitm")
+ball = NodePath("../Ball")
+
+[connection signal="goal" from="WindowManager/GoalWindow/GoalArea" to="Ball" method="_on_goal"]

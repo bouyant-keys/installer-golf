@@ -20,6 +20,7 @@ signal window_resize_end(window:ResizableWindow)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	window_icon = ICON_TYPE.RESIZABLE
 	super()
 	reset_to_size = size
 
@@ -75,6 +76,7 @@ func _gui_input(event: InputEvent) -> void:
 		resizeX = false
 		resizeY = false
 		isResizing = false
+		move_area.fit_collider()
 		window_resize_end.emit(self)
 
 
@@ -105,9 +107,10 @@ func resize_window() ->void:
 	set_size(Vector2(newWidth, newHeight))
 
 func _on_resized() ->void:
+	print("--_on_resize")
 	move_area.fit_collider()
-	header_collider.shape.size = grab_bar.get_rect().size
-	header_collider.position = grab_bar.get_rect().get_center()
+	#header_collider.shape.size = grab_bar.get_rect().size
+	#header_collider.position = grab_bar.get_rect().get_center()
 	window_resized.emit(self)
 	
 

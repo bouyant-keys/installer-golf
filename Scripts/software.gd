@@ -1,19 +1,12 @@
-extends Node
+extends Stage
 
-@onready var window: WindowPanel = $Window
-
-signal replay
-signal quit
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-func enter() ->void:
-	window.enter()
+@onready var software_window: WindowPanel = %SoftwareWindow
 
 func _on_replay_button_pressed() -> void:
-	replay.emit()
+	# Load first level, last + 1 = 0.
+	stage_goal.emit()
 
 func _on_quit_button_pressed() -> void:
-	quit.emit()
+	ball.fall()
+	await software_window.exit()
+	get_tree().quit()

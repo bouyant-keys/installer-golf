@@ -16,6 +16,7 @@ signal window_tab_changed(index:int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	window_icon = ICON_TYPE.TAB
 	super()
 	tab_bar.clear_tabs()
 	selected_tab = start_tab

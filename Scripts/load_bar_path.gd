@@ -12,9 +12,9 @@ var fading := false
 func _ready() -> void:
 	stage.reset.connect(_reset)
 	ball.ball_launched.connect(_on_ball_launched)
+	ball.ball_stopped.connect(_reset)
 	ball.ball_fell.connect(_reset)
 	set_process(false)
-	#ball.direction_changed.connect(_on_ball_direction_changed)
 
 func _process(_delta: float) -> void:
 	z_index = ball.z_index

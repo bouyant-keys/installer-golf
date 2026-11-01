@@ -56,12 +56,14 @@ func check_valid_window() ->int:
 	
 	for i : int in in_windows.size():
 		var window := in_windows[i]
-		print(window.name, window.z_index)
+		# Skip windows 'above' the ball -- only drop onto windows below.
+		#if window.z_index > ball.z_index:
+			#continue
+		
 		if valid < 0:
-			if window.z_index < ball.z_index:
-				valid = i
+			valid = i
 		else:
-			if window.z_index > in_windows[valid].z_index and window.z_index < ball.z_index:
+			if window.z_index > in_windows[valid].z_index:
 				valid = i
 	
 	return valid
@@ -94,7 +96,6 @@ func _on_area_entered(area: Area2D) -> void:
 	var window := move_area.get_window_panel()
 	
 	if !ball.get_current_window():
-		print("--hoohoo")
 		outside_window = false
 		update_valid_launch_spot()
 		new_current_window.emit(window)

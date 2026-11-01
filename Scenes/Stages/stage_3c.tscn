@@ -13,83 +13,97 @@
 [ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="6_yjjlv"]
 [ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="7_w1d6m"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="9_jr1no"]
-[ext_resource type="Texture2D" uid="uid://b7xg14xg21lye" path="res://Textures/Triangle.png" id="11_yjjlv"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="13_w1d6m"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_yjjlv"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_wmtur"]
 script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_w1d6m"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yjjlv"]
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_jr1no"]
-script = ExtResource("5_wmtur")
+script = ExtResource("7_w1d6m")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_mjopg"]
-script = ExtResource("6_yjjlv")
+script = ExtResource("4_pwc3j")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_vppor"]
-script = ExtResource("7_w1d6m")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
-size = Vector2(192, 25)
+script = ExtResource("5_wmtur")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_v8ma0"]
-script = ExtResource("4_pwc3j")
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_yldto"]
-script = ExtResource("5_wmtur")
+script = ExtResource("7_w1d6m")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_vrx0h"]
-script = ExtResource("6_yjjlv")
+script = ExtResource("4_pwc3j")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_tg5p4"]
-script = ExtResource("7_w1d6m")
+script = ExtResource("5_wmtur")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_1via2"]
-script = ExtResource("4_pwc3j")
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_8sl2p"]
-script = ExtResource("5_wmtur")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_qwspk"]
-script = ExtResource("6_yjjlv")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_m2fg6"]
 script = ExtResource("7_w1d6m")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg58c"]
-size = Vector2(271.25, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23tjd"]
-size = Vector2(256, 42)
+size = Vector2(13, 219)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua45a"]
-size = Vector2(223, 26)
+[sub_resource type="RichTextEffect" id="RichTextEffect_qwspk"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_m2fg6"]
+script = ExtResource("5_wmtur")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_m173k"]
-script = ExtResource("4_pwc3j")
+script = ExtResource("6_yjjlv")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_uaecy"]
-script = ExtResource("5_wmtur")
+script = ExtResource("7_w1d6m")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_ffu34"]
-script = ExtResource("6_yjjlv")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_fmj7f"]
-script = ExtResource("7_w1d6m")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_kifkx"]
 script = ExtResource("4_pwc3j")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_b2get"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_fmj7f"]
 script = ExtResource("5_wmtur")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_qwd2q"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_kifkx"]
 script = ExtResource("6_yjjlv")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_yvvm5"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_b2get"]
 script = ExtResource("7_w1d6m")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu1i"]
-size = Vector2(92, 42)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmtur"]
+size = Vector2(79, 11.25)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qwd2q"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yvvm5"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7arhk"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_vx8q3"]
+script = ExtResource("7_w1d6m")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r0yba"]
+script = ExtResource("4_pwc3j")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jkl8j"]
+script = ExtResource("5_wmtur")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_k56jn"]
+script = ExtResource("6_yjjlv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_smpb3"]
+script = ExtResource("7_w1d6m")
 
 [node name="Stage3c" type="Node" unique_id=1335873284]
 script = ExtResource("1_3bg3k")
@@ -101,51 +115,14 @@ anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("2_jaqf8")
 
-[node name="StartWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_uc388")]
-layout_mode = 1
-offset_left = 280.0
-offset_top = 224.0
-offset_right = 472.0
-offset_bottom = 352.0
-is_locked = true
-
-[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/StartWindow" unique_id=1564017204]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.5
-offset_top = -23.0
-offset_right = 90.5
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-bbcode_enabled = true
-text = "Text Text Text Text Text"
-custom_effects = [SubResource("RichTextEffect_yjjlv"), SubResource("RichTextEffect_jr1no"), SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor")]
-script = ExtResource("6_w1d6m")
-is_text_obstacle = true
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="StaticObstacle" parent="WindowManager/StartWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_hc4to")]
-parent_window = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/StartWindow/StaticObstacle" unique_id=266495847]
-position = Vector2(96, 114.5)
-shape = SubResource("RectangleShape2D_yt5sl")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
 [node name="TabWindow" parent="WindowManager" unique_id=1220463745 node_paths=PackedStringArray("tab_controls") instance=ExtResource("5_jaqf8")]
 layout_mode = 1
-offset_left = 464.0
-offset_top = 192.0
-offset_right = 736.0
-offset_bottom = 640.0
+offset_left = 404.0
+offset_top = 215.0
+offset_right = 721.0
+offset_bottom = 455.0
 tab_controls = [NodePath("TabA"), NodePath("TabB")]
+is_locked = true
 
 [node name="TabA" type="Control" parent="WindowManager/TabWindow" unique_id=30251140]
 layout_mode = 1
@@ -156,57 +133,114 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="StageText" type="RichTextLabel" parent="WindowManager/TabWindow/TabA" unique_id=1862459955]
+[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/TabWindow/TabA" unique_id=1862459955]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 133.0
-offset_right = -7.0
-offset_bottom = -267.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.5
+offset_top = 7.0
+offset_right = -134.5
+offset_bottom = 231.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Text Text Text Text Text Text Text Text
-Text Text Text Text Text Text Text Text
-Text Text Text Text Text Text Text Text"
+text = "[cuss]aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_v8ma0"), SubResource("RichTextEffect_yldto"), SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4")]
+custom_effects = [SubResource("RichTextEffect_wmtur"), SubResource("RichTextEffect_w1d6m"), SubResource("RichTextEffect_yjjlv"), SubResource("RichTextEffect_jr1no")]
 script = ExtResource("6_w1d6m")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="StageText2" type="RichTextLabel" parent="WindowManager/TabWindow/TabA" unique_id=463089874]
+[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/TabWindow/TabA" unique_id=821233731]
+visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -112.5
-offset_top = -38.0
-offset_right = 112.5
-offset_bottom = -6.0
+offset_left = -6.5
+offset_top = 8.0
+offset_right = 6.5
+offset_bottom = 232.0
 grow_horizontal = 2
-grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Text Text Text Text Text Text Text
-Text Text Text Text Text Text."
+text = "[cuss]aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_1via2"), SubResource("RichTextEffect_8sl2p"), SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_m2fg6")]
+custom_effects = [SubResource("RichTextEffect_mjopg"), SubResource("RichTextEffect_vppor"), SubResource("RichTextEffect_v8ma0"), SubResource("RichTextEffect_yldto")]
+script = ExtResource("6_w1d6m")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="ObstacleText3" type="RichTextLabel" parent="WindowManager/TabWindow/TabA" unique_id=2134511656]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 136.5
+offset_top = 8.0
+offset_right = 149.5
+offset_bottom = 232.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_vrx0h"), SubResource("RichTextEffect_tg5p4"), SubResource("RichTextEffect_1via2"), SubResource("RichTextEffect_8sl2p")]
 script = ExtResource("6_w1d6m")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
@@ -215,42 +249,17 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 parent_window = NodePath("../..")
 tab_id = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=1809442227]
-position = Vector2(136.375, 12)
-shape = SubResource("RectangleShape2D_gg58c")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=278186796]
-position = Vector2(136, 155)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=278186796]
+position = Vector2(17.5, 118.5)
 shape = SubResource("RectangleShape2D_23tjd")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=271632504]
-position = Vector2(136.5, 425)
-shape = SubResource("RectangleShape2D_ua45a")
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=1557999138]
+position = Vector2(302, 119)
+shape = SubResource("RectangleShape2D_23tjd")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
-[node name="TriangleCollision" type="CollisionPolygon2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=181658665]
-position = Vector2(140, 314)
-polygon = PackedVector2Array(-32, 32, 32, -32, -32, -32)
-
-[node name="Triangle" type="Sprite2D" parent="WindowManager/TabWindow/TabA/StaticObstacle/TriangleCollision" unique_id=879238276]
-z_as_relative = false
-position = Vector2(0, -1)
-texture = ExtResource("11_yjjlv")
-
-[node name="TriangleCollision2" type="CollisionPolygon2D" parent="WindowManager/TabWindow/TabA/StaticObstacle" unique_id=1043467907]
-position = Vector2(140, 314)
-polygon = PackedVector2Array(32, -95, 32, -32, -31, -32)
-
-[node name="Triangle" type="Sprite2D" parent="WindowManager/TabWindow/TabA/StaticObstacle/TriangleCollision2" unique_id=2019929011]
-z_as_relative = false
-position = Vector2(0, -64)
-rotation = 3.1415927
-texture = ExtResource("11_yjjlv")
-
 [node name="TabB" type="Control" parent="WindowManager/TabWindow" unique_id=168571472]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -259,108 +268,181 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="StageText" type="RichTextLabel" parent="WindowManager/TabWindow/TabB" unique_id=942240787]
+[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/TabWindow/TabB" unique_id=128153793]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 7.0
-offset_top = -91.0
-offset_right = 100.0
-offset_bottom = -43.0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.5
+offset_top = 8.0
+offset_right = 7.5
+offset_bottom = 232.0
+grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Text Text Text
-Text Text Text
-Text Text Text"
+text = "[cuss]aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_m173k"), SubResource("RichTextEffect_uaecy"), SubResource("RichTextEffect_ffu34"), SubResource("RichTextEffect_fmj7f")]
+custom_effects = [SubResource("RichTextEffect_qwspk"), SubResource("RichTextEffect_m2fg6"), SubResource("RichTextEffect_m173k"), SubResource("RichTextEffect_uaecy")]
 script = ExtResource("6_w1d6m")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="StageText2" type="RichTextLabel" parent="WindowManager/TabWindow/TabB" unique_id=97530632]
+[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/TabWindow/TabB" unique_id=200954284]
+visible = false
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 172.0
-offset_top = -91.0
-offset_right = 265.0
-offset_bottom = -43.0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 68.5
+offset_top = 8.0
+offset_right = 81.5
+offset_bottom = 232.0
+grow_horizontal = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Text Text Text
-Text Text Text
-Text Text Text"
+text = "[cuss]aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_kifkx"), SubResource("RichTextEffect_b2get"), SubResource("RichTextEffect_qwd2q"), SubResource("RichTextEffect_yvvm5")]
+custom_effects = [SubResource("RichTextEffect_ffu34"), SubResource("RichTextEffect_fmj7f"), SubResource("RichTextEffect_kifkx"), SubResource("RichTextEffect_b2get")]
 script = ExtResource("6_w1d6m")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="StaticObstacle" parent="WindowManager/TabWindow/TabB" unique_id=514881491 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_hc4to")]
+[node name="StaticObstacle" parent="WindowManager/TabWindow/TabB" unique_id=2129664084 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_hc4to")]
 parent_window = NodePath("../..")
 tab_id = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/TabWindow/TabB/StaticObstacle" unique_id=848245744]
-position = Vector2(54, 156)
-shape = SubResource("RectangleShape2D_5wu1i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/TabWindow/TabB/StaticObstacle" unique_id=1889966527]
+position = Vector2(160.5, 119)
+shape = SubResource("RectangleShape2D_23tjd")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/TabWindow/TabB/StaticObstacle" unique_id=2127300209]
-position = Vector2(219, 156)
-shape = SubResource("RectangleShape2D_5wu1i")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
-
-[node name="TriangleCollision" type="CollisionPolygon2D" parent="WindowManager/TabWindow/TabB/StaticObstacle" unique_id=1698298852]
-position = Vector2(140, 86)
-polygon = PackedVector2Array(-32, 32, 32, -32, -32, -32)
-
-[node name="Triangle" type="Sprite2D" parent="WindowManager/TabWindow/TabB/StaticObstacle/TriangleCollision" unique_id=1332443630]
-z_as_relative = false
-position = Vector2(0, -1)
-texture = ExtResource("11_yjjlv")
-
-[node name="TriangleCollision2" type="CollisionPolygon2D" parent="WindowManager/TabWindow/TabB/StaticObstacle" unique_id=877479543]
-position = Vector2(140, 250)
-polygon = PackedVector2Array(32, 32, 32, -32, -32, -32)
-
-[node name="Triangle" type="Sprite2D" parent="WindowManager/TabWindow/TabB/StaticObstacle/TriangleCollision2" unique_id=2111002961]
-z_as_relative = false
-position = Vector2(0, -1)
-texture = ExtResource("11_yjjlv")
-flip_h = true
 
 [node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_uc388")]
 layout_mode = 1
-offset_left = 728.0
-offset_top = 448.0
-offset_right = 920.0
-offset_bottom = 576.0
+offset_left = 717.0
+offset_top = 364.0
+offset_right = 820.0
+offset_bottom = 454.0
+window_icon = 1
+is_locked = true
+title_text = &"HoleNine"
+
+[node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_pwc3j")]
+unique_name_in_owner = true
+position = Vector2(53, 56)
+parent_window = NodePath("..")
+
+[node name="StaticObstacle" parent="WindowManager/GoalWindow" unique_id=957651675 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_hc4to")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1995791878]
+position = Vector2(54.5, 11.375)
+shape = SubResource("RectangleShape2D_wmtur")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1625613530]
+position = Vector2(53.5, 76)
+shape = SubResource("RectangleShape2D_wmtur")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=1424218144]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.5
+offset_top = 4.0
+offset_right = 43.5
+offset_bottom = 20.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaaaa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_qwd2q"), SubResource("RichTextEffect_yvvm5"), SubResource("RichTextEffect_7arhk"), SubResource("RichTextEffect_vx8q3")]
+script = ExtResource("6_w1d6m")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="ObstacleText" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=1972645849]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_top = 68.0
+offset_right = 42.5
+offset_bottom = 84.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaaaa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_r0yba"), SubResource("RichTextEffect_jkl8j"), SubResource("RichTextEffect_k56jn"), SubResource("RichTextEffect_smpb3")]
+script = ExtResource("6_w1d6m")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StartWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_uc388")]
+layout_mode = 1
+offset_left = 306.0
+offset_top = 213.0
+offset_right = 410.0
+offset_bottom = 287.0
 is_locked = true
 
-[node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 instance=ExtResource("5_pwc3j")]
-unique_name_in_owner = true
-position = Vector2(128, 64)
-
-[node name="BallTrail" parent="." unique_id=195652157 instance=ExtResource("13_w1d6m")]
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("13_w1d6m")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("6_wmtur")]
 unique_name_in_owner = true
-position = Vector2(320, 288)
+position = Vector2(360, 249)
 window_manager = NodePath("../WindowManager")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]

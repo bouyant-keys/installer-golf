@@ -1,11 +1,26 @@
 [gd_scene format=3 uid="uid://c6nvjvelktvc0"]
 
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
+[ext_resource type="Texture2D" uid="uid://b6golfim1t0lh" path="res://Textures/goal_flag4.png" id="4_la8kp"]
 [ext_resource type="Texture2D" uid="uid://b0hk036wstj6j" path="res://Textures/goal_hole.png" id="5_0mfu7"]
 [ext_resource type="Texture2D" uid="uid://cbb8x7y3ud6b8" path="res://Textures/goal_flag3.png" id="6_ju4mi"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb32r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ju4mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_la8kp")
+}],
+"loop": 1,
+"name": &"wave",
+"speed": 3.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d37dp"]
-size = Vector2(18, 9)
+size = Vector2(20, 12)
 
 [sub_resource type="Animation" id="Animation_ju4mi"]
 length = 0.001
@@ -115,14 +130,16 @@ z_index = -1
 position = Vector2(-2, -15)
 texture = ExtResource("5_0mfu7")
 
-[node name="FlagSprite" type="Sprite2D" parent="." unique_id=712997904]
+[node name="FlagSprite" type="AnimatedSprite2D" parent="." unique_id=368182393]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-2, -15)
-texture = ExtResource("6_ju4mi")
+sprite_frames = SubResource("SpriteFrames_pb32r")
+animation = &"wave"
+frame_progress = 0.45388064
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1967060438]
-position = Vector2(0, -0.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_d37dp")
 debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 

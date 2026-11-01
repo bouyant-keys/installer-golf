@@ -26,20 +26,21 @@
 [ext_resource type="Texture2D" uid="uid://cpu3pfkjj3ik" path="res://Textures/ProgressBar_Fill.png" id="19_cbgmd"]
 [ext_resource type="Texture2D" uid="uid://brthw6d14jtye" path="res://Textures/ProgressBar_Over.png" id="20_1w6v2"]
 [ext_resource type="Script" uid="uid://cma6a78p7smr0" path="res://Scripts/golf_progress.gd" id="20_pdsj5"]
-[ext_resource type="PackedScene" uid="uid://cyywgt1i0l6ou" path="res://Scenes/software.tscn" id="23_gt3je"]
-[ext_resource type="PackedScene" uid="uid://c6rq1p2orb0lh" path="res://Scenes/Stages/stage_4b.tscn" id="23_u50mg"]
+[ext_resource type="PackedScene" uid="uid://bqdqqox65p4lg" path="res://Scenes/Stages/stage_1d.tscn" id="21_hpc6h"]
 [ext_resource type="PackedScene" uid="uid://def1nsq77r85n" path="res://Scenes/Stages/stage_4c.tscn" id="24_cbgmd"]
+[ext_resource type="PackedScene" uid="uid://cb16fm05sxo5f" path="res://Scenes/Stages/stage_3c.tscn" id="25_7k868"]
+[ext_resource type="PackedScene" uid="uid://cyywgt1i0l6ou" path="res://Scenes/Stages/software.tscn" id="30_7k868"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_kltya"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_hpc6h"]
 script = ExtResource("14_pdsj5")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_e08e2"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_kltya"]
 script = ExtResource("15_ee4r6")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_neg2b"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_e08e2"]
 script = ExtResource("16_gt3je")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_r33sp"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_neg2b"]
 script = ExtResource("11_6vcvc")
 
 [node name="Main" type="Node" unique_id=1067694015]
@@ -51,7 +52,7 @@ script = ExtResource("2_ee4r6")
 loop_music = ExtResource("1_6vcvc")
 
 [node name="Background" type="TextureRect" parent="." unique_id=504675902]
-z_index = -20
+z_index = -500
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,7 +62,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_1w6v2")
 script = ExtResource("4_ueoa1")
-color_loop = PackedColorArray(0.31764707, 0.5254902, 1, 1, 0.1764706, 0.015686275, 0.6509804, 1, 0.28627452, 0.16470589, 0.57254905, 1)
+color_loop = PackedColorArray(0.31764707, 0.5254902, 1, 1, 0.1764706, 0.015686275, 0.6509804, 1, 0.47192436, 0.002922499, 0.9000828, 1)
 
 [node name="GolfProgress" type="Control" parent="." unique_id=275076709 node_paths=PackedStringArray("stage_manager")]
 layout_mode = 3
@@ -81,7 +82,6 @@ offset_right = 1086.0
 offset_bottom = 598.0
 enter_on_start = false
 is_locked = true
-title_text = "GolfProgress"
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="GolfProgress/ProgressWindow" unique_id=1944422170]
@@ -104,7 +104,7 @@ text = "Installation Progress......000.0%"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_kltya"), SubResource("RichTextEffect_e08e2"), SubResource("RichTextEffect_neg2b"), SubResource("RichTextEffect_r33sp")]
+custom_effects = [SubResource("RichTextEffect_hpc6h"), SubResource("RichTextEffect_kltya"), SubResource("RichTextEffect_e08e2"), SubResource("RichTextEffect_neg2b")]
 script = ExtResource("17_3pmx8")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -162,30 +162,17 @@ mouse_filter = 1
 disabled = true
 text = "< Back"
 
-[node name="RetryButton" parent="GolfProgress/ProgressWindow/NavPanel/HBoxContainer" unique_id=554753382 instance=ExtResource("17_hpc6h")]
-layout_mode = 2
-mouse_filter = 1
-text = "Retry"
-
 [node name="NextButton" parent="GolfProgress/ProgressWindow/NavPanel/HBoxContainer" unique_id=1890128094 instance=ExtResource("17_hpc6h")]
 layout_mode = 2
 mouse_filter = 1
 disabled = true
 text = "Next >"
 
-[node name="StageManager" type="Node" parent="." unique_id=232984876 node_paths=PackedStringArray("back_button", "retry_button", "next_button")]
+[node name="StageManager" type="Node" parent="." unique_id=232984876 node_paths=PackedStringArray("back_button", "next_button")]
 script = ExtResource("1_bo1nx")
-stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e"), ExtResource("11_6iyac"), ExtResource("23_u50mg"), ExtResource("24_cbgmd"), ExtResource("11_d1ilt")])
+start_stage = 11
+stages = Array[PackedScene]([ExtResource("3_d1ilt"), ExtResource("3_8gbba"), ExtResource("4_kry3j"), ExtResource("21_hpc6h"), ExtResource("5_21xkr"), ExtResource("6_21xkr"), ExtResource("8_344ge"), ExtResource("9_ynf5e"), ExtResource("25_7k868"), ExtResource("24_cbgmd"), ExtResource("11_6iyac"), ExtResource("11_d1ilt"), ExtResource("30_7k868")])
 back_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/BackButton")
-retry_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/RetryButton")
 next_button = NodePath("../GolfProgress/ProgressWindow/NavPanel/HBoxContainer/NextButton")
 
-[node name="Software" parent="." unique_id=1147250097 instance=ExtResource("23_gt3je")]
-visible = false
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-
-[connection signal="game_end" from="StageManager" to="Software" method="enter"]
 [connection signal="game_start" from="StageManager" to="MusicManager" method="play_loop_music"]

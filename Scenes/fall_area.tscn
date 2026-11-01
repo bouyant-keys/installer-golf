@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://s6pc6kleiurx"]
 
+[ext_resource type="Script" uid="uid://bw46aq0sy1h5j" path="res://Scripts/fall_area.gd" id="1_o8l8e"]
+
 [node name="FallArea" type="Area2D" unique_id=89367127]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
+script = ExtResource("1_o8l8e")

@@ -1,36 +1,39 @@
 extends Sprite2D
 
-const UP_POS := Vector2(0.0, -24.0)
-const DOWN_POS := Vector2(0.0, -14.0)
-const MOVE_TIME := 0.5
+const MOVE_SPEED := 0.3
+const MOVE_RANGE := 6.0
 
 var move_tween : Tween
+var start_pos : Vector2
 
 @export var valid_indicator : Texture2D
 @export var invalid_indicator : Texture2D
+@export var reset_indicator : Texture2D
 
 @onready var ball: Ball = $".."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ball.ball_entered.connect(show_indicator)
-	ball.ball_launched.connect(hide_indicator)
+	start_pos = position
+	ball.ball_entered.connect(_on_ball_entered)
+	ball.ball_launched.connect(_on_ball_launched)
+	ball.ball_stopped.connect(_on_ball_stopped)
+	ball.ball_reset.connect(_on_ball_reset)
 	hide()
+
+func _process(delta: float) -> void:
+	# Move indicator up and down based on MOVE_SPEED & RANGE
+	var y_pos := (sin(Time.get_ticks_msec() * delta * MOVE_SPEED) * MOVE_RANGE)
+	position = Vector2(start_pos.x, start_pos.y + y_pos)
+
 
 func show_indicator() ->void:
+	set_process(true)
 	show()
-	move_up()
 
 func hide_indicator() ->void:
-	if move_tween:
-		move_tween.kill()
+	set_process(false)
 	hide()
-
-func move_up() ->void:
-	position = DOWN_POS
-	move_tween = get_tree().create_tween().set_loops()
-	move_tween.tween_property(self, "position", UP_POS, MOVE_TIME).set_delay(0.1)
-	move_tween.tween_property(self, "position", DOWN_POS, MOVE_TIME).set_delay(0.1)
 
 
 func _on_valid_spot() ->void: 
@@ -39,3 +42,13 @@ func _on_valid_spot() ->void:
 func _on_invalid_spot() ->void: 
 	texture = invalid_indicator
 	self_modulate = Color.RED
+
+func _on_ball_entered() ->void:
+	_on_valid_spot()
+	show_indicator()
+func _on_ball_stopped() ->void:
+	texture = reset_indicator
+	self_modulate = Color.WHITE
+	show_indicator()
+func _on_ball_launched() ->void: hide_indicator()
+func _on_ball_reset() ->void: hide_indicator()

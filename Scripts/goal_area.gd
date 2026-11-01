@@ -9,6 +9,7 @@ var relative_position : Vector2
 @export var is_final_level := false
 @export var tab_id := -1
 
+@onready var flag_sprite: AnimatedSprite2D = $FlagSprite
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mouse_press_sfx: AudioStreamPlayer = $MousePressSFX
 @onready var goal_sfx: AudioStreamPlayer = $GoalSFX
@@ -39,6 +40,7 @@ func _ready() -> void:
 
 func enter() ->void:
 	show()
+	flag_sprite.play("wave")
 	anim.play("enter")
 
 func _on_body_entered(body: Node2D) -> void:
@@ -54,6 +56,7 @@ func _on_body_entered(body: Node2D) -> void:
 	goal.emit()
 
 func _on_window_tab_changed(index:int) ->void:
+	print("Goal-win_tab_changed: disabled=", index != tab_id)
 	collider.set_deferred("disabled", index != tab_id)
 
 func _on_window_reordered(z:int) ->void:

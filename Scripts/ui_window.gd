@@ -36,12 +36,9 @@ func _process(_delta: float) -> void:
 	global_position = move_start + (get_global_mouse_position() - drag_start)
 
 func _gui_input(event: InputEvent) -> void:
+	if !grabbed: return
+	
 	if event.is_action_pressed("LeftClick"):
-		print("isgrabbe: ", grabbed, ", locked: ", is_locked)
-		
-		if !grabbed:
-			return
-		
 		if is_locked:
 			##TODO Visual cue that window is locked in place...
 			#anim.play("locked")

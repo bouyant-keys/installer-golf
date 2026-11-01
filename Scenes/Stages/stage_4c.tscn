@@ -16,31 +16,58 @@
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="16_dp5ua"]
 [ext_resource type="Script" uid="uid://bcwwnjmubhxph" path="res://Scripts/local_pos.gd" id="17_7guc3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn7yn"]
-size = Vector2(60, 123)
+[sub_resource type="RichTextEffect" id="RichTextEffect_bankd"]
+script = ExtResource("7_xdktr")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_x2xqv"]
-script = ExtResource("7_xdktr")
+script = ExtResource("8_vsse4")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_8gj8j"]
-script = ExtResource("8_vsse4")
+script = ExtResource("9_3v4mf")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_sp54o"]
-script = ExtResource("9_3v4mf")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_8r4pv"]
 script = ExtResource("10_bankd")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_6uw7m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn7yn"]
+size = Vector2(60, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bankd"]
+size = Vector2(132, 11.5)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8r4pv"]
 script = ExtResource("7_xdktr")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_l0bpx"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_6uw7m"]
 script = ExtResource("8_vsse4")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_werrh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_l0bpx"]
 script = ExtResource("9_3v4mf")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_werrh"]
+script = ExtResource("10_bankd")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_xdktr"]
+script = ExtResource("7_xdktr")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_vsse4"]
+script = ExtResource("8_vsse4")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3v4mf"]
+script = ExtResource("9_3v4mf")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_b701r"]
+script = ExtResource("10_bankd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r1so3"]
+script = ExtResource("7_xdktr")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_raowb"]
+script = ExtResource("8_vsse4")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_y5bym"]
+script = ExtResource("9_3v4mf")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5negx"]
 script = ExtResource("10_bankd")
 
 [node name="Stage4c" type="Node" unique_id=1335873284]
@@ -57,15 +84,51 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_sp54o")
 
+[node name="TutorialWindow" parent="WindowManager" unique_id=1311309029 instance=ExtResource("11_r1so3")]
+layout_mode = 1
+offset_left = -336.0
+offset_top = -242.0
+offset_right = -121.0
+offset_bottom = -152.0
+window_icon = 2
+is_locked = true
+grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=1384820108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=958228895]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Some windows can be [color=blue]resized[/color].
+
+There might be things [sine]hiding inside...[/sine]"
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_bankd"), SubResource("RichTextEffect_x2xqv"), SubResource("RichTextEffect_8gj8j"), SubResource("RichTextEffect_sp54o")]
+script = ExtResource("10_b701r")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
 [node name="ResizeWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_8r4pv")]
 custom_minimum_size = Vector2(160, 160)
-custom_maximum_size = Vector2(512, 200)
+custom_maximum_size = Vector2(512, 220)
 layout_mode = 1
-offset_left = -214.0
+offset_left = -70.0
 offset_top = -80.0
 offset_right = 214.0
 offset_bottom = 80.0
 is_locked = false
+title_text = &"HoleTen"
 
 [node name="ClippingMask" type="Control" parent="WindowManager/ResizeWindow" unique_id=1989358703]
 clip_contents = true
@@ -82,7 +145,7 @@ grow_vertical = 2
 
 [node name="GoalArea" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1905208525 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_6uw7m")]
 unique_name_in_owner = true
-position = Vector2(336, 75)
+position = Vector2(241, 75)
 parent_window = NodePath("../..")
 
 [node name="ResizeObstacle" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_l0bpx")]
@@ -90,11 +153,21 @@ testing = true
 parent_window = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=1278571252]
-position = Vector2(210, 57.5)
+position = Vector2(70, 60.5)
 shape = SubResource("RectangleShape2D_gn7yn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=35719359]
+position = Vector2(70, -49.75)
+shape = SubResource("RectangleShape2D_bankd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=628258464]
+position = Vector2(70, 171)
+shape = SubResource("RectangleShape2D_bankd")
 
 [node name="NonScalingUI" type="Control" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1745570321 node_paths=PackedStringArray("parent_window")]
 anchors_preset = 0
+offset_left = -140.0
+offset_right = -140.0
 script = ExtResource("6_werrh")
 parent_window = NodePath("../..")
 
@@ -104,68 +177,95 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 137.0
-offset_top = -14.0
-offset_right = 284.0
-offset_bottom = 130.0
+offset_left = 180.0
+offset_top = -3.0
+offset_right = 240.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Text Text
+text = "[cuss]Text Text
 Text Text
 Text Text
 Text Text
 Text Text
 Text Text
 Text Text
-Text Text"
+Text Text[/cuss]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_x2xqv"), SubResource("RichTextEffect_8gj8j"), SubResource("RichTextEffect_sp54o"), SubResource("RichTextEffect_8r4pv")]
+custom_effects = [SubResource("RichTextEffect_8r4pv"), SubResource("RichTextEffect_6uw7m"), SubResource("RichTextEffect_l0bpx"), SubResource("RichTextEffect_werrh")]
 script = ExtResource("10_b701r")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="TutorialWindow" parent="WindowManager" unique_id=1311309029 instance=ExtResource("11_r1so3")]
+[node name="StageText2" type="RichTextLabel" parent="WindowManager/ResizeWindow/ClippingMask/NonScalingUI" unique_id=944429755]
 layout_mode = 1
-offset_left = -336.0
-offset_top = -242.0
-offset_right = -126.0
-offset_bottom = -115.0
-is_locked = true
-title_text = "InstructWindow"
-grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=1384820108]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -21.0
-offset_bottom = -21.0
+offset_left = 143.5
+offset_top = -57.0
+offset_right = 276.5
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=958228895]
-layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "Some windows can be [color=blue]resized[/color].
-
-There might be things [sine]hiding inside...[/sine]"
-custom_effects = [SubResource("RichTextEffect_6uw7m"), SubResource("RichTextEffect_l0bpx"), SubResource("RichTextEffect_werrh"), SubResource("RichTextEffect_xdktr")]
+text = "[cuss]aaaaaaaaaaaaaaaaaaaa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_xdktr"), SubResource("RichTextEffect_vsse4"), SubResource("RichTextEffect_3v4mf"), SubResource("RichTextEffect_b701r")]
 script = ExtResource("10_b701r")
+is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StageText3" type="RichTextLabel" parent="WindowManager/ResizeWindow/ClippingMask/NonScalingUI" unique_id=15674102]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 143.5
+offset_top = 164.0
+offset_right = 276.5
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[cuss]aaaaaaaaaaaaaaaaaaaa"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_r1so3"), SubResource("RichTextEffect_raowb"), SubResource("RichTextEffect_y5bym"), SubResource("RichTextEffect_5negx")]
+script = ExtResource("10_b701r")
+is_text_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StartWindow" parent="WindowManager" unique_id=744361972 instance=ExtResource("11_r1so3")]
+layout_mode = 1
+offset_left = -214.0
+offset_top = -59.0
+offset_right = -62.0
+offset_bottom = 79.0
+is_locked = true
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("15_qh35h")]
 stage = NodePath("..")
@@ -173,7 +273,7 @@ ball = NodePath("../Ball")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("16_dp5ua")]
 unique_name_in_owner = true
-position = Vector2(458, 326)
+position = Vector2(442, 328)
 window_manager = NodePath("../WindowManager")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=478600300 node_paths=PackedStringArray("ball")]

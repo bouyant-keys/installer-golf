@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7xg14xg21lye"
-path="res://.godot/imported/Triangle.png-aa2342b57566505cfc51d33c0ad45335.ctex"
+uid="uid://bkd432rkvigtf"
+path="res://.godot/imported/ErrorWindow_Icon.png-8ff66ae044f9459fe5f7da81758e3039.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Triangle.png"
-dest_files=["res://.godot/imported/Triangle.png-aa2342b57566505cfc51d33c0ad45335.ctex"]
+source_file="res://Textures/ErrorWindow_Icon.png"
+dest_files=["res://.godot/imported/ErrorWindow_Icon.png-8ff66ae044f9459fe5f7da81758e3039.ctex"]
 
 [params]
 

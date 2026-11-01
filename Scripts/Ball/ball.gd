@@ -1,15 +1,12 @@
 class_name Ball extends CharacterBody2D
 
-const Z_INDEX_OFFSET := 2
+const RESET_Z := 10
 const DECEL_RATE := 50.0
-const EDGE_MARGIN := 6.0
-const CHECK_DIST := 16.0
-const STRENGTH_RANGE := Vector2(30.0, 600.0)
+const STRENGTH_RANGE := Vector2(80.0, 600.0)
 const DRAG_MIN := Vector2(5.0, 5.0)
-const DRAG_MAX := 160.0 # Furthest distance in pixels to drag for a shot, means the maximum strength is applied
-const BALL_SIZE := Vector2(16.0, 16.0)
 
 var start_pos : Vector2
+var click_pos : Vector2
 var move_dir := Vector2.ZERO
 var local_position : Vector2
 var current_speed : float = 0.0
@@ -17,18 +14,21 @@ var current_window : WindowPanel
 var prev_window : WindowPanel
 var mouse_hover := false
 var mouse_drag := false
-var click_pos : Vector2
+var entered := false
 var frozen := false
+var stopped := false
 var launched := false
 var can_launch := false # Disabled if ball entered in collision shape.
 var resizing := false
 
 @export var window_manager : WindowManager
 @export var enter_on_load := true
+@export var special := false
 
 @onready var floor_area: FloorArea = $FloorArea
 @onready var trajectory: Line2D = $Trajectory
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var mouse_control: Control = $MouseCursorControl
 @onready var bounce_sfx: AudioStreamPlayer = $BounceSFX
 @onready var bounce_sfx_2: AudioStreamPlayer = $BounceSFX2
 @onready var launch_sfx: AudioStreamPlayer = $LaunchSFX
@@ -44,15 +44,16 @@ var resizing := false
 @onready var fall_area_collider: CollisionShape2D = $FallArea/FallAreaCollider
 
 signal current_window_changed(window:WindowPanel)
-signal trajectory_changed(trajectory:Vector2, strength:float)
+signal trajectory_changed(trajectory:Vector2, strength:float, strength_range:Vector2)
 signal draw_trajectory(enabled:bool)
 signal direction_changed(at_pos:Vector2)
 signal ball_launched
 signal ball_stopped
-signal ball_entered
 signal ball_stuck
 signal ball_fell
+signal ball_entered
 signal ball_exited
+signal ball_reset
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,7 +72,7 @@ func _ready() -> void:
 	current_window_changed.connect(window_manager._on_current_window_changed)
 	
 	start_pos = global_position
-	
+	z_index = RESET_Z
 	set_collision_active(false)
 	hide()
 
@@ -82,6 +83,8 @@ func enter() ->void:
 	show()
 	
 	await anim.animation_finished
+	entered = true
+	mouse_control.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	set_collision_active(true)
 	set_process(true)
 	set_physics_process(true)
@@ -91,6 +94,7 @@ func enter() ->void:
 func stuck() ->void:
 	print("Ball Stuck")
 	set_current_window(null)
+	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	velocity = Vector2.ZERO
 	set_collision_active(false)
 	set_process(false)
@@ -107,6 +111,7 @@ func stuck() ->void:
 func fall() ->void:
 	print("Ball Fell")
 	set_current_window(null)
+	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	velocity = Vector2.ZERO
 	set_collision_active(false)
 	set_process(false)
@@ -131,10 +136,13 @@ func exit() ->void:
 
 
 func _input(event: InputEvent) -> void:
-	if launched or !can_launch or frozen:
+	if !stopped and (launched or !can_launch or frozen or !entered):
 		return
 	
 	if event.is_action_pressed("LeftClick") && mouse_hover:
+		if stopped:
+			_on_stage_reset()
+			return
 		mouse_drag = true
 		click_pos = get_global_mouse_position()
 		draw_trajectory.emit(true)
@@ -168,28 +176,24 @@ func _process(_delta: float) ->void:
 	
 	var launch_dir := -(get_global_mouse_position() - click_pos)
 	var launch_strength := clampf(launch_dir.length(), STRENGTH_RANGE.x, STRENGTH_RANGE.y)
-	trajectory_changed.emit(launch_dir, launch_strength)
+	trajectory_changed.emit(launch_dir, launch_strength, STRENGTH_RANGE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if !launched:
-		return
-	
-	var curr_window := get_current_window()
-	if frozen:
-		print("Frozen!!")
-		global_position = curr_window.get_movable_area().position + local_position
+	if !launched or stopped or frozen:
 		return
 	
 	var move_rect := get_current_window().get_movable_area()
 	
-	# Calculate ball's next position from their speed & direction
-	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
+	# Decelerate ball over time by DECEL_RATE
+	if !special:
+		current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
+	
 	if is_zero_approx(current_speed):
 		print("Ball stopped!")
+		stopped = true
 		rolling_sfx.stop()
 		ball_stopped.emit()
-		set_process(false)
 	
 	var current_velocity := move_dir * current_speed * delta
 	
@@ -207,8 +211,12 @@ func handle_collision(collision:KinematicCollision2D) ->void:
 	get_current_window().bounce(collision.get_normal(), velocity.length())
 	direction_changed.emit(global_position)
 	
-	if randf() > 0.5: bounce_sfx.play()
-	else: bounce_sfx_2.play()
+	if randf() > 0.5: 
+		if !bounce_sfx.playing: bounce_sfx.play()
+		else: bounce_sfx_2.play()
+	else:
+		if !bounce_sfx_2.playing: bounce_sfx_2.play()
+		else: bounce_sfx.play()
 	
 
 
@@ -230,23 +238,18 @@ func set_current_window(window:WindowPanel) ->void:
 		land_sfx.play()
 	
 	current_window = window
-	z_index = current_window.z_index + Z_INDEX_OFFSET
 	local_position = global_position - current_window.get_move_area_position()
 	current_window_changed.emit(window)
 
 func set_collision_active(active:bool) ->void:
 	#print("--Collision set: ", active)
 	ball_collider.set_deferred("disabled", !active)
-	mouse_area_collider.set_deferred("disabled", !active)
+	#mouse_area_collider.set_deferred("disabled", !active)
 	fall_area_collider.set_deferred("disabled", !active)
 
 
-func _on_valid_spot() ->void: 
-	print("valid")
-	can_launch = true
-func _on_invalid_spot() ->void:
-	print("invalid")
-	can_launch = false
+func _on_valid_spot() ->void: can_launch = true
+func _on_invalid_spot() ->void: can_launch = false
 
 func _on_fall_area_entered(_area: Area2D) -> void:  if launched: fall()
 
@@ -254,10 +257,7 @@ func on_mouse_entered() ->void: mouse_hover = true
 func on_mouse_exited() ->void: mouse_hover = false
 
 #region WindowSignals
-func _on_window_selected(window:WindowPanel) ->void:
-	var curr_window := get_current_window()
-	if curr_window == window:
-		z_index = curr_window.z_index
+func _on_window_selected(_window:WindowPanel) ->void: pass
 
 func _on_window_grabbed(window:WindowPanel) ->void:
 	if get_current_window() != window:
@@ -279,19 +279,11 @@ func _on_window_resize_start(window:WindowPanel) ->void:
 	if get_current_window() != window:
 		return
 	
-	print(name + ": current window resize start")
-	
-	#relative_pos_ratio = (global_position - current_window.get_rect().position) / current_window.get_rect().size
 	resizing = true
 	frozen = true
 	set_collision_active(false)
-	#print("rpr: ", relative_pos_ratio, current_window.get_rect().end)
 
-func _on_window_resized(_window:WindowPanel) ->void:
-	pass
-	#if get_current_window() != window:
-		#return
-	
+func _on_window_resized(_window:WindowPanel) ->void: pass
 
 func _on_window_resize_end(window:WindowPanel) ->void:
 	if get_current_window() != window:
@@ -304,24 +296,29 @@ func _on_window_resize_end(window:WindowPanel) ->void:
 func _on_goal() ->void:
 	print("Ball hit goal!")
 	current_speed = 0.0
+	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
-	set_physics_process(false)
 	floor_area.set_area_enabled(false)
+	set_physics_process(false)
 	exit()
 
 func _on_stage_reset() ->void:
 	print("Ball reset.")
 	frozen = false
+	stopped = false
 	launched = false
+	entered = false
 	current_speed = 0.0
 	floor_area.in_windows.clear()
+	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	velocity = Vector2.ZERO
 	move_dir = Vector2.ZERO
 	global_position = start_pos
-	z_index = 100
+	z_index = RESET_Z
 	rolling_sfx.stop()
 	set_collision_active(false)
+	ball_reset.emit()
 	
 	await get_tree().process_frame
 	enter()

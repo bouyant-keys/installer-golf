@@ -2,6 +2,7 @@ class_name Stage extends Node
 
 const GOAL_WAIT_TIME := 2.0
 const WINDOWS_ENTER_WAIT := 0.5
+const WINDOWS_EXIT_WAIT := 0.5
 const BALL_ENTER_WAIT := 0.5
 const GOAL_ENTER_WAIT := 0.5
 
@@ -27,23 +28,33 @@ func _ready() -> void:
 	
 	reset.connect(ball._on_stage_reset)
 	reset.connect(window_manager._on_stage_reset)
-	enter_ball.connect(ball._on_stage_reset)
+	enter_ball.connect(ball.enter)
 	enter_goal.connect(goal_area.enter)
 	goal_area.goal.connect(_on_goal)
 	
 	stage_setup.call_deferred()
 
 func stage_setup() ->void:
+	print("===Stage Setup")
 	enter_windows.emit()
 	
 	await window_manager.windows_entered
+	print("====Stage, ball enter_on_load: ", ball.enter_on_load)
 	if ball.enter_on_load:
+		print("Ball enter now !!!")
 		enter_ball.emit()
 	if !goal_area.is_intro_level:
 		enter_goal.emit()
 
-func unload_stage() ->void:
+func stage_exit() ->void:
+	await get_tree().create_timer(GOAL_WAIT_TIME).timeout
 	exit_windows.emit()
+	await window_manager.windows_exited
+	await get_tree().create_timer(WINDOWS_EXIT_WAIT).timeout
+	next_stage()
+
+func next_stage() ->void:
+	stage_goal.emit()
 
 func reset_stage() ->void:
 	print("Resetting Stage.")
@@ -59,8 +70,4 @@ func _on_ball_stopped() ->void: ball_stopped.emit()
 func _on_goal() ->void:
 	if !next_stage_on_goal:
 		return
-	
-	await get_tree().create_timer(GOAL_WAIT_TIME).timeout
-	unload_stage()
-	await get_tree().create_timer(WindowPanel.EXIT_TIME + 0.3).timeout
-	stage_goal.emit()
+	stage_exit()

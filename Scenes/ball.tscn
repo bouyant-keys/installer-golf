@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dct0yqyvq8cn1" path="res://Textures/InvalidIcon.png" id="6_q6iep"]
 [ext_resource type="AudioStream" uid="uid://b0rs28e6dvbme" path="res://Audio/Effects/FallOut.wav" id="6_vblhy"]
 [ext_resource type="AudioStream" uid="uid://dw8lngkbcjk6u" path="res://Audio/Effects/BallRoll.wav" id="6_vm4s8"]
+[ext_resource type="Texture2D" uid="uid://cc4yrxyqsbjki" path="res://Textures/ResetIcon.png" id="7_s4llo"]
 [ext_resource type="Script" uid="uid://bdwjspqtd3sif" path="res://Scripts/Ball/floor_area.gd" id="8_s4llo"]
 [ext_resource type="AudioStream" uid="uid://ca1fomhlayqlq" path="res://Audio/Effects/BallEnter.wav" id="8_vm4s8"]
 [ext_resource type="AudioStream" uid="uid://pbcn64x7hicq" path="res://Audio/Effects/BallExit1.wav" id="9_2b6yv"]
@@ -485,7 +486,6 @@ offset_top = -6.0
 offset_right = 6.0
 offset_bottom = 6.0
 mouse_filter = 1
-mouse_default_cursor_shape = 2
 
 [node name="Trajectory" type="Line2D" parent="." unique_id=417557728]
 points = PackedVector2Array(0, 0, 16, 0)
@@ -506,11 +506,12 @@ offset = Vector2(-2, 8)
 texture = ExtResource("3_vblhy")
 
 [node name="SelectIndicator" type="Sprite2D" parent="." unique_id=577107716]
-position = Vector2(0, -14)
+position = Vector2(0, -19)
 texture = ExtResource("4_gejbx")
 script = ExtResource("5_o05bq")
 valid_indicator = ExtResource("4_gejbx")
 invalid_indicator = ExtResource("6_q6iep")
+reset_indicator = ExtResource("7_s4llo")
 
 [node name="BallCollider" type="CollisionShape2D" parent="." unique_id=1421512000]
 shape = SubResource("CircleShape2D_pb32r")

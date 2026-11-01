@@ -55,7 +55,7 @@ goal = NodePath("../WindowManager/PopupWindow/GoalArea")
 popup_window = NodePath("../WindowManager/PopupWindow")
 start_button = NodePath("../WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton")
 
-[node name="WindowManager" type="Control" parent="." unique_id=1863376274]
+[node name="WindowManager" type="Control" parent="." unique_id=1863376274 node_paths=PackedStringArray("start_selected_window")]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 3
@@ -66,14 +66,75 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_8epbn")
+start_selected_window = NodePath("TutorialWindow")
+
+[node name="TutorialWindow" parent="WindowManager" unique_id=197544508 instance=ExtResource("3_0svxb")]
+layout_mode = 1
+offset_left = -160.0
+offset_top = -113.0
+offset_right = 160.0
+offset_bottom = 70.0
+window_icon = 2
+grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=1777454323]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 26
+
+[node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=409508633]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Welcome to the [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFunFun Software[/sparkle][/sine] Installation Wizard (CCFFSIW).
+
+This wizard will guide the installation of [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFunFun Deluxe Edition[/sparkle][/sine] (CCFFDX) on your computer.
+
+
+To continue, click [color=blue]Next[/color]."
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0")]
+script = ExtResource("9_gbh5r")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="NavPanel" type="PanelContainer" parent="WindowManager/TutorialWindow" unique_id=1884059074]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("8_d37dp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/TutorialWindow/NavPanel" unique_id=169050820]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="StartButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=927349371 instance=ExtResource("10_l7gib")]
+layout_mode = 2
+mouse_filter = 1
+text = "Start"
 
 [node name="PopupWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_0svxb")]
 layout_mode = 1
 offset_top = 110.0
 offset_bottom = 238.0
+window_icon = 1
 enter_on_start = false
 is_locked = true
-title_text = "!! ERROR !!"
+title_text = &"HoleOne"
 
 [node name="GoalArea" parent="WindowManager/PopupWindow" unique_id=1905208525 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_di2nh")]
 unique_name_in_owner = true
@@ -105,67 +166,8 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0")]
-script = ExtResource("9_gbh5r")
-
-[node name="TutorialWindow" parent="WindowManager" unique_id=197544508 instance=ExtResource("3_0svxb")]
-layout_mode = 1
-offset_left = -160.0
-offset_top = -113.0
-offset_right = 160.0
-offset_bottom = 70.0
-title_text = "TutorialWindow"
-grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=1777454323]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 26
-
-[node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=409508633]
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "Welcome to the [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFunFun Software[/sparkle][/sine] Installation Wizard (CCFFSIW).
-
-This wizard will guide the installation of [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFunFun Deluxe Edition[/sparkle][/sine] (CCFFDX) on your computer.
-
-
-To continue, click [color=blue]Next[/color]."
-fit_content = true
-scroll_active = false
 custom_effects = [SubResource("RichTextEffect_mhug8"), SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh")]
 script = ExtResource("9_gbh5r")
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="NavPanel" type="PanelContainer" parent="WindowManager/TutorialWindow" unique_id=1884059074]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -28.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("8_d37dp")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/TutorialWindow/NavPanel" unique_id=169050820]
-layout_mode = 2
-size_flags_horizontal = 8
-alignment = 2
-
-[node name="StartButton" parent="WindowManager/TutorialWindow/NavPanel/HBoxContainer" unique_id=927349371 instance=ExtResource("10_l7gib")]
-layout_mode = 2
-mouse_filter = 1
-text = "Start"
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("12_l7gib")]
 gradient = SubResource("Gradient_l7gib")
@@ -185,5 +187,5 @@ z_index = 20
 script = ExtResource("8_r0k7y")
 ball = NodePath("../Ball")
 
-[connection signal="goal" from="WindowManager/PopupWindow/GoalArea" to="Ball" method="_on_goal"]
 [connection signal="pressed" from="WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton" to="IntroDetails" method="_on_start_button_pressed"]
+[connection signal="goal" from="WindowManager/PopupWindow/GoalArea" to="Ball" method="_on_goal"]

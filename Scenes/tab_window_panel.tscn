@@ -3,16 +3,18 @@
 [ext_resource type="Theme" uid="uid://4paorsm53l3k" path="res://MainTheme.tres" id="1_7ywxx"]
 [ext_resource type="Script" uid="uid://dctollo5ogqv3" path="res://Scripts/Windows/tab_window_panel.gd" id="2_r2fdd"]
 [ext_resource type="StyleBox" uid="uid://b0f8mxu332bbs" path="res://Materials/DropShadowStylebox.tres" id="3_cl5kt"]
-[ext_resource type="Texture2D" uid="uid://3draj3d7o7c1" path="res://Textures/WindowIcon1.png" id="4_w2da5"]
+[ext_resource type="Texture2D" uid="uid://myile0scxfs3" path="res://Textures/TabWindow_Icon.png" id="4_uelpn"]
 [ext_resource type="FontFile" uid="uid://dtgqhs28d2iim" path="res://Fonts/Ac437_ToshibaSat_8x16.ttf" id="5_m4oq2"]
 [ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="6_oigjo"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="7_1h8ly"]
 [ext_resource type="Texture2D" uid="uid://1wqql7edrfd8" path="res://Textures/W95_TabBG.png" id="7_m4oq2"]
 [ext_resource type="StyleBox" uid="uid://db7paxlm6m6rq" path="res://Materials/Win95Styles/W95-InsetPanel.tres" id="7_uelpn"]
 [ext_resource type="Script" uid="uid://bj1vasses0bnt" path="res://Scripts/move_area.gd" id="8_1h8ly"]
-[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="9_7ywxx"]
+[ext_resource type="Texture2D" uid="uid://wq0rljijwt8g" path="res://Textures/Close_Icon-Small.png" id="8_1j7e0"]
 [ext_resource type="AudioStream" uid="uid://c08hogw3ak1oj" path="res://Audio/Effects/UI_Enter.wav" id="10_w2da5"]
 [ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="11_m4oq2"]
 [ext_resource type="AudioStream" uid="uid://b7uivl17welid" path="res://Audio/Effects/UI_3.wav" id="11_oigjo"]
+[ext_resource type="Shader" uid="uid://2nxqxkykot4e" path="res://Materials/MarchingAnts-Outline.gdshader" id="12_1h8ly"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01w34"]
 load_path = "res://.godot/imported/W95_PanelBG.png-44edfde726750e8545a88994905a7c25.ctex"
@@ -42,9 +44,13 @@ texture_margin_bottom = 3.0
 resource_local_to_scene = true
 size = Vector2(255, 255)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ywxx"]
-resource_local_to_scene = true
-size = Vector2(252, 40)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j7e0"]
+shader = ExtResource("12_1h8ly")
+shader_parameter/ant_color_1 = Color(1, 1, 1, 1)
+shader_parameter/ant_color_2 = Color(0, 0, 0, 1)
+shader_parameter/ant_width = 1.0
+shader_parameter/ant_length = 3.0
+shader_parameter/ant_speed = 12.0
 
 [sub_resource type="Animation" id="Animation_3mdtd"]
 length = 0.001
@@ -102,6 +108,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 1
 theme = ExtResource("1_7ywxx")
 script = ExtResource("2_r2fdd")
+window_icon = 4
 
 [node name="PanelParent" type="Panel" parent="." unique_id=203660709]
 unique_name_in_owner = true
@@ -149,28 +156,41 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="PanelParent/GrabBar/HBoxContainer" unique_id=2047035196]
 layout_mode = 2
 
-[node name="WindowIcon" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=562214442]
+[node name="IconTexture" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=562214442]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("4_w2da5")
+texture = ExtResource("4_uelpn")
 stretch_mode = 5
 
 [node name="WindowTitle" type="Label" parent="PanelParent/GrabBar/HBoxContainer" unique_id=185553135]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_m4oq2")
 theme_override_font_sizes/font_size = 16
 text = "WindowTitle"
+text_overrun_behavior = 5
 
 [node name="LockIcon" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=1922679202]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 10
 texture = ExtResource("6_oigjo")
 stretch_mode = 5
+
+[node name="CloseButton" parent="PanelParent/GrabBar/HBoxContainer" unique_id=41542465 instance=ExtResource("7_1h8ly")]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+disabled = true
+text = ""
+icon = ExtResource("8_1j7e0")
+vertical_icon_alignment = 0
 
 [node name="Panel" type="Panel" parent="PanelParent" unique_id=675144617]
 custom_minimum_size = Vector2(0, 20)
@@ -234,15 +254,17 @@ unique_name_in_owner = true
 position = Vector2(1.5, 10.5)
 shape = SubResource("RectangleShape2D_pb32r")
 
-[node name="HeaderObstacle" parent="." unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_7ywxx")]
-is_header = true
-parent_window = NodePath("..")
-
-[node name="HeaderCollider" type="CollisionShape2D" parent="HeaderObstacle" unique_id=232912448]
+[node name="SelectedOutline" type="ColorRect" parent="." unique_id=1390055681]
 unique_name_in_owner = true
-position = Vector2(128, -19)
-shape = SubResource("RectangleShape2D_7ywxx")
-debug_color = Color(6.497651e-07, 0.647906, 0.20653778, 0.41960785)
+material = SubResource("ShaderMaterial_1j7e0")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=572684955]
 libraries/ = SubResource("AnimationLibrary_dr8s7")

@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://cyywgt1i0l6ou"]
+
+[ext_resource type="Script" uid="uid://dkf2vk4f5ym4h" path="res://Scripts/software.gd" id="1_7x1b8"]
+[ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/Windows/window_manager.gd" id="2_o5ft6"]
+[ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="3_tplc1"]
+[ext_resource type="PackedScene" uid="uid://dbn6q46r7br2l" path="res://Scenes/ui_button.tscn" id="5_wxln4"]
+[ext_resource type="Script" uid="uid://rh871ajwdmix" path="res://Materials/rte_sine.gd" id="6_t3m1t"]
+[ext_resource type="Script" uid="uid://bgwnma8yku77b" path="res://Materials/rte_sparkle.gd" id="7_0t7ba"]
+[ext_resource type="Script" uid="uid://dnr7ii4ks683g" path="res://Materials/rte_replace.gd" id="8_su2ib"]
+[ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="9_m46kd"]
+[ext_resource type="Script" uid="uid://bb1cao51wvu70" path="res://Scripts/CustomRichText.gd" id="10_byvyq"]
+[ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="11_4w2ea"]
+[ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="12_k88c5"]
+[ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="13_sntc0"]
+[ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="14_biynp"]
+
+[sub_resource type="Gradient" id="Gradient_7vvfa"]
+offsets = PackedFloat32Array(0, 0.43609023, 1)
+colors = PackedColorArray(0.62840027, 0.06695614, 0.2713269, 1, 0.6010387, 0.5159573, 0.9012849, 1, 0.41845596, 0.9101316, 0.89010507, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pb32r"]
+gradient = SubResource("Gradient_7vvfa")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3rbns"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7x1b8"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o5ft6"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tplc1"]
+script = ExtResource("9_m46kd")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rbns"]
+size = Vector2(920, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x1b8"]
+size = Vector2(96, 17.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6leb"]
+size = Vector2(920, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksry7"]
+size = Vector2(6.7999954, 515.2)
+
+[node name="Software" type="Node" unique_id=235705918]
+script = ExtResource("1_7x1b8")
+next_stage_on_goal = false
+
+[node name="WindowManager" type="Control" parent="." unique_id=2095774818]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_o5ft6")
+
+[node name="SoftwareWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_tplc1")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+is_locked = true
+grab_bar_color = Color(0.70007545, 0.28531986, 0.8152566, 1)
+closable = true
+
+[node name="GoalArea" parent="WindowManager/SoftwareWindow" unique_id=1905208525 instance=ExtResource("14_biynp")]
+unique_name_in_owner = true
+position = Vector2(1303.8, 76.2)
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/SoftwareWindow" unique_id=182673221]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="WindowManager/SoftwareWindow/MarginContainer" unique_id=624889316]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pb32r")
+
+[node name="CreditsText" type="RichTextLabel" parent="WindowManager/SoftwareWindow/MarginContainer" unique_id=1410550499]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "[sine]Thanks for playing![/sine]
+
+A game by Ethan Keys
+
+Made with Godot 4.7
+
+---
+
+Music: Theory of Everything by ...
+SFX: ..."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_3rbns"), SubResource("RichTextEffect_7x1b8"), SubResource("RichTextEffect_o5ft6"), SubResource("RichTextEffect_tplc1")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="StaticObstacle" parent="WindowManager/SoftwareWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("11_4w2ea")]
+is_disabled = true
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=400856589]
+position = Vector2(460.8, 515.7)
+shape = SubResource("RectangleShape2D_3rbns")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=1695075008]
+position = Vector2(863.8, 501.075)
+shape = SubResource("RectangleShape2D_7x1b8")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=723143996]
+position = Vector2(460.8, -8.799988)
+shape = SubResource("RectangleShape2D_m6leb")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=544997431]
+position = Vector2(2.4000015, 236.59999)
+shape = SubResource("RectangleShape2D_ksry7")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=2035365020]
+position = Vector2(917.80005, 250.20001)
+shape = SubResource("RectangleShape2D_ksry7")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/SoftwareWindow" unique_id=1929726504]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="ReplayButton" parent="WindowManager/SoftwareWindow/HBoxContainer" unique_id=41542465 instance=ExtResource("5_wxln4")]
+layout_mode = 2
+mouse_filter = 1
+text = "Replay"
+
+[node name="QuitButton" parent="WindowManager/SoftwareWindow/HBoxContainer" unique_id=2099400021 instance=ExtResource("5_wxln4")]
+layout_mode = 2
+mouse_filter = 1
+text = "Quit"
+
+[node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("12_k88c5")]
+stage = NodePath("..")
+ball = NodePath("../Ball")
+
+[node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("13_sntc0")]
+unique_name_in_owner = true
+position = Vector2(576, 129)
+window_manager = NodePath("../WindowManager")
+special = true
+
+[connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
