@@ -5,7 +5,7 @@ Click & drag over the golf ball to aim & launch to reach the goal! Complete all 
 
 Some windows can be moved, some have multiple pages, and some can be resized. Use them to cross the screen and reach your goal.
 
-##Resources Used:
+## Resources Used:
 - Music
 	- 'Theory of Everything' by Jake Kaufman & Yuzo Koshiro
 	- 'Space Jazz' by Kevin MacLeod (incompetech.com)
