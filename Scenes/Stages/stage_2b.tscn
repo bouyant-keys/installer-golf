@@ -120,16 +120,16 @@ script = ExtResource("9_3d0k6")
 [sub_resource type="RichTextEffect" id="RichTextEffect_brpp5"]
 script = ExtResource("8_pxo3p")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_f82m7"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_c2w58"]
 script = ExtResource("6_pxo3p")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_oar3j"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_f82m7"]
 script = ExtResource("7_3d0k6")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_8iyam"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_oar3j"]
 script = ExtResource("9_3d0k6")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_cudxk"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_8iyam"]
 script = ExtResource("8_pxo3p")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c2w58"]
@@ -148,9 +148,9 @@ start_selected_window = NodePath("StartWindow")
 
 [node name="SouthWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 518.0
+offset_left = 501.0
 offset_top = 425.0
-offset_right = 666.0
+offset_right = 649.0
 offset_bottom = 521.0
 
 [node name="StaticObstacle" parent="WindowManager/SouthWindow" unique_id=1897551971 instance=ExtResource("4_8jg75")]
@@ -178,9 +178,9 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="EastWindow" parent="WindowManager" unique_id=691472657 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 760.0
+offset_left = 743.0
 offset_top = 277.0
-offset_right = 908.0
+offset_right = 891.0
 offset_bottom = 373.0
 
 [node name="StaticObstacle" parent="WindowManager/EastWindow" unique_id=1048939632 instance=ExtResource("4_8jg75")]
@@ -210,9 +210,9 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="ErrorWindow" parent="WindowManager" unique_id=1249773584 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 393.0
+offset_left = 376.0
 offset_top = 358.0
-offset_right = 541.0
+offset_right = 524.0
 offset_bottom = 454.0
 window_icon = 3
 is_error = true
@@ -274,9 +274,9 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="ErrorWindow2" parent="WindowManager" unique_id=989818030 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 640.0
+offset_left = 623.0
 offset_top = 195.0
-offset_right = 788.0
+offset_right = 771.0
 offset_bottom = 291.0
 window_icon = 3
 is_error = true
@@ -338,9 +338,9 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="ErrorWindow3" parent="WindowManager" unique_id=264721297 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 640.0
+offset_left = 623.0
 offset_top = 358.0
-offset_right = 788.0
+offset_right = 771.0
 offset_bottom = 454.0
 window_icon = 3
 is_error = true
@@ -402,9 +402,9 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="ErrorWindow4" parent="WindowManager" unique_id=1540597376 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 393.0
+offset_left = 376.0
 offset_top = 186.0
-offset_right = 541.0
+offset_right = 524.0
 offset_bottom = 282.0
 window_icon = 3
 is_error = true
@@ -454,7 +454,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
-custom_effects = [SubResource("RichTextEffect_f82m7"), SubResource("RichTextEffect_oar3j"), SubResource("RichTextEffect_8iyam"), SubResource("RichTextEffect_cudxk")]
+custom_effects = [SubResource("RichTextEffect_c2w58"), SubResource("RichTextEffect_f82m7"), SubResource("RichTextEffect_oar3j"), SubResource("RichTextEffect_8iyam")]
 script = ExtResource("8_j5a1j")
 is_fall_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
@@ -469,9 +469,9 @@ debug_color = Color(0.963877, 3.080368e-06, 0.49896622, 0.41960785)
 
 [node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 519.0
+offset_left = 502.0
 offset_top = 118.0
-offset_right = 667.0
+offset_right = 650.0
 offset_bottom = 214.0
 window_icon = 1
 is_locked = true
@@ -483,9 +483,9 @@ position = Vector2(76, 48)
 
 [node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("3_vwtap")]
 layout_mode = 1
-offset_left = 295.0
+offset_left = 278.0
 offset_top = 277.0
-offset_right = 443.0
+offset_right = 426.0
 offset_bottom = 373.0
 is_locked = true
 

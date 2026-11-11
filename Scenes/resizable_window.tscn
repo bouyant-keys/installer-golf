@@ -345,14 +345,14 @@ mouse_filter = 1
 mouse_default_cursor_shape = 12
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
-[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_panel")]
+[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_control")]
 unique_name_in_owner = true
 position = Vector2(126, 117)
 collision_mask = 2
 input_pickable = false
 script = ExtResource("8_0yqvv")
 window_parent = NodePath("..")
-move_panel = NodePath("../PanelParent/VBoxContainer/MovePanel")
+move_control = NodePath("../PanelParent/VBoxContainer/MovePanel")
 
 [node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
 unique_name_in_owner = true

@@ -155,6 +155,7 @@ layout_mode = 2
 
 [node name="Spacer" type="Control" parent="PanelParent/GrabBar/HBoxContainer" unique_id=2047035196]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="IconTexture" type="TextureRect" parent="PanelParent/GrabBar/HBoxContainer" unique_id=562214442]
 unique_name_in_owner = true
@@ -201,6 +202,7 @@ offset_left = 3.0
 offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_pb32r")
 
 [node name="MovePanel" type="PanelContainer" parent="PanelParent" unique_id=1557305128]
@@ -240,14 +242,14 @@ tab_0/title = " A "
 tab_1/title = " B "
 tab_2/title = " C "
 
-[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_panel")]
+[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_control")]
 unique_name_in_owner = true
 position = Vector2(126, 117)
 collision_mask = 2
 input_pickable = false
 script = ExtResource("8_1h8ly")
 window_parent = NodePath("..")
-move_panel = NodePath("../PanelParent/MovePanel")
+move_control = NodePath("../PanelParent")
 
 [node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
 unique_name_in_owner = true

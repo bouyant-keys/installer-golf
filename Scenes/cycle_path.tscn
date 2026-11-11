@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://c3enibq67gl8k"]
-
-[ext_resource type="Script" uid="uid://b85eu4mx4o071" path="res://Scripts/cycle_path.gd" id="1_x3whq"]
-
-[node name="CyclePath" type="Path2D" unique_id=1497728712]
-script = ExtResource("1_x3whq")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=680016831]
-rotates = false

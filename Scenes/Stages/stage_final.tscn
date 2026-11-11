@@ -17,50 +17,92 @@
 [ext_resource type="Texture2D" uid="uid://c7jkyk7oo4j0a" path="res://Textures/W95-Inset_PanelBG.png" id="11_yvdwg"]
 [ext_resource type="Texture2D" uid="uid://brthw6d14jtye" path="res://Textures/ProgressBar_Over.png" id="12_nw30k"]
 [ext_resource type="Texture2D" uid="uid://cpu3pfkjj3ik" path="res://Textures/ProgressBar_Fill.png" id="13_hpa85"]
+[ext_resource type="AudioStream" uid="uid://bkhf3xlbmjuxu" path="res://Audio/Effects/PopupConfirm.wav" id="16_hpa85"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="16_nw30k"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_enm0b"]
-script = ExtResource("7_qfb8r")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_rv6fn"]
-script = ExtResource("8_6ia67")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_qpnfj"]
-script = ExtResource("9_hpa85")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_ao14y"]
-script = ExtResource("10_xibix")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_nw30k"]
-script = ExtResource("7_qfb8r")
-
 [sub_resource type="RichTextEffect" id="RichTextEffect_hpa85"]
-script = ExtResource("8_6ia67")
+script = ExtResource("7_qfb8r")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_xibix"]
-script = ExtResource("9_hpa85")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_pclc6"]
-script = ExtResource("10_xibix")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_nwn05"]
-script = ExtResource("7_qfb8r")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_dp3xv"]
 script = ExtResource("8_6ia67")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_jmtg1"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_pclc6"]
 script = ExtResource("9_hpa85")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_bih88"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_nwn05"]
 script = ExtResource("10_xibix")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dp3xv"]
+script = ExtResource("7_qfb8r")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jmtg1"]
+script = ExtResource("8_6ia67")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_bih88"]
+script = ExtResource("9_hpa85")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_enm0b"]
+script = ExtResource("10_xibix")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rv6fn"]
+script = ExtResource("7_qfb8r")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qpnfj"]
+script = ExtResource("8_6ia67")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ao14y"]
+script = ExtResource("9_hpa85")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ulchm"]
+script = ExtResource("10_xibix")
+
+[sub_resource type="Animation" id="Animation_nw30k"]
+resource_name = "Install"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InstallWindow/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.7, 0.8666667, 1.0666667, 1.6, 1.9, 2.3333333, 3),
+"transitions": PackedFloat32Array(1, 0, 1, 0, 1, 1, 0, 1, 1),
+"update": 0,
+"values": [0.0, 20.0, 35.0, 35.0, 55.0, 60.0, 85.0, 96.0, 100.0]
+}
+
+[sub_resource type="Animation" id="Animation_hpa85"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InstallWindow/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xibix"]
+_data = {
+&"Install": SubResource("Animation_nw30k"),
+&"RESET": SubResource("Animation_hpa85")
+}
 
 [node name="StageFinal" type="Node" unique_id=1335873284]
 script = ExtResource("1_0epjr")
 next_stage_on_goal = false
 
-[node name="InstallManager" type="Node" parent="." unique_id=320573321]
+[node name="InstallManager" type="Node" parent="." unique_id=320573321 node_paths=PackedStringArray("install_animation", "install_sfx", "confirm_button")]
 script = ExtResource("2_nw30k")
+install_animation = NodePath("../InstallAnimation")
+install_sfx = NodePath("../InstallSuccessSFX")
+complete_color = Color(0, 0.847765, 0, 1)
+confirm_button = NodePath("../ConfirmationWindow/NavPanel/HBoxContainer/ConfirmButton")
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274]
 unique_name_in_owner = true
@@ -74,6 +116,7 @@ mouse_filter = 2
 script = ExtResource("2_yqcxy")
 
 [node name="StartWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_l1w1d")]
+z_index = -100
 layout_mode = 1
 offset_left = -112.0
 offset_top = -92.0
@@ -86,12 +129,12 @@ title_text = &"HoleTwelve"
 [node name="GoalArea" parent="WindowManager/StartWindow" unique_id=711233156 instance=ExtResource("5_qfb8r")]
 unique_name_in_owner = true
 position = Vector2(192, 48)
-is_final_level = true
 
 [node name="ConfirmationWindow" parent="." unique_id=1481911520 instance=ExtResource("3_l1w1d")]
 unique_name_in_owner = true
-offset_top = 28.0
-offset_bottom = 156.0
+z_index = -50
+offset_top = -64.0
+offset_bottom = 64.0
 window_icon = 2
 enter_on_start = false
 title_text = &"Confirm"
@@ -116,7 +159,7 @@ installation has completed.)"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_enm0b"), SubResource("RichTextEffect_rv6fn"), SubResource("RichTextEffect_qpnfj"), SubResource("RichTextEffect_ao14y")]
+custom_effects = [SubResource("RichTextEffect_hpa85"), SubResource("RichTextEffect_xibix"), SubResource("RichTextEffect_pclc6"), SubResource("RichTextEffect_nwn05")]
 script = ExtResource("9_jfo7f")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -143,10 +186,11 @@ text = "Confirm"
 
 [node name="InstallWindow" parent="." unique_id=35000771 instance=ExtResource("3_l1w1d")]
 unique_name_in_owner = true
-offset_left = -178.0
-offset_top = -26.0
-offset_right = 182.0
-offset_bottom = 33.0
+z_index = -25
+offset_left = -180.0
+offset_top = -29.5
+offset_right = 180.0
+offset_bottom = 29.5
 enter_on_start = false
 title_text = &"InstallProgress"
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
@@ -165,7 +209,7 @@ text = "[sine]Installation Complete![/sine]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_nw30k"), SubResource("RichTextEffect_hpa85"), SubResource("RichTextEffect_xibix"), SubResource("RichTextEffect_pclc6")]
+custom_effects = [SubResource("RichTextEffect_dp3xv"), SubResource("RichTextEffect_jmtg1"), SubResource("RichTextEffect_bih88"), SubResource("RichTextEffect_enm0b")]
 script = ExtResource("9_jfo7f")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -182,7 +226,7 @@ text = "Installing[sine].....[/sine]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-custom_effects = [SubResource("RichTextEffect_nwn05"), SubResource("RichTextEffect_dp3xv"), SubResource("RichTextEffect_jmtg1"), SubResource("RichTextEffect_bih88")]
+custom_effects = [SubResource("RichTextEffect_rv6fn"), SubResource("RichTextEffect_qpnfj"), SubResource("RichTextEffect_ao14y"), SubResource("RichTextEffect_ulchm")]
 script = ExtResource("9_jfo7f")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -199,7 +243,6 @@ offset_top = 6.055559
 offset_bottom = 11.055565
 grow_horizontal = 2
 grow_vertical = 2
-value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 3
 stretch_margin_top = 3
@@ -224,6 +267,12 @@ patch_margin_bottom = 3
 axis_stretch_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="InstallAnimation" type="AnimationPlayer" parent="." unique_id=1689134222]
+libraries/ = SubResource("AnimationLibrary_xibix")
+
+[node name="InstallSuccessSFX" type="AudioStreamPlayer" parent="." unique_id=38540254]
+stream = ExtResource("16_hpa85")
+
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("16_nw30k")]
 stage = NodePath("..")
 ball = NodePath("../Ball")
@@ -239,5 +288,7 @@ z_index = 20
 script = ExtResource("9_yvdwg")
 ball = NodePath("../Ball")
 
+[connection signal="progress_full" from="." to="InstallManager" method="_on_progress_complete"]
+[connection signal="golf_end" from="InstallManager" to="." method="_on_golf_end"]
 [connection signal="launch_software" from="InstallManager" to="." method="next_stage"]
 [connection signal="pressed" from="ConfirmationWindow/NavPanel/HBoxContainer/ConfirmButton" to="InstallManager" method="on_confirm"]

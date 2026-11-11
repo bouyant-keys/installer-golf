@@ -12,7 +12,7 @@ var fading := false
 func _ready() -> void:
 	stage.reset.connect(_reset)
 	ball.ball_launched.connect(_on_ball_launched)
-	ball.ball_stopped.connect(_reset)
+	ball.ball_stopped.connect(_on_ball_stopped)
 	ball.ball_fell.connect(_reset)
 	set_process(false)
 
@@ -30,6 +30,9 @@ func _on_ball_launched() ->void:
 	print("ball launched -- trail")
 	set_process(true)
 	fade_timer.start()
+
+func _on_ball_stopped(_reset_on_click:bool) ->void:
+	_reset()
 
 func _reset() ->void:
 	fade_timer.stop()

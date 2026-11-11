@@ -15,6 +15,7 @@ signal exit_windows
 signal enter_ball
 signal enter_goal
 signal ball_stopped
+signal progress_full
 
 @export var next_stage_on_goal := true
 
@@ -43,11 +44,10 @@ func stage_setup() ->void:
 	if ball.enter_on_load:
 		print("Ball enter now !!!")
 		enter_ball.emit()
-	if !goal_area.is_intro_level:
+	if !goal_area.enter_on_load:
 		enter_goal.emit()
 
 func stage_exit() ->void:
-	await get_tree().create_timer(GOAL_WAIT_TIME).timeout
 	exit_windows.emit()
 	await window_manager.windows_exited
 	await get_tree().create_timer(WINDOWS_EXIT_WAIT).timeout
@@ -65,9 +65,14 @@ func _on_golf_start() ->void: golf_start.emit()
 ## Only called in outro_stage
 func _on_golf_end() ->void: golf_end.emit()
 
-func _on_ball_stopped() ->void: ball_stopped.emit()
+# Called when ProgressWindow in main reaches 100%
+func _on_progress_full() ->void: progress_full.emit()
+
+func _on_ball_stopped(_reset:bool) ->void: ball_stopped.emit()
 
 func _on_goal() ->void:
 	if !next_stage_on_goal:
 		return
+	
+	await get_tree().create_timer(GOAL_WAIT_TIME).timeout
 	stage_exit()

@@ -46,8 +46,8 @@ func _on_invalid_spot() ->void:
 func _on_ball_entered() ->void:
 	_on_valid_spot()
 	show_indicator()
-func _on_ball_stopped() ->void:
-	texture = reset_indicator
+func _on_ball_stopped(reset:bool) ->void:
+	texture = reset_indicator if reset else valid_indicator
 	self_modulate = Color.WHITE
 	show_indicator()
 func _on_ball_launched() ->void: hide_indicator()

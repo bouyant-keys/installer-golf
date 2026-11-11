@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://by4sh6lu1v78t" path="res://Scripts/intro_details.gd" id="2_1u51f"]
 [ext_resource type="Script" uid="uid://dh1adkrkupdiy" path="res://Scripts/Windows/window_manager.gd" id="2_8epbn"]
 [ext_resource type="PackedScene" uid="uid://ydwad5t72o11" path="res://Scenes/window_panel.tscn" id="3_0svxb"]
+[ext_resource type="AudioStream" uid="uid://1pkmb3hd04o0" path="res://Audio/Effects/typewriter_loop.wav" id="3_dk475"]
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="4_di2nh"]
 [ext_resource type="PackedScene" uid="uid://bj6far5ewaw7w" path="res://Scenes/static_obstacle.tscn" id="5_gbh5r"]
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="6_l7gib"]
@@ -18,28 +19,28 @@
 [ext_resource type="Script" uid="uid://b6ry3pwst434w" path="res://Materials/rte_fallout.gd" id="11_aqfne"]
 [ext_resource type="PackedScene" uid="uid://uswju6xnjeqc" path="res://Scenes/ball_trail.tscn" id="12_l7gib"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_aqfne"]
-script = ExtResource("8_l7gib")
-
 [sub_resource type="RichTextEffect" id="RichTextEffect_dk475"]
-script = ExtResource("9_d37dp")
+script = ExtResource("8_l7gib")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_wtuk1"]
-script = ExtResource("7_r0k7y")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_0bgy0"]
-script = ExtResource("11_aqfne")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_mhug8"]
-script = ExtResource("8_l7gib")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_t4tqi"]
 script = ExtResource("9_d37dp")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_ounnh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_0bgy0"]
 script = ExtResource("7_r0k7y")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_mhug8"]
+script = ExtResource("11_aqfne")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_t4tqi"]
+script = ExtResource("8_l7gib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ounnh"]
+script = ExtResource("9_d37dp")
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_aanrh"]
+script = ExtResource("7_r0k7y")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_myuwy"]
 script = ExtResource("11_aqfne")
 
 [sub_resource type="Gradient" id="Gradient_l7gib"]
@@ -47,13 +48,19 @@ script = ExtResource("11_aqfne")
 [node name="StageIntro" type="Node" unique_id=1335873284]
 script = ExtResource("1_50pyf")
 
-[node name="IntroDetails" type="Node" parent="." unique_id=645503964 node_paths=PackedStringArray("stage", "ball", "goal", "popup_window", "start_button")]
+[node name="IntroDetails" type="Node" parent="." unique_id=645503964 node_paths=PackedStringArray("stage", "ball", "goal", "popup_window", "start_button", "tutorial_text")]
 script = ExtResource("2_1u51f")
 stage = NodePath("..")
 ball = NodePath("../Ball")
 goal = NodePath("../WindowManager/PopupWindow/GoalArea")
 popup_window = NodePath("../WindowManager/PopupWindow")
 start_button = NodePath("../WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton")
+tutorial_text = NodePath("../WindowManager/TutorialWindow/MarginContainer/TutorialText")
+
+[node name="TextSFX" type="AudioStreamPlayer" parent="IntroDetails" unique_id=1541551257]
+stream = ExtResource("3_dk475")
+pitch_scale = 1.5
+bus = &"SFX"
 
 [node name="WindowManager" type="Control" parent="." unique_id=1863376274 node_paths=PackedStringArray("start_selected_window")]
 unique_name_in_owner = true
@@ -75,6 +82,7 @@ offset_top = -113.0
 offset_right = 160.0
 offset_bottom = 70.0
 window_icon = 2
+title_text = &"CCFFS Wizard"
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/TutorialWindow" unique_id=1777454323]
@@ -90,6 +98,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 26
 
 [node name="TutorialText" type="RichTextLabel" parent="WindowManager/TutorialWindow/MarginContainer" unique_id=409508633]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
@@ -98,10 +107,10 @@ text = "Welcome to the [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFu
 This wizard will guide the installation of [sine][sparkle weight=2.0 color=rebecca_purple]CoolCoolFunFun Deluxe Edition[/sparkle][/sine] (CCFFDX) on your computer.
 
 
-To continue, click [color=blue]Next[/color]."
+To continue, click [color=blue]Start[/color]."
 fit_content = true
 scroll_active = false
-custom_effects = [SubResource("RichTextEffect_aqfne"), SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0")]
+custom_effects = [SubResource("RichTextEffect_dk475"), SubResource("RichTextEffect_wtuk1"), SubResource("RichTextEffect_0bgy0"), SubResource("RichTextEffect_mhug8")]
 script = ExtResource("9_gbh5r")
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
@@ -141,7 +150,6 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(208, 78)
 parent_window = NodePath("..")
-is_intro_level = true
 
 [node name="StaticObstacle" parent="WindowManager/PopupWindow" unique_id=922501734 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_gbh5r")]
 parent_window = NodePath("..")
@@ -166,7 +174,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_mhug8"), SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh")]
+custom_effects = [SubResource("RichTextEffect_t4tqi"), SubResource("RichTextEffect_ounnh"), SubResource("RichTextEffect_aanrh"), SubResource("RichTextEffect_myuwy")]
 script = ExtResource("9_gbh5r")
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("12_l7gib")]
@@ -177,7 +185,7 @@ ball = NodePath("../Ball")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("6_l7gib")]
 unique_name_in_owner = true
-position = Vector2(480, 512)
+position = Vector2(501, 512)
 window_manager = NodePath("../WindowManager")
 enter_on_load = false
 
@@ -187,5 +195,6 @@ z_index = 20
 script = ExtResource("8_r0k7y")
 ball = NodePath("../Ball")
 
+[connection signal="entered" from="WindowManager/TutorialWindow" to="IntroDetails" method="_on_tutorial_window_entered"]
 [connection signal="pressed" from="WindowManager/TutorialWindow/NavPanel/HBoxContainer/StartButton" to="IntroDetails" method="_on_start_button_pressed"]
 [connection signal="goal" from="WindowManager/PopupWindow/GoalArea" to="Ball" method="_on_goal"]

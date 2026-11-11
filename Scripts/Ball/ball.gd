@@ -15,6 +15,7 @@ var prev_window : WindowPanel
 var mouse_hover := false
 var mouse_drag := false
 var entered := false
+var exited := false
 var frozen := false
 var stopped := false
 var launched := false
@@ -48,7 +49,7 @@ signal trajectory_changed(trajectory:Vector2, strength:float, strength_range:Vec
 signal draw_trajectory(enabled:bool)
 signal direction_changed(at_pos:Vector2)
 signal ball_launched
-signal ball_stopped
+signal ball_stopped(reset_on_click:bool)
 signal ball_stuck
 signal ball_fell
 signal ball_entered
@@ -92,6 +93,7 @@ func enter() ->void:
 
 ## Played when ball finds itself stuck inside a collision obstacle and must reset.
 func stuck() ->void:
+	if exited: return
 	print("Ball Stuck")
 	set_current_window(null)
 	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
@@ -109,6 +111,7 @@ func stuck() ->void:
 
 ## Played when ball falls outside a window into the background and must reset.
 func fall() ->void:
+	if exited: return
 	print("Ball Fell")
 	set_current_window(null)
 	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
@@ -126,10 +129,12 @@ func fall() ->void:
 
 ## Played when ball reaches the goal.
 func exit() ->void:
+	current_speed = 0.0
 	anim.play("exit")
 	rolling_sfx.stop()
 	exit_sfx.play()
 	ball_exited.emit()
+	exited = true
 	
 	await anim.animation_finished
 	hide()
@@ -140,8 +145,12 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("LeftClick") && mouse_hover:
-		if stopped:
+		if !can_launch or !entered or frozen:
+			return
+		elif stopped and !special:
 			_on_stage_reset()
+			return
+		elif launched and !special:
 			return
 		mouse_drag = true
 		click_pos = get_global_mouse_position()
@@ -152,9 +161,11 @@ func _input(event: InputEvent) -> void:
 			var new_window := floor_area.recheck_current_window()
 			set_current_window(new_window)
 		
+		stopped = false
 		mouse_drag = false
 		var launch_dir := -(get_global_mouse_position() - click_pos)
 		if abs(launch_dir) < DRAG_MIN:
+			#launch_dir = launch_dir.normalized() * DRAG_MIN
 			return
 		
 		move_dir = launch_dir.normalized()
@@ -186,14 +197,14 @@ func _physics_process(delta: float) -> void:
 	var move_rect := get_current_window().get_movable_area()
 	
 	# Decelerate ball over time by DECEL_RATE
-	if !special:
-		current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
+	#if !special:
+	current_speed = move_toward(current_speed, 0.0, DECEL_RATE * delta)
 	
 	if is_zero_approx(current_speed):
 		print("Ball stopped!")
 		stopped = true
 		rolling_sfx.stop()
-		ball_stopped.emit()
+		ball_stopped.emit(!special)
 	
 	var current_velocity := move_dir * current_speed * delta
 	
@@ -295,6 +306,8 @@ func _on_window_resize_end(window:WindowPanel) ->void:
 
 func _on_goal() ->void:
 	print("Ball hit goal!")
+	if special or !launched:
+		return
 	current_speed = 0.0
 	mouse_control.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	velocity = Vector2.ZERO

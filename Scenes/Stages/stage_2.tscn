@@ -27,33 +27,6 @@ script = ExtResource("9_jlysy")
 [sub_resource type="RichTextEffect" id="RichTextEffect_bche0"]
 script = ExtResource("8_t0gjp")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_jwnsw"]
-script = ExtResource("5_mkum7")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_fejmu"]
-script = ExtResource("6_lwsdr")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_ijb4h"]
-script = ExtResource("9_jlysy")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_qkvk7"]
-script = ExtResource("8_t0gjp")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_j63j5"]
-script = ExtResource("5_mkum7")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_mnfrk"]
-script = ExtResource("6_lwsdr")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_6j8kg"]
-script = ExtResource("9_jlysy")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_da66h"]
-script = ExtResource("8_t0gjp")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0gjp"]
-size = Vector2(103, 63)
-
 [sub_resource type="RichTextEffect" id="RichTextEffect_h3yy8"]
 script = ExtResource("5_mkum7")
 
@@ -78,23 +51,32 @@ script = ExtResource("9_jlysy")
 [sub_resource type="RichTextEffect" id="RichTextEffect_4a55l"]
 script = ExtResource("8_t0gjp")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_o47kg"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_idvmm"]
 script = ExtResource("5_mkum7")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_0n5nl"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_fuxyh"]
 script = ExtResource("6_lwsdr")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_3q1p7"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_t2psh"]
 script = ExtResource("9_jlysy")
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_frml8"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_w61wq"]
 script = ExtResource("8_t0gjp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
-size = Vector2(212, 52)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpi0u"]
+size = Vector2(136, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt5sl"]
-size = Vector2(130, 11)
+[sub_resource type="RichTextEffect" id="RichTextEffect_hpi0u"]
+script = ExtResource("5_mkum7")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ufhk5"]
+script = ExtResource("6_lwsdr")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_e6c17"]
+script = ExtResource("9_jlysy")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u86m6"]
+script = ExtResource("8_t0gjp")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_klkps"]
 script = ExtResource("5_mkum7")
@@ -106,18 +88,6 @@ script = ExtResource("6_lwsdr")
 script = ExtResource("9_jlysy")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_6dto2"]
-script = ExtResource("8_t0gjp")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_idvmm"]
-script = ExtResource("5_mkum7")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_fuxyh"]
-script = ExtResource("6_lwsdr")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_t2psh"]
-script = ExtResource("9_jlysy")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_w61wq"]
 script = ExtResource("8_t0gjp")
 
 [node name="Stage2" type="Node" unique_id=1335873284]
@@ -173,97 +143,29 @@ offset_top = 64.0
 offset_right = 704.0
 offset_bottom = 236.0
 
-[node name="FallObstacle" type="RichTextLabel" parent="WindowManager/MoveWindow" unique_id=2024583583]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -123.0
-offset_top = 4.0
-offset_right = -17.0
-offset_bottom = 68.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-bbcode_enabled = true
-text = "[fallout color=White][bgcolor=blue] 1 0 1 0 1 1 0 
- 0 1 1 0 1 0 0 
- 0 0 0 1 1 0 1 
- 1 1 0 0 0 1 1 [/bgcolor][/fallout]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_jwnsw"), SubResource("RichTextEffect_fejmu"), SubResource("RichTextEffect_ijb4h"), SubResource("RichTextEffect_qkvk7")]
-script = ExtResource("7_sleoo")
-is_fall_obstacle = true
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="FallObstacle2" type="RichTextLabel" parent="WindowManager/MoveWindow" unique_id=712676516]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 17.0
-offset_top = 102.0
-offset_right = 123.0
-offset_bottom = 166.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-bbcode_enabled = true
-text = "[fallout color=White][bgcolor=blue] 1 0 1 0 1 1 0 
- 0 1 1 0 1 0 0 
- 0 0 0 1 1 0 1 
- 1 1 0 0 0 1 1 [/bgcolor][/fallout]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_j63j5"), SubResource("RichTextEffect_mnfrk"), SubResource("RichTextEffect_6j8kg"), SubResource("RichTextEffect_da66h")]
-script = ExtResource("7_sleoo")
-is_fall_obstacle = true
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="FallArea" parent="WindowManager/MoveWindow" unique_id=89367127 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_37xiv")]
-parent_window = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/MoveWindow/FallArea" unique_id=96871088]
-position = Vector2(56.5, 34.5)
-shape = SubResource("RectangleShape2D_t0gjp")
-debug_color = Color(0.9647059, 0, 0.49803922, 0.41960785)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/MoveWindow/FallArea" unique_id=1116670635]
-position = Vector2(199, 135)
-shape = SubResource("RectangleShape2D_t0gjp")
-debug_color = Color(0.963877, 3.080368e-06, 0.49896622, 0.41960785)
-
 [node name="StaticObstacle" parent="WindowManager/MoveWindow" unique_id=861870886 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_ipk3x")]
 parent_window = NodePath("..")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/MoveWindow/StaticObstacle" unique_id=1815482574]
-polygon = PackedVector2Array(168, 22, 168, 38, 221, 38, 221, 11, 161, 11, 161, 22)
+position = Vector2(0, -3.9000015)
+polygon = PackedVector2Array(38, 22, 38, 38, 237, 38, 237, 11, 18, 11, 18, 22)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WindowManager/MoveWindow/StaticObstacle" unique_id=1381339180]
-position = Vector2(-134, 119)
-polygon = PackedVector2Array(181, 22, 181, 38, 227, 38, 227, 11, 161, 11, 161, 22)
+position = Vector2(-147, 126.100006)
+polygon = PackedVector2Array(214, 22, 214, 38, 393, 38, 393, 11, 161, 11, 161, 22)
 
 [node name="TextObstacle" type="RichTextLabel" parent="WindowManager/MoveWindow" unique_id=2060849148]
 layout_mode = 1
-offset_left = 161.0
-offset_top = 9.0
-offset_right = 221.0
-offset_bottom = 57.0
+offset_left = 12.0
+offset_top = 5.0999985
+offset_right = 238.0
+offset_bottom = 53.1
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[cuss]aaaaaaaaa
-aaaaaaaa"
+text = "[cuss]aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -280,18 +182,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = -44.0
-offset_right = -34.0
-offset_bottom = -12.0
+offset_left = -114.0
+offset_top = -36.899994
+offset_right = 119.0
+offset_bottom = -4.899994
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[cuss]aaaaaaaaaa
-aaaaaaa[/cuss]"
+text = "[cuss]aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaa[/cuss]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -301,16 +203,18 @@ script = ExtResource("7_sleoo")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="ErrorWindow" parent="WindowManager" unique_id=2032637502 instance=ExtResource("3_uxocw")]
+[node name="ErrorWindow2" parent="WindowManager" unique_id=954844183 instance=ExtResource("3_uxocw")]
 layout_mode = 1
-offset_left = 458.0
-offset_top = 352.0
-offset_right = 686.0
-offset_bottom = 418.0
+offset_left = 405.0
+offset_top = 276.0
+offset_right = 557.0
+offset_bottom = 349.0
 window_icon = 3
+is_locked = true
 is_error = true
+title_text = &"!! ERROR !!"
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/ErrorWindow" unique_id=1840992906]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/ErrorWindow2" unique_id=496597678]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -323,12 +227,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="ClipControl" type="Control" parent="WindowManager/ErrorWindow/MarginContainer" unique_id=2001172934]
+[node name="ClipControl" type="Control" parent="WindowManager/ErrorWindow2/MarginContainer" unique_id=678517404]
 clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="FallObstacle" type="RichTextLabel" parent="WindowManager/ErrorWindow/MarginContainer/ClipControl" unique_id=79098827]
+[node name="FallObstacle" type="RichTextLabel" parent="WindowManager/ErrorWindow2/MarginContainer/ClipControl" unique_id=780686532]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,25 +243,86 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[fallout color=White][bgcolor=blue] 1 0 1 0 1 1 0 1 0 1 1 1 0 1 0 0 1 
- 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 1 
- 0 0 0 1 1 0 1 1 1 0 0 1 0 1 1 0 0 
- 1 1 0 0 0 1 1 1 0 1 0 0 1 0 1 1 1 [/bgcolor][/fallout]"
+text = "[fallout color=White][bgcolor=blue] 1 0 1 0 1 1 0 1 0 1 1 
+ 0 1 1 0 1 0 0 1 0 1 1 
+ 0 0 0 1 1 0 1 1 1 0 0 
+ 1 1 0 0 0 1 1 1 0 1 0 [/bgcolor][/fallout]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
-custom_effects = [SubResource("RichTextEffect_o47kg"), SubResource("RichTextEffect_0n5nl"), SubResource("RichTextEffect_3q1p7"), SubResource("RichTextEffect_frml8")]
+custom_effects = [SubResource("RichTextEffect_idvmm"), SubResource("RichTextEffect_fuxyh"), SubResource("RichTextEffect_t2psh"), SubResource("RichTextEffect_w61wq")]
 script = ExtResource("7_sleoo")
 is_fall_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
-[node name="FallArea" parent="WindowManager/ErrorWindow" unique_id=1276572361 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_37xiv")]
+[node name="FallArea" parent="WindowManager/ErrorWindow2" unique_id=1493646610 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_37xiv")]
 parent_window = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ErrorWindow/FallArea" unique_id=2054584567]
-position = Vector2(114, 32)
-shape = SubResource("RectangleShape2D_pb32r")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ErrorWindow2/FallArea" unique_id=845649447]
+position = Vector2(76, 35.5)
+shape = SubResource("RectangleShape2D_hpi0u")
+debug_color = Color(0.963877, 3.080368e-06, 0.49896622, 0.41960785)
+
+[node name="ErrorWindow3" parent="WindowManager" unique_id=1956675889 instance=ExtResource("3_uxocw")]
+layout_mode = 1
+offset_left = 588.0
+offset_top = 399.0
+offset_right = 740.0
+offset_bottom = 472.0
+window_icon = 3
+is_locked = true
+is_error = true
+title_text = &"!! ERROR !!"
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/ErrorWindow3" unique_id=656006168]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ClipControl" type="Control" parent="WindowManager/ErrorWindow3/MarginContainer" unique_id=14158649]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FallObstacle" type="RichTextLabel" parent="WindowManager/ErrorWindow3/MarginContainer/ClipControl" unique_id=240957272]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[fallout color=White][bgcolor=blue] 1 0 1 0 1 1 0 1 0 1 1 
+ 0 1 1 0 1 0 0 1 0 1 1 
+ 0 0 0 1 1 0 1 1 1 0 0 
+ 1 1 0 0 0 1 1 1 0 1 0 [/bgcolor][/fallout]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+custom_effects = [SubResource("RichTextEffect_hpi0u"), SubResource("RichTextEffect_ufhk5"), SubResource("RichTextEffect_e6c17"), SubResource("RichTextEffect_u86m6")]
+script = ExtResource("7_sleoo")
+is_fall_obstacle = true
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="FallArea" parent="WindowManager/ErrorWindow3" unique_id=1848899002 node_paths=PackedStringArray("parent_window") instance=ExtResource("9_37xiv")]
+parent_window = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ErrorWindow3/FallArea" unique_id=489073447]
+position = Vector2(76, 36)
+shape = SubResource("RectangleShape2D_hpi0u")
 debug_color = Color(0.963877, 3.080368e-06, 0.49896622, 0.41960785)
 
 [node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_uxocw")]
@@ -372,18 +337,13 @@ title_text = &"HoleFive"
 
 [node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 instance=ExtResource("4_wjg4a")]
 unique_name_in_owner = true
-position = Vector2(139, 82)
+position = Vector2(109, 115)
 
 [node name="StaticObstacle" parent="WindowManager/GoalWindow" unique_id=1458297171 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_ipk3x")]
 parent_window = NodePath("..")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=1402622830]
-polygon = PackedVector2Array(26, 6, 26, 17, 126, 18, 126, 33, 153, 33, 153, 49, 184, 48, 184, 5)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/GoalWindow/StaticObstacle" unique_id=951147266]
-position = Vector2(119, 114.5)
-shape = SubResource("RectangleShape2D_yt5sl")
-debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+polygon = PackedVector2Array(26, 6, 26, 17, 125, 17, 125, 33, 152, 33, 152, 49, 158, 49, 158, 113, 184, 113, 184, 5)
 
 [node name="ObstacleText" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=1454783512]
 layout_mode = 1
@@ -399,41 +359,18 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[cuss][cuss]Text Text Text Text Text
+text = "[cuss]Text Text Text Text Text
 Text Text
-Text.[/cuss][/cuss]"
+Text.
+aaaa
+aaaa
+aaaa
+aaaa"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
 custom_effects = [SubResource("RichTextEffect_klkps"), SubResource("RichTextEffect_k65ml"), SubResource("RichTextEffect_tolkc"), SubResource("RichTextEffect_6dto2")]
-script = ExtResource("7_sleoo")
-is_text_obstacle = true
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
-
-[node name="ObstacleText2" type="RichTextLabel" parent="WindowManager/GoalWindow" unique_id=892945468]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -138.0
-offset_top = -21.0
-offset_right = -5.0
-offset_bottom = -5.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-bbcode_enabled = true
-text = "[cuss][cuss]Text Text Text Text.[/cuss][/cuss]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_idvmm"), SubResource("RichTextEffect_fuxyh"), SubResource("RichTextEffect_t2psh"), SubResource("RichTextEffect_w61wq")]
 script = ExtResource("7_sleoo")
 is_text_obstacle = true
 metadata/_custom_type_script = "uid://bb1cao51wvu70"

@@ -64,6 +64,8 @@ func _enter_windows() ->void:
 
 func _exit_windows() ->void:
 	for window in windows:
+		# Skip exiting already exited windows
+		if window.has_exited: continue
 		window.exit()
 		await get_tree().create_timer(WIN_ENTER_TIME).timeout
 	windows_exited.emit()

@@ -1,7 +1,7 @@
 class_name MoveArea extends Area2D
 
 @export var window_parent : WindowPanel
-@export var move_panel : PanelContainer
+@export var move_control : Control
 
 @onready var move_collider: CollisionShape2D = $MoveCollider
 
@@ -24,5 +24,5 @@ func set_collider_active(active:bool) ->void:
 	move_collider.set_deferred("disabled", !active)
 
 func fit_collider() ->void:
-	move_collider.global_position = move_panel.global_position + (move_panel.size / 2.0)
-	move_collider.shape.size = move_panel.size
+	move_collider.global_position = move_control.global_position + (move_control.size / 2.0)
+	move_collider.shape.size = move_control.size

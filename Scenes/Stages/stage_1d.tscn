@@ -105,10 +105,11 @@ start_selected_window = NodePath("StartWindow")
 
 [node name="TutorialWindow" parent="WindowManager" unique_id=110952682 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 140.0
-offset_top = 142.0
-offset_right = 363.0
-offset_bottom = 264.0
+offset_left = 160.0
+offset_top = 108.0
+offset_right = 383.0
+offset_bottom = 230.0
+window_icon = 2
 is_locked = true
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 
@@ -130,7 +131,7 @@ mouse_filter = 2
 bbcode_enabled = true
 text = "Some windows can be moved by dragging their [color=blue][sine]blue title bar[/sine][/color].
 
-A lock icon means that they're stuck in place"
+A [color=blue]lock icon[/color] indicates that a window is stuck in place and [color=blue]cannot be moved."
 fit_content = true
 scroll_active = false
 custom_effects = [SubResource("RichTextEffect_h47ca"), SubResource("RichTextEffect_l1co8"), SubResource("RichTextEffect_jk1k0"), SubResource("RichTextEffect_7kvc5")]
@@ -139,10 +140,10 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="MoveWindow" parent="WindowManager" unique_id=1289661258 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 516.0
-offset_top = 243.0
-offset_right = 628.0
-offset_bottom = 325.0
+offset_left = 510.0
+offset_top = 217.0
+offset_right = 622.0
+offset_bottom = 299.0
 title_text = &"Movable"
 
 [node name="StaticObstacle" parent="WindowManager/MoveWindow" unique_id=861870886 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
@@ -180,10 +181,10 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="MoveWindow2" parent="WindowManager" unique_id=626908439 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 515.0
-offset_top = 352.0
-offset_right = 627.0
-offset_bottom = 434.0
+offset_left = 509.0
+offset_top = 326.0
+offset_right = 621.0
+offset_bottom = 408.0
 title_text = &"Movable"
 
 [node name="StaticObstacle" parent="WindowManager/MoveWindow2" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
@@ -221,10 +222,10 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="MoveWindow3" parent="WindowManager" unique_id=1946830391 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 515.0
-offset_top = 463.0
-offset_right = 627.0
-offset_bottom = 545.0
+offset_left = 509.0
+offset_top = 437.0
+offset_right = 621.0
+offset_bottom = 519.0
 title_text = &"Movable"
 
 [node name="StaticObstacle" parent="WindowManager/MoveWindow3" unique_id=174808376 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
@@ -262,17 +263,17 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="GoalWindow" parent="WindowManager" unique_id=539758716 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 680.0
-offset_top = 320.0
-offset_right = 872.0
-offset_bottom = 448.0
+offset_left = 674.0
+offset_top = 294.0
+offset_right = 866.0
+offset_bottom = 422.0
 window_icon = 1
 is_locked = true
 title_text = &"HoleFour"
 
 [node name="GoalArea" parent="WindowManager/GoalWindow" unique_id=711233156 instance=ExtResource("12_tia0s")]
 unique_name_in_owner = true
-position = Vector2(139, 82)
+position = Vector2(139, 89)
 
 [node name="StaticObstacle" parent="WindowManager/GoalWindow" unique_id=1458297171 node_paths=PackedStringArray("parent_window") instance=ExtResource("6_rujyf")]
 parent_window = NodePath("..")
@@ -340,10 +341,10 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="StartWindow" parent="WindowManager" unique_id=800055674 instance=ExtResource("3_rval4")]
 layout_mode = 1
-offset_left = 316.0
-offset_top = 320.0
-offset_right = 464.0
-offset_bottom = 448.0
+offset_left = 310.0
+offset_top = 294.0
+offset_right = 458.0
+offset_bottom = 422.0
 is_locked = true
 
 [node name="BallTrail" parent="." unique_id=195652157 node_paths=PackedStringArray("stage", "ball") instance=ExtResource("13_egfr0")]
@@ -352,7 +353,7 @@ ball = NodePath("../Ball")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("14_jg37q")]
 unique_name_in_owner = true
-position = Vector2(390, 376)
+position = Vector2(384, 350)
 window_manager = NodePath("../WindowManager")
 
 [node name="LocalPos" type="Node2D" parent="." unique_id=2117185764 node_paths=PackedStringArray("ball")]

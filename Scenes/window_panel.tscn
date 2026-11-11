@@ -21,10 +21,6 @@ border_width_left = 3
 border_width_right = 3
 border_color = Color(1, 1, 1, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
-resource_local_to_scene = true
-size = Vector2(255, 255)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pi1cl"]
 shader = ExtResource("3_pi1cl")
 shader_parameter/ant_color_1 = Color(1, 1, 1, 1)
@@ -32,6 +28,10 @@ shader_parameter/ant_color_2 = Color(0, 0, 0, 1)
 shader_parameter/ant_width = 1.0
 shader_parameter/ant_length = 3.0
 shader_parameter/ant_speed = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb32r"]
+resource_local_to_scene = true
+size = Vector2(255, 255)
 
 [sub_resource type="Animation" id="Animation_3mdtd"]
 length = 0.001
@@ -172,7 +172,7 @@ text = ""
 icon = ExtResource("9_0rnsm")
 vertical_icon_alignment = 0
 
-[node name="MovePanel" type="PanelContainer" parent="PanelParent" unique_id=708295018]
+[node name="InsetPanel" type="PanelContainer" parent="PanelParent" unique_id=708295018]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -188,19 +188,14 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("7_pi1cl")
 
-[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_panel")]
-unique_name_in_owner = true
-position = Vector2(126, 117)
-collision_mask = 2
-input_pickable = false
-script = ExtResource("8_0rnsm")
-window_parent = NodePath("..")
-move_panel = NodePath("../PanelParent/MovePanel")
-
-[node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
-position = Vector2(1.5, 10.5)
-shape = SubResource("RectangleShape2D_pb32r")
-disabled = true
+[node name="MoveControl" type="Control" parent="PanelParent" unique_id=1112174155]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="SelectedOutline" type="ColorRect" parent="." unique_id=664247300]
 unique_name_in_owner = true
@@ -213,6 +208,20 @@ offset_top = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MoveArea" type="Area2D" parent="." unique_id=793410227 node_paths=PackedStringArray("window_parent", "move_control")]
+unique_name_in_owner = true
+position = Vector2(126, 117)
+collision_mask = 2
+input_pickable = false
+script = ExtResource("8_0rnsm")
+window_parent = NodePath("..")
+move_control = NodePath("../PanelParent/MoveControl")
+
+[node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
+position = Vector2(1.5, 10.5)
+shape = SubResource("RectangleShape2D_pb32r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=572684955]
 libraries/ = SubResource("AnimationLibrary_dr8s7")

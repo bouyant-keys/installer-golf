@@ -14,25 +14,21 @@
 [ext_resource type="PackedScene" uid="uid://1cu440n50dm" path="res://Scenes/ball.tscn" id="13_sntc0"]
 [ext_resource type="PackedScene" uid="uid://c6nvjvelktvc0" path="res://Scenes/goal_area.tscn" id="14_biynp"]
 
+[sub_resource type="Gradient" id="Gradient_3rbns"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.62840027, 0.06695614, 0.2713269, 1, 0.6010387, 0.5159573, 0.9012849, 1, 0.41845596, 0.9101316, 0.89010507, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7x1b8"]
+gradient = SubResource("Gradient_3rbns")
+fill_from = Vector2(0, 1)
+
 [sub_resource type="Gradient" id="Gradient_7vvfa"]
-offsets = PackedFloat32Array(0, 0.43609023, 1)
+offsets = PackedFloat32Array(0, 0.5614035, 1)
 colors = PackedColorArray(0.62840027, 0.06695614, 0.2713269, 1, 0.6010387, 0.5159573, 0.9012849, 1, 0.41845596, 0.9101316, 0.89010507, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pb32r"]
 gradient = SubResource("Gradient_7vvfa")
 fill_from = Vector2(0, 1)
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_3rbns"]
-script = ExtResource("6_t3m1t")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_7x1b8"]
-script = ExtResource("7_0t7ba")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_o5ft6"]
-script = ExtResource("8_su2ib")
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_tplc1"]
-script = ExtResource("9_m46kd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rbns"]
 size = Vector2(920, 5)
@@ -46,9 +42,94 @@ size = Vector2(920, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksry7"]
 size = Vector2(6.7999954, 515.2)
 
-[node name="Software" type="Node" unique_id=235705918]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5ft6"]
+size = Vector2(133, 12.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tplc1"]
+size = Vector2(126, 11.5)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3rbns"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7x1b8"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o5ft6"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tplc1"]
+script = ExtResource("9_m46kd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_nl0ed"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wxln4"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_t3m1t"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_0t7ba"]
+script = ExtResource("9_m46kd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_su2ib"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_m46kd"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_byvyq"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4w2ea"]
+script = ExtResource("9_m46kd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_k88c5"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sntc0"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_biynp"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4wpqq"]
+script = ExtResource("9_m46kd")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4rnex"]
+script = ExtResource("6_t3m1t")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_437h8"]
+script = ExtResource("7_0t7ba")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ka1t6"]
+script = ExtResource("8_su2ib")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_75v3r"]
+script = ExtResource("9_m46kd")
+
+[node name="Software" type="Node" unique_id=235705918 node_paths=PackedStringArray("goal_positions")]
 script = ExtResource("1_7x1b8")
+bg = SubResource("GradientTexture2D_7x1b8")
+goal_positions = [NodePath("GoalPositions/GoalPos"), NodePath("GoalPositions/GoalPos2"), NodePath("GoalPositions/GoalPos3"), NodePath("GoalPositions/GoalPos4"), NodePath("GoalPositions/GoalPos5")]
 next_stage_on_goal = false
+
+[node name="GoalPositions" type="Node" parent="." unique_id=20010805]
+
+[node name="GoalPos" type="Node2D" parent="GoalPositions" unique_id=514084657]
+position = Vector2(213, 535)
+
+[node name="GoalPos2" type="Node2D" parent="GoalPositions" unique_id=1800649307]
+position = Vector2(803, 123)
+
+[node name="GoalPos3" type="Node2D" parent="GoalPositions" unique_id=1828197039]
+position = Vector2(834, 484)
+
+[node name="GoalPos4" type="Node2D" parent="GoalPositions" unique_id=2021960828]
+position = Vector2(320, 121)
+
+[node name="GoalPos5" type="Node2D" parent="GoalPositions" unique_id=2121667423]
+position = Vector2(582, 274)
 
 [node name="WindowManager" type="Control" parent="." unique_id=2095774818]
 unique_name_in_owner = true
@@ -75,12 +156,13 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 is_locked = true
-grab_bar_color = Color(0.70007545, 0.28531986, 0.8152566, 1)
+title_text = &"CoolCoolFunFunSoftware Deluxe Edition"
+grab_bar_color = Color(0.47879314, 0.0030031663, 0.89397323, 1)
 closable = true
 
 [node name="GoalArea" parent="WindowManager/SoftwareWindow" unique_id=1905208525 instance=ExtResource("14_biynp")]
 unique_name_in_owner = true
-position = Vector2(1303.8, 76.2)
+position = Vector2(101.79999, 469.2)
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/SoftwareWindow" unique_id=182673221]
 layout_mode = 1
@@ -94,33 +176,10 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 5
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/SoftwareWindow/MarginContainer" unique_id=624889316]
+[node name="BGColor" type="TextureRect" parent="WindowManager/SoftwareWindow/MarginContainer" unique_id=624889316]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("GradientTexture2D_pb32r")
-
-[node name="CreditsText" type="RichTextLabel" parent="WindowManager/SoftwareWindow/MarginContainer" unique_id=1410550499]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-bbcode_enabled = true
-text = "[sine]Thanks for playing![/sine]
-
-A game by Ethan Keys
-
-Made with Godot 4.7
-
----
-
-Music: Theory of Everything by ...
-SFX: ..."
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-custom_effects = [SubResource("RichTextEffect_3rbns"), SubResource("RichTextEffect_7x1b8"), SubResource("RichTextEffect_o5ft6"), SubResource("RichTextEffect_tplc1")]
-script = ExtResource("10_byvyq")
-metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="StaticObstacle" parent="WindowManager/SoftwareWindow" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("11_4w2ea")]
 is_disabled = true
@@ -142,7 +201,7 @@ shape = SubResource("RectangleShape2D_m6leb")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=544997431]
-position = Vector2(2.4000015, 236.59999)
+position = Vector2(2.4000015, 260.2)
 shape = SubResource("RectangleShape2D_ksry7")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 
@@ -150,6 +209,187 @@ debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
 position = Vector2(917.80005, 250.20001)
 shape = SubResource("RectangleShape2D_ksry7")
 debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="ThanksCollision" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=1962272431]
+position = Vector2(350.8, 61.699997)
+polygon = PackedVector2Array(-49, -18, -27, -18, -27, -10, 17, -10, 17, -18, 24, -18, 24, -10, 50, -10, 50, 12, -45, 12, -45, -13, -49, -13)
+
+[node name="ThanksCollision2" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=89322326]
+position = Vector2(549.3, 59.699997)
+polygon = PackedVector2Array(35.5, 14, 2.5, 14, 2.5, 18, -15.5, 18, -15.5, 14, -58.5, 14, -58.5, 18, -64.5, 18, -64.5, -8, -43.5, -8, -43.5, -16, -35.5, -16, -35.5, -8, 7.5, -8, 7.5, -16, 14.5, -16, 14.5, -8, 53.5, -8, 53.5, -16, 64.5, -16, 64.5, 14, 52.5, 14, 52.5, 19, 35.5, 19)
+
+[node name="ThanksCollision3" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=902893361]
+position = Vector2(442.8, 59.199997)
+polygon = PackedVector2Array(-21, -5.5, -20.605333, -15.500002, -9, -15.5, -9, -7.5, 24, -7.5, 24, -0.5, 14, -0.5, 14, 14.5, -21, 14.5, -21, -0.5, -25, -0.5, -25, -5.5)
+
+[node name="CreditsCollision" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=170205006]
+position = Vector2(383.8, 110.7)
+shape = SubResource("RectangleShape2D_o5ft6")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="CreditsCollision2" type="CollisionShape2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=1910448348]
+position = Vector2(539.8, 110.7)
+shape = SubResource("RectangleShape2D_tplc1")
+debug_color = Color(0.42745098, 0.4627451, 1, 0.41960785)
+
+[node name="MusicCollision" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=1383173165]
+position = Vector2(228.79999, 261.2)
+polygon = PackedVector2Array(-49, -18, 2, -18, 2, -35, 41, -35, 41, -18, 94, -18, 94, -2, 122, -2, 122, 10, 100, 10, 100, 25, -57, 26, -57, 11, -76, 11, -76, -3, -49, -3)
+
+[node name="MusicCollision2" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=113172633]
+position = Vector2(228.79999, 324.2)
+polygon = PackedVector2Array(-15, -18, 19, -18, 19, -35, 25, -35, 25, -18, 61, -18, 61, -1, 77, -1, 77, 11, -30, 11, -30, -2, -15, -2)
+
+[node name="SFXCollision" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=1266072541]
+position = Vector2(537.8, 256.2)
+polygon = PackedVector2Array(-43, -13, 6, -13, 6, -30, 31, -30, 31, -13, 202, -13, 202, -1, 171, -1, 171, 19, 229, 19, 229, 30, 219, 30, 219, 46, 152, 46, 152, 79, -107, 79, -107, 47, -173, 47, -173.72595, 29.68562, -183, 30, -183, 19, -124, 19, -124, -1, -157, -2, -157, -13)
+
+[node name="ShadersCollision" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=5199051]
+position = Vector2(426.8, 384.2)
+polygon = PackedVector2Array(6, -13, 6, -30, 58, -30, 58, -13, 293, -13, 293, -1, 192, -1, 192, 14, -127, 14, -127, -2, -227, -2, -227, -13)
+
+[node name="FontsCollision" type="CollisionPolygon2D" parent="WindowManager/SoftwareWindow/StaticObstacle" unique_id=714449198]
+position = Vector2(426.8, 448.2)
+polygon = PackedVector2Array(13, -13, 13, -30, 51, -30, 51, -13, 166, -13, 166, 3, 233, 3, 233, 14, -167, 14, -167, 3, -100, 3, -100, -13)
+
+[node name="ThanksText" type="RichTextLabel" parent="WindowManager/SoftwareWindow" unique_id=1410550499]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.99997
+offset_top = -219.50002
+offset_right = 158.00003
+offset_bottom = -178.50002
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[sine][color=white]Thanks for playing!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_3rbns"), SubResource("RichTextEffect_7x1b8"), SubResource("RichTextEffect_o5ft6"), SubResource("RichTextEffect_tplc1")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="CreatedText" type="RichTextLabel" parent="WindowManager/SoftwareWindow" unique_id=294457789]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.50003
+offset_top = -156.5
+offset_right = 143.49997
+offset_bottom = -140.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "A game by [sine][color=blue]Ethan Keys[/color][/sine]    Made with [sine][sparkle color=478cbf weight=0.8]Godot 4.7"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_nl0ed"), SubResource("RichTextEffect_wxln4"), SubResource("RichTextEffect_t3m1t"), SubResource("RichTextEffect_0t7ba")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="MusicCredits" type="RichTextLabel" parent="WindowManager/SoftwareWindow" unique_id=697862181]
+layout_mode = 0
+offset_left = 153.29996
+offset_top = 225.21602
+offset_right = 351.29996
+offset_bottom = 337.216
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[sine]Music[/sine]:
+'Theory of Everything'
+by Jake Kaufman & Yuzo Koshiro
+(from Mina the Hollower)
+&
+'Space Jazz'
+by Kevin Macleod"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_su2ib"), SubResource("RichTextEffect_m46kd"), SubResource("RichTextEffect_byvyq"), SubResource("RichTextEffect_4w2ea")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="SFXCredits" type="RichTextLabel" parent="WindowManager/SoftwareWindow" unique_id=1996633158]
+layout_mode = 0
+offset_left = 355.29996
+offset_top = 233.21602
+offset_right = 768.2999
+offset_bottom = 329.216
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[sine]SFX[/sine]: 
+Menu Click - Two Tone by Soughtaftersounds @ Freesound
+Golf Balls Rolling.wav by 221227 @ Freesound
+Musical Saw effects UFO.mp3 by JohnsonBrandEditing @ Freesound
+Minigolf putt, right into the hole! by pfranzen @ Freesound
+Crowd applause by Driken5482 @ Pixabay
+typewriter22.ogg by tams_kp @ Freesound"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_k88c5"), SubResource("RichTextEffect_sntc0"), SubResource("RichTextEffect_biynp"), SubResource("RichTextEffect_4wpqq")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
+
+[node name="OtherCredits" type="RichTextLabel" parent="WindowManager/SoftwareWindow" unique_id=215884737]
+layout_mode = 0
+offset_left = 200.29996
+offset_top = 353.216
+offset_right = 721.2999
+offset_bottom = 481.216
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[sine]Shaders[/sine]:
+Animated selection rectangle (Marching ants) by Mew Pur Pur @ godotshaders.com
+Line2D animation by cpt_metal @ godotshaders.com
+
+[sine]Fonts[/sine]:
+HelvetiPixel by Pentacom @ BitFontMaker2
+Ac437_ToshibaSat_8x16 by The Ultimate Oldschool PC Font Pack
+ "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+custom_effects = [SubResource("RichTextEffect_4rnex"), SubResource("RichTextEffect_437h8"), SubResource("RichTextEffect_ka1t6"), SubResource("RichTextEffect_75v3r")]
+script = ExtResource("10_byvyq")
+metadata/_custom_type_script = "uid://bb1cao51wvu70"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/SoftwareWindow" unique_id=1929726504]
 layout_mode = 1
@@ -180,9 +420,13 @@ ball = NodePath("../Ball")
 
 [node name="Ball" parent="." unique_id=1966659767 node_paths=PackedStringArray("window_manager") instance=ExtResource("13_sntc0")]
 unique_name_in_owner = true
-position = Vector2(576, 129)
+position = Vector2(576, 242)
 window_manager = NodePath("../WindowManager")
 special = true
 
+[connection signal="windows_entered" from="WindowManager" to="." method="_on_software_entered"]
+[connection signal="windows_exited" from="WindowManager" to="." method="_on_software_exited"]
 [connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/ReplayButton" to="Ball" method="exit"]
 [connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="WindowManager/SoftwareWindow/HBoxContainer/QuitButton" to="Ball" method="exit"]

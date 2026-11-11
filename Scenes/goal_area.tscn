@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://uid1s6foo8hq" path="res://Scripts/goal_area.gd" id="1_xxatn"]
 [ext_resource type="Texture2D" uid="uid://b6golfim1t0lh" path="res://Textures/goal_flag4.png" id="4_la8kp"]
 [ext_resource type="Texture2D" uid="uid://b0hk036wstj6j" path="res://Textures/goal_hole.png" id="5_0mfu7"]
+[ext_resource type="AudioStream" uid="uid://yw01cc4h7lvm" path="res://Audio/Effects/GoalAudienceCheer.wav" id="5_ju4mi"]
 [ext_resource type="Texture2D" uid="uid://cbb8x7y3ud6b8" path="res://Textures/goal_flag3.png" id="6_ju4mi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pb32r"]
@@ -147,7 +148,9 @@ debug_color = Color(0.65882254, 0.515701, 0, 0.41960785)
 libraries/ = SubResource("AnimationLibrary_c5dij")
 
 [node name="GoalSFX" type="AudioStreamPlayer" parent="." unique_id=969276651]
-
-[node name="MousePressSFX" type="AudioStreamPlayer" parent="." unique_id=1169147831]
+stream = ExtResource("5_ju4mi")
+volume_db = -12.0
+pitch_scale = 1.3
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

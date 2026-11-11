@@ -58,7 +58,7 @@ func ball_exited_window() ->void:
 
 #region Window Signals
 func _on_window_tab_changed(index:int) ->void:
-	set_collision(index == tab_id)
+	set_collision((index == tab_id) or tab_id == -1)
 
 func _on_window_grabbed(_window:WindowPanel) ->void:
 	relative_local = global_position - parent_window.global_position
@@ -68,14 +68,10 @@ func _on_window_released(_window:WindowPanel) ->void:
 	relative_global = global_position
 	set_physics_process(false)
 
-func _on_window_resize_start(_window:ResizableWindow) ->void:
-	pass
+func _on_window_resize_start(_window:ResizableWindow) ->void: pass
+func _on_window_resize_end(_window:ResizableWindow) ->void: pass
 
 func _on_window_resized(_window:ResizableWindow) ->void:
 	# Don't move node if parent window's position changes when resized.
 	global_position = relative_global
-	print("heave")
-
-func _on_window_resize_end(_window:ResizableWindow) ->void:
-	pass
 #endregion

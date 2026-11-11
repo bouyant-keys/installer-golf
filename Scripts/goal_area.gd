@@ -1,17 +1,14 @@
 class_name GoalArea extends Area2D
 
-const FINAL_BUTTON_TEXT : String = "Install"
-
 var relative_position : Vector2
+var goal_entered := false
 
 @export var parent_window : WindowPanel
-@export var is_intro_level := false
-@export var is_final_level := false
+@export var enter_on_load := false
 @export var tab_id := -1
 
 @onready var flag_sprite: AnimatedSprite2D = $FlagSprite
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var mouse_press_sfx: AudioStreamPlayer = $MousePressSFX
 @onready var goal_sfx: AudioStreamPlayer = $GoalSFX
 @onready var collider: CollisionShape2D = $CollisionShape2D
 
@@ -35,20 +32,25 @@ func _ready() -> void:
 	
 	hide()
 	
-	if !is_intro_level:
+	if !enter_on_load:
 		enter()
 
 func enter() ->void:
 	show()
+	goal_entered = false
 	flag_sprite.play("wave")
 	anim.play("enter")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is not Ball:
+	if body is not Ball or goal_entered:
 		return
 	
-	body = body as Ball
-	body._on_goal()
+	var ball = body as Ball
+	if !ball.launched:
+		return
+	
+	goal_entered = true
+	ball._on_goal()
 	
 	anim.play("goal")
 	goal_sfx.play()

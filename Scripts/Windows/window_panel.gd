@@ -7,12 +7,11 @@ const RESIZE_ICON = preload("uid://c7t72mo374dvy")
 const TAB_ICON = preload("uid://myile0scxfs3")
 const ERROR_ICON = preload("uid://bkd432rkvigtf")
 
-
 const BOUNDS_NUDGE_MIN := Vector2(4.0, 24.0)
 const BOUNDS_NUDGE_MAX := Vector2(64.0, 24.0)
-const TITLE_FORMAT := "Installer"
-const TUTORIAL_TITLE := "Guide"
-const ERROR_TITLE := "!! ERROR !!"
+const TITLE_FORMAT := &"Installer"
+const TUTORIAL_TITLE := &"Guide"
+const ERROR_TITLE := &"!! ERROR !!"
 const ENTER_TIME := 0.4
 const EXIT_TIME := 0.4
 const BOUNCE_TIME := 0.25
@@ -26,6 +25,7 @@ var drag_start : Vector2
 var is_draggable := true
 var grabbable := false
 var dragging := false
+var has_exited := false
 
 ## Which Icon to use for the window (upper left corner).
 @export var window_icon := ICON_TYPE.DOWNLOAD
@@ -46,7 +46,6 @@ var dragging := false
 @onready var grab_bar: PanelContainer = %GrabBar
 @onready var window_title: Label = %WindowTitle
 @onready var lock_icon: TextureRect = %LockIcon
-@onready var move_panel: PanelContainer = %MovePanel
 @onready var move_area: MoveArea = %MoveArea
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var icon_texture: TextureRect = %IconTexture
@@ -72,6 +71,8 @@ func _ready() -> void:
 	
 	if is_error:
 		window_title.text = ERROR_TITLE
+	elif window_icon == ICON_TYPE.TUTORIAL:
+		window_title.text = TUTORIAL_TITLE if title_text.is_empty() else title_text
 	else:
 		window_title.text = name if title_text.is_empty() else title_text
 	
@@ -99,6 +100,7 @@ func enter() ->void:
 	enter_tween.tween_property(panel_parent, "scale", Vector2.ONE, ENTER_TIME)
 	
 	await enter_tween.finished
+	has_exited = false
 	entered.emit()
 	move_area.set_collider_active(true)
 	set_children_visibility(true)
@@ -115,9 +117,9 @@ func exit() ->void:
 	exit_tween.tween_property(panel_parent, "scale", Vector2.ZERO, EXIT_TIME)
 	
 	await exit_tween.finished
+	has_exited = true
 	exited.emit()
 	move_area.set_collider_active(false)
-	hide()
 
 
 func select() ->void:
@@ -134,14 +136,12 @@ func grab() ->void:
 		return
 	
 	dragging = true
-	selected_outline.show()
 	drag_start = get_global_mouse_position()
 	move_start = global_position
 	window_grabbed.emit(self)
 
 func release() ->void:
 	dragging = false
-	selected_outline.hide()
 	
 	var enclose_rect := get_viewport_rect()
 	global_position = global_position.clamp(enclose_rect.position + BOUNDS_NUDGE_MIN, enclose_rect.end - BOUNDS_NUDGE_MAX)
@@ -152,6 +152,7 @@ func close() ->void:
 	if !closable: return
 	
 	await exit()
+	window_closed.emit()
 	global_position = start_position
 	enter()
 
@@ -206,8 +207,12 @@ func get_movable_area() ->Rect2: return move_area.get_movable_area()
 func get_move_area_position() ->Vector2: return move_area.get_collider_position()
 
 
-func _on_grab_bar_entered() ->void: grabbable = true
-func _on_grab_bar_exited() ->void: grabbable = false
+func _on_grab_bar_entered() ->void: 
+	selected_outline.show()
+	grabbable = true
+func _on_grab_bar_exited() ->void: 
+	selected_outline.hide()
+	grabbable = false
 
 func _on_new_current_window(_c_window:WindowPanel) ->void:
 	return
