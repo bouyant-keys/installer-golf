@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://wq0rljijwt8g" path="res://Textures/Close_Icon-Small.png" id="6_0i4gj"]
 [ext_resource type="Texture2D" uid="uid://f4hmjwxowayq" path="res://Textures/LockIcon.png" id="6_u5e8r"]
 [ext_resource type="StyleBox" uid="uid://db7paxlm6m6rq" path="res://Materials/Win95Styles/W95-InsetPanel.tres" id="7_0i4gj"]
-[ext_resource type="Texture2D" uid="uid://bvm7nh6qmm1em" path="res://Textures/Resize_Icon.png" id="7_rddhq"]
 [ext_resource type="Script" uid="uid://bj1vasses0bnt" path="res://Scripts/move_area.gd" id="8_0yqvv"]
+[ext_resource type="Texture2D" uid="uid://dc4viegh842am" path="res://Textures/ResizeBar_H.png" id="9_0i4gj"]
 [ext_resource type="AudioStream" uid="uid://c08hogw3ak1oj" path="res://Audio/Effects/UI_Enter.wav" id="9_roe7c"]
+[ext_resource type="Texture2D" uid="uid://bwtevd7eysbqt" path="res://Textures/ResizeBar_V.png" id="10_0i4gj"]
 [ext_resource type="Shader" uid="uid://2nxqxkykot4e" path="res://Materials/MarchingAnts-Outline.gdshader" id="10_olcln"]
 [ext_resource type="AudioStream" uid="uid://d1ldha4aqsyds" path="res://Audio/Effects/UI_Exit.wav" id="10_xr01o"]
 
@@ -55,7 +56,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelParent/VBoxContainer/GrabBar/HBoxContainer/LockIcon:self_modulate")
+tracks/0/path = NodePath("PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer/LockIcon:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -71,7 +72,7 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelParent/VBoxContainer/GrabBar/HBoxContainer/LockIcon:self_modulate")
+tracks/0/path = NodePath("PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer/LockIcon:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -128,11 +129,18 @@ offset_transform_position = Vector2(8, 8)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d5xpd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelParent" unique_id=2102886717]
+[node name="MarginContainer" type="MarginContainer" parent="PanelParent" unique_id=1100772169]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelParent/MarginContainer" unique_id=2102886717]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="GrabBar" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=1896426972]
+[node name="GrabBar" type="PanelContainer" parent="PanelParent/MarginContainer/VBoxContainer" unique_id=1896426972]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
@@ -142,14 +150,14 @@ mouse_filter = 1
 mouse_default_cursor_shape = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_3mdtd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/VBoxContainer/GrabBar" unique_id=1217731613]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar" unique_id=1217731613]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=2047035196]
+[node name="Spacer" type="Control" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=2047035196]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="IconTexture" type="TextureRect" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=562214442]
+[node name="IconTexture" type="TextureRect" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=562214442]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
@@ -157,7 +165,7 @@ size_flags_horizontal = 0
 texture = ExtResource("2_xr01o")
 stretch_mode = 5
 
-[node name="WindowTitle" type="Label" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=185553135]
+[node name="WindowTitle" type="Label" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=185553135]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -167,7 +175,7 @@ theme_override_font_sizes/font_size = 16
 text = "WindowTitle"
 text_overrun_behavior = 5
 
-[node name="LockIcon" type="TextureRect" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=1922679202]
+[node name="LockIcon" type="TextureRect" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=1922679202]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
@@ -175,7 +183,7 @@ size_flags_horizontal = 10
 texture = ExtResource("6_u5e8r")
 stretch_mode = 5
 
-[node name="CloseButton" parent="PanelParent/VBoxContainer/GrabBar/HBoxContainer" unique_id=41542465 instance=ExtResource("5_u5e8r")]
+[node name="CloseButton" parent="PanelParent/MarginContainer/VBoxContainer/GrabBar/HBoxContainer" unique_id=41542465 instance=ExtResource("5_u5e8r")]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -185,35 +193,12 @@ text = ""
 icon = ExtResource("6_0i4gj")
 vertical_icon_alignment = 0
 
-[node name="MovePanel" type="PanelContainer" parent="PanelParent/VBoxContainer" unique_id=708295018]
+[node name="MovePanel" type="PanelContainer" parent="PanelParent/MarginContainer/VBoxContainer" unique_id=708295018]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("7_0i4gj")
-
-[node name="ResizeZone" type="Control" parent="PanelParent/VBoxContainer" unique_id=246402515]
-custom_minimum_size = Vector2(0, 14)
-layout_mode = 2
-size_flags_vertical = 8
-mouse_filter = 2
-
-[node name="ResizeIcon" type="TextureRect" parent="PanelParent/VBoxContainer/ResizeZone" unique_id=1746044915]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-texture = ExtResource("7_rddhq")
-stretch_mode = 5
 
 [node name="ResizeIndicators" type="Control" parent="." unique_id=1735703956]
 layout_mode = 1
@@ -234,13 +219,27 @@ custom_minimum_size = Vector2(6, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
-offset_top = 6.0
-offset_right = 6.0
-offset_bottom = -6.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = -10.0
 grow_vertical = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
+
+[node name="ResizeIcon" type="TextureRect" parent="ResizeIndicators/LeftResize" unique_id=1610467245]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = -1.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_0i4gj")
+stretch_mode = 2
 
 [node name="TopResize" type="Panel" parent="ResizeIndicators" unique_id=500992077]
 self_modulate = Color(1, 1, 1, 0)
@@ -248,13 +247,26 @@ custom_minimum_size = Vector2(0, 6)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 6.0
-offset_right = -6.0
-offset_bottom = 6.0
+offset_left = 10.0
+offset_right = -10.0
+offset_bottom = 10.0
 grow_horizontal = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 9
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
+
+[node name="ResizeIcon" type="TextureRect" parent="ResizeIndicators/TopResize" unique_id=1132213322]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_0i4gj")
+stretch_mode = 2
 
 [node name="BottomResize" type="Panel" parent="ResizeIndicators" unique_id=140863381]
 self_modulate = Color(1, 1, 1, 0)
@@ -264,14 +276,24 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -6.0
-offset_right = -6.0
+offset_left = 10.0
+offset_top = -10.0
+offset_right = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 9
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
+
+[node name="ResizeIcon" type="TextureRect" parent="ResizeIndicators/BottomResize" unique_id=735766079]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 2.0
+grow_horizontal = 2
+texture = ExtResource("10_0i4gj")
+stretch_mode = 2
 
 [node name="RightResize" type="Panel" parent="ResizeIndicators" unique_id=121523100]
 self_modulate = Color(1, 1, 1, 0)
@@ -281,21 +303,31 @@ anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_top = 6.0
-offset_bottom = -6.0
+offset_left = -10.0
+offset_top = 10.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
 
+[node name="ResizeIcon" type="TextureRect" parent="ResizeIndicators/RightResize" unique_id=625708288]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+grow_vertical = 2
+texture = ExtResource("9_0i4gj")
+stretch_mode = 2
+
 [node name="CornerTL" type="Panel" parent="ResizeIndicators" unique_id=1421710685]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(6, 6)
 layout_mode = 1
-offset_right = 6.0
-offset_bottom = 6.0
+offset_right = 10.0
+offset_bottom = 10.0
 mouse_filter = 1
 mouse_default_cursor_shape = 12
 theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
@@ -307,8 +339,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -6.0
-offset_bottom = 6.0
+offset_left = -10.0
+offset_bottom = 10.0
 grow_horizontal = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 11
@@ -321,8 +353,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -6.0
-offset_right = 6.0
+offset_top = -10.0
+offset_right = 10.0
 grow_vertical = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 11
@@ -337,8 +369,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_top = -6.0
+offset_left = -10.0
+offset_top = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
@@ -352,7 +384,7 @@ collision_mask = 2
 input_pickable = false
 script = ExtResource("8_0yqvv")
 window_parent = NodePath("..")
-move_control = NodePath("../PanelParent/VBoxContainer/MovePanel")
+move_control = NodePath("../PanelParent/MarginContainer/VBoxContainer/MovePanel")
 
 [node name="MoveCollider" type="CollisionShape2D" parent="MoveArea" unique_id=644587357]
 unique_name_in_owner = true
@@ -392,5 +424,5 @@ stream = ExtResource("10_xr01o")
 bus = &"SFX"
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="mouse_entered" from="PanelParent/VBoxContainer/GrabBar" to="." method="_on_grab_bar_entered"]
-[connection signal="mouse_exited" from="PanelParent/VBoxContainer/GrabBar" to="." method="_on_grab_bar_exited"]
+[connection signal="mouse_entered" from="PanelParent/MarginContainer/VBoxContainer/GrabBar" to="." method="_on_grab_bar_entered"]
+[connection signal="mouse_exited" from="PanelParent/MarginContainer/VBoxContainer/GrabBar" to="." method="_on_grab_bar_exited"]

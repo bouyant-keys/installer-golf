@@ -86,10 +86,10 @@ script = ExtResource("2_sp54o")
 
 [node name="TutorialWindow" parent="WindowManager" unique_id=1311309029 instance=ExtResource("11_r1so3")]
 layout_mode = 1
-offset_left = -336.0
-offset_top = -242.0
-offset_right = -121.0
-offset_bottom = -152.0
+offset_left = -414.0
+offset_top = -223.0
+offset_right = -134.0
+offset_bottom = -132.0
 window_icon = 2
 is_locked = true
 grab_bar_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
@@ -112,7 +112,7 @@ mouse_filter = 2
 bbcode_enabled = true
 text = "Some windows can be [color=blue]resized[/color].
 
-There might be things [sine]hiding inside...[/sine]"
+Use the [color=blue]grabbers on the sides of the window[/color] to find things [sine]hiding inside...[/sine]"
 fit_content = true
 scroll_active = false
 custom_effects = [SubResource("RichTextEffect_bankd"), SubResource("RichTextEffect_x2xqv"), SubResource("RichTextEffect_8gj8j"), SubResource("RichTextEffect_sp54o")]
@@ -123,10 +123,10 @@ metadata/_custom_type_script = "uid://bb1cao51wvu70"
 custom_minimum_size = Vector2(160, 160)
 custom_maximum_size = Vector2(512, 220)
 layout_mode = 1
-offset_left = -70.0
-offset_top = -80.0
-offset_right = 214.0
-offset_bottom = 80.0
+offset_left = -72.0
+offset_top = -86.0
+offset_right = 212.0
+offset_bottom = 84.0
 is_locked = false
 title_text = &"HoleTen"
 
@@ -136,38 +136,39 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 24.0
-offset_right = -4.0
-offset_bottom = -20.0
+offset_left = 10.0
+offset_top = 30.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GoalArea" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1905208525 node_paths=PackedStringArray("parent_window") instance=ExtResource("4_6uw7m")]
 unique_name_in_owner = true
-position = Vector2(241, 75)
+position = Vector2(222, 71)
 parent_window = NodePath("../..")
 
 [node name="ResizeObstacle" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1897551971 node_paths=PackedStringArray("parent_window") instance=ExtResource("5_l0bpx")]
-testing = true
 parent_window = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=1278571252]
-position = Vector2(70, 60.5)
+position = Vector2(70, 65.25)
 shape = SubResource("RectangleShape2D_gn7yn")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=35719359]
-position = Vector2(70, -49.75)
+position = Vector2(70, -45)
 shape = SubResource("RectangleShape2D_bankd")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WindowManager/ResizeWindow/ClippingMask/ResizeObstacle" unique_id=628258464]
-position = Vector2(70, 171)
+position = Vector2(70, 175.75)
 shape = SubResource("RectangleShape2D_bankd")
 
 [node name="NonScalingUI" type="Control" parent="WindowManager/ResizeWindow/ClippingMask" unique_id=1745570321 node_paths=PackedStringArray("parent_window")]
 anchors_preset = 0
 offset_left = -140.0
+offset_top = 4.75
 offset_right = -140.0
+offset_bottom = 4.75
 script = ExtResource("6_werrh")
 parent_window = NodePath("../..")
 

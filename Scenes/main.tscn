@@ -173,8 +173,6 @@ mouse_filter = 1
 disabled = true
 text = "Next >"
 
-[node name="UpdatingProgressSFX" type="AudioStreamPlayer" parent="GolfProgress" unique_id=348704588]
-
 [node name="ProgressCompleteSFX" type="AudioStreamPlayer" parent="GolfProgress" unique_id=1895092678]
 stream = ExtResource("19_e08e2")
 bus = &"SFX"
